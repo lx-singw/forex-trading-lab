@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Elliott150 automatic session acceptance (14 November 2026).
+127 targeted checks pass:64 computed paper cells, eight independently reconciled
+EW3/EW5 long/short accounts,48 audited controls and two separate-process EW5
+restarts. Trading/runtime/control bindings are unchanged; only the fixture CLI is
+extended and its defaults remain identical. Full prior suites were not rerun.
+Continue authorized scope in [150 results](ELLIOTT-SESSION-ACCEPTANCE-150-RESULTS.md):
+qualified source/clock/cost/run admission and runner, broader nested/fault/variable
+session acceptance, new-adapter viewer and disabled native demo reconciliation.
+No market source or capture dates are assigned. Protected dates,16 unavailable
+actual market cells and orders-off remain. Commit/push completed sprints to main.
+
 Latest — Elliott149 common session paper comparison (14 November 2026).
 155 targeted checks pass. All16 invented UTC-profile comparison cells now compute
 from common H1/quote inputs through148 paper execution and unchanged controls.

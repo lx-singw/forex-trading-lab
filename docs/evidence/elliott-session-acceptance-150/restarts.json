@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {
+      "case": "ew5_short_target",
+      "profile": "adverse",
+      "separate_process": true,
+      "stage": "pending",
+      "whole_state_equal": true
+    },
+    {
+      "case": "ew5_long_gap",
+      "profile": "base",
+      "separate_process": true,
+      "stage": "held",
+      "whole_state_equal": true
+    }
+  ],
+  "kind": "invented_session_restart_acceptance150",
+  "market_cells_run": 0,
+  "orders_available": false
+}

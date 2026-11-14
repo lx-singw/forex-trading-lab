@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott150 automatic session acceptance (14 November 2026).
+127 targeted checks pass together:10 new and117 relevant existing checks. Four
+predeclared EW3/EW5 long/short target/gap cases retain64 paper comparison cells.
+Eight primary accounts independently reconcile under both costs;48 controls pass
+independent audits. Two EW5 full-prefix restarts match in separate processes.
+The149 fixture CLI adds setup/side/outcome options while its three default input
+digests and every trading-runtime/frozen-control binding remain unchanged. See
+[150 results](ELLIOTT-SESSION-ACCEPTANCE-150-RESULTS.md). Full prior suites were not
+rerun. Qualified source/clock/cost/run admission, broader nested/fault/variable
+session acceptance, new viewer and native work remain open. No actual market
+source, account or capture window is assigned/accessed; protected dates and closed
+routes remain. All16 actual market cells and submissions stay unavailable.
+
 Latest — Elliott149 common session paper comparison (14 November 2026).
 155 targeted checks pass together:38 new and117 relevant existing checks. The
 common invented session adapter now compares all four candidates under both costs

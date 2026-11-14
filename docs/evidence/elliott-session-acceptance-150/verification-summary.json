@@ -1,0 +1,24 @@
+{
+  "tests_passed_together": 127,
+  "new_acceptance_tests": 10,
+  "existing_targeted_checks": 117,
+  "runtime_bindings_unchanged": true,
+  "changed_prior_files": [
+    "scripts/elliott-session-comparison-149.py"
+  ],
+  "default_fixture_digests_unchanged": true,
+  "full_prior_suites_rerun": false,
+  "frozen_control_files": 46,
+  "frozen_control_bindings_unchanged": true,
+  "fixed_cases": 4,
+  "computed_paper_comparison_cells": 64,
+  "independently_reconciled_primary_ew_accounts": 8,
+  "independently_audited_control_accounts": 48,
+  "separate_process_ew5_restarts": 2,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "source_snapshot_sha256": "1d773be9f948aec2813f30fc5f4aa81a3c2101e37a50d7e4b107fd33b06b3366",
+  "published_artifact_files": 246,
+  "published_artifact_bytes": 3083591174,
+  "published_artifact_inventory_sha256": "384d4c03ceb1db5a92ad8f977c5d1e12f6284ad09e0dc02716181e8e52544d9a"
+}

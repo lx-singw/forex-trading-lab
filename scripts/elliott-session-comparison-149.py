@@ -10,12 +10,13 @@ from forex_demo_lab import elliott_session_comparison_149 as s
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def fixture(case="trend",warmup_days=253):
+def fixture(case="trend",warmup_days=253,*,setup="EW3",side=1,outcome="gap"):
     if case not in ("trend","wave","shifted"):raise ValueError("invented_comparison_case")
+    if setup not in ("EW3","EW5") or case!="wave" and setup!="EW3":raise ValueError("invented_wave_setup")
     source=ROOT/"scripts"/("elliott-full-shared-entry.py" if case=="wave" else "elliott-full-shared.py")
     spec=importlib.util.spec_from_file_location("session_comparison_example149",source)
     example=importlib.util.module_from_spec(spec);spec.loader.exec_module(example)
-    value=example.fixture(1,"gap","EW3") if case=="wave" else example.fixture(1,"gap",warmup_days)
+    value=example.fixture(side,outcome,setup) if case=="wave" else example.fixture(side,outcome,warmup_days)
     old_start=value["calendar"]["sessions"][0]["start_msc"]
     cursor=old_start+(2*s.observations.HOUR if case=="shifted" else 0);start=cursor;rows=[];opens=[]
     days=len(value["calendar"]["sessions"])
@@ -54,11 +55,14 @@ def fixture(case="trend",warmup_days=253):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);commands=parser.add_subparsers(dest="command",required=True)
     create=commands.add_parser("fixture");create.add_argument("output");create.add_argument("--case",choices=("trend","wave","shifted"),default="trend")
+    create.add_argument("--setup",choices=("EW3","EW5"),default="EW3")
+    create.add_argument("--side",type=int,choices=(-1,1),default=1)
+    create.add_argument("--outcome",choices=("target","gap"),default="gap")
     freeze=commands.add_parser("freeze");freeze.add_argument("input");freeze.add_argument("manifest")
     run=commands.add_parser("replay");run.add_argument("input");run.add_argument("manifest");run.add_argument("output")
     args=parser.parse_args()
     if args.command=="fixture":
-        s.write(args.output,fixture(args.case));result={"status":"INVENTED_SESSION_FIXTURE_CREATED","orders_available":False}
+        s.write(args.output,fixture(args.case,setup=args.setup,side=args.side,outcome=args.outcome));result={"status":"INVENTED_SESSION_FIXTURE_CREATED","orders_available":False}
     elif args.command=="freeze":
         s.freeze(args.input,args.manifest);result={"status":"FROZEN_INVENTED_NOT_ADMISSION","orders_available":False}
     else:

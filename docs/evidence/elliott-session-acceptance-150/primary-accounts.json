@@ -1,0 +1,103 @@
+{
+  "accounts": [
+    {
+      "case": "ew3_long_target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": false,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "base",
+      "setup": "EW3",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "ew3_long_target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": false,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "adverse",
+      "setup": "EW3",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "ew3_short_gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": true,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "base",
+      "setup": "EW3",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "ew3_short_gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": true,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "adverse",
+      "setup": "EW3",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "ew5_long_gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": true,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "base",
+      "setup": "EW5",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "ew5_long_gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": true,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "adverse",
+      "setup": "EW5",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "ew5_short_target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": false,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "base",
+      "setup": "EW5",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "ew5_short_target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "gap_loss_beyond_estimate": false,
+      "market_cells_run": 0,
+      "orders_available": false,
+      "profile": "adverse",
+      "setup": "EW5",
+      "side": -1,
+      "trades": 1
+    }
+  ],
+  "kind": "invented_session_primary_acceptance150",
+  "market_cells_run": 0,
+  "orders_available": false
+}
