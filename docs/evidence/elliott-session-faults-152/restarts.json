@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "case": "ew5_short",
+      "fault": "wide_retry",
+      "ledger_equal": true,
+      "profile": "adverse",
+      "separate_process": true,
+      "whole_state_digest_equal": true
+    },
+    {
+      "case": "ew3_long",
+      "fault": "closure_gap",
+      "ledger_equal": true,
+      "profile": "base",
+      "separate_process": true,
+      "whole_state_digest_equal": true
+    }
+  ],
+  "market_cells_run": 0,
+  "orders_available": false
+}

@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Elliott152 automatic session fault acceptance (15 November 2026).
+144 targeted checks pass. Four automatic prefixes exercise40 declared branches;
+36 filled accounts independently reconcile, four expiry accounts stay flat and
+two separate-process fault restarts match state digests/ledgers. Variable sessions
+are confined to the first72 warmup hours. Trading/runtime, previous generators
+and frozen controls stay unchanged. See [152 results](ELLIOTT-SESSION-FAULTS-152-RESULTS.md).
+Continue broader nested/direction/session/fault acceptance, qualified source/
+clock/cost/run admission and runner, remaining viewer/visual review and disabled
+native reconciliation. No source or capture dates are assigned; protected dates/
+routes,16 unavailable actual-market cells and orders-off remain. Commit/push each
+completed sprint to main.
+
 Latest — Elliott151 saved session replay viewer (15 November 2026).
 99 targeted checks pass. The149 EW saved-report viewer exports eight existing150
 accounts and passes144 JavaScript/Python cursor comparisons; original trading and

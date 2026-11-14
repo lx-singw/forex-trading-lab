@@ -1,0 +1,15 @@
+{
+  "modules": [
+    "test_elliott_session_faults_152",
+    "test_elliott_session_paper_148.PaperComponents148Tests",
+    "test_elliott_session_paper_148.PaperJournal148Tests",
+    "test_elliott_sessions_146",
+    "test_elliott_study_145",
+    "test_elliott_full_boundary",
+    "test_elliott_full_crosscheck",
+    "test_elliott_session_viewer_151",
+    "test_elliott_full_viewer"
+  ],
+  "planned_tests": 144,
+  "source_bound": true
+}

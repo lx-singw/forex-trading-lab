@@ -1,5 +1,20 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott152 automatic session fault acceptance (15 November 2026).
+144 targeted checks pass:11 new and133 existing. Four automatic EW3 long/EW5
+short prefixes under both costs retain40 declared fault branches,36 independently
+reconciled filled accounts and four flat expiries. Two fault-boundary restarts
+match whole-state digests and ledgers in separate processes. Only the first72
+warmup hours are resegmented into12/12/23/25-hour sessions; no provider DST or
+variable boundaries inside later wave formation are claimed. Trading/runtime,
+existing generators and all46 frozen-control bindings remain unchanged. See
+[152 results](ELLIOTT-SESSION-FAULTS-152-RESULTS.md). No full prior trading-suite or
+16-cell common-comparison rerun is claimed. Broader nested/direction/session/fault
+acceptance, qualified admission/runner, remaining viewer/visual review and disabled
+native reconciliation remain open. No actual source, capture dates, accounts or
+market prices are assigned/accessed. Protected dates/routes remain; all16 actual
+market cells and native submissions stay unavailable. Commit/push sprints to main.
+
 Latest — Elliott151 saved session replay viewer (15 November 2026).
 99 targeted checks pass:18 new and81 existing. A separate read-only viewer joins
 149 saved EW accounts to publication/quote order, preserves count ranking, gates

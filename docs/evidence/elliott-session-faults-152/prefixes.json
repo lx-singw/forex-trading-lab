@@ -1,0 +1,206 @@
+{
+  "prefixes": [
+    {
+      "case": "ew3_long",
+      "profile": "adverse",
+      "bars": {
+        "D1": 368,
+        "H1": 8823,
+        "H4": 2206
+      },
+      "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+      "contexts": {
+        "D1": 1,
+        "H4": 1
+      },
+      "coverage": {
+        "as_of": 1022684402000,
+        "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+        "frames": {
+          "D1": {
+            "issue": null,
+            "observed": 368,
+            "scheduled_complete": 368
+          },
+          "H1": {
+            "issue": null,
+            "observed": 8823,
+            "scheduled_complete": 8823
+          },
+          "H4": {
+            "issue": null,
+            "observed": 2206,
+            "scheduled_complete": 2206
+          }
+        },
+        "ready": true,
+        "session_open": true
+      },
+      "input_sha256": "114ce9d4d432302815bfbfd95c618a3e5cd437bb276e526e44a884602a0b0c91",
+      "signal": {
+        "ceiling": null,
+        "expires": 1022684462000,
+        "formed": 1022684402000,
+        "invalidation": "1.71859",
+        "key": "24146cc41722872db2ad945da9e91d98e41d7c22c738dbbb9babfe66a41df167",
+        "kind": "EW3",
+        "side": 1,
+        "stop": "1.7185650",
+        "trigger": "1.72071"
+      },
+      "snapshot_sha256": "896ecaf0f76c87871e0d7142eb030ed4bfa23bfc42d0e617718d54430d2a15ed"
+    },
+    {
+      "case": "ew3_long",
+      "profile": "base",
+      "bars": {
+        "D1": 368,
+        "H1": 8823,
+        "H4": 2206
+      },
+      "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+      "contexts": {
+        "D1": 1,
+        "H4": 1
+      },
+      "coverage": {
+        "as_of": 1022684402000,
+        "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+        "frames": {
+          "D1": {
+            "issue": null,
+            "observed": 368,
+            "scheduled_complete": 368
+          },
+          "H1": {
+            "issue": null,
+            "observed": 8823,
+            "scheduled_complete": 8823
+          },
+          "H4": {
+            "issue": null,
+            "observed": 2206,
+            "scheduled_complete": 2206
+          }
+        },
+        "ready": true,
+        "session_open": true
+      },
+      "input_sha256": "114ce9d4d432302815bfbfd95c618a3e5cd437bb276e526e44a884602a0b0c91",
+      "signal": {
+        "ceiling": null,
+        "expires": 1022684462000,
+        "formed": 1022684402000,
+        "invalidation": "1.71859",
+        "key": "24146cc41722872db2ad945da9e91d98e41d7c22c738dbbb9babfe66a41df167",
+        "kind": "EW3",
+        "side": 1,
+        "stop": "1.7185650",
+        "trigger": "1.72071"
+      },
+      "snapshot_sha256": "896ecaf0f76c87871e0d7142eb030ed4bfa23bfc42d0e617718d54430d2a15ed"
+    },
+    {
+      "case": "ew5_short",
+      "profile": "adverse",
+      "bars": {
+        "D1": 371,
+        "H1": 8895,
+        "H4": 2224
+      },
+      "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+      "contexts": {
+        "D1": -1,
+        "H4": -1
+      },
+      "coverage": {
+        "as_of": 1023116402000,
+        "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+        "frames": {
+          "D1": {
+            "issue": null,
+            "observed": 371,
+            "scheduled_complete": 371
+          },
+          "H1": {
+            "issue": null,
+            "observed": 8895,
+            "scheduled_complete": 8895
+          },
+          "H4": {
+            "issue": null,
+            "observed": 2224,
+            "scheduled_complete": 2224
+          }
+        },
+        "ready": true,
+        "session_open": true
+      },
+      "input_sha256": "bd8e012765d2e2bfc3f3a1521d1c77705199fa699ffdd401a8450ab4e1d08dea",
+      "signal": {
+        "ceiling": null,
+        "expires": 1023116462000,
+        "formed": 1023116402000,
+        "invalidation": "0.47651",
+        "key": "56fa85eb1b752ae405d574f2a077cbca7f8a9d55ab3820a5c3de68d1900aaac3",
+        "kind": "EW5",
+        "side": -1,
+        "stop": "0.47655578571428571428571428571428571428571428571429",
+        "trigger": "0.47249"
+      },
+      "snapshot_sha256": "1ccc3b37c5894ade242e608c667ec69b4c7e4b56cb5ca6a6cb47a5dd0be42c1e"
+    },
+    {
+      "case": "ew5_short",
+      "profile": "base",
+      "bars": {
+        "D1": 371,
+        "H1": 8895,
+        "H4": 2224
+      },
+      "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+      "contexts": {
+        "D1": -1,
+        "H4": -1
+      },
+      "coverage": {
+        "as_of": 1023116402000,
+        "calendar_sha256": "0cc4cc30eec5af366d5cadcbacc21235a991311861a1d7c41ec23e822a794bd6",
+        "frames": {
+          "D1": {
+            "issue": null,
+            "observed": 371,
+            "scheduled_complete": 371
+          },
+          "H1": {
+            "issue": null,
+            "observed": 8895,
+            "scheduled_complete": 8895
+          },
+          "H4": {
+            "issue": null,
+            "observed": 2224,
+            "scheduled_complete": 2224
+          }
+        },
+        "ready": true,
+        "session_open": true
+      },
+      "input_sha256": "bd8e012765d2e2bfc3f3a1521d1c77705199fa699ffdd401a8450ab4e1d08dea",
+      "signal": {
+        "ceiling": null,
+        "expires": 1023116462000,
+        "formed": 1023116402000,
+        "invalidation": "0.47651",
+        "key": "56fa85eb1b752ae405d574f2a077cbca7f8a9d55ab3820a5c3de68d1900aaac3",
+        "kind": "EW5",
+        "side": -1,
+        "stop": "0.47655578571428571428571428571428571428571428571429",
+        "trigger": "0.47249"
+      },
+      "snapshot_sha256": "1ccc3b37c5894ade242e608c667ec69b4c7e4b56cb5ca6a6cb47a5dd0be42c1e"
+    }
+  ],
+  "market_cells_run": 0,
+  "orders_available": false
+}

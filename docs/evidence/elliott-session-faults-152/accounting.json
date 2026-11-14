@@ -1,0 +1,256 @@
+{
+  "accounts": [
+    {
+      "case": "ew3_long",
+      "fault": "baseline",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "wide_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "stale_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "raw_closed_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "repeated_source_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "missing_bars_gap",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "closure_gap",
+      "financing_usd": "81/40",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "duplicate_conflict",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "invalid_batch",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "baseline",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "wide_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "stale_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "raw_closed_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "repeated_source_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "missing_bars_gap",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "closure_gap",
+      "financing_usd": "27/20",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "duplicate_conflict",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew3_long",
+      "fault": "invalid_batch",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "baseline",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "wide_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "stale_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "raw_closed_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "repeated_source_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "missing_bars_gap",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "closure_gap",
+      "financing_usd": "21/40",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "duplicate_conflict",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "invalid_batch",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "base"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "baseline",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "wide_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "stale_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "raw_closed_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "repeated_source_retry",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "missing_bars_gap",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "closure_gap",
+      "financing_usd": "63/80",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "duplicate_conflict",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    },
+    {
+      "case": "ew5_short",
+      "fault": "invalid_batch",
+      "financing_usd": "0",
+      "fraction_reconciled": true,
+      "profile": "adverse"
+    }
+  ]
+}

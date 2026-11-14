@@ -1,0 +1,24 @@
+{
+  "kind": "elliott152_automatic_fault_verification",
+  "tests": {
+    "tests": 144,
+    "new_tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "passed": true,
+    "elapsed_seconds": 676.025,
+    "sources_unchanged": true
+  },
+  "automatic_variable_calendar_prefixes": 4,
+  "fixed_case_profile_fault_branches": 40,
+  "filled_accounts_fraction_reconciled": 36,
+  "expired_flat_accounts": 4,
+  "separate_process_restart_witnesses": 2,
+  "runtime_bindings_match150": true,
+  "prior_trading_suites_rerun": false,
+  "variable_sessions_scope": "only_first72hours_resegmented_12_12_23_25_not_provider_DST",
+  "operational_fault_branches_not_funded_study_cells": true,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "market_returns": null
+}
