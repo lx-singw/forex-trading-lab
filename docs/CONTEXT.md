@@ -1,5 +1,20 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott148 calendar-aware paper execution (14 November 2026).
+156 targeted checks pass together:39 new and117 relevant existing checks. The new
+invented paper adapter connects147 decisions to the unchanged ledger, rechecks
+pending signals, gates quote source/receipt sessions, preserves held protection
+through missing bars and binds whole-prefix restart. Four automatic EW3 long
+target/gap accounts reconcile under both costs; adverse-pending/base-held restart
+and the public CLI pass. See [148 results](ELLIOTT-SESSION-PAPER-148-RESULTS.md).
+Verification002 includes corrected bar-retry idempotence;001 is retained separately.
+All files/bindings from the prior258-test snapshot remain unchanged; its full
+matrix was not rerun. All46 frozen-control bindings are unchanged. Rollover costs
+and the conservative UTC boundary pause remain hypothetical/unaltered. Qualified
+source/calendar/cost/run admission, four-candidate session comparison, wider
+acceptance and native work remain open. No market source/dates/accounts are
+assigned or accessed. All16 market cells and actual submissions stay unavailable.
+
 Latest — Elliott147 session-aware strategy decisions (14 November 2026).
 258 checks pass together:172 prior Elliott,31 session146,28 study145 and27 new
 integration checks. Optional declared-calendar coverage now governs parent context,

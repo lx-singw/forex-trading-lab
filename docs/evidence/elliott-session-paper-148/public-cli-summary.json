@@ -1,0 +1,12 @@
+{
+  "kind": "invented_session_paper_example_148",
+  "profile": "base",
+  "case": "EW3_long_gap",
+  "paper_trades": 1,
+  "exit": "stop",
+  "loss_pause": true,
+  "finished": true,
+  "pending_and_held_checkpoints_written": true,
+  "market_cells_run": 0,
+  "orders_available": false
+}

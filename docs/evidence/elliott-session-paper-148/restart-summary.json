@@ -1,0 +1,19 @@
+{
+  "kind": "invented_paper_restart_acceptance_148",
+  "cases": [
+    {
+      "case": "pending-adverse",
+      "whole_state_restart_equal": true,
+      "paper_trades": 1,
+      "exit": "stop"
+    },
+    {
+      "case": "held-base",
+      "whole_state_restart_equal": true,
+      "paper_trades": 1,
+      "exit": "target"
+    }
+  ],
+  "orders_available": false,
+  "market_cells_run": 0
+}

@@ -1,0 +1,66 @@
+{
+  "kind": "invented_session_paper_acceptance_148",
+  "common_calendar_sha256": "cbf7b8e5d541af53d642aaed067d5eb23eb42485e228cb5d6b2b3d9c236f858c",
+  "common_bars_sha256": "bcfbcb6ebd31af914f7a917e5f1ead7fded0bd3e9da96adb3ce5d6af27324269",
+  "accounts": [
+    {
+      "profile": "base",
+      "case": "EW3_long_target",
+      "trades": 1,
+      "fraction_reconciled": true,
+      "bar_counts": {
+        "D1": 367,
+        "H4": 2205,
+        "H1": 8823
+      },
+      "exit": "target",
+      "market_cells_run": 0,
+      "orders_available": false
+    },
+    {
+      "profile": "base",
+      "case": "EW3_long_gap",
+      "trades": 1,
+      "fraction_reconciled": true,
+      "bar_counts": {
+        "D1": 367,
+        "H4": 2205,
+        "H1": 8823
+      },
+      "exit": "stop",
+      "market_cells_run": 0,
+      "orders_available": false
+    },
+    {
+      "profile": "adverse",
+      "case": "EW3_long_target",
+      "trades": 1,
+      "fraction_reconciled": true,
+      "bar_counts": {
+        "D1": 367,
+        "H4": 2205,
+        "H1": 8823
+      },
+      "exit": "target",
+      "market_cells_run": 0,
+      "orders_available": false
+    },
+    {
+      "profile": "adverse",
+      "case": "EW3_long_gap",
+      "trades": 1,
+      "fraction_reconciled": true,
+      "bar_counts": {
+        "D1": 367,
+        "H4": 2205,
+        "H1": 8823
+      },
+      "exit": "stop",
+      "market_cells_run": 0,
+      "orders_available": false
+    }
+  ],
+  "selection": "fixed_target_gap_and_both_profiles_in_archived_test_source_before_returns",
+  "orders_available": false,
+  "market_cells_run": 0
+}

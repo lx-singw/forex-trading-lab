@@ -1,0 +1,19 @@
+{
+  "tests_passed_together": 156,
+  "new_paper_tests": 39,
+  "existing_targeted_checks": 117,
+  "previous_full_suite_tests": 258,
+  "previous_full_suite_rerun": false,
+  "previous_258_tested_files_unchanged": true,
+  "frozen_control_files": 46,
+  "frozen_control_bindings_unchanged": true,
+  "automatic_paper_accounts": 4,
+  "whole_prefix_restart_cases": 2,
+  "public_cli_paper_gap_case": true,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "source_snapshot_sha256": "37f87521f93e046ec9a890dc6d6c1c2922e53a992c7b7b1191d8e5c6d1cc5c6b",
+  "published_artifact_files": 19,
+  "published_artifact_bytes": 291260794,
+  "published_artifact_inventory_sha256": "791d48c15a7ab355fbd072ebaba52a14f85e12ace4301ed8af3e252701bbc578"
+}

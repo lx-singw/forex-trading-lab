@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Elliott148 calendar-aware paper execution (14 November 2026).
+156 targeted checks pass together. The invented paper adapter now connects147
+decisions to the existing ledger with pending-signal rechecks, session-aware quote
+gates, protective gap exits and bound restart. Four automatic EW3 long accounts,
+two whole-prefix restart cases and the public CLI pass. Prior258-tested source and
+all46 frozen-control bindings are unchanged; the full258 matrix was not rerun.
+Continue authorized scope in [148 results](ELLIOTT-SESSION-PAPER-148-RESULTS.md):
+unchanged-control session comparison adapters, qualified source/calendar/cost/run
+admission, wider EW5/short/nested/fault acceptance and disabled native demo
+reconciliation. No source/acquisition dates are assigned; protected dates,16
+unavailable market cells and orders-off remain. Commit/push each completed sprint.
+
 Latest — Elliott147 session-aware strategy decisions (14 November 2026).
 258 checks pass together, including the full172-test Elliott regression suite and
 27 new integration checks. Parent/setup continuity now uses optional explicit
