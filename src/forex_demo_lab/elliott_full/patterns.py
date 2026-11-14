@@ -96,7 +96,7 @@ def grammar(family, children):
     kinds = ["M" if c.family in MOTIVE else "C" for c in children]
     forms = {"impulse": "MCMCM", "truncated_impulse": "MCMCM", "zigzag": "MCM",
              "leading_53535": "MCMCM", "leading_33333": "CCCCC", "ending_diagonal": "CCCCC", "expanding_diagonal": "CCCCC"}
-    required = forms.get(family, "CCC" if family.startswith("flat") else "CCCCC")
+    required = forms.get(family, "CCM" if family.startswith("flat") else "CCCCC")
     if "".join(kinds) != required:
         return False
     if family in ("impulse", "truncated_impulse"):
@@ -134,16 +134,26 @@ class Node:
         return max([p.available for p in self.anchors] + [c.available for c in self.children])
 
     @cached_property
+    def height(self):
+        return 1+max((c.height for c in self.children),default=0)
+
+    @cached_property
+    def validation(self):
+        from .rulebook import diagnose
+        return diagnose(self)
+
+    @cached_property
     def actionable(self):
         def rare(n):
             return n.family in OBSERVATION_ONLY or any(rare(c) for c in n.children)
-        return self.depth >= 2 and not rare(self)
+        return self.depth >= 2 and not rare(self) and self.validation["state"] not in ("invalid","unsupported")
 
     def record(self):
         return {"id": self.id, "family": self.family, "anchors": [p.id for p in self.anchors],
                 "pivot_records": [{"id":p.id,"time":p.time,"available":p.available,"price":str(p.price),"index":p.index} for p in self.anchors],
                 "side": self.side, "available": self.available, "depth": self.depth,
-                "state": "valid_at_resolution" if self.depth >= 2 else "insufficient_resolution",
+                "state": self.validation["state"],"diagnostics":self.validation,
+                "extended_legs":[i+1 for i,c in enumerate(self.children) if c.family in MOTIVE and c.children],
                 "children": [c.record() for c in self.children], "actionable": self.actionable}
 
 
@@ -151,14 +161,22 @@ class Parser:
     def __init__(self, budget=4096, cap=128):
         self.budget, self.cap = budget, cap
         self.expansions, self.incomplete = 0, False
+        self.rejections=[]
+        self.rejection_count=0
 
     @precise
     def parse(self, pivots):
         self.expansions, self.incomplete = 0, False
+        self.rejections=[]
+        self.rejection_count=0
         if len(pivots) > 256:
             self.incomplete = True
+            self.rejection_count=1
+            self.rejections=[{"failed":["pivot_cap"]}]
             return []
         table, starts, nodes = {}, {}, []
+        self.rejections=[]
+        self.rejection_count=0
         class Exhausted(Exception):
             pass
         def spend():
@@ -166,6 +184,12 @@ class Parser:
             if self.expansions > self.budget:
                 raise Exhausted()
         def add(start, end, node):
+            if node.validation["state"] in ("invalid","unsupported"):
+                self.rejection_count+=1
+                if len(self.rejections)<128:
+                    self.rejections.append({"family":node.family,"start":node.anchors[0].index,
+                                            "end":node.anchors[-1].index,"failed":node.validation["failed"]})
+                return
             key = (start, end)
             bucket = table.setdefault(key, {})
             if node.id in bucket:
@@ -175,34 +199,51 @@ class Parser:
             nodes.append(node)
             if len(bucket) > self.cap:
                 raise Exhausted()
-        def routes(start, end, remaining):
-            if remaining == 1:
-                for child in tuple(table.get((start, end), {}).values()):
-                    spend()
-                    yield (child,)
-                return
-            for boundary, bucket in tuple(starts.get(start, {}).items()):
-                if boundary > end-3*(remaining-1):
-                    continue
-                spend()
-                for child in tuple(bucket.values()):
-                    for suffix in routes(boundary, end, remaining-1):
-                        yield (child, *suffix)
+        route_cache={}
+        def routes(start, end, form, side):
+            key=(start,end,form,side)
+            if key in route_cache:
+                return route_cache[key]
+            paths=[]
+            def matches(child):
+                return ("M" if child.family in MOTIVE else "C")==form[0] and child.side==side
+            if len(form)==1:
+                for child in table.get((start,end),{}).values():
+                    if matches(child):
+                        spend()
+                        paths.append((child,))
+            else:
+                for boundary,bucket in starts.get(start,{}).items():
+                    if boundary>end-3*(len(form)-1):
+                        continue
+                    for child in tuple(bucket.values()):
+                        if not matches(child):
+                            continue
+                        for suffix in routes(boundary,end,form[1:],-side):
+                            spend()
+                            paths.append((child,*suffix))
+            route_cache[key]=tuple(paths)
+            return route_cache[key]
         try:
             for width in range(3, len(pivots)):
                 for start in range(len(pivots)-width):
-                    spend()
                     end = start+width
                     if width in (3,5):
+                        spend()
                         anchors = tuple(pivots[start:end+1])
                         for family in geometry([p.price for p in anchors]):
                             add(start,end,Node(family,anchors))
+                    if start not in starts:
+                        continue
                     for count in (3,5):
                         if width < count*3:
                             continue
-                        for children in routes(start,end,count):
+                        forms=("MCM","CCM","CCC") if count==3 else ("MCMCM","CCCCC")
+                        side=1 if pivots[start].kind=="low" else -1
+                        paths=(children for form in forms for children in routes(start,end,form,side))
+                        for children in paths:
                             spend()
-                            if 1+max(c.depth for c in children)>3:
+                            if 1+max(c.height for c in children)>3:
                                 continue
                             depth=1+min(c.depth for c in children)
                             anchors=(children[0].anchors[0],)+tuple(c.anchors[-1] for c in children)

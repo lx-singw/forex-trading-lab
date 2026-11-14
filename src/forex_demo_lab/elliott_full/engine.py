@@ -16,11 +16,13 @@ class Engine:
         self.time=-1
 
     def step(self,event):
-        if set(event)!={"kind","value"} or event["kind"] not in ("bar","quote"):
+        if set(event)!={"kind","value"} or event["kind"] not in ("bar","quote","finish"):
             raise ValueError("engine event")
         event=deepcopy(event)
         if self.events and event==self.events[-1]:
             return "duplicate"
+        if self.ledger.finished:
+            raise ValueError("engine finished")
         before=dict(self.__dict__)
         self.strategy=self.strategy.fork()
         self.ledger=self.ledger.fork()
@@ -37,7 +39,7 @@ class Engine:
                     self.pending=None
                 self.time=bar.available
                 result="bar"
-            else:
+            elif event["kind"]=="quote":
                 quote=Quote(**event["value"])
                 if quote.time<self.time:
                     raise ValueError("receipt chronology")
@@ -45,6 +47,12 @@ class Engine:
                 if self.pending and result not in ("signal_timing","entry_spread","unavailable_quote"):
                     self.pending=None
                 self.time=quote.time
+            else:
+                quote=Quote(**event["value"])
+                if quote.time!=self.time:
+                    raise ValueError("boundary not latest observation")
+                result=self.ledger.finish(quote)
+                self.pending=None
             self.events.append(event)
             return result
         except Exception:

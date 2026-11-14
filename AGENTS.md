@@ -18,3 +18,6 @@
   be deployed separately. Never overwrite unrelated EAs or terminal settings.
 - Do not install paid services or create broker accounts as part of scaffolding.
 - Summarize implementation, verification and remaining limitations clearly.
+- After every sprint, review all intended changes, make a descriptive commit and
+  push to main. Respect the existing generated-data, report and runtime ignore
+  rules when committing; keep credentials and account identifiers out of Git.

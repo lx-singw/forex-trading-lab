@@ -1,5 +1,52 @@
 # Proposed milestones
 
+Latest — Elliott144 shared entry/restart acceptance (14 November 2026).
+172 tests pass together. EW3/EW5 long/short shared-H1 examples now execute targets
+and gap stops under both costs, with pending/held restart and independent rational
+accounting. The parent-context lifecycle correction is declared and tested in
+[current results](ELLIOTT-EXPANSION-144-ENTRY-RESULTS.md). Continue wider nested/fault
+acceptance, qualified source/aggregation/calendar/cost/run admission and disabled
+native demo transport/reconciliation. The full plan remains incomplete; actual
+market cells and all orders remain unavailable. No new approval is required for
+already authorized implementation.
+
+Latest — Elliott144 common invented hourly input (14 November 2026).
+159 tests pass together, including all16 invented comparison cells and incremental
+pivot-confirmation parity. The shared example exercises expected abstention.
+The fuller strategy and frozen controls now share derived daily observations and
+execution quotes through a separately labelled invented H1 interface. Continue
+[the shared-input work](ELLIOTT-EXPANSION-144-SHARED-RESULTS.md), including a common
+positive Elliott-entry/restart case, qualified source/aggregation/calendar/cost
+admission and disabled native demo transport/reconciliation. The full plan remains
+incomplete; actual market cells and orders remain unavailable.
+
+Latest — Elliott144 unchanged-control adapters (14 November 2026).
+143 tests pass together on the final runtime revision.
+The three frozen controls now have an invented raw-quote/report/checkpoint
+interface and paired original-engine/independent accounting checks. Four declared
+demonstrations retain all48 artificial control accounts. Follow
+[current results](ELLIOTT-EXPANSION-144-CONTROLS-RESULTS.md) for verification and
+continue the remaining common-input/qualified runner and disabled native demo
+work. EW_FULL_V1 is still unavailable in this common-stream comparison; all market
+cells and orders remain unavailable. Full plan completion is not claimed.
+
+Latest — Elliott144 longer-history/accounting increment (14 November 2026):
+130 tests pass together. Rolling pivot scope, preservation of held/consumed state,
+missing-parent context guards and declared legacy component comparisons are now
+covered. Four stale-midnight financing timing differences remain explicit; full
+legacy strategy/control parity is not established. Continue the authorized scope
+in [current results](ELLIOTT-EXPANSION-144-WINDOW-RESULTS.md), including comparison
+adapters, qualified runner/calendar and disabled native demo reconciliation.
+The full plan remains incomplete; market admission and orders remain unavailable.
+
+Latest — Elliott144 next increment (14 November2026):120 tests pass together.
+Finite-profile rule diagnostics, automatic EW3/EW5 long/short discovery, declared
+boundary liquidation and visual viewer inspection are complete for the documented
+cases. Continue the remaining authorized scope in
+[latest results](ELLIOTT-EXPANSION-144-RULES-RESULTS.md). Qualified market evidence,
+native demo integration and broader acceptance remain incomplete. No new approval
+is needed for already authorized implementation; orders and market admission stay off.
+
 Latest — Elliott144 context/consensus increment:84 tests pass. Public
 invented-bar EW3 discovery and signal-pending restart now pass; both EW3/EW5
 directions have declared-count component examples. Continue authorized remaining

@@ -1,0 +1,13 @@
+{
+  "tests_passed": 172,
+  "primary_entry_accounts": 8,
+  "computed_invented_cells": 64,
+  "market_cells_run": 0,
+  "source_files": 101,
+  "published_artifacts": 206,
+  "published_bytes": 2455152188,
+  "archive_hashes_verified": true,
+  "formal_freeze_bindings_match": true,
+  "frozen_control_bindings_unchanged": true,
+  "orders_available": false
+}

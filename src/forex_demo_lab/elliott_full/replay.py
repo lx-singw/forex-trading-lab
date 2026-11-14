@@ -10,6 +10,7 @@ from .execution import Ledger
 from .report import render
 from .admission import study_status
 from .engine import Engine
+from .rulebook import RULEBOOK
 
 
 def evaluate(bundle, profile="base"):
@@ -24,6 +25,8 @@ def evaluate(bundle, profile="base"):
     while cursor < len(bars):
         engine.step({"kind":"bar","value":bars[cursor].record()})
         cursor += 1
+    if "boundary" in bundle:
+        engine.step({"kind":"finish","value":quotes[-1].record()})
     strategy,ledger=engine.strategy,engine.ledger
     return {"version": "EW_FULL_V1", "kind": "invented_software_evidence", "input_digest": digest(bundle),
             "profile": profile, "bindings": bindings(), "market_validation": "UNAVAILABLE", "orders_available": False,
@@ -39,6 +42,7 @@ def write_report(bundle, output, profile="base"):
     result = evaluate(bundle, profile)
     path = Path(output)
     path.mkdir(parents=True, exist_ok=False)
+    (path/"rulebook.json").write_text(json.dumps(RULEBOOK,indent=2),encoding="utf-8")
     checkpoint=result.pop("checkpoint")
     with (path/"checkpoint.json.gz").open("wb") as raw:
         with gzip.GzipFile(filename="",mode="wb",fileobj=raw,mtime=0,compresslevel=1) as compressed:

@@ -103,9 +103,29 @@ def source_pivots(count):
 
 
 class CountTests(unittest.TestCase):
+    def test_unresolved_parent_restart_cannot_supply_context(self):
+        c=replace(counts(),unresolved_location=1)
+        self.assertFalse(c.resolved)
+        self.assertIsNone(context_state([c],history(c)[-1])["side"])
+    def test_resolved_wave_four_location_precedes_restart_alternate(self):
+        c=counts("EW5")
+        parser=Parser();nodes=parser.parse(source_pivots(c))
+        self.assertFalse(parser.incomplete)
+        candidates,overflow=interpretations(nodes)
+        self.assertFalse(overflow)
+        current=competitive_counts(candidates,(1,1))
+        self.assertTrue(current)
+        self.assertEqual({"EW5"},{x.kind for x in current})
+        self.assertTrue(any(x.kind=="EW3" and x.unresolved_location for x in candidates))
     def test_opposed_competitive_context_abstains(self):
         c=counts();h=history(c)
-        self.assertIsNone(context_state([c,mirrored(c)],h[-1])["side"])
+        # Both hypotheses must still be valid at the current price. The plain
+        # mirror's terminal is already breached by this bullish fixture's bar.
+        def shifted(n):
+            return replace(n,anchors=tuple(replace(p,id=p.id+"-shift",price=p.price+D(".01")) for p in n.anchors),
+                           children=tuple(shifted(child) for child in n.children))
+        other=replace(mirrored(c),legs=tuple(shifted(n) for n in mirrored(c).legs))
+        self.assertIsNone(context_state([c,other],h[-1])["side"])
 
     def test_channel_and_alternation_are_display_preferences(self):
         c=counts("EW5");h=history(c)
@@ -177,6 +197,10 @@ class CountTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_unresolved_parent_restart_cannot_arm(self):
+        c=replace(counts(),unresolved_location=1);p=Policy()
+        self.assertEqual([],p.update([c],history(c),(1,1)))
+        self.assertFalse(p.active)
     def test_consensus_expiry_uses_earliest_member(self):
         c=counts();h=history(c);p=Policy()
         p.update([c,counts(radius=8)],h,(1,1))

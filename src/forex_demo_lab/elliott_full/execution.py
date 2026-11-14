@@ -55,6 +55,9 @@ class Ledger:
         self.events = []
         self.trades = []
         self._inputs = []
+        self._last_executable = None
+        self._finish_quote = None
+        self.finished = False
 
     def _price(self, q):
         return q.bid, max(q.ask, q.bid+D(".00012")) if self.profile == "adverse" else q.ask
@@ -103,6 +106,8 @@ class Ledger:
             raise
 
     def _apply(self, q, signal=None):
+        if self.finished:
+            raise ValueError("ledger finished")
         raw = q.record()
         sraw = None if signal is None else {k: str(v) if hasattr(v, "as_tuple") else v for k,v in asdict(signal).items()}
         record = {"quote": raw, "signal": sraw}
@@ -120,6 +125,7 @@ class Ledger:
         held = self.position is not None
         result = "no_signal"
         if fresh:
+            self._last_executable=q
             self.mark = self._equity(q)
             if self.mark <= self.anchor*D(".99"):
                 self.paused = True
@@ -132,19 +138,7 @@ class Ledger:
                 timeout = q.time-p["time"] >= 72*3600000
                 if stop or target or timeout:
                     fill = p["target"] if target and not stop else price-p["side"]*self.slip
-                    if fill <= 0:
-                        raise ValueError("nonpositive executable exit")
-                    gross = p["side"]*(fill-p["entry"])*100000*p["lots"]
-                    self.cash += gross-self.fee/2*p["lots"]
-                    trade = {"key": p["key"], "reason": "stop" if stop else "target" if target else "time",
-                             "gross": str(gross), "net": str(gross-self.fee*p["lots"]-p["financing"]),
-                             "estimated_risk": str(p["risk"]), "exit": str(fill), "time": q.time}
-                    self.trades.append(trade)
-                    self.events.append({"kind": "exit", **trade})
-                    self.position = None
-                    self.mark = self.cash
-                    if self.mark <= self.anchor*D(".99"):
-                        self.paused = True
+                    self._close(q,fill,"stop" if stop else "target" if target else "time")
                 result = "held"
             if signal is not None:
                 result = self._enter(q, signal, held)
@@ -154,6 +148,44 @@ class Ledger:
         self.events.append({"kind": "quote", "time": q.time, "sequence": q.sequence, "result": result,
                             "cash": str(self.cash), "observed_equity": str(self.mark), "paused": self.paused})
         return result
+
+    def _close(self,q,fill,reason):
+        if fill<=0:
+            raise ValueError("nonpositive executable exit")
+        p=self.position
+        gross=p["side"]*(fill-p["entry"])*100000*p["lots"]
+        self.cash+=gross-self.fee/2*p["lots"]
+        trade={"key":p["key"],"reason":reason,"gross":str(gross),
+               "net":str(gross-self.fee*p["lots"]-p["financing"]),
+               "estimated_risk":str(p["risk"]),"exit":str(fill),"time":q.time}
+        self.trades.append(trade)
+        self.events.append({"kind":"exit",**trade})
+        self.position=None
+        self.mark=self.cash
+        if self.mark<=self.anchor*D(".99"):
+            self.paused=True
+
+    @precise
+    def finish(self,q):
+        if self.finished:
+            if q==self._finish_quote:
+                return "duplicate_finish"
+            raise ValueError("conflicting boundary")
+        if q!=self.last or q!=self._last_executable:
+            raise ValueError("declared final quote unavailable; no earlier-price fallback")
+        before=self.fork().__dict__
+        try:
+            if self.position:
+                bid,ask=self._price(q)
+                side=self.position["side"]
+                self._close(q,(bid if side==1 else ask)-side*self.slip,"boundary")
+            self.finished=True
+            self._finish_quote=q
+            self.events.append({"kind":"finish","time":q.time,"sequence":q.sequence,"cash":str(self.cash)})
+            return "finished"
+        except Exception:
+            self.__dict__.clear();self.__dict__.update(before)
+            raise
 
     def _enter(self, q, s, held):
         if not s.formed+self.latency < q.source or q.time > min(s.expires, s.formed+60000):
@@ -200,10 +232,11 @@ class Ledger:
         return {"cash": str(self.cash), "mark": str(self.mark), "position": None if self.position is None else
                 {k: str(v) if hasattr(v,"as_tuple") else v for k,v in self.position.items()},
                 "used": sorted(self.used), "day": self.day, "anchor": str(self.anchor), "paused": self.paused,
-                "events": self.events, "trades": self.trades}
+                "events": self.events, "trades": self.trades,"finished":self.finished}
 
     def checkpoint(self):
-        payload = {"version": "EW_FULL_V1_LEDGER", "bindings": bindings(), "profile": self.profile, "inputs": self._inputs, "state": self.state()}
+        payload = {"version": "EW_FULL_V1_LEDGER", "bindings": bindings(), "profile": self.profile, "inputs": self._inputs, "state": self.state(),
+                   "finish_quote":None if self._finish_quote is None else self._finish_quote.record()}
         return deepcopy({"payload": payload, "digest": digest(payload)})
 
     @classmethod
@@ -214,6 +247,8 @@ class Ledger:
         ledger = cls(p["profile"])
         for event in p["inputs"]:
             ledger.on_quote(Quote(**event["quote"]), None if event["signal"] is None else Setup(**event["signal"]))
+        if p["finish_quote"] is not None:
+            ledger.finish(Quote(**p["finish_quote"]))
         if ledger.state() != p["state"]:
             raise ValueError("checkpoint replay mismatch")
         return ledger

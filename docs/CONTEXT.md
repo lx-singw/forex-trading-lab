@@ -1,5 +1,67 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott144 shared entry/restart acceptance (14 November 2026).
+172 tests pass together. Four common-H1 hierarchical cases cover EW3/EW5 in both
+directions, both cost profiles, targets/gap losses and pending/held restarts.
+All64 invented comparison cells are retained; eight primary entries independently
+reconcile. Higher-timeframe context now applies economic rank before recency,
+retires resolved phase prefixes, rejects historical breaches and scopes completion
+evidence to the parent boundary. Context caching preserves clock gates. See
+[current entry results](ELLIOTT-EXPANSION-144-ENTRY-RESULTS.md) for the declared
+correction and evidence. Wider acceptance, qualified source/calendar/cost/run
+admission and native demo integration remain unfinished. No market advantage or
+native readiness is established; orders/market cells stay unavailable. Data
+partitions and frozen117–126 sources are unchanged.
+
+Latest — Elliott144 common invented hourly input (14 November 2026).
+159 tests pass together. The public CLI processes all16 invented comparison cells;
+the fuller Elliott strategy abstains in this example. Incremental confirmation
+matches the unchanged batch detector at every tested prefix for radii2/4/8.
+One H1 history now supplies derived H4/D1 bars and the frozen controls' daily
+features; all four strategies receive the same execution quotes. Missing hours,
+insufficient warmup and invalid endpoints remain unavailable. This is a new
+invented-bar interface, not a relaxation of strict quote coverage or market
+admission. See [current shared-input results](ELLIOTT-EXPANSION-144-SHARED-RESULTS.md)
+for evidence and the remaining shared positive Elliott-entry scenario. Qualified
+source/calendar/cost admission and native demo integration remain unfinished.
+Orders stay unavailable; data partitions and frozen117–126 code are unchanged.
+
+Latest — Elliott144 unchanged-control adapters (14 November 2026).
+143 tests pass together, including13 new control checks and130 existing checks.
+Invented raw quotes now feed the original EWPB_D124, T12_D and CASH replay engines
+through common report/checkpoint interfaces. Frozen117–126 source is unchanged.
+Four declared artificial demonstrations retain all48 control accounts; all16
+market cells remain unavailable. The new EW_FULL_V1 common-input adapter is still
+unavailable, and no cross-strategy ranking is justified. See
+[current control results](ELLIOTT-EXPANSION-144-CONTROLS-RESULTS.md) for verification,
+clock differences and remaining scope. Continue authorized implementation;
+qualified source/calendar/cost admission and native demo integration remain open.
+No native/account/settings operations or reserved-price access occurred.
+
+Latest — Elliott144 longer-history/accounting increment (14 November 2026).
+130 tests pass together. Rolling search retains the latest 256 fine pivots and
+reports truncation; an 805-bar extension preserves held/consumed state until an
+executable quote. Missing completed parent bars cannot supply stale context.
+48 sizing cases and 24 component accounting traces match frozen legacy arithmetic
+in the declared domain; four stale-midnight traces explicitly retain a financing
+clock difference. See [current results](ELLIOTT-EXPANSION-144-WINDOW-RESULTS.md).
+Full strategy-control adapters, qualified runner/calendar and disabled native demo
+integration remain incomplete. Orders and all market cells stay unavailable;
+reserved-price boundaries remain unchanged. Continue the authorized plan without
+requesting approval again.
+
+Latest — Elliott144 rules/discovery/boundary increment (14 November2026).
+120 tests pass together. Executable diagnostics cover18 finite-profile families;
+automatic EW3/EW5 discovery passes in both directions. Six declared public-input
+examples retain one invented signal/trade each, including adverse costs. Optional
+declared endpoint liquidation rejects stale/missing/future endpoints and survives
+restart. The viewer now includes executions after the final candle and has been
+visually checked; its temporary local server was stopped. See
+[latest results](ELLIOTT-EXPANSION-144-RULES-RESULTS.md). Full plan remains in progress:
+broader nesting/window handling, controls/qualified runner, native demo integration
+and bounded forward trials remain. All market/order routes stay unavailable; no
+terminal/account/settings operations or reserved-price access occurred.
+
 Latest — Elliott144 context/consensus continuation completed (13 November 2026).
 84 tests pass, including a1,057-bar invented public-input replay discovering
 one EW3 entry and gap exit, with pending-signal restart and independent cash checks.

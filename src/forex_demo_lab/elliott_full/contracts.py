@@ -92,7 +92,7 @@ class Quote:
 
 
 def validate_bundle(value):
-    if set(value) != {"kind", "symbol", "bars", "quotes"} or value["kind"] != "invented_ew_full_v1" or value["symbol"] != "EURUSD":
+    if set(value) not in ({"kind", "symbol", "bars", "quotes"},{"kind", "symbol", "bars", "quotes","boundary"}) or value["kind"] != "invented_ew_full_v1" or value["symbol"] != "EURUSD":
         raise ValueError("invented EURUSD bundle required; market admission unavailable")
     if len(value["bars"]) > 30000 or len(value["quotes"]) > 200000:
         raise ValueError("input limit")
@@ -109,4 +109,17 @@ def validate_bundle(value):
     for a, b in zip(quotes, quotes[1:]):
         if b.sequence <= a.sequence or b.time < a.time or b.source < a.source:
             raise ValueError("quote chronology")
+    if "boundary" in value:
+        boundary=value["boundary"]
+        if not isinstance(boundary,dict) or set(boundary)!={"end_time","quote_sequence","quote_source","quote_time"}:
+            raise ValueError("declared boundary fields")
+        for number in boundary.values():
+            integer(number)
+        if not quotes:
+            raise ValueError("declared endpoint missing")
+        last=quotes[-1]
+        if (last.sequence,last.source,last.time)!=(boundary["quote_sequence"],boundary["quote_source"],boundary["quote_time"]):
+            raise ValueError("declared endpoint mismatch")
+        if not last.time<boundary["end_time"] or any(b.available>last.time for b in bars):
+            raise ValueError("boundary cannot borrow later observations")
     return bars, quotes

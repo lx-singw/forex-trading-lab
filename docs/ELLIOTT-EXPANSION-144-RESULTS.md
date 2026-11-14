@@ -2,6 +2,37 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest, 14 November: [shared entry and restart acceptance](ELLIOTT-EXPANSION-144-ENTRY-RESULTS.md).
+172 tests pass together. Four shared-H1 EW3/EW5 long/short cases retain all64 invented
+cells; eight primary entries pass target/gap accounting and pending/held restart.
+The documented parent-context lifecycle correction changes prototype decisions;
+earlier evidence retains its source revision. Qualified market/native admission
+and broader acceptance remain unfinished; orders remain unavailable.
+
+Latest, 14 November: [common invented hourly observations](ELLIOTT-EXPANSION-144-SHARED-RESULTS.md).
+159 tests pass together; all16 invented cells run, with expected Elliott abstention.
+The fuller Elliott strategy and its frozen controls now have a common H1-derived
+observation path. Missing history is unavailable rather than a zero return.
+This is invented-bar integration; positive shared Elliott-entry acceptance and
+qualified market/native admission remain unfinished.
+
+Latest, 14 November: [unchanged strategy control adapters](ELLIOTT-EXPANSION-144-CONTROLS-RESULTS.md).
+143 tests pass together on the final runtime revision.
+EWPB_D124, T12_D and CASH now expose common invented replay/report/checkpoint
+interfaces while preserving their original engines. Four declared artificial
+demonstrations retain all48 control accounts. The new-strategy common-input
+adapter and qualified market/native admission remain unavailable.
+
+Latest, 14 November: [longer histories and accounting comparisons](ELLIOTT-EXPANSION-144-WINDOW-RESULTS.md).
+130 tests pass together. Rolling pivot scope preserves held and consumed state;
+48 sizing cases and 24 accounting traces match within the declared component
+domain. Four financing timing differences are retained explicitly. Full strategy
+control parity and qualified market/native admission remain unavailable.
+
+Latest,14 November: [rulebook, four discovery directions, boundaries and viewer](ELLIOTT-EXPANSION-144-RULES-RESULTS.md).
+120 tests pass together on the final revision; the viewer has now been inspected
+through signal, entry/protection and gap exit. Market/native admission remains off.
+
 Latest continuation: [contexts, consensus and discovery results](ELLIOTT-EXPANSION-144-CONTEXT-RESULTS.md).
 84 tests now pass together, including a public invented-bar discovery and
 signal-pending restart test. The sections below retain the initial build's45-test
