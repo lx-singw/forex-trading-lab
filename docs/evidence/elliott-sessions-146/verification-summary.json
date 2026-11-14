@@ -1,0 +1,15 @@
+{
+  "new_session_tests": 31,
+  "existing_study145_tests": 28,
+  "tests_passed_together": 59,
+  "earlier_strategy_tests": 172,
+  "earlier_strategy_suite_rerun": false,
+  "strategy_runtime_bindings_unchanged": true,
+  "frozen_control_bindings_unchanged": true,
+  "frozen_control_files": 46,
+  "study145_source_bindings_unchanged": true,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "returns_computed": false,
+  "source_snapshot_sha256": "357152517e8fefcfec05e4e1f3c6969e4231d2270fcf2f1556b524152c1f1869"
+}

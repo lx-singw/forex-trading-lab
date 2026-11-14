@@ -1,5 +1,15 @@
 # Proposed milestones
 
+Latest — Elliott146 session observation component (14 November 2026).
+59 checks pass together; prior172 strategy and frozen-control bindings remain
+unchanged. The separate invented calendar/observation component handles explicit
+closures, varied session lengths, missing children, causal late publication and
+restart validation. Continue the remaining authorized integration described in
+[146 results](ELLIOTT-SESSIONS-146-RESULTS.md): session-aware strategy/context and
+unchanged-control adapters, qualified source/calendar/cost/run admission, wider
+acceptance and disabled native demo reconciliation. This is not a market runner
+or source/date assignment. Orders remain unavailable; commit/push each sprint.
+
 Latest — Elliott study145 metadata preflight (14 November 2026).
 28 new checks pass; prior172 strategy source/control bindings are unchanged.
 The metadata-only study manifest and 16-cell unavailable report now exist, with

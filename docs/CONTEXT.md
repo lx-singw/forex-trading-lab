@@ -1,5 +1,15 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott146 session observation component (14 November 2026).
+59 checks pass together:31 new session checks and28 study145 checks. Explicit
+invented calendars now exercise23/24/25-hour and partial sessions, declared
+closures, causal parent publication, missing/late children and bound restarts.
+See [146 results](ELLIOTT-SESSIONS-146-RESULTS.md). This separate component is not
+connected to the strategy or frozen controls; their prior172-test runtime/source
+bindings are unchanged and that full suite was not rerun. Qualified calendar/data
+admission, strategy/control integration and native work remain incomplete. No
+source, capture dates or market data are assigned/accessed. Orders remain off.
+
 Latest — Elliott study145 metadata preflight (14 November 2026).
 28 new checks pass. The separate plan/freeze/check CLI diagnoses chronology,
 24-calendar-month scopes, 253-bar declarations, protected dates, prior validation

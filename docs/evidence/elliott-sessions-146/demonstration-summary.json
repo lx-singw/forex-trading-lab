@@ -1,0 +1,80 @@
+{
+  "kind": "invented_session_demonstration_only",
+  "calendar_sha256": "eed93bfb049435105e37ace731209037556e9fb45ace1020b26e1fc5497b4701",
+  "before_late_child": {
+    "bar_counts": {
+      "D1": 1,
+      "H4": 12,
+      "H1": 47
+    },
+    "coverage": {
+      "D1": {
+        "state": "missing_completed_bar",
+        "latest_due_start": 947019600000,
+        "missing_starts": [
+          947019600000
+        ],
+        "complete_count": 1,
+        "as_of": 947109602000,
+        "historical_coverage_complete": false
+      },
+      "H4": {
+        "state": "missing_completed_bar",
+        "latest_due_start": 947106000000,
+        "missing_starts": [
+          947019600000
+        ],
+        "complete_count": 12,
+        "as_of": 947109602000,
+        "historical_coverage_complete": false
+      },
+      "H1": {
+        "state": "missing_completed_bar",
+        "latest_due_start": 947106000000,
+        "missing_starts": [
+          947023200000
+        ],
+        "complete_count": 47,
+        "as_of": 947109602000,
+        "historical_coverage_complete": false
+      }
+    }
+  },
+  "after_late_child": {
+    "bar_counts": {
+      "D1": 2,
+      "H4": 13,
+      "H1": 48
+    },
+    "coverage": {
+      "D1": {
+        "state": "ready",
+        "latest_due_start": 947019600000,
+        "missing_starts": [],
+        "complete_count": 2,
+        "as_of": 947109605000,
+        "historical_coverage_complete": true
+      },
+      "H4": {
+        "state": "ready",
+        "latest_due_start": 947106000000,
+        "missing_starts": [],
+        "complete_count": 13,
+        "as_of": 947109605000,
+        "historical_coverage_complete": true
+      },
+      "H1": {
+        "state": "ready",
+        "latest_due_start": 947106000000,
+        "missing_starts": [],
+        "complete_count": 48,
+        "as_of": 947109605000,
+        "historical_coverage_complete": true
+      }
+    }
+  },
+  "restart_equal": true,
+  "returns_computed": false,
+  "orders_available": false,
+  "demonstration_sha256": "044077e0371e1d6722427bb8318d89f8887a51ce34f0f5d19ae47282ffc93126"
+}
