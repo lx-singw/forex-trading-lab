@@ -1,0 +1,10 @@
+{
+  "tests": 99,
+  "new_tests": 18,
+  "existing_tests": 81,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "elapsed_seconds": 12.924,
+  "sources_unchanged": true
+}

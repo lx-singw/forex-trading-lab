@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Elliott session replay · invented evidence</title>
+<style>
+:root{color-scheme:dark;font:15px system-ui;background:#0c1420;color:#e4edf5}*{box-sizing:border-box}
+body{max-width:1240px;margin:0 auto;padding:30px 24px}h1{font-size:30px;margin:6px 0 12px}h2{font-size:17px;margin:0 0 10px}
+p{line-height:1.5}.eyebrow{color:#72d8c4;letter-spacing:.12em;font-size:12px;text-transform:uppercase}.muted{color:#9aadc0}
+.banner{border-left:3px solid #ffc575;background:#202638;padding:12px 16px;margin:20px 0}.controls,.cards{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+button,select{font:inherit;border:1px solid #40536a;border-radius:6px;background:#172637;color:#e4edf5;padding:9px 12px}button:hover{background:#294258}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #72d8c4;outline-offset:3px}
+label{display:flex;align-items:center;gap:8px}input[type=range]{width:100%;accent-color:#72d8c4;margin:18px 0}#stamp{font-size:18px;margin:12px 0 4px}#status{min-height:24px}
+.card{flex:1;min-width:180px;background:#142132;border:1px solid #27394e;padding:14px;border-radius:8px}.card small{display:block;color:#9aadc0;margin-bottom:8px}.card strong{font-size:18px}
+#chart{display:block;width:100%;height:auto;background:#111e2d;border:1px solid #27394e;border-radius:8px;margin:18px 0 10px}.legend{font-size:13px;color:#b3c3d1}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}.panel{padding:18px;background:#142132;border:1px solid #27394e;border-radius:8px;min-width:0}
+pre{font-size:12px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto}#count{max-width:100%}details{margin-top:18px}summary{cursor:pointer}li{line-height:1.6;margin-bottom:5px}
+@media(max-width:700px){body{padding:20px 12px}h1{font-size:24px}.panels{grid-template-columns:1fr}.controls{gap:8px}button,select{padding:8px;font-size:13px}}
+</style></head><body>
+<div class="eyebrow">Local research · session-aware paper replay</div>
+<h1>Elliott decisions, as recorded</h1>
+<p class="muted" id="scope"></p>
+<div class="banner"><strong>Invented software evidence</strong> · market validation unavailable · orders unavailable.<br>Inspect saved observations and decisions. This viewer does not recompute the strategy.</div>
+<div class="controls">
+<button id="first" aria-label="First event">First</button><button id="previous" aria-label="Previous matching event">← Previous</button><button id="next" aria-label="Next matching event">Next →</button><button id="last" aria-label="Last event">Last</button>
+<label>Navigate<select id="filter"><option value="all">Every event</option><option value="signals">Signals</option><option value="fills">Entries and exits</option><option value="skips">Skipped H1 decisions</option><option value="gates">Quote checks</option></select></label>
+<label>Chart<select id="frame"><option>H1</option><option>H4</option><option>D1</option></select></label>
+</div>
+<label for="cursor" class="muted" style="margin-top:16px">Replay cursor · move to reveal later information</label>
+<input id="cursor" type="range" min="0" value="0" step="1" aria-label="Replay event">
+<div id="stamp"></div><p id="status" class="muted" role="status" aria-live="polite"></p>
+<div class="cards"><div class="card"><small>Last published parent sides</small><strong id="parents"></strong></div><div class="card"><small>Recorded coverage at publication</small><strong id="coverage"></strong></div><div class="card"><small>Last observed paper cash · USD</small><strong id="cash"></strong></div><div class="card"><small>Paper position at cursor</small><strong id="position"></strong></div></div>
+<svg id="chart" viewBox="0 0 1100 360" role="img" aria-label="Available candles, confirmed wave anchors and paper fills"></svg>
+<p class="legend">Candles: available observations · gold: selected recorded count · blue: entry · coral: exit · dashed: original stop / target. Last 180 available candles.</p>
+<div class="panels"><section class="panel"><h2>Recorded count alternatives</h2><select id="count" aria-label="Recorded count alternative"></select><p id="count-note" class="muted"></p><pre id="count-detail"></pre></section>
+<section class="panel"><h2>Decision and execution evidence</h2><pre id="evidence"></pre></section></div>
+<details><summary>Last published context, coverage and rule diagnostics</summary><pre id="snapshot"></pre></details>
+<details><summary>Evidence limitations</summary><ul id="limitations"></ul></details>
+<script>
+'use strict';
+const view=/*VIEW_DATA*/;
+// Pure cursor projection; exercised against the Python reference in Node.
+function stateAt(view,index,frame='H1',limit=180){
+  let snapshot=null,bars=[],actions=[],cancellations=[],cash=null,gate=null,position=null;
+  for(const row of view.rows.slice(0,index+1)){
+    if(row.kind==='publication'){const bar=view.bars[row.bar_index];if(bar.timeframe===frame){bars.push(bar);snapshot=row.snapshot;}}
+    for(const effect of row.effects||[]){if(['entry','exit'].includes(effect.kind)){actions.push(effect);position=effect.kind==='entry'?effect:null;}if('cash' in effect)cash=effect.cash;}
+    if(row.gate)gate=row.gate;if(row.cancellation)cancellations.push(row.cancellation);
+  }
+  return {row:view.rows[index],snapshot,bars:bars.slice(-limit),actions,position,cash,gate,cancellations};
+}
+// END_CURSOR_PROJECTION
+const byId=id=>document.getElementById(id),cursor=byId('cursor'),frame=byId('frame'),filter=byId('filter'),counts=byId('count');
+const iso=t=>new Date(Number(t)).toISOString(),pretty=value=>JSON.stringify(value,null,2);
+byId('scope').textContent='EW_FULL_V1 · '+view.profile+' hypothetical costs · '+view.partition+' · timestamps in UTC';
+for(const note of view.limitations){const li=document.createElement('li');li.textContent=note;byId('limitations').appendChild(li);}
+cursor.max=String(view.rows.length-1);
+function matches(row){return filter.value==='all'||filter.value==='signals'&&(row.snapshot?.signals||[]).length>0||filter.value==='fills'&&(row.effects||[]).some(e=>['entry','exit'].includes(e.kind))||filter.value==='skips'&&row.snapshot?.frame==='H1'&&!['warmup','signal'].includes(row.snapshot.reason)||filter.value==='gates'&&row.kind==='quote';}
+function move(direction){let i=Number(cursor.value)+direction;while(i>=0&&i<view.rows.length){if(matches(view.rows[i])){cursor.value=String(i);draw();return;}i+=direction;}byId('status').textContent='No further matching event in this direction.';}
+byId('previous').onclick=()=>move(-1);byId('next').onclick=()=>move(1);
+byId('first').onclick=()=>{cursor.value='0';draw();};byId('last').onclick=()=>{cursor.value=cursor.max;draw();};
+function candidates(snapshot){
+  if(!snapshot)return [];
+  const nodes=new Map(snapshot.counts.map(n=>[n.id,n]));
+  if(snapshot.interpretations.length)return snapshot.interpretations.map((count,i)=>{
+    const legs=count.legs.map(id=>nodes.get(id));
+    const anchors=legs.every(Boolean)?[legs[0].pivot_records[0],...legs.map(n=>n.pivot_records.at(-1))]:[];
+    return {label:'Rank '+(i+1)+' · '+count.kind+' · '+(count.side===1?'long':'short')+' · '+(count.resolved?'resolved':'unresolved'),record:count,anchors};
+  });
+  return snapshot.counts.map((node,i)=>({label:'Pattern '+(i+1)+' · '+node.family+' · '+node.state,record:node,anchors:node.pivot_records}));
+}
+let current=null,options=[],lastSnapshot=undefined;
+function draw(){
+  current=stateAt(view,Number(cursor.value),frame.value);const s=current.snapshot,row=current.row;
+  byId('stamp').textContent=iso(row.time)+' · '+row.label;
+  byId('status').textContent='Event '+(Number(cursor.value)+1)+' of '+view.rows.length+' · '+frame.value+' publication '+(s?iso(s.time):'not yet available');
+  byId('parents').textContent=s?'D1 '+(s.context.D1??'—')+' / H4 '+(s.context.H4??'—'):'Not yet available';
+  const coverage=s?.session_coverage;
+  byId('coverage').textContent=coverage?(coverage.ready?'Complete':'Incomplete')+' · '+(coverage.session_open?'open':'closed'):'Not yet available';
+  byId('cash').textContent=current.cash===null?'Not yet observed':Number(current.cash).toFixed(2);
+  byId('position').textContent=current.position?(Number(current.position.side)===1?'Long':'Short')+' · '+current.position.lots+' lots':'Flat';
+  if(s!==lastSnapshot){options=candidates(s);counts.replaceChildren();options.forEach((option,i)=>{const node=document.createElement('option');node.value=String(i);node.textContent=option.label;counts.appendChild(node);});counts.disabled=!options.length;lastSnapshot=s;}
+  byId('snapshot').textContent=pretty(s?Object.fromEntries(Object.entries(s).filter(([k])=>!['counts','interpretations'].includes(k))):{});
+  byId('evidence').textContent=pretty({event:row.kind,reason:s?.reason??null,signals:s?.signals??[],effects:row.effects??[],quote:row.quote??null,last_quote_gate:current.gate,cancellation:row.cancellation??null,cancellation_timing:row.timing??null});
+  chart();
+}
+function chart(){
+  const state=current,svg=byId('chart');svg.replaceChildren();
+  const choice=options[Number(counts.value)],bars=state.bars,time=state.row.time;
+  byId('count-note').textContent=choice?'Recorded order retained. Select an alternate to inspect it; this does not change the strategy.':'No count candidates recorded at this publication.';
+  byId('count-detail').textContent=choice?pretty(choice.record):'No available count.';
+  const start=Number(bars[0]?.start??time),end=Math.max(start+1,time);
+  const anchors=(choice?.anchors||[]).filter(p=>p.available<=time&&p.time>=start&&p.time<=time);
+  const actions=state.actions.filter(e=>Number(e.time)>=start&&Number(e.time)<=time).slice(-8);
+  const entry=state.actions.filter(e=>e.kind==='entry').at(-1);
+  const levels=entry?[{name:'Original stop',price:Number(entry.stop),color:'#ff938c'},{name:'Original target',price:Number(entry.target),color:'#72d8c4'}]:[];
+  const prices=[...bars.flatMap(b=>[Number(b.low),Number(b.high)]),...anchors.map(p=>Number(p.price)),...actions.map(e=>Number(e.kind==='entry'?e.entry:e.exit)),...levels.map(l=>l.price)];
+  let low=prices.length?Math.min(...prices):0,high=prices.length?Math.max(...prices):1,pad=Math.max((high-low)*.1,.00001);low-=pad;high+=pad;
+  const x=t=>66+1008*(Number(t)-start)/(end-start),y=p=>320-280*(Number(p)-low)/(high-low);
+  function element(tag,attrs,text){const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));if(text!==undefined)node.textContent=text;svg.appendChild(node);}
+  for(let i=0;i<5;i++){const p=low+(high-low)*i/4;element('line',{x1:66,x2:1074,y1:y(p),y2:y(p),stroke:'#27394e'});element('text',{x:5,y:y(p)+4,fill:'#9aadc0','font-size':11},p.toFixed(5));}
+  const width=Math.max(1,Math.min(7,1008/Math.max(1,bars.length)*.65));
+  for(const b of bars){const center=x((b.start+b.end)/2),color=Number(b.close)>=Number(b.open)?'#72d8c4':'#c38699';element('line',{x1:center,x2:center,y1:y(b.high),y2:y(b.low),stroke:color});element('rect',{x:center-width/2,y:Math.min(y(b.open),y(b.close)),width,height:Math.max(1,Math.abs(y(b.open)-y(b.close))),fill:color});}
+  if(anchors.length){element('polyline',{points:anchors.map(p=>x(p.time)+','+y(p.price)).join(' '),fill:'none',stroke:'#ffc575','stroke-width':2});anchors.forEach((p,i)=>{element('circle',{cx:x(p.time),cy:y(p.price),r:3,fill:'#ffc575'});element('text',{x:x(p.time)+4,y:y(p.price)-8,fill:'#ffc575','font-size':12},String(i));});}
+  for(const l of levels){element('line',{x1:66,x2:1074,y1:y(l.price),y2:y(l.price),stroke:l.color,'stroke-dasharray':'5 5'});element('text',{x:760,y:y(l.price)-6,fill:l.color,'font-size':12},l.name+' '+l.price.toFixed(5));}
+  for(const e of actions){const price=e.kind==='entry'?e.entry:e.exit,color=e.kind==='entry'?'#86c5ff':'#ff938c';element('circle',{cx:x(e.time),cy:y(price),r:5,fill:color});element('text',{x:Math.max(80,Math.min(850,x(e.time)-155)),y:y(price)-12,fill:color,'font-size':12},e.kind==='entry'?'Entry fill':'Exit: '+e.reason);}
+  element('text',{x:66,y:347,fill:'#9aadc0','font-size':11},iso(start).slice(0,16)+' UTC');element('text',{x:900,y:347,fill:'#9aadc0','font-size':11},iso(time).slice(0,16)+' UTC');
+  if(!bars.length)element('text',{x:380,y:180,fill:'#9aadc0','font-size':16},'No '+frame.value+' candles available yet');
+}
+cursor.addEventListener('input',draw);frame.addEventListener('change',draw);counts.addEventListener('change',chart);draw();
+</script></body></html>

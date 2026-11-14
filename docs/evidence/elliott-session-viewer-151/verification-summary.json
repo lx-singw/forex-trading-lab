@@ -1,0 +1,25 @@
+{
+  "kind": "elliott151_saved_report_viewer_verification",
+  "tests": {
+    "tests": 99,
+    "new_tests": 18,
+    "existing_tests": 81,
+    "failures": 0,
+    "errors": 0,
+    "passed": true,
+    "elapsed_seconds": 12.924,
+    "sources_unchanged": true
+  },
+  "saved_account_exports": 8,
+  "source_reports_match150_inventory": true,
+  "runtime_bindings_match150": true,
+  "all_sources_unchanged": true,
+  "projection_comparisons": 144,
+  "full_prior_trading_suites_rerun": false,
+  "strategy_replayed": false,
+  "visual_browser_review_completed": false,
+  "visual_blocker": "Browser security policy rejected file protocol; no alternative browser route attempted.",
+  "market_cells_run": 0,
+  "orders_available": false,
+  "market_returns": null
+}

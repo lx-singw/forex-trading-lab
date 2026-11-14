@@ -1,0 +1,111 @@
+{
+  "kind": "elliott151_final_generated_artifact_inventory",
+  "files": {
+    "completion.json": {
+      "sha256": "1938f147667c2365be51571550c4517205b954a9c4ad5633f544abb9b72379a5",
+      "bytes": 169
+    },
+    "exports.json": {
+      "sha256": "89265c2088c5a9a4f0d3679ca8f6ad938e305930387d248ad0ecc8728184ce97",
+      "bytes": 7363
+    },
+    "packaging-source.toml": {
+      "sha256": "3887280699587b1f3ca9b590111d241d2dbc301af746a3068f27d86165ec2188",
+      "bytes": 440
+    },
+    "packaging.json": {
+      "sha256": "ca9cb148c8290d8214a913f155a6bff051422d24c4641ca715fabad4bb9f4595",
+      "bytes": 238
+    },
+    "source.zip": {
+      "sha256": "f45ae6e83cb5ff735a3c05ab5a662927c1b8c1f934d128ba3fb54a4ab0f47ad7",
+      "bytes": 17304
+    },
+    "source_sha256.json": {
+      "sha256": "c22869fbfa488be79da787dd515adcbd62b3a6396c5771bd6b132a5d695aa675",
+      "bytes": 8801
+    },
+    "tests.txt": {
+      "sha256": "eefedf2a9837a07917a00195e13103da23ff99a28a320e806f65aa6124bd0c0e",
+      "bytes": 15804
+    },
+    "verification-summary.json": {
+      "sha256": "377976b1b8618026c58f3316fd2c9be4da0368c8bc09de4a207b8ab58f094e05",
+      "bytes": 746
+    },
+    "viewers/ew3_long_target-adverse/manifest.json": {
+      "sha256": "679fc74168f4f4c080b3601957e72710d9a8d6d71915397d91b3981958ea3565",
+      "bytes": 10565
+    },
+    "viewers/ew3_long_target-adverse/replay.html": {
+      "sha256": "1410f3cac3add230a0c2c90a3b0c6265207d6cbdfca0dec664b76b5bfc22fe54",
+      "bytes": 28262626
+    },
+    "viewers/ew3_long_target-base/manifest.json": {
+      "sha256": "457eb1085c61d9e1e1ea5bec6498be9649bd6b89f46d386144fd73daedba1cc8",
+      "bytes": 10562
+    },
+    "viewers/ew3_long_target-base/replay.html": {
+      "sha256": "7cb3cddf9c00f7246934444c3134a5462fbabac3790b237c6988b7b6c7cbbb39",
+      "bytes": 28262624
+    },
+    "viewers/ew3_short_gap-adverse/manifest.json": {
+      "sha256": "73c7ff95ebe7bedbfecbdc713ac7abbb1915b8f71cdd8e6be9056f4173127c91",
+      "bytes": 10565
+    },
+    "viewers/ew3_short_gap-adverse/replay.html": {
+      "sha256": "0a9d8f5d955a4c91f03224feec1abd315fe66b26678e7e27ac969e2b36166ac3",
+      "bytes": 27422764
+    },
+    "viewers/ew3_short_gap-base/manifest.json": {
+      "sha256": "827d45f7d3e4d1cbb0eac7e3f08930ac93cdb7657deebb75349c5ebe9e2cac6c",
+      "bytes": 10562
+    },
+    "viewers/ew3_short_gap-base/replay.html": {
+      "sha256": "dff920c71eeb5d2704813030ca1625f810c9e5559f00119e4da29383c4a0cc69",
+      "bytes": 27422762
+    },
+    "viewers/ew5_long_gap-adverse/manifest.json": {
+      "sha256": "ad4bf708ad1dbd633b9270524e67b6537d098d3ce1055a22df1b14146801dfaf",
+      "bytes": 10565
+    },
+    "viewers/ew5_long_gap-adverse/replay.html": {
+      "sha256": "71a911e306f6be9758ab41d07c6fa73c3b65f9f351c3c6c530d66785080bbf56",
+      "bytes": 42956095
+    },
+    "viewers/ew5_long_gap-base/manifest.json": {
+      "sha256": "018fa5e7ead79e3d66441f738e0629f4407cb4ae9556c60298e1720b406f4604",
+      "bytes": 10562
+    },
+    "viewers/ew5_long_gap-base/replay.html": {
+      "sha256": "c4d9bd18a1c12948e77432e631cd3008f8796205a87437492452f3dbc86fc3e9",
+      "bytes": 42956093
+    },
+    "viewers/ew5_short_target-adverse/manifest.json": {
+      "sha256": "53c69840936c4b1d17a8124a011d8a37c172397ccd6e74c40bd30735d295be47",
+      "bytes": 10565
+    },
+    "viewers/ew5_short_target-adverse/replay.html": {
+      "sha256": "48183f4236fd7f37f84cf052497f0021d621c7f3af16674ab02111a7433ba210",
+      "bytes": 41292758
+    },
+    "viewers/ew5_short_target-base/manifest.json": {
+      "sha256": "e40738632e6166a8f1d87a44e17b84b93e545f716ddfbfe78d02b2777f4f1148",
+      "bytes": 10562
+    },
+    "viewers/ew5_short_target-base/replay.html": {
+      "sha256": "3d92f55072880e722d49a15ef95b29909cb16d2ded89e8cca3ac2ee0ade4d216",
+      "bytes": 41292756
+    },
+    "wheel/forex_demo_lab-0.1.0-py3-none-any.whl": {
+      "sha256": "db3ac7060fbb329bff42638f7ab60eb876dafd3483326ab1ef6703a8f72e5c94",
+      "bytes": 571412
+    },
+    "wheel-build.txt": {
+      "sha256": "3cf7629377ef95ed085e08e58ff7651b378f550530c48279264ee8550e2a9569",
+      "bytes": 44371
+    }
+  },
+  "count": 26,
+  "total_bytes": 280619634
+}

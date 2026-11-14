@@ -1,5 +1,19 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott151 saved session replay viewer (15 November 2026).
+99 targeted checks pass:18 new and81 existing. A separate read-only viewer joins
+149 saved EW accounts to publication/quote order, preserves count ranking, gates
+same-clock visibility and exposes signals/fills/skips/coverage. Eight150 saved
+accounts export with unchanged report hashes;144 JavaScript/Python projections
+agree. Trading/runtime and all46 frozen-control bindings remain unchanged. The
+wheel includes the HTML template. See [151 results](ELLIOTT-SESSION-VIEWER-151-RESULTS.md).
+Browser security blocked local-file preview; visual review remains outstanding.
+No strategy rerun or qualified market result is claimed. Broader acceptance,
+provisional/nested viewer work, qualified admission/runner and disabled native
+reconciliation remain open. Protected dates/routes remain; no market source,
+acquisition dates or accounts are assigned/accessed. All16 market cells and native
+submissions remain unavailable. Commit/push completed sprints to main.
+
 Latest — Elliott150 automatic session acceptance (14 November 2026).
 127 targeted checks pass together:10 new and117 relevant existing checks. Four
 predeclared EW3/EW5 long/short target/gap cases retain64 paper comparison cells.

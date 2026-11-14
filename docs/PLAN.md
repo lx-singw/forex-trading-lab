@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Elliott151 saved session replay viewer (15 November 2026).
+99 targeted checks pass. The149 EW saved-report viewer exports eight existing150
+accounts and passes144 JavaScript/Python cursor comparisons; original trading and
+frozen-control source bindings stay unchanged. See [151 results](ELLIOTT-SESSION-VIEWER-151-RESULTS.md).
+Visual browser review is outstanding after a file-protocol security rejection.
+Continue broader nested/fault/variable-session acceptance, remaining provisional/
+nested viewer coverage, qualified source/clock/cost/run admission and runner, and
+disabled native demo reconciliation. No source or capture dates are assigned;
+protected dates/routes,16 unavailable actual-market cells and orders-off remain.
+Commit/push each completed sprint to main.
+
 Latest — Elliott150 automatic session acceptance (14 November 2026).
 127 targeted checks pass:64 computed paper cells, eight independently reconciled
 EW3/EW5 long/short accounts,48 audited controls and two separate-process EW5
