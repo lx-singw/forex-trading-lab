@@ -1,0 +1,23 @@
+{
+  "kind": "invented_automatic_session_entry_147",
+  "signal_count": 1,
+  "setup": "EW3",
+  "side": 1,
+  "formed": 991141202000,
+  "contexts": {
+    "D1": 1,
+    "H4": 1
+  },
+  "bar_counts": {
+    "D1": 367,
+    "H4": 2205,
+    "H1": 8823
+  },
+  "coverage_ready": true,
+  "calendar_sha256": "af7c2af10801759524ad36eb18bc0a78700bf01c842d079cae9d216c4af4e707",
+  "input_hours_sha256": "3d31ad226fac9a562b56aed005e2a52aa03d3f5c4fde45807bc34911624c8f7d",
+  "automatic_entry_sha256": "5577b10480d0f77a6d91f116a4b7cbae0a94b6c5116f02f7cd3c838c5199bcc7",
+  "orders_available": false,
+  "market_cells_run": 0,
+  "returns_computed": false
+}

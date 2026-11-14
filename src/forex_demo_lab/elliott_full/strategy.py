@@ -11,10 +11,13 @@ from copy import copy,deepcopy
 
 
 class Strategy:
-    def __init__(self):
+    def __init__(self,coverage=None):
+        if coverage is not None and not all(callable(getattr(coverage,k,None)) for k in ("issue","validate","consecutive","ready","record")):
+            raise ValueError("session coverage interface")
+        self.coverage=coverage
         self.bars={f:[] for f in ("D1","H4","H1")}
         self.snapshots=[]
-        self.policy=Policy()
+        self.policy=Policy(coverage)
         self.contexts={"D1":None,"H4":None}
         self.context_details={}
         self.context_cache={}
@@ -46,12 +49,15 @@ class Strategy:
                 self.contexts[frame]=None
                 continue
             latest=self.bars[frame][-1]
-            if decision_time>=latest.end+PERIOD[frame]:
-                # This invented wrapper has no qualified closure calendar. A
-                # missing completed parent bar cannot be presumed a holiday.
+            issue=self.coverage.issue(frame,self.bars[frame],decision_time) if self.coverage else None
+            if issue or (self.coverage is None and decision_time>=latest.end+PERIOD[frame]):
+                # Without an explicit schedule, a missing parent still cannot
+                # be presumed a holiday. Scheduled mode checks actual due bars.
                 self.contexts[frame]=None
-                self.context_details[frame]={"side":None,"stage":"missing_completed_parent_bar",
-                                             "latest_end":latest.end,"expected_by":latest.end+PERIOD[frame],"counts":[]}
+                self.context_details[frame]={"side":None,"stage":issue or "missing_completed_parent_bar",
+                                             "latest_end":latest.end,"counts":[]}
+                if self.coverage is None:
+                    self.context_details[frame]["expected_by"]=latest.end+PERIOD[frame]
                 continue
             analysis=self.counts[frame]
             parents=() if frame=="D1" else (self.contexts["D1"],)
@@ -60,7 +66,8 @@ class Strategy:
                 detail=cached[3]
             else:
                 detail=context_state(analysis["interpretations"],latest,parents,
-                                     analysis["incomplete"],analysis["nodes"],self.bars[frame])
+                                     analysis["incomplete"],analysis["nodes"],self.bars[frame],
+                                     self.coverage.consecutive if self.coverage else None)
                 self.context_cache[frame]=(analysis,parents,latest,detail)
             if frame=="H4" and detail["side"]!=self.contexts["D1"]:
                 detail={**detail,"local_side":detail["side"],"side":None,"stage":"parent_context_disagreement"}
@@ -68,6 +75,8 @@ class Strategy:
             self.contexts[frame]=detail["side"]
 
     def on_bar(self,bar):
+        if self.coverage:
+            self.coverage.validate(bar)
         history=self.bars[bar.timeframe]
         if history and bar==history[-1]:
             return []
@@ -103,7 +112,8 @@ class Strategy:
         self._contexts(bar.available)
         parents=(self.contexts["H4"],self.contexts["D1"])
         warm=all(len(h)>=253 for h in self.bars.values())
-        signals=self.policy.update(counts,history,parents,warm,incomplete) if bar.timeframe=="H1" else []
+        eligible=warm and (self.coverage is None or self.coverage.ready(self.bars,bar.available))
+        signals=self.policy.update(counts,history,parents,eligible,incomplete) if bar.timeframe=="H1" else []
         self.snapshots.append({"time":bar.available,"frame":bar.timeframe,"search_incomplete":incomplete,
                                "context":dict(self.contexts),"context_details":dict(self.context_details),
                                "pattern_window":window.record(),
@@ -113,4 +123,6 @@ class Strategy:
                                "interpretations":[c.record(parents,history) for c in sorted(counts,key=lambda c:c.rank(parents,history),reverse=True)[:128]],
                                "reason":"warmup" if not warm else self.policy.reason,
                                "signals":[{k:str(v) if hasattr(v,"as_tuple") else v for k,v in asdict(s).items()} for s in signals]})
+        if self.coverage:
+            self.snapshots[-1]["session_coverage"]=self.coverage.record(self.bars,bar.available)
         return signals

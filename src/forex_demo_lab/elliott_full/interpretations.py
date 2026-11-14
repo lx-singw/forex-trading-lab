@@ -171,7 +171,7 @@ def competitive_counts(counts,parents=()):
     return sorted((c for c in current if c.economic_rank(parents)==best),key=lambda c:c.rank(parents),reverse=True)
 
 
-def context_state(counts,bar,parents=(),incomplete=False,barriers=(),history=()):
+def context_state(counts,bar,parents=(),incomplete=False,barriers=(),history=(),consecutive=None):
     if incomplete:
         return {"side":None,"stage":"search_incomplete","counts":[]}
     # Parent contexts may stay active while their next leg acquires smaller
@@ -184,7 +184,7 @@ def context_state(counts,bar,parents=(),incomplete=False,barriers=(),history=())
                 return False
             segment=history[c.terminal.index:]
             source=history[c.legs[0].anchors[0].index:]
-            if any(b.start!=a.end for a,b in zip(source,source[1:])):
+            if any(not consecutive(a,b) if consecutive else b.start!=a.end for a,b in zip(source,source[1:])):
                 return False
             observed=segment[1:]
         else:

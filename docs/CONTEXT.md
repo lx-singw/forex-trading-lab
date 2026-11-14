@@ -1,5 +1,20 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott147 session-aware strategy decisions (14 November 2026).
+258 checks pass together:172 prior Elliott,31 session146,28 study145 and27 new
+integration checks. Optional declared-calendar coverage now governs parent context,
+setup continuity and eligibility. The invented decision replay rejects source
+backfill and commits same-receipt publications atomically, with bound restart.
+Automatic common-H1 EW3 long discovery passes across declared closures; all64
+existing invented comparison cells and eight reconciled paper accounts remain.
+See [147 results](ELLIOTT-SESSION-STRATEGY-147-RESULTS.md). Only three strategy files
+change; all46 frozen-control bindings remain unchanged. Old source-bound freezes
+must retain their original revision. Calendar-aware funded execution/control
+comparison, qualified source/calendar/cost/run admission and native work remain
+unfinished. No market source or acquisition dates are assigned; actual market
+prices and accounts were not accessed. All16 market cells and orders remain
+unavailable; continue authorized work.
+
 Latest — Elliott146 session observation component (14 November 2026).
 59 checks pass together:31 new session checks and28 study145 checks. Explicit
 invented calendars now exercise23/24/25-hour and partial sessions, declared

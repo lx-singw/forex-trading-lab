@@ -1,0 +1,97 @@
+{
+  "accounts": [
+    {
+      "case": "EW3-long-target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "base",
+      "setup": "EW3",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "EW3-long-target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "adverse",
+      "setup": "EW3",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "EW3-short-gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "base",
+      "setup": "EW3",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "EW3-short-gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "adverse",
+      "setup": "EW3",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "EW5-long-gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "base",
+      "setup": "EW5",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "EW5-long-gap",
+      "exit": "stop",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "adverse",
+      "setup": "EW5",
+      "side": 1,
+      "trades": 1
+    },
+    {
+      "case": "EW5-short-target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "base",
+      "setup": "EW5",
+      "side": -1,
+      "trades": 1
+    },
+    {
+      "case": "EW5-short-target",
+      "exit": "target",
+      "fraction_reconciled": true,
+      "held_restart": true,
+      "pending_restart": true,
+      "profile": "adverse",
+      "setup": "EW5",
+      "side": -1,
+      "trades": 1
+    }
+  ],
+  "computed_invented_cells": 64,
+  "kind": "invented_shared_entry_acceptance",
+  "market_cells_run": 0,
+  "orders_available": false,
+  "strategy_selected": false
+}

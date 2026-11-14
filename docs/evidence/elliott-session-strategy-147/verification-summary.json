@@ -1,0 +1,24 @@
+{
+  "tests_passed_together": 258,
+  "prior_elliott_tests_rerun": 172,
+  "session146_tests_rerun": 31,
+  "study145_tests_rerun": 28,
+  "new_session_strategy_tests": 27,
+  "changed_strategy_files": [
+    "interpretations.py",
+    "setups.py",
+    "strategy.py"
+  ],
+  "frozen_control_files": 46,
+  "frozen_control_bindings_unchanged": true,
+  "automatic_session_entry_cases": 1,
+  "automatic_session_entry_setup": "EW3_long",
+  "paper_entry_regression_accounts": 8,
+  "invented_comparison_cells_retained": 64,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "source_snapshot_sha256": "9dc6cf1835ed81bc43acbc59791dfedc1afc97d73026f6e909e6f2d2fb24e436",
+  "published_artifact_inventory_sha256": "536c296f76cd604a8ac88537a18ef3ed88aac99bdd791b21ad32dbef769f522b",
+  "published_artifact_files": 223,
+  "published_artifact_bytes": 2456190066
+}

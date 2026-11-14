@@ -6,7 +6,8 @@ from copy import deepcopy
 
 
 class Policy:
-    def __init__(self):
+    def __init__(self,coverage=None):
+        self.coverage=coverage
         self.active={}
         self.groups={}
         self.emitted=set()
@@ -29,7 +30,7 @@ class Policy:
             boundary=D(active["boundary"])
             if index>active["expiry_index"] or (bar.low<=boundary if active["side"]==1 else bar.high>=boundary):
                 self.groups[key]["consumed"]=True
-        if len(bars)>1 and bar.start!=bars[-2].end:
+        if len(bars)>1 and (not self.coverage.consecutive(bars[-2],bar) if self.coverage else bar.start!=bars[-2].end):
             for group in self.groups.values():
                 group["consumed"]=True
             return abstain("coverage_break")

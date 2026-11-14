@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Elliott147 session-aware strategy decisions (14 November 2026).
+258 checks pass together, including the full172-test Elliott regression suite and
+27 new integration checks. Parent/setup continuity now uses optional explicit
+session coverage; automatic common-H1 discovery with declared closures, atomic
+late-backfill rejection and decision restart pass. All46 frozen-control source
+bindings remain unchanged. Follow [147 results](ELLIOTT-SESSION-STRATEGY-147-RESULTS.md)
+for remaining work: calendar-aware quote/pending/funded replay, unchanged-control
+comparison adapters, qualified source/calendar/cost/run admission, wider acceptance
+and disabled native demo reconciliation. No source or acquisition window is
+assigned; protected dates, orders-off and16 unavailable market cells are retained.
+Continue authorized implementation and commit/push completed sprints to main.
+
 Latest — Elliott146 session observation component (14 November 2026).
 59 checks pass together; prior172 strategy and frozen-control bindings remain
 unchanged. The separate invented calendar/observation component handles explicit

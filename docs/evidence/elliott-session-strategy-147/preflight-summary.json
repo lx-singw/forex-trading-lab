@@ -1,0 +1,13 @@
+{
+  "status": "UNAVAILABLE",
+  "planned_cells": 16,
+  "market_cells_run": 0,
+  "market_data_read": false,
+  "returns_computed": false,
+  "native_queries": false,
+  "orders_available": false,
+  "all_16_cells_unavailable_with_null_returns": true,
+  "source_unassigned": true,
+  "plan_sha256": "673d7d3dfa26e0456038bfc7012ab1ff8abd151106fbdaf53c13a40a7c61648e",
+  "freeze_sha256": "d20f833dcc766f14445069dece40e96a0c8ea80155496f5344bcd9324384e370"
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "invented_session_strategy_demonstration_147",
+  "calendar_sha256": "eed93bfb049435105e37ace731209037556e9fb45ace1020b26e1fc5497b4701",
+  "decision_snapshots": 63,
+  "signals": 0,
+  "restart_equal": true,
+  "late_backfill": {
+    "rejected": true,
+    "reason": "bar chronology",
+    "batch_unchanged": true
+  },
+  "orders_available": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "demonstration_sha256": "0ef09260aa832a68b92bb11d6a5dbe2f986b2c956961168d8a825e28f0cab22e"
+}
