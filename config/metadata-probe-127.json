@@ -1,0 +1,18 @@
+{
+  "format": "FXDL_METADATA127_SPEC_V1",
+  "nominal_gmt_date": "2026.10.14",
+  "max_queries": 128,
+  "max_elapsed_us": 60000000,
+  "max_bytes": 65536,
+  "integer_keys": ["account_leverage", "digits", "trade_calc_mode", "swap_mode", "swap_rollover3days", "stops_level", "freeze_level", "execution_mode", "order_mode", "custom_symbol", "subscription_delay", "chart_mode"],
+  "double_keys": ["point", "tick_size", "contract_size", "tick_value_profit", "tick_value_loss", "volume_min", "volume_max", "volume_step", "volume_limit", "margin_initial", "margin_maintenance", "swap_long", "swap_short", "swap_sunday", "swap_monday", "swap_tuesday", "swap_wednesday", "swap_thursday", "swap_friday", "swap_saturday"],
+  "string_keys": ["currency_margin"],
+  "weekly_session_indices": 9,
+  "purpose": "Current private demo metadata and raw clock diagnostics, not historical contract proof",
+  "source_age": "unknown",
+  "source_utc_certified": false,
+  "market_data_qualified": false,
+  "paper_evaluation_available": false,
+  "orders_available": false,
+  "real_money_execution_available": false
+}

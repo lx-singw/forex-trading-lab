@@ -1,0 +1,7 @@
+# Sharing companion065 revision2 results
+
+Original1091-test run failed one clock fixture; source/results retained. Revision2:1091 tests/36 new pass, zero failures/errors/skips. Separate native metadata-only share7 compatibility probe passed. One synthetic84-byte write/read, 12 opens, 10 closes; all handles/allocations closed/released. Pre/post write/delete controls succeeded; controls returned actual Win32 error32 while an explicit helper Win32 reader stood in for MQL. That helper blocker is recorded, so this cannot count as MQL evidence.
+
+Unchanged064 MQL source compiled:True, errors:0, warnings:0, compiler calls:1. Outputs/hash bindings preserved in build report; no deployment/runtime. Full uncached private guard, process/token/hash/SDK query caps and one-use launch/saved-range source tested with injected metadata only. Actual SDK/process/logon integration, interactive bootstrap and MQL sharing remain unverified. Guard cost and blocking calls can exceed deadlines; no preemption claim.
+
+Zero SDK/MT5 scripts/deploy/log/market/history/strategy/orders/receipt grants in065. Old062 success and 058 failure/spent allowance/059 record/060 failed fixture preserved. Next NATIVE-SHARING-066-PLAN.md interactive orchestration tests and new runtime declaration before deployment, not executed. Oct7 reader expires later; fresh date requires new source/phase. Market clock/cost/coverage/flag/033/035 failures, consumed2025, reserved Nov–Dec2026/provider stops remain; fresh/annual eligibility/orders false.

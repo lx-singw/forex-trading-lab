@@ -1,0 +1,121 @@
+# Elliott expansion144 — implementation status
+
+13 November 2026. **In progress; the full approved plan is not complete.**
+
+Latest continuation: [contexts, consensus and discovery results](ELLIOTT-EXPANSION-144-CONTEXT-RESULTS.md).
+84 tests now pass together, including a public invented-bar discovery and
+signal-pending restart test. The sections below retain the initial build's45-test
+handoff and earlier artifacts; use the continuation for current coverage and gaps.
+
+The user approved [the plan](ELLIOTT-EXPANSION-144-PLAN.md) with “proceed thoroughly”.
+The new implementation lives in `src/forex_demo_lab/elliott_full/`, with the
+declaration `config/elliott-full-v1.json` and `tests/test_elliott_full.py`.
+Existing 117–126 strategy definitions and evidence were not edited.
+
+## Implemented research prototype
+
+- Strict invented EURUSD bar/quote schemas; malformed/nonfinite input and actual
+  market wrappers reject. D1/H4/H1 publication order and input lineage are checked.
+- A separately callable sampled-midpoint aggregator checks finalization, edge
+  coverage, chronology and gaps. Supplied fixture bars remain invented declarations,
+  not authenticated aggregation from a market source.
+- Strict delayed radius-2/4/8 high/low pivots, immutable confirmation records,
+  separate occurrence/confirmation times and current alternating views.
+- Bounded recursive pattern enumeration, with geometry for ordinary/truncated
+  impulses, zigzags, flat variants, diagonal profiles and triangle variants.
+  Corrective combinations are composed from parsed child patterns. Insufficient
+  subdivisions and exhausted search are explicit. Nested parse tests demonstrate
+  resolved children rather than only matching a three-swing picture.
+- Deterministic Fibonacci display ordering and a conservative completed-correction
+  context path. EW3/EW5 setup construction exists but is not yet accepted as a full
+  implementation of the approved count/consensus policy.
+- A separate cost-aware invented ledger: bid/ask execution, adverse profile,
+  cost-aware structural-stop sizing, lot flooring, margin/headroom, one position,
+  consumed setup IDs, fixed targets, gap/slippage losses, financing, time exits,
+  daily pause and no same-quote reentry. Wide-entry filters do not block exits.
+- Atomic rejection and replay-verified, source/config-bound ledger and whole-engine checkpoints.
+  Rehashing a forged saved balance does not make it valid. Checkpoints contain
+  independent copies rather than references to mutable live input/events. Whole-engine
+  checkpoints also bind count snapshots, active setups, emitted IDs and pending signals.
+- An exclusive-output CLI and a local HTML time-cursor viewer. Future bars are
+  hidden at the chosen cursor; preferred/alternate pattern overlays, the current
+  count tree and no-trade reason are shown. Stop/target overlays use only entry
+  events available by the cursor. A CSV trade ledger is exported.
+- Explicit unavailable status for all 16 planned market-study cells. No zero or
+  invented return substitutes for missing market evidence.
+- A fail-closed inactive demo boundary tests enum rejection and ambiguous-outcome
+  retention. It has **no native account query, broker transport or submission API**;
+  these tests cannot establish actual connected-account safety.
+
+## Verification and artifacts
+
+45 focused tests pass in the retained final log. They exercise hard geometry,
+nested parsing, delayed confirmation, future suffix invariance, search exhaustion,
+coverage gaps, independent Fraction sizing, minimum volume, both trade directions,
+stop gaps beyond estimated risk, widened exits, stale quotes, financing, daily
+pause persistence, duplicate/conflicting signals, restart prefixes, rehashed
+checkpoint forgeries, atomic failed exits and unavailable market/demo admission.
+The earlier combined run also passed128 tests in477.146 seconds:37 tests from the
+initial new suite and91 retained124–126 checks. The final45-test focused suite was
+run after subsequent new-package changes; the unchanged legacy modules were not
+rerun again. This accounts for136 distinct passing tests across the runs, not one
+complete136-test final invocation.
+
+The initial run found two fixture-type errors (floats supplied to a deliberately
+decimal-string interface) and one implementation error: checkpoint payloads shared
+mutable input/event lists. The fixture literals were corrected and checkpoint
+payloads are now deep-copied. The atomic-rejection regression passes.
+
+Artifacts:
+- [Focused test log](../reports/elliott-full-144-demo-001/tests-final.txt).
+- [Invented observational replay](../reports/elliott-full-144-demo-004/replay.html).
+- [Structured output](../reports/elliott-full-144-demo-004/report.json).
+- [Invented fixture](../reports/elliott-full-144-demo-004/fixture.json).
+- [CSV trade schema](../reports/elliott-full-144-demo-004/trades.csv) (no demonstration trades).
+
+The demonstration contains 165 bar publications across three timeframes. It is
+deliberately below warmup, with no quotes/trades/P&L study. It exercises chart/count
+observation and abstention; it is not a successful end-to-end trading example.
+No qualified native or historical input was accessed.
+
+From WSL:
+
+```sh
+PYTHONPATH=src:tests python3 -m unittest test_elliott_full
+PYTHONPATH=src python3 scripts/elliott-full-demo.py reports/elliott-full-144-demo-NEW
+PYTHONPATH=src python3 -m forex_demo_lab.elliott_full FIXTURE.json NEW_OUTPUT_DIRECTORY
+```
+
+## Outstanding work before software acceptance
+
+The new prototype must not yet be presented as the complete EW_FULL_V1 strategy.
+Remaining code and acceptance work includes:
+
+1. Complete the executable rulebook, parent-location diagnostics, triangle/diagonal
+   boundary cases and positive/negative tests for every catalogue profile. Current
+   geometric matches do not certify every source rule or resolve every child.
+2. Complete the approved active-motive higher-timeframe context states, alternation
+   and channel ranking, cross-scale competitive-set treatment and count revisions.
+   Current context deliberately supports fewer states than the approved plan.
+3. Finish consensus reformation/cancellation, persistent anchor aliases, and
+   independently reviewed integrated EW3/EW5 trade/loss/skipped examples. In
+   particular the setup code is not yet certified against every alternate-count
+   disagreement and parent-location case. Some matches can abstain unnecessarily.
+4. Broaden integrated checkpoint tests to active consensuses and pending signals,
+   add dataset-boundary liquidation and independent accounting differential checks
+   against retained120/125 cases. Whole-engine prefix reconstruction is implemented,
+   but not yet accepted on all required trading-state transitions.
+5. Visually inspect the viewer and exercise overlays against integrated trade
+   examples. Pattern labels, preferred/alternate lines, protection overlays and
+   CSV export are implemented; fill markers and UI acceptance remain.
+6. Implement and verify a separately typed qualified-data runner and unchanged
+   control adapters before any market-performance calculation. Current source
+   eligibility is unavailable; older data partitions and expired routes stay fixed.
+7. Build a real default-off native demo adapter and test native enum checks,
+   reconciliation, partial fills, protection failures and restart boundaries.
+   The current inert boundary is not that adapter.
+
+These are implementation tasks still authorized by the user's approval, not
+requests for another approval. Historical/shadow results additionally require
+qualified data and bounded runs as specified in the plan. No market win rate,
+profitable edge, demo readiness or real-money capability has been established.

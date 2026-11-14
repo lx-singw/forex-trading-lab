@@ -1,0 +1,5 @@
+# Native sharing070 results
+
+Completed:False; stopped stage:independent_controls; reason:native_runtime_failed_details_redacted. One exclusive069 dispatch consumed; exact raw reservation/hash audited if created, no assumed sidecar. SDK attempts:1; arms:2; bootstrap:True; deployment:True; signatures:True; log reads:0; SDK shutdown:True; cleanup errors:[]. No quotes/history/orders/receipt permissions. No reconnect/retry/reset/refund.
+
+1209 tests/17 new audit tests passed before native work; zero failures/errors/skips. 1192 prior preparation tests retained; frozen069/068 source/profile and old067 failure preserved. This outcome establishes only its measured evidence; native MQL/publication/ACK/root-cause claims remain false. Profit not established. Next offline outcome-driven NATIVE-SHARING-071-PLAN.md, not executed. Oct7-only064 cannot be extended for a later date. Keep033/035 gates, historical clock/cost/coverage/flags/consumed2025/reserved Nov–Dec2026/provider stops; eligibility/orders false.

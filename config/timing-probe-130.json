@@ -1,0 +1,21 @@
+{
+  "schema": "timing_probe130_spec_v1",
+  "nominal_gmt_date": "2026.10.15",
+  "max_polls": 60,
+  "max_diagnostic_groups": 180,
+  "max_elapsed_us": 60000000,
+  "minimum_poll_spacing_us": 1000000,
+  "guarded_wait_ms": 50,
+  "max_bytes": 131072,
+  "collect_evidence_default": false,
+  "requires_actual_demo": true,
+  "requires_algo_trading_off": true,
+  "symbol": "EURUSD",
+  "account_currency": "USD",
+  "query_cycle": [["C", "before"], ["T", "quote"], ["C", "after"]],
+  "clock_fields": ["time_current", "time_trade_server", "time_gmt", "time_local", "gmt_offset", "daylight_savings"],
+  "source_age_certified": false,
+  "market_data_qualified": false,
+  "orders_available": false,
+  "real_money_execution_available": false
+}

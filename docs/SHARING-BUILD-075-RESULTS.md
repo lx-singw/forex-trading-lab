@@ -1,0 +1,9 @@
+# Compiler-shell-bound build075 results
+
+1360 tests/13 new pass; zero failures/errors/skips. Build completed:True; compiler invocations:1; actual exit:1; clean summary:{'errors': 0, 'warnings': 0}; stop:None/stage:None. The consumed075 marker, separate compiler075 folder and source/include/compiler/terminal/output hashes are retained.
+
+Frozen073 image-link/version failure and074 metadata failure both occurred before compiler invocation and remain preserved. The exact074 metadata command returned Restricted in its pinned Windows PowerShell child, while the workspace shell reports RemoteSigned. The074 results wording about RemoteSigned describes its incorrect expectation, not verified child metadata. Separate075 binds Restricted to the actual compiler shell. It changes no execution policy and uses no bypass. Retain074 measured image profile: exactly two links only for pinned powershell.exe; all other images/source/log/artifact files require one. Full uncached hashes, identity, no-reparse, signatures, clocks and process checks remain.
+
+Actual native exit1 is retained in the075 schema alongside a clean log and nonempty artifact; frozen072 exit0 checker is unchanged. Owned compiler absent afterward:True; final metadata:{'editor_build': 6244, 'editor_processes': 0, 'policy': 'Restricted', 'terminal_build': 6244, 'valid_signatures': True}. Zero MT5 script/SDK/deployment/terminal log-content/market/orders/receipt grants. A clean compile establishes a build artifact only; native sharing/publication/ACK and profitability remain unestablished.
+
+Next NATIVE-SHARING-076-PLAN.md is unexecuted outcome-driven runtime preparation/synchronization/tests before a later policy. Oct8 expiry requires fresh source/phase instead of modifying frozen072/073/074/075. Preserve033/035 failures, clock/cost/coverage/flags, consumed2025/reserved Nov-Dec2026 and provider stops. Eligibility/orders remain false.

@@ -1,0 +1,17 @@
+{
+  "format": "FXDL_COST128_SPEC_V1",
+  "nominal_gmt_date": "2026.10.14",
+  "max_queries": 5,
+  "max_elapsed_us": 60000000,
+  "max_bytes": 65536,
+  "max_rules": 8,
+  "max_tiers_per_rule": 16,
+  "max_total_tiers": 128,
+  "currency_tokens": "EMPTY or three uppercase letters",
+  "purpose": "Private current reported commission rules and buy/sell margin factors",
+  "historical_cost_terms_certified": false,
+  "market_data_qualified": false,
+  "paper_evaluation_available": false,
+  "orders_available": false,
+  "real_money_execution_available": false
+}

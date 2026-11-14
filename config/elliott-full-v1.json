@@ -1,0 +1,18 @@
+{
+  "version": "EW_FULL_V1",
+  "scope": "invented_research_only",
+  "symbol": "EURUSD",
+  "timeframes": ["D1", "H4", "H1"],
+  "pivot_radii": [2, 4, 8],
+  "warmup_bars_per_frame": 253,
+  "search_expansions": 4096,
+  "candidate_cap": 128,
+  "pivot_cap": 256,
+  "nesting_depth": 3,
+  "setups": ["EW3", "EW5"],
+  "risk_fraction_ceiling": "0.0025",
+  "daily_entry_pause_fraction": "0.01",
+  "max_positions": 1,
+  "native_orders_available": false,
+  "market_admission_available": false
+}

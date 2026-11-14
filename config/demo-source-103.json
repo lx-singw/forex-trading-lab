@@ -1,0 +1,316 @@
+{
+  "admission_gates": [
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "source_use",
+      "requirement": "Applicable local collection/retention/research permission; no redistribution assumption",
+      "status": "unverified"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "attachment_without_side_effects",
+      "requirement": "Prove a permitted attachment path cannot launch/login/select/change terminal state",
+      "status": "blocked"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "runtime_feasibility_provenance",
+      "requirement": "Separate source/build/runtime guard, deadline and cleanup evidence; no native090 renewal",
+      "status": "unverified"
+    },
+    {
+      "depends_on": [
+        "attachment_without_side_effects",
+        "runtime_feasibility_provenance"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "actual_demo_account",
+      "requirement": "Exact actual DEMO mode; strict types; private stable identity around each read",
+      "status": "documentation_only"
+    },
+    {
+      "depends_on": [
+        "actual_demo_account"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "terminal_and_symbol",
+      "requirement": "Connected; Algo Trading off; USD account; already-visible EURUSD with EUR/USD currencies",
+      "status": "unverified_current"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "receipt_clock",
+      "requirement": "UTC/monotonic acquisition bounds, wall-clock quality, jumps and per-session monotonic order",
+      "status": "unverified_current"
+    },
+    {
+      "depends_on": [
+        "receipt_clock"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "source_clock",
+      "requirement": "Source-specific seconds/milliseconds basis and uncertainty; no assumed offset",
+      "status": "unverified"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "observation_identity",
+      "requirement": "Persist every poll with local sequence; retain repeated/equal-time snapshots honestly",
+      "status": "design_only"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "market_journal_storage",
+      "requirement": "Separate honest source metadata; atomic persistence, bounds, restart and failure tests",
+      "status": "unimplemented"
+    },
+    {
+      "depends_on": [
+        "receipt_clock",
+        "source_clock",
+        "observation_identity"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "quality_and_sampling",
+      "requirement": "Frozen quality policy and disconnect/gap/repetition evidence; polling is not complete ticks",
+      "status": "unverified"
+    },
+    {
+      "depends_on": [
+        "market_journal_storage",
+        "receipt_clock"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "availability_chronology",
+      "requirement": "Decision sees only prior guarded committed observations; later history remains later",
+      "status": "design_only"
+    },
+    {
+      "depends_on": [
+        "quality_and_sampling",
+        "availability_chronology"
+      ],
+      "evidence_satisfies_gate": false,
+      "id": "fixed_snapshot_research",
+      "requirement": "Sampling-compatible fixed rules, costs, development/untouched validation and independent checks",
+      "status": "unexecuted"
+    },
+    {
+      "depends_on": [],
+      "evidence_satisfies_gate": false,
+      "id": "tick_delivery_repeatability",
+      "requirement": "Separate delivery/identity/full-record repeatability evidence; never inferred from snapshots",
+      "status": "unverified"
+    }
+  ],
+  "candidate": {
+    "account_currency": "USD",
+    "base": "EUR",
+    "disposition": "conditional_candidate_not_qualified",
+    "provider_tick_identity": "not_established",
+    "quote": "USD",
+    "role": "existing_mt5_demo_feed",
+    "sampling_mode": "latest_tick_poll_snapshots",
+    "symbol": "EURUSD"
+  },
+  "chronology": {
+    "acquisition_guard_commit_order_required": true,
+    "costs": "existing003_assumptions_preserved_not_actual_fill_or_fee_proof",
+    "decision_basis": "previously_received_guarded_committed_records_only",
+    "late_history": "available_only_at_later_recovery_receipt",
+    "no_historical_repair_from_fresh_data": true,
+    "observed_prices_not_actual_fills": true,
+    "source_timestamp_is_decision_availability": false
+  },
+  "contract_is_runtime_permission": false,
+  "diagnostic_collection_requires": [
+    "source_use",
+    "attachment_without_side_effects",
+    "runtime_feasibility_provenance",
+    "actual_demo_account",
+    "terminal_and_symbol",
+    "receipt_clock",
+    "observation_identity",
+    "market_journal_storage"
+  ],
+  "documentation_outcomes": [
+    "reports/demo-source-103-outcome-001.json",
+    "reports/demo-source-103-outcome-002.json",
+    "reports/demo-source-103-outcome-003.json",
+    "reports/demo-source-103-outcome-004.json",
+    "reports/demo-source-103-outcome-005.json",
+    "reports/demo-source-103-outcome-006.json"
+  ],
+  "evidence_references": {
+    "docs/CLOCK-REFERENCE-037-RESULTS.md": "1617ed81c301ade7988f6da63b8469ab4792b614bf4cbf1bcd030499d26a85c9",
+    "docs/CLOCK-SEMANTICS-038-RESULTS.md": "57584a8dd3670fc6503752a9d201acb391f1f308c16bcee1bcd45998622c9197",
+    "docs/DATA-QUALIFICATION-036-RESULTS.md": "edc24ddf262da108461b3a862c4d52095b714baebac756f26ddecdcc3f995cfc",
+    "docs/FRESH-DATA-031-RESULTS.md": "f8bb8a4c251009e28de9c260534328694660cd519a23bbb81061726ef60d75cf",
+    "docs/FRESH-REPLICATION-035-RESULTS.md": "af996b555407c86531ea9cba407224ce99742eff9f59dde9532856c3c0d13015",
+    "docs/QUOTE-RECORDER-102-RESULTS.md": "a52923208275bf69e3acd3451a8adf672c42461bbce3d4b669eec704dc4facf5",
+    "docs/QUOTE-RECORDER-102-USAGE.md": "c0d0d6b25e3a8535f8bf1f87326063fc3377333675a0828216efb9e3d6c36eee",
+    "docs/SOURCE-FEASIBILITY-090-POLICY.md": "ed8b184438fa6b006ef5f3e40858465c8dbe0f69d970d22107be4ba9ae77a342",
+    "docs/SOURCE-FEASIBILITY-090-RESULTS.md": "4a0e049e053420962f0899ea61d5e460821b415352561dfeb438cceb990ad9dd"
+  },
+  "failure_policy": {
+    "automatic_reconnect": false,
+    "automatic_retry": false,
+    "native_inflight_abort_guaranteed": false,
+    "prior_committed_evidence_preserved": true,
+    "quote_quality": [
+      "missing_explicit_event",
+      "malformed_or_crossed_nonpositive_nonfinite_reject",
+      "raw_clock_reversal_diagnostic",
+      "source_age_unverified",
+      "repeated_snapshot",
+      "equal_time_distinct_update",
+      "source_or_receipt_gap",
+      "unknown_flags_preserved",
+      "observed_metadata_revision_preserved"
+    ],
+    "runtime_limits": "must_be_frozen_and_feasible_in_a_separate_plan_no_legacy_date_or_budget_renewal",
+    "stop_on": [
+      "account_or_private_identity_change",
+      "disconnected",
+      "Algo_Trading_on",
+      "unexpected_instrument",
+      "invalid_clock",
+      "receipt_clock_reversal_or_discontinuity",
+      "schema_or_integrity_failure",
+      "deadline_or_budget_exhaustion",
+      "storage_or_durability_failure"
+    ]
+  },
+  "implementation_added": false,
+  "interface": {
+    "account_check": "strict_actual_DEMO_enum_never_server_name",
+    "checks": "before_after_every_read_and_completion_no_atomic_identity_guarantee",
+    "identity": "private_ephemeral_comparison_only_never_serialized",
+    "initialization_note": "Official initialize may launch/use stored account state; explicit path or process precheck is not attach-only proof",
+    "methods_not_admitted": [
+      "initialize",
+      "login",
+      "symbol_select",
+      "copy_ticks_from",
+      "copy_ticks_range",
+      "order_check",
+      "order_send",
+      "market_book_add"
+    ],
+    "no_login": true,
+    "no_order_api": true,
+    "no_settings_change": true,
+    "no_symbol_selection": true,
+    "no_terminal_launch": true,
+    "read_methods_for_future_guard_review": [
+      "account_info",
+      "terminal_info",
+      "symbol_info",
+      "symbol_info_tick"
+    ]
+  },
+  "next_work": "Offline broker-free collector boundary with invented injected account/quote/clock facts and separate honest schema; actual broker entry disabled",
+  "paper_snapshot_requires": [
+    "source_use",
+    "attachment_without_side_effects",
+    "runtime_feasibility_provenance",
+    "actual_demo_account",
+    "terminal_and_symbol",
+    "receipt_clock",
+    "source_clock",
+    "observation_identity",
+    "market_journal_storage",
+    "quality_and_sampling",
+    "availability_chronology",
+    "fixed_snapshot_research"
+  ],
+  "plan_sha256": "976bc7c4c2d94590a7f1db6ae15e782a4f2c688bb45ed5692fc4e288ba2a31fc",
+  "preserved_boundaries": {
+    "H10": "closed_under_current_evidence_reconsider_material_new_evidence",
+    "consumed_excluded_years": [
+      2025
+    ],
+    "existing031_date": "2026-10-06_expired_not_retargeted",
+    "historical_gates_unchanged": true,
+    "invented102_source_unchanged": true,
+    "native090": "closed",
+    "no_accounts_or_payments": true,
+    "old_failures_preserved": true,
+    "old_provider_stops_unchanged": true,
+    "quarantined_months": [
+      "2026-10"
+    ],
+    "reserved_validation_months": [
+      "2026-11",
+      "2026-12"
+    ]
+  },
+  "prospective_journal": {
+    "equal_payload_meaning": "repeated_snapshot_not_proven_duplicate_market_event",
+    "interpolate_or_carry_forward": false,
+    "invalid_input": "fixed_codes_arbitrary_fields_discarded",
+    "monotonic_across_restart": "not_comparable_new_session_segment",
+    "never_export": [
+      "credentials",
+      "account_identifiers",
+      "private_account_identity",
+      "private_server_identity",
+      "private_process_paths",
+      "raw_exception_text",
+      "full_account_tuple"
+    ],
+    "provider_tick_id_claim": false,
+    "receipt_clock_basis": "local_wall_clock_formatted_UTC_with_separate_quality_evidence",
+    "relabel_invented_102": false,
+    "required_fields": [
+      "collector_session_id",
+      "committed_observation_sequence",
+      "attempt_kind",
+      "raw_time_s",
+      "raw_time_msc",
+      "native_price_encoding",
+      "decimal_conversion_contract",
+      "bid",
+      "ask",
+      "raw_allowlisted_tick_fields",
+      "received_before_utc",
+      "received_after_utc",
+      "received_before_monotonic_ns",
+      "received_after_monotonic_ns",
+      "guard_outcome",
+      "diagnostic_codes"
+    ],
+    "retain_every_attempt": true,
+    "same_time_distinct_payload_retained": true,
+    "sampling_mode": "poll_snapshot",
+    "source_age_until_clock_verified": "unknown",
+    "source_clock_basis": "raw_unverified",
+    "source_label": "separate_real_source_role_not_invented102",
+    "source_utc_certified": false,
+    "staleness_note": "repetition_duration_is_not_true_source_age_or_per_side_executable_freshness",
+    "storage": "bounded_atomic_event_and_committed_head_with_replay_restart_validation_no_silent_overwrite",
+    "synthetic": false
+  },
+  "purpose": "Requirements for a future read-only demo quote collector; no executable activation authority",
+  "runtime_consumers": [],
+  "schema": "demo_source_103_qualification_contract_v1",
+  "status": {
+    "demo_execution_available": false,
+    "diagnostic_collection_authorized": false,
+    "forward_snapshot_evaluation_qualified": false,
+    "historical_market_data_qualified": false,
+    "orders_available": false,
+    "profitability_established": false,
+    "real_money_execution_available": false,
+    "tick_path_evaluation_qualified": false
+  },
+  "tick_path_additional_requires": [
+    "tick_delivery_repeatability"
+  ]
+}

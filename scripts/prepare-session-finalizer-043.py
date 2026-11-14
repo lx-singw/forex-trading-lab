@@ -1,0 +1,23 @@
+"""Create a sealer with separate preparation/completion artifacts, no overwrite."""
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+text=(ROOT/'scripts/finalize-clock-observer-042.py').read_text()
+text=text.replace('scripts/native-compiler-042.py','scripts/clock-session-043.py')
+text=text.replace('reports/native-compiler-042-regression.json','reports/clock-session-043-regression.json')
+text=text.replace('reports/clock-observer-042-','reports/clock-observer-043-')
+text=text.replace('docs/CLOCK-OBSERVER-042-RESULTS.md','docs/CLOCK-SESSION-043-RESULTS.md')
+text=text.replace('CLOCK-OBSERVER-042-RESULTS.md','CLOCK-SESSION-043-RESULTS.md')
+text=text.replace('==604','==612').replace('604 tests (20 new)','612 tests (8 new)').replace('software_tests_passed=604,new_tests=20','software_tests_passed=612,new_tests=8')
+text=text.replace('clock observer042 sealed','clock session043 sealed').replace('new042 exact shared header73 checks','reused042 exact shared header73 checks')
+text=text.replace('all_042_critical_sources_frozen_before_build=True','all_043_critical_sources_frozen_before_runtime=True')
+text=text.replace('def main(next_plan):','def main(next_plan,completion=False):')
+text=text.replace("write(ROOT/'reports/clock-observer-043-review.json'", "write(ROOT/('reports/clock-session-043-'+('completion' if completion else 'preparation')+'-review.json')")
+text=text.replace("'scripts/*042*','tests/*042*.py','docs/*042*.md',next_plan,'src/forex_demo_lab/*042.py'", "'scripts/*043*','tests/*043*.py','docs/*043*.md',next_plan,'src/forex_demo_lab/*043.py'")
+text=text.replace("('reports/native-compiler-042-*','reports/clock-observer-043-*')", "('reports/clock-session-043-*','reports/clock-observer-043-*')")
+text=text.replace("assert 'final-source' not in p.name;groups['report_bindings']", "groups['report_bindings']")
+text=text.replace("groups['clock_observer_042_input_bindings']", "groups['clock_session_043_input_bindings']")
+text=text.replace("final=ROOT/'reports/clock-observer-043-final-source.json';archive=final.with_suffix('.zip')", "final=ROOT/('reports/clock-session-043-'+('completion' if completion else 'preparation')+'-final-source.json');archive=final.with_suffix('.zip')")
+text=text.replace("observer_runtime_executed=bool(runtime and runtime['script_arms'])", "observer_runtime_executed=bool(runtime and runtime['records'])")
+text=text.replace("p=argparse.ArgumentParser();p.add_argument('next_plan');main(p.parse_args().next_plan)", "p=argparse.ArgumentParser();p.add_argument('next_plan');p.add_argument('--completion',action='store_true');a=p.parse_args();main(a.next_plan,a.completion)")
+with (ROOT/'scripts/finalize-clock-session-043.py').open('x',encoding='utf-8') as out:out.write(text)
+print('Separate preparation/completion sealer created')

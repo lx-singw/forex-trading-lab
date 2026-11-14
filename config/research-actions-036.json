@@ -1,0 +1,30 @@
+{
+  "version": "qualification_review_036_v1",
+  "maximum_search_queries": 4,
+  "maximum_opens": 12,
+  "maximum_finds": 8,
+  "allowed_domains": ["mql5.com", "metatrader5.com"],
+  "search_queries": [
+    "site:mql5.com/en/docs tick flags 128 1024 MqlTick",
+    "site:mql5.com/en/docs/python_metatrader5 UTC copy_ticks_range copy_rates_range",
+    "site:mql5.com/en/docs/series CopyTicks synchronization missing ticks history",
+    "site:mql5.com/en/docs SYMBOL_SWAP_MODE SYMBOL_TRADE_TICK_VALUE_LOSS spread tick_volume historical"
+  ],
+  "target_pages": [
+    "https://www.mql5.com/en/docs/constants/structures/mqltick",
+    "https://www.mql5.com/en/book/applications/timeseries/timeseries_ticks_mqltick",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5copyticksrange_py",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5copyratesrange_py",
+    "https://www.mql5.com/en/docs/series/copyticks",
+    "https://www.mql5.com/en/docs/series/copyticksrange",
+    "https://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants",
+    "https://www.mql5.com/en/docs/constants/structures/mqlrates"
+  ],
+  "find_patterns": [
+    "TICK_FLAG_BID", "128", "UTC", "UTC",
+    "synchronization", "ERR_HISTORY_TIMEOUT", "SYMBOL_SWAP_MODE", "spread"
+  ],
+  "market_requests": 0,
+  "strategy_replays": 0,
+  "orders_available": false
+}

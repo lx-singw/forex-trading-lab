@@ -1,0 +1,15 @@
+{
+  "schema": "paired_replay133_v1_manifest",
+  "runs": [
+    {
+      "id": "run001",
+      "path": "data/paired-recorder-132-native/Run132-1792509317-463193937-4223/Paired132.txt",
+      "sha256": "a73ba48f06b1be591b74bd12953aa63b48f020bf037977179dd0f04e2d2b37b6"
+    },
+    {
+      "id": "run002",
+      "path": "data/paired-recorder-132-native/Run132-1792721396-675275921-3091/Paired132.txt",
+      "sha256": "54b2ea031f057c92c8c113454d651af16dccd68d5ab450f2dcfd014766be8ec4"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Timing profile077 preparation results
+
+1453 tests/45 new pass; zero failures/errors/skips. The metadata-only injected runner, exact preparation policy, exclusive reservation, SDK/backend ownership and once-owned cleanup are prepared. Four composite samples include eight actual account/process/full-hash guards; all helper/source inputs are rehashed. Small clock/query/byte caps and zero fixture/deployment/log budgets are tested.
+
+Four profile cases independently enumerated: three complete all samples, one expires after two. Core versus composite timings are separate observations. One-second simulated hash costs yield6000ms core guards and20000ms composite samples. These are injected costs, not native measurements or worst-case bounds. Expiration preserves partial samples and attempts owned cleanup without retry.
+
+Fourteen finite readiness/release transcripts independently checked:4 modeled completions/10 rejections. Fresh phase/build/same private identity/absolute deadline binding, stale signals, restart, duplicate release, guard overhead and unchanged10s/30s strict250ms hold margins are checked. Release failure stays spent. The handshake has no native transport, MQL decoder/hold handle or matcher; source072 cannot use it.
+
+Zero new native SDK/MT5/compiler/deployment/log-content/self-profile/market/order/receipt operations. Exact075 actual-exit1 build retained;072/075/076 and all old failures/raw reservations preserved. Observed maxima never grant launch authority. Native sharing/publication/ACK/profitability and070 cause remain unproven; eligibility/orders false.033/035 failures, clock/cost/coverage flags, consumed2025, reserved Nov-Dec2026 and provider stops retained. Next NATIVE-TIMING-078-PLAN.md prepares a separately frozen/tested metadata-only native entry/policy before a later finite profile. Unexecuted; Oct8 expiry requires fresh metadata sampler/phase.

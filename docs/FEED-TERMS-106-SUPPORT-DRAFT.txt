@@ -1,0 +1,27 @@
+To: MetaQuotes official private support/contact channel
+Status: DRAFT — NOT SENT
+
+Subject: Terms for private read-only recording from MetaQuotes-Demo
+
+Hello,
+
+Which agreement governs private local recording of EUR/USD bid/ask snapshots
+from the MetaQuotes-Demo server?
+
+For a diagnostic experiment, does it permit automated read-only sampling of at
+most 120 latest snapshots over at most 60 seconds, with local retention for
+private algorithm research? Please identify the applicable terms and any
+retention or export limits. The proposed capture would not redistribute,
+publish or sell quotes, or place orders.
+
+Would the same terms permit a later, longer forward paper-testing recorder,
+or would that require separate permission?
+
+Separately, is there official dated documentation for the tick timestamp
+timezone, daylight-saving rules and revisions, and whether these demo quotes
+are indicative or executable?
+
+Please do not request account passwords. This is a general product/source
+question; no account number or personal trading history is included.
+
+Thank you.

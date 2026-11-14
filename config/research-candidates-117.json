@@ -1,0 +1,152 @@
+{
+  "schema": "daily_candidate_declaration117_v1",
+  "status": "declarative_unimplemented_inputs_unavailable",
+  "symbol": "EURUSD",
+  "account_currency": "USD",
+  "bar_kind": "completed_qualified_venue_daily_session_midpoint",
+  "common_warmup_completed_sessions": 253,
+  "candidates": [
+    {
+      "id": "T12_D",
+      "kind": "spot_price_time_series_momentum_hypothesis",
+      "return_lookback_sessions": 252,
+      "side_formula": "sign(close[-1] / close[-253] - 1)",
+      "risk_multiplier": 1.0,
+      "paper_replication": false
+    },
+    {
+      "id": "MR20_D",
+      "kind": "daily_price_reentry_hypothesis_not_fundamental_value",
+      "window_sessions": 20,
+      "deviation_kind": "population",
+      "threshold": 2.0,
+      "previous_window": "closes[-21:-1]",
+      "current_window": "closes[-20:]",
+      "long_condition": "old_z < -2 <= new_z",
+      "short_condition": "old_z > 2 >= new_z",
+      "zero_deviation": "abstain",
+      "risk_multiplier": 1.0,
+      "paper_replication": false
+    },
+    {
+      "id": "MIX50_D",
+      "kind": "fixed_signal_mixture_one_account",
+      "members": ["T12_D", "MR20_D"],
+      "weights": [0.5, 0.5],
+      "score_formula": "0.5 * T12_D.side + 0.5 * MR20_D.side",
+      "side_formula": "sign(score)",
+      "risk_multiplier_formula": "abs(score)",
+      "opposing_sides": "abstain",
+      "weight_optimization": false,
+      "paper_replication": false
+    },
+    {
+      "id": "CASH",
+      "kind": "zero_interest_no_trade_control",
+      "risk_multiplier": 0.0,
+      "interest_rate": 0.0
+    }
+  ],
+  "entry_and_risk": {
+    "atr_sessions": 14,
+    "atr_kind": "arithmetic_mean_true_range_with_previous_close",
+    "stop_atr": 2.0,
+    "reward_risk": 2.0,
+    "max_risk_fraction": 0.0025,
+    "daily_loss_fraction": 0.01,
+    "risk_day": "qualified_source_UTC_day",
+    "max_positions": 1,
+    "max_entry_opportunities_per_completed_session": 1,
+    "entry": "first_eligible_observed_bidask_after_bar_availability",
+    "held_position": "retain_original_stop_target_and_size",
+    "minimum_lot_rounding": "floor_or_abstain_never_round_up",
+    "loss_recovery_sizing": false,
+    "stop_guarantees_max_loss": false
+  },
+  "cost_profiles": {
+    "source_definition": "src/forex_demo_lab/shadow_engine_113.py:scenarios",
+    "kind": "inherited_hypothetical_not_broker_terms",
+    "base": {
+      "commission_usd_per_lot_round_turn": 7.0,
+      "slippage_pips_per_fill": 0.2,
+      "swap_long_usd_per_lot": -3.0,
+      "swap_short_usd_per_lot": -1.5,
+      "spread_floor_pips": 0.0
+    },
+    "adverse": {
+      "commission_usd_per_lot_round_turn": 10.0,
+      "slippage_pips_per_fill": 0.5,
+      "swap_long_usd_per_lot": -4.5,
+      "swap_short_usd_per_lot": -2.25,
+      "spread_floor_pips": 1.2
+    },
+    "common": {
+      "max_entry_spread_pips": 1.5,
+      "initial_equity_usd": 10000.0,
+      "contract_size": 100000.0,
+      "lot_min": 0.01,
+      "lot_step": 0.01,
+      "lot_max": 1.0,
+      "hypothetical_leverage": 30.0,
+      "rollover_timezone": "Etc/UTC",
+      "triple_swap_weekday": 2,
+      "quote_spread_policy": "observed_bidask_then_declared_floor"
+    },
+    "actual_cost_qualification_required_before_market_returns": true,
+    "contradiction_policy": "unavailable_then_separate_versioned_protocol_before_returns"
+  },
+  "trial_budget": {
+    "candidate_ids": ["T12_D", "MR20_D", "MIX50_D", "CASH"],
+    "cost_ids": ["base", "adverse"],
+    "partition_ids": ["development", "untouched_validation"],
+    "planned_cells": 16,
+    "executed_cells": 0,
+    "cells_are_independent": false,
+    "parameter_grid": false,
+    "preserve_failures_losses_and_no_trades": true
+  },
+  "data_and_run_freeze": {
+    "status": "required_unassigned",
+    "qualified_input_ids": null,
+    "development_dates_utc": null,
+    "untouched_validation_dates_utc": null,
+    "implementation_hashes": null,
+    "qualified_session_calendar_latency_manifest": null,
+    "qualified_source_cost_manifest": null,
+    "minimum_calendar_months_each_partition": 24,
+    "fresh_capital_each_cell": true,
+    "carry_positions_across_partitions": false,
+    "warmup_may_use_prior_prices": true,
+    "boundary_close": "last_actual_eligible_quote_with_costs_or_unavailable",
+    "missing_required_session": "reject_not_forward_fill",
+    "previously_seen_data_never_becomes_untouched": true,
+    "excluded_or_quarantined": ["consumed2025", "October2026"],
+    "reserved_unaccessed": ["November2026", "December2026"]
+  },
+  "descriptive_validation_screen": {
+    "active_candidate_min_closed_trades": 50,
+    "minimum_monthly_marks": 24,
+    "both_cost_profiles_net_profit_positive": true,
+    "both_cost_profiles_net_expectancy_positive": true,
+    "adverse_max_drawdown_fraction": 0.05,
+    "cash_trade_count_exempt": true,
+    "below_sample_status": "insufficient",
+    "unqualified_input_status": "unavailable",
+    "statistical_proof": false,
+    "automatic_strategy_selection": false,
+    "inference_method_requires_later_preregistration_before_returns": true
+  },
+  "availability": {
+    "market_data_qualified": false,
+    "market_returns": false,
+    "paper_evaluation": false,
+    "strategy_selected": false,
+    "automated_orders": false,
+    "real_money_execution": false
+  },
+  "out_of_scope_actions": [
+    "contact_or_messages", "quote_acquisition_or_provider_retries",
+    "historical_reruns", "reserved_period_access", "native_clock_promotion",
+    "SDK_connection", "MT5_operations", "paid_services", "broker_account_creation"
+  ]
+}

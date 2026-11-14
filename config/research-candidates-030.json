@@ -1,0 +1,21 @@
+{
+  "version": "single_protective_stop_030_v1",
+  "candidates": [
+    "C00",
+    "C05",
+    "C06",
+    "C07",
+    "C08"
+  ],
+  "scenario_budget": 30,
+  "parents": {
+    "C07": "C05",
+    "C08": "C06"
+  },
+  "trigger_initial_r": 0.5,
+  "one_adjustment": true,
+  "fill_before_arm": true,
+  "effective_subsequent_sequences": true,
+  "annual_eligible": false,
+  "orders_available": false
+}

@@ -1,0 +1,7 @@
+# Sharing diagnostics071 results
+
+1241 tests/32 new pass; zero failures/errors/skips. The offline diagnostic runner separates guard, clock, launch deadline, wait, control, saved-range and cleanup failures with fixed codes and relative timings. It keeps the first failure and bounded owned cleanup. Tests reproduce different old-runner causes with the same generic reason. Guards, hashes, accounts, ten-second launch gate, five/35-second schedule and existing operation limits are unchanged.
+
+Frozen070 counters locate its failure before the first wait or independent control; the exact native substep and root cause remain unknown. No native timing delta was recorded there. Uncached guarded hash work totaled26612155900 bytes in67 guards, but this aggregate does not prove why the probe failed. Its confirmed cleanup, exact raw reservation/dispatch hashes and consumed allowances remain retained.
+
+This stage ran no MT5/SDK/compiler/deployment/terminal log-content reads/market/orders/grants or self profile. Injected success remains synthetic; no native MQL/publication/ACK or profit proof. Next NATIVE-SHARING-072-PLAN.md is fresh separately declared MQL/source/phase/build integration and tests, not a retry of069 or permission to reuse064. No native session authorized here. Preserve033/035 failures, clock/cost/coverage/flags, consumed2025, reserved Nov–Dec2026 and provider exclusions. Fresh/annual eligibility and orders false.

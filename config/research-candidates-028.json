@@ -1,0 +1,21 @@
+{
+  "kind": "fixed_reused_development_experiment_028",
+  "candidates": ["C00", "C02", "C04", "C05", "C06"],
+  "controls": ["C00", "C02", "C04"],
+  "challengers": {
+    "C05": "Existing C04 ER20 >= 0.35 breakout branch only; below threshold abstain",
+    "C06": "Existing C02 breakout, direction must agree with prior closed SMA50 versus SMA200; equality abstain"
+  },
+  "samples": ["january", "april", "july"],
+  "costs": ["base", "adverse"],
+  "scenario_budget": 30,
+  "warmup_observed_hours": 201,
+  "cash_reference_net_pnl": 0,
+  "metric_version": "executable_fill_equity_019b_v1",
+  "checkpoint_version": "fixed_challengers_028_v1",
+  "risk_cost_configs": ["config/tick-pilot-003.json", "config/tick-pilot-003-adverse.json"],
+  "data_role": "reused_2024_development_not_validation",
+  "selection_or_promotion_authorized": false,
+  "annual_eligible": false,
+  "orders_available": false
+}

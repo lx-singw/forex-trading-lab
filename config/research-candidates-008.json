@@ -1,0 +1,43 @@
+{
+  "kind": "research_candidate_specification",
+  "status": "specification_only_not_executable",
+  "declared_date": "2026-10-01",
+  "scope": "offline_development_and_demo_only",
+  "max_first_batch_candidates_including_control": 5,
+  "shared": {
+    "symbol": "EURUSD",
+    "timeframe": "H1",
+    "history": "closed_bars_only; decision_for_next_contiguous_hour",
+    "risk_and_cost_configs": ["config/tick-pilot-003.json", "config/tick-pilot-003-adverse.json"],
+    "atr_period": 14,
+    "stop_atr": 2,
+    "reward_risk": 2,
+    "simultaneous_aggregate_positions": 1,
+    "risk_fraction_max": 0.0025,
+    "daily_loss_fraction_max": 0.01,
+    "zero_or_nonfinite_indicator": "no_signal",
+    "parameter_search": false,
+    "orders_authorized": false
+  },
+  "candidates": [
+    {"id": "C00", "name": "baseline_control", "rule": "Existing SMA20/50 crossing signal unchanged", "minimum_closed_bars": 51},
+    {"id": "C01", "name": "slower_trend", "rule": "Existing crossing rule with SMA50/200; all other entry-independent settings unchanged", "minimum_closed_bars": 201},
+    {"id": "C02", "name": "channel_breakout", "lookback": 20, "minimum_closed_bars": 22,
+     "rule": "At closed bar t, buy if close[t] exceeds max(high[t-20:t]) and close[t-1] did not exceed max(high[t-21:t-1]); sell symmetrically below prior lows. Slices exclude their right endpoint. Equality is not breakout."},
+    {"id": "C03", "name": "range_reentry", "lookback": 20, "z_threshold": 2, "minimum_closed_bars": 21,
+     "rule": "Compute z[t] using close[t] and the trailing 20 closes through t, population standard deviation. Buy when z[t-1] < -2 and z[t] >= -2; sell when z[t-1] > 2 and z[t] <= 2. Reject zero deviation."},
+    {"id": "C04", "name": "fixed_condition_selector", "lookback": 20, "minimum_closed_bars": 22,
+     "efficiency_ratio": "abs(close[t]-close[t-20]) / sum(abs(close[i]-close[i-1]), i=t-19..t)",
+     "trend_threshold_inclusive": 0.35, "range_threshold_inclusive": 0.20,
+     "rule": "If efficiency >= 0.35 use C02; if efficiency <= 0.20 use C03; otherwise no trade. Zero denominator means no signal. Never combine position sizes."}
+  ],
+  "evaluation": {
+    "initial_samples": "Existing eligible January, April, July 2024 only; reused development, not unseen validation",
+    "equal_comparison_start": "Use a common evaluation start after 201 observed closed bars for every candidate; no warmup trades. Freeze exact UTC bounds before running.",
+    "blocked_october": "excluded",
+    "consumed_2025_holdout": "excluded_from_optimization",
+    "reserved_validation": "November-December 2026; not evaluated or scheduled here",
+    "publish_all_candidates_and_costs": true,
+    "deployment_eligible": false
+  }
+}

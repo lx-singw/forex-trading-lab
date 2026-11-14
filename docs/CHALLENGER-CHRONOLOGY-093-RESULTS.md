@@ -1,0 +1,15 @@
+# Chronological challenger093 — software verified with invented data
+
+A separate synthetic-only runner now evaluates C00/C05/C06/C07/C08 across the declared training/test folds and both cost scenarios. Strategy028/030 rules, numeric009 selection screens and the original009/020 implementation remain unchanged. There is no market input or order path. Role labels alone are insufficient: accepted fixture bytes/provenance must match the deterministic093 generator.
+
+Verified 1975 passing tests, including the new093 tests and the retained1,942. The initial unrestricted discovery ran2,054 cases and failed two already-retired083/084 fixtures. The frozen093 launcher used the wrong discovery entry point; it and that failure remain unchanged. A separately frozen R1 launcher inherited the established084R2 active suite, with the same 43+36 prior exclusions and no new exclusions. The corrected1,975-test active full regression passed with zero failures/errors/skips. The bot sources and recorded demonstration were not changed or rerun. Both full results, logs, spent markers and correction policy are retained. Meaningful new checks cover chronology, training-only choices and ties/CASH, warmup/window isolation, choice/source/input tampering, C00 parity with020, stop protection, financing/gaps, duplicates and restart/loss pauses.
+
+The single persisted invented demonstration contains40 scenarios and2 locked choices; choices A=CASH, B=CASH. These choices describe invented quotes only, not a profitable market strategy. All scenarios, including losses/rejections, are retained. Each window starts with separate $10,000 capital; windows are not concatenated returns.
+
+Independent030 account arithmetic reconstructs bid/ask fills, exact fees, swap, risk/margin, first-eligible protection, tick equity, period/year marks and liquidation without running a strategy. Independent014 trade/period arithmetic also checks every scenario. Checked 20241 invented input ticks and 424 protection arms. A stop can still lose beyond its level after a gap; protection can lose after financing.
+
+Source, fixture, run, choice, independent check and test records are hash-bound, archived and reviewed. Development outcomes are preserved separately, including any repaired failures. Verified092 predecessor:2,884 bindings/2,667 archive members. Four leading handoffs updated with earlier history retained.
+
+Historical clocks, sessions/coverage, upstream lineage, repeatability and executable costs remain unqualified. No historical price decoding or new market returns, no2024 replay, consumed2025 remains excluded,Nov–Dec2026 stays reserved and October/provider stops stay. No external/native/SDK/DLL/WMI/MT5/compiler/deploy/log/market/orders/receipts/grants. Native090 branch stays closed. All market profitability/edge/eligibility/runtime/order flags remain false.
+
+The software is ready for invented chronological checks. Historical performance needs dated source-clock/coverage/lineage/cost evidence and a separate qualified-input plan; no market-capable runner, acquisition or replay is authorized by this result.

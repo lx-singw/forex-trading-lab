@@ -1,0 +1,31 @@
+{
+  "format": "FXDL_ENGINE_READINESS123_V1",
+  "as_of": "2026-10-13",
+  "scope": "local_invented_software_evidence",
+  "market_cells_planned": 16,
+  "market_cells_assigned": 0,
+  "market_cells_run": 0,
+  "market_data_qualified": false,
+  "paper_evaluation_available": false,
+  "actual_account_type_lookup_performed": false,
+  "orders_available": false,
+  "real_money_execution_available": false,
+  "components": [
+    {"name": "Fixed daily signals", "status": "implemented_invented_only", "evidence": "docs/DAILY-STRATEGY-118-RESULTS.md", "finding": "253-session warmup, fixed trend/reentry/50-50 mix/cash; causal completed bars."},
+    {"name": "Entry and risk controls", "status": "implemented_invented_only", "evidence": "docs/DAILY-RISK-119-RESULTS.md", "finding": "Cost-aware lot floor, one slot/opportunity, daily pause and synthetic mode rejection."},
+    {"name": "Fill and financing ledger", "status": "implemented_invented_only", "evidence": "docs/DAILY-FILLS-120-RESULTS.md", "finding": "Side-specific fills, fees, rollovers, gaps and reconciled cash/equity; no broker fills."},
+    {"name": "Quote-to-bar pipeline", "status": "implemented_invented_only", "evidence": "docs/DAILY-BARS-121-RESULTS.md", "finding": "Causal aggregation and lineages from the same invented execution quotes."},
+    {"name": "Chronological accounts and restart", "status": "implemented_invented_only", "evidence": "docs/DAILY-RUNS-122-RESULTS.md", "finding": "Fresh per-period capital, strict observed endpoints, checked restart, monthly/quarterly windows."}
+  ],
+  "market_requirements": [
+    {"name": "Source and use scope", "status": "unqualified", "evidence": "docs/SOURCE-DECISION-105-RESULTS.md", "finding": "Applicable feed-use evidence was not established in the bounded review. This is not a finding of illegality; no contact is requested."},
+    {"name": "Source UTC and receipt age", "status": "unqualified", "evidence": "docs/FORWARD-CAPTURE-112-RESULTS.md", "finding": "Observed pilot retains roughly three-hour raw clock difference; no offset or certified quote age."},
+    {"name": "Feed delivery and executable quotes", "status": "unqualified", "evidence": "docs/FORWARD-CAPTURE-112-RESULTS.md", "finding": "7188 latest-quote snapshots over one hour, 61.29% adjacent repeats; not complete ticks or executable-cost proof."},
+    {"name": "Venue calendar and coverage", "status": "unqualified", "evidence": "docs/DAILY-BARS-121-RESULTS.md", "finding": "Weekday calendar and sparse four-quote rule are invented conventions, not certified broker sessions."},
+    {"name": "Contract, commission and slippage", "status": "unqualified", "evidence": "docs/STRATEGY-EVIDENCE-117-PROTOCOL.md", "finding": "100000 units, 30:1 leverage and base/adverse cost profiles are retained hypothetical assumptions."},
+    {"name": "Financing and rollover calendar", "status": "unqualified", "evidence": "docs/DAILY-FILLS-120-RESULTS.md", "finding": "Side debits and Wednesday triple UTC rollover reconcile in software; actual terms are not qualified."},
+    {"name": "Chronological duration and trade sample", "status": "insufficient", "evidence": "docs/DAILY-RUNS-122-RESULTS.md", "finding": "Short invented windows do not meet 24 months per partition, 50 active closed trades and 24 monthly marks."},
+    {"name": "Actually untouched validation", "status": "unavailable", "evidence": "docs/STRATEGY-EVIDENCE-117-PROTOCOL.md", "finding": "2024 reused development; 2025 consumed/excluded; October2026 quarantined; reserved November-December2026 untouched and not accessed, too short for 24 months."},
+    {"name": "Actual account execution guards", "status": "unavailable", "evidence": "AGENTS.md", "finding": "This package has no broker connection or order API. Before any future demo order component, check actual DEMO type and recheck before submission; real and contest must reject."}
+  ]
+}

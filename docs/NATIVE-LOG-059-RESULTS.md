@@ -1,0 +1,9 @@
+# Separate057 native read audit059 — 2026-10-07
+
+Audit passed; exactlyone frozen [2508,3066) read,558 bytes. Native sanitized record: reason23, requests1, reply_bytes0, decode_reason1, read_error_category6, read_elapsed_us11164, read_timing0. No raw log/account identifiers exported.
+
+Original058 trial remains failed: one permission consumed, disabled primary passed, enabled primary/stopped collection empty, repeat unarmed, SDK/pipe closed, cancellation drained. Windows reply-write submit category was pipe_closing; attempted84 bytes, completed bytes unknown, no successful write. Its adapter failed in107us, whole diagnostic write stage192us. This is an immediate rejection, not its2s pending IO deadline. The late saved native record cannot repair that original collection.
+
+Frozen native source closes its pipe after FileReadArray returns, before post-read guards/decoder. Read category5 means general MQL file-read error;0 means no recorded MQL error;6/7 remain other/unknown. Decoder1 means wrong length, checked before receipt expiry. These measurements narrow the read/connection-lifetime branch, but do not prove why the native read returned that count or establish a repair. Helper pre-write work after connection took 2788977us; receipt starts after final issue guards. Do not label the failure expired receipt.
+
+Zero new SDK/native/permission/compiler/deployment/quote/history/order/strategy calls in059. 874 preparation tests and signed6244 clean compilation remain software/build evidence. Do not rerun057. Next offline native read-primitive/lifecycle design and injected delayed/partial/extra frame tests before any fresh trial. No unbounded flush, weaker guards, mutable hash cache, 84-byte count change without suffix proof or deployment of modeled ACK. All earlier failures/market gates/consumed2025/reservedNov–Dec2026/provider stops remain; fresh/annual eligibility and orders false.

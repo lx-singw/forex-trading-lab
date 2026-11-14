@@ -1,0 +1,7 @@
+# Sharing integration069 results
+
+1192 tests/34 new pass; zero failures/errors/skips. New phase069 integrates corrected NativeIdentity068130MiB per file/96GiB aggregate uncached hashes and measured native python3.13.exe helper alone, launcher/config/library/alias pins and native logon/session checks. Fixed32-event stage diagnostics,64 startup path stats, exclusive dispatch/reservation exact-byte SHA, early sanitized outcome and once-owned cleanup including expired/failed SDK attachment tested. Missing/malformed cleanup proof fails; real/contest accounts rejected before file preparation.
+
+This stage is preparation only: zero SDK/native MT5/compiler/deployment/terminal log/market/orders/grants. Injected completed sequences remain synthetic tests, not actual MQL/private bootstrap/sharing/publication/ACK proof. Retained068 helper self profile was not rerun. Original066 consumed reservation,067 native-size failure and sidecar checker failure remain immutable; original128MiB reader unchanged.
+
+Next NATIVE-SHARING-070-POLICY.md source-bound one native session, not authorized/executed here. Actual Oct7 UTC/unused064 sandbox mandatory or new declared MQL source/phase/build. Slow uncached guards can miss30s hold and must fail; opaque SDK calls cannot be preempted by after-return checks. Profit not established. Preserve033/035 failures, clock/cost/coverage/flags, consumed2025, reserved Nov–Dec2026/provider stops. Fresh/annual eligibility/orders remain false.

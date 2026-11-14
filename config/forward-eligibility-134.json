@@ -1,0 +1,19 @@
+{
+  "schema": "forward_eligibility134_v1_manifest",
+  "quote_manifest": {
+    "path": "config/paired-replay-133.json",
+    "sha256": "9c1d8ac65f9129fe4950db610d5e6b9b23d1aba6f5298a9b4715f4d8741a495a"
+  },
+  "context": [
+    {
+      "id": "metadata127",
+      "path": "data/metadata-probe-127-native/Run127-1791996049-1215222875-1357/Metadata127.txt",
+      "sha256": "b286ddcb514d3d8d150e6f66c045d5673b6b04e27400a4a36f48b2fb77b075e1"
+    },
+    {
+      "id": "costs128",
+      "path": "data/cost-probe-128-native/Run128-1792001785-1220958734-11495/Costs128.txt",
+      "sha256": "b19df341e4d30c0c78545a7a0881d8472eefbef41b92a0ff358b65b9afe99a5e"
+    }
+  ]
+}

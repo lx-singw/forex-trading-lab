@@ -1,0 +1,29 @@
+{
+  "version": "synthetic_challenger_chronology_093_v1",
+  "synthetic_only": true,
+  "candidates": ["C00", "C05", "C06", "C07", "C08"],
+  "costs": ["base", "adverse"],
+  "years": [2020, 2021, 2022, 2023],
+  "folds": {"A": [2020, 2022], "B": [2021, 2023]},
+  "warmup_hours": 201,
+  "initial_equity": 10000,
+  "maximum_scenarios": 40,
+  "maximum_choices": 2,
+  "fixture": {
+    "version": "invented_sparse_quarters_093_v1",
+    "months": [1, 4, 7, 10],
+    "hours_per_quarter": 256,
+    "minutes": [0, 30, 59],
+    "bid_formula": "round(1.1 + 0.003*sin(h/12 + quarter/3 + minute/60) + 0.00003*h, 5)",
+    "ask_formula": "round(bid + 0.0001, 5)",
+    "quarter_index": "zero_based_0_to_3",
+    "gzip_mtime": 0
+  },
+  "selection_screens": "unchanged numeric validation in selection.validate from009",
+  "ranking": "highest adverse worst annual return; exact ties ascending candidate ID; otherwise CASH",
+  "performance_evaluation_ready": false,
+  "historical_positive_edge_screen_passed": false,
+  "market_profitability_established": false,
+  "demo_execution_ready": false,
+  "orders_available": false
+}
