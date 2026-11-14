@@ -1,0 +1,11 @@
+{
+  "new_tests_passed": 28,
+  "earlier_strategy_tests": 172,
+  "strategy_runtime_bindings_unchanged": true,
+  "frozen_control_bindings_unchanged": true,
+  "planned_cells": 16,
+  "market_cells_run": 0,
+  "market_data_read": false,
+  "returns_computed": false,
+  "orders_available": false
+}

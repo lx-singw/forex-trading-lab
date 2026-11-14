@@ -2,6 +2,11 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest, 14 November: [study145 metadata preflight](ELLIOTT-STUDY-145-RESULTS.md).
+28 new tests pass without changing the172-test strategy runtime. The current
+source/run draft assigns no data or dates and all16 market cells remain unavailable;
+hashed declarations cannot self-qualify prices, costs or untouched validation.
+
 Latest, 14 November: [shared entry and restart acceptance](ELLIOTT-EXPANSION-144-ENTRY-RESULTS.md).
 172 tests pass together. Four shared-H1 EW3/EW5 long/short cases retain all64 invented
 cells; eight primary entries pass target/gap accounting and pending/held restart.

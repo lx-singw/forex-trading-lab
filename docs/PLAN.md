@@ -1,5 +1,15 @@
 # Proposed milestones
 
+Latest — Elliott study145 metadata preflight (14 November 2026).
+28 new checks pass; prior172 strategy source/control bindings are unchanged.
+The metadata-only study manifest and 16-cell unavailable report now exist, with
+protected-date, chronology, exposure, cost and evidence-scope diagnostics. This
+is not a qualified-price runner or data-access grant. Continue the remaining
+authorized qualified-input/calendar/aggregation and unchanged-control runner,
+wider acceptance and disabled native demo reconciliation work described in
+[145 results](ELLIOTT-STUDY-145-RESULTS.md). No source or capture dates are assigned.
+Orders remain unavailable; commit and push completed sprints to main.
+
 Latest — Elliott144 shared entry/restart acceptance (14 November 2026).
 172 tests pass together. EW3/EW5 long/short shared-H1 examples now execute targets
 and gap stops under both costs, with pending/held restart and independent rational

@@ -1,0 +1,605 @@
+{
+  "schema": "FXDL_ELLIOTT_STUDY145_V1",
+  "kind": "metadata_only_preflight",
+  "status": "UNAVAILABLE",
+  "plan_sha256": "77f46733b9537f2ac718572d4c4d35e6e7aa1d18d2314ffd744445e34858d4f1",
+  "issues": [
+    {
+      "code": "source_unassigned",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "prior_trial_history_incomplete",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "partition_dates_unassigned",
+      "scope": "development",
+      "state": "MISSING"
+    },
+    {
+      "code": "warmup_dates_unassigned",
+      "scope": "development",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_D1",
+      "scope": "development",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_H4",
+      "scope": "development",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_H1",
+      "scope": "development",
+      "state": "MISSING"
+    },
+    {
+      "code": "partition_dates_unassigned",
+      "scope": "validation",
+      "state": "MISSING"
+    },
+    {
+      "code": "warmup_dates_unassigned",
+      "scope": "validation",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_D1",
+      "scope": "validation",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_H4",
+      "scope": "validation",
+      "state": "MISSING"
+    },
+    {
+      "code": "complete_warmup_count_missing_H1",
+      "scope": "validation",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_source_use",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_prior_trials",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_clock_timezone_dst",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_session_calendar",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_coverage_lineage",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_quote_availability",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_commission_swap",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "evidence_missing_contract_margin_conversion",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "historical_costs_unknown",
+      "scope": "all",
+      "state": "MISSING"
+    },
+    {
+      "code": "qualified_market_runner_unavailable",
+      "scope": "all",
+      "state": "UNAVAILABLE"
+    },
+    {
+      "code": "full_strategy_acceptance_incomplete",
+      "scope": "all",
+      "state": "UNAVAILABLE"
+    },
+    {
+      "code": "independent_qualification_required",
+      "scope": "all",
+      "state": "UNAVAILABLE"
+    }
+  ],
+  "cells": [
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "base",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "base",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "adverse",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "adverse",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "base",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "base",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "adverse",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "adverse",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "base",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "base",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "adverse",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "adverse",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "CASH",
+      "profile": "base",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "CASH",
+      "profile": "base",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "CASH",
+      "profile": "adverse",
+      "partition": "development",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    },
+    {
+      "candidate": "CASH",
+      "profile": "adverse",
+      "partition": "validation",
+      "track": "qualified",
+      "status": "UNAVAILABLE",
+      "returns": null,
+      "reason_codes": [
+        "source_unassigned",
+        "prior_trial_history_incomplete",
+        "partition_dates_unassigned",
+        "warmup_dates_unassigned",
+        "complete_warmup_count_missing_D1",
+        "complete_warmup_count_missing_H4",
+        "complete_warmup_count_missing_H1",
+        "evidence_missing_source_use",
+        "evidence_missing_prior_trials",
+        "evidence_missing_clock_timezone_dst",
+        "evidence_missing_session_calendar",
+        "evidence_missing_coverage_lineage",
+        "evidence_missing_quote_availability",
+        "evidence_missing_commission_swap",
+        "evidence_missing_contract_margin_conversion",
+        "historical_costs_unknown",
+        "qualified_market_runner_unavailable",
+        "full_strategy_acceptance_incomplete",
+        "independent_qualification_required"
+      ]
+    }
+  ],
+  "planned_cells": 16,
+  "market_cells_run": 0,
+  "market_data_read": false,
+  "returns_computed": false,
+  "native_queries": false,
+  "orders_available": false,
+  "limitations": [
+    "Hashed declarations are not source qualification or capture authority",
+    "Dates are proposals to check, not assigned data or renewed collection windows",
+    "No price files, provider routes or native accounts are opened"
+  ]
+}

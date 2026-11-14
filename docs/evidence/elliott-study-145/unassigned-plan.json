@@ -1,0 +1,102 @@
+{
+  "schema": "FXDL_ELLIOTT_STUDY145_V1",
+  "kind": "metadata_only_prospective_plan",
+  "case": "current_unassigned",
+  "track": "qualified",
+  "source": {
+    "alias": null,
+    "route": null
+  },
+  "partitions": {
+    "development": {
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "warmup": {
+        "interval": {
+          "start": null,
+          "end": null
+        },
+        "declared_complete_bars": {
+          "D1": null,
+          "H4": null,
+          "H1": null
+        }
+      }
+    },
+    "validation": {
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "warmup": {
+        "interval": {
+          "start": null,
+          "end": null
+        },
+        "declared_complete_bars": {
+          "D1": null,
+          "H4": null,
+          "H1": null
+        }
+      }
+    }
+  },
+  "history": {
+    "complete": false,
+    "exposures": []
+  },
+  "joint_study_sha256": null,
+  "evidence": {
+    "source_use": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "prior_trials": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "clock_timezone_dst": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "session_calendar": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "coverage_lineage": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "quote_availability": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "commission_swap": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "contract_margin_conversion": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    }
+  },
+  "costs": {
+    "status": "unknown",
+    "profile_declaration_sha256": "fc9629f0922700e9ea8118cbf23460f550870a5ecf17ff14e6246833766faf6f",
+    "contradictions": false
+  },
+  "prior_cells": {
+    "qualified": 0,
+    "hypothetical_cost_sensitivity": 0
+  }
+}

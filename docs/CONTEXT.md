@@ -1,5 +1,16 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott study145 metadata preflight (14 November 2026).
+28 new checks pass. The separate plan/freeze/check CLI diagnoses chronology,
+24-calendar-month scopes, 253-bar declarations, protected dates, prior validation
+exposure, evidence scopes, costs and per-track trial budgets. Even complete hashed
+claims cannot self-qualify; all16 market cells remain unavailable. The current
+draft assigns no source or dates. No prices, native APIs or accounts were read.
+See [145 results](ELLIOTT-STUDY-145-RESULTS.md). The prior172 strategy runtime and
+frozen-control bindings are unchanged; that full suite was not rerun. Qualified
+source/aggregation/calendar/cost/run admission and native demo integration remain
+unfinished. Existing date boundaries and orders-off state are preserved.
+
 Latest — Elliott144 shared entry/restart acceptance (14 November 2026).
 172 tests pass together. Four common-H1 hierarchical cases cover EW3/EW5 in both
 directions, both cost profiles, targets/gap losses and pending/held restarts.
