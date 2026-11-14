@@ -1,0 +1,169 @@
+{
+  "kind": "invented_session_comparison149",
+  "cells": [
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "base",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "base",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "base",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 1,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "CASH",
+      "profile": "base",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "adverse",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "adverse",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "adverse",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 1,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "CASH",
+      "profile": "adverse",
+      "partition": "development",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "base",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "base",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "base",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 1,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "CASH",
+      "profile": "base",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EW_FULL_V1",
+      "profile": "adverse",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "EWPB_D124",
+      "profile": "adverse",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "T12_D",
+      "profile": "adverse",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 1,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    },
+    {
+      "candidate": "CASH",
+      "profile": "adverse",
+      "partition": "later_validation",
+      "invented_status": "computed",
+      "reason": null,
+      "closed_positions": 0,
+      "market_status": "UNAVAILABLE",
+      "market_returns": null
+    }
+  ],
+  "computed_invented_cells": 16,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "strategy_selected": false
+}

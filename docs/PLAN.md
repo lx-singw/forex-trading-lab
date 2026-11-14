@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Elliott149 common session paper comparison (14 November 2026).
+155 targeted checks pass. All16 invented UTC-profile comparison cells now compute
+from common H1/quote inputs through148 paper execution and unchanged controls.
+Unsupported calendars retain null control results; no reanchoring or rule changes
+are introduced. Prior156-tested source and all46 frozen-control bindings remain
+unchanged; their full suites were not rerun. Continue authorized work in
+[149 results](ELLIOTT-SESSION-COMPARISON-149-RESULTS.md): qualified source/clock/cost/run
+admission and runner, wider EW5/short/nested/fault acceptance, new-adapter viewer
+and disabled native demo reconciliation. No source or capture dates are assigned;
+protected dates,16 unavailable actual market cells and orders-off remain.
+Commit/push completed sprints to main.
+
 Latest — Elliott148 calendar-aware paper execution (14 November 2026).
 156 targeted checks pass together. The invented paper adapter now connects147
 decisions to the existing ledger with pending-signal rechecks, session-aware quote

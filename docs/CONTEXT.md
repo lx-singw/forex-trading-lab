@@ -1,5 +1,19 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott149 common session paper comparison (14 November 2026).
+155 targeted checks pass together:38 new and117 relevant existing checks. The
+common invented session adapter now compares all four candidates under both costs
+and two independent partitions. All16 UTC/closure paper cells compute;12 controls
+independently reconcile with their frozen engines. Shifted sessions keep12 control
+cells unavailable/null while four EW_FULL cells compute. One automatic EW3 long
+gap-stop account also passes. See [149 results](ELLIOTT-SESSION-COMPARISON-149-RESULTS.md).
+Verification002 binds restored paper calendars explicitly;001 remains archived.
+Prior156-tested files, the258 strategy graph and all46 frozen-control bindings are
+unchanged; full prior suites were not rerun. Qualified source/calendar/cost/run
+admission, wider acceptance, new viewer integration and native work remain open.
+No market source, acquisition dates or account is assigned/accessed. Protected
+dates and closed routes remain; all16 actual market cells and orders stay off.
+
 Latest — Elliott148 calendar-aware paper execution (14 November 2026).
 156 targeted checks pass together:39 new and117 relevant existing checks. The new
 invented paper adapter connects147 decisions to the unchanged ledger, rechecks

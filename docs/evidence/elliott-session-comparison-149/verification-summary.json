@@ -1,0 +1,21 @@
+{
+  "tests_passed_together": 155,
+  "new_comparison_tests": 38,
+  "existing_targeted_checks": 117,
+  "prior156_tested_files_unchanged": true,
+  "prior258_strategy_graph_unchanged": true,
+  "full_previous_suites_rerun": false,
+  "frozen_control_files": 46,
+  "frozen_control_bindings_unchanged": true,
+  "utc_computed_paper_cells": 16,
+  "utc_independently_audited_control_accounts": 12,
+  "shifted_computed_ew_cells": 4,
+  "shifted_unavailable_control_cells": 12,
+  "common_adapter_automatic_wave_accounts": 1,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "source_snapshot_sha256": "0a25250591330ccb9fd08f8148f70e7dcead33b6e31cf95ac99dcb046723e928",
+  "published_artifact_files": 104,
+  "published_artifact_bytes": 281001551,
+  "published_artifact_inventory_sha256": "a84a65f099c32b367d89816e9b37207be087e6fcb5785893428fee32eb926d70"
+}

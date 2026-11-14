@@ -1,0 +1,13 @@
+{
+  "kind": "invented_common_adapter_wave_acceptance149",
+  "candidate": "EW_FULL_V1",
+  "profile": "base",
+  "partition": "development",
+  "automatic_entries": 1,
+  "exit": "stop",
+  "loss_beyond_estimate": true,
+  "loss_pause": true,
+  "all_counts_and_signals_derived": true,
+  "market_cells_run": 0,
+  "orders_available": false
+}
