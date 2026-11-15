@@ -1,0 +1,20 @@
+{
+  "schema": "native158_completion_v1",
+  "passed": true,
+  "python_tests": 217,
+  "new_tests": 12,
+  "existing_tests": 205,
+  "native_cases": 4,
+  "independent_inspection_passed": true,
+  "prior_bindings_unchanged": 108,
+  "frozen_controls_unchanged": 46,
+  "source_unchanged": true,
+  "owned_processes_remaining": 0,
+  "power_configuration_unchanged": true,
+  "actual_accounts": 0,
+  "actual_quotes": 0,
+  "actual_orders": 0,
+  "mt5_started": false,
+  "new_collection_dates": null,
+  "market_eligible": false
+}

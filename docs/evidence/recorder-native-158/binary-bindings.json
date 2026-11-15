@@ -1,0 +1,14 @@
+{
+  "binary_sha256": {
+    "owner": "b2d4356cf558678698c0301df6526eab3838fd4b1cab84d6031e2229362cc8df",
+    "helper": "0e7e085c8b9038dc41af855bbd154d098bb6834f61d68603ec02b9aeda21e6a8"
+  },
+  "original_source_sha256": {
+    "src/windows/KeepAwake139.cs": "ae75518c62ade82b2e668c58a1e0dea4e2a3a7bb1775cbcf47ae428e7b6f7a81",
+    "src/windows/HelperOwner141.cs": "6c156d0449f19204946c1f1a305ab4a347efc2e3047a402e616785a4640aeb8c",
+    "src/windows/HelperHealth142.cs": "f0ca31be10c8d80be30cc040917a267fe3f7e07165b4c1ade9c5229880c8a308"
+  },
+  "build_manifest_sha256": "348bc6c7af07b82c7b220c8cbc1a45aeb01be2387da58a2e00ede49dae966dfd",
+  "rebuilt": false,
+  "binaries_still_match": true
+}

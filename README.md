@@ -1,5 +1,15 @@
 # Forex Demo Lab
 
+Latest — Native helper/relay158 trial (15 November2026).
+217 targeted checks and four actual Windows helper trials pass with wholly
+invented price/context files. A separate158 startup policy waits for an initial
+sample while retaining sampled power-fault rejection. The clean107-lease stream
+and stale/protocol/EOF failures are independently inspected; no helper processes
+remain and power-configuration hashes match. No MT5/account/actual quote access;
+collection stays closed. See [158 results](docs/RECORDER-NATIVE-158-RESULTS.md).
+Native MQL/runtime, lifecycle commit integration and source/date/run qualification
+remain open; protected dates/routes,16 unavailable cells and orders-off persist.
+
 Latest — Recorder relay157 and independent checker (15 November2026).
 205 targeted checks pass. A default-off measured relay runner and independent
 native journal/receipt checker pass ten invented job cases. No native helper,

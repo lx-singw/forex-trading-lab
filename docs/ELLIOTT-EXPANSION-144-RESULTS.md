@@ -2,6 +2,16 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest,15 November: [native helper/relay158 trials](RECORDER-NATIVE-158-RESULTS.md).
+217 targeted recorder checks and four actual helper trials pass with invented
+files. Separate158 startup/checker code waits for missing initial samples while
+preserving sampled power-fault rejection. Clean107 leases complete; held,
+contradictory and actual-input-EOF cases stay incomplete. Zero helper processes
+and unchanged configuration hashes are verified. No MT5/account/actual quote
+access;156 entry stays closed. Lifecycle integration, MQL operational proof and
+source/date/run admission remain open. No stage E/F completion or market result
+is claimed; all16 actual-market cells remain unavailable/null.
+
 Latest,15 November: [relay157 and independent checker](RECORDER-RELAY-157-RESULTS.md).
 205 targeted recorder checks pass. Default-off measured orchestration and native
 diagnostic/receipt reconciliation are implemented; ten invented jobs retain three

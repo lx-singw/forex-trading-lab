@@ -1,0 +1,53 @@
+{
+  "schema": "native158_independent_v1",
+  "cases": [
+    {
+      "case": "clean",
+      "observed_delivered_fault": null,
+      "original_native_stream_fresh": true,
+      "original_conservative_age_max_us": 258265,
+      "initial_absent_samples": 1,
+      "changed_delivered_packets": 0,
+      "owner_exit_observed": true,
+      "processes_after": 0,
+      "power_configuration_unchanged": true
+    },
+    {
+      "case": "held",
+      "observed_delivered_fault": "stale",
+      "original_native_stream_fresh": true,
+      "original_conservative_age_max_us": 358610,
+      "initial_absent_samples": 1,
+      "changed_delivered_packets": 6,
+      "owner_exit_observed": true,
+      "processes_after": 0,
+      "power_configuration_unchanged": true
+    },
+    {
+      "case": "contradictory",
+      "observed_delivered_fault": "protocol",
+      "original_native_stream_fresh": true,
+      "original_conservative_age_max_us": 214656,
+      "initial_absent_samples": 1,
+      "changed_delivered_packets": 1,
+      "owner_exit_observed": true,
+      "processes_after": 0,
+      "power_configuration_unchanged": true
+    },
+    {
+      "case": "eof",
+      "observed_delivered_fault": "transport_eof",
+      "original_native_stream_fresh": true,
+      "original_conservative_age_max_us": 144727,
+      "initial_absent_samples": 1,
+      "changed_delivered_packets": 0,
+      "owner_exit_observed": true,
+      "processes_after": 0,
+      "power_configuration_unchanged": true
+    }
+  ],
+  "passed": true,
+  "market_eligible": false,
+  "actual_quotes": 0,
+  "actual_orders": 0
+}

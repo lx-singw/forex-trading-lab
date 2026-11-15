@@ -1,0 +1,30 @@
+{
+  "environment": {
+    "PYTHONPATH": "src:tests"
+  },
+  "tests": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_recorder_native_158",
+    "test_recorder_relay_157",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145",
+    "-v"
+  ],
+  "trial": [
+    "python3",
+    "scripts/recorder-native-158.py",
+    "--enable-native-helper-trial",
+    "--build",
+    "reports/helper-health-142/compilation-003.json",
+    "--output",
+    "NEW-DIRECTORY"
+  ]
+}

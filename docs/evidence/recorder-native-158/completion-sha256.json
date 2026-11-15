@@ -1,0 +1,17 @@
+{
+  "independent-inspector.py": "5103f35d71b6f71f999d33bd4501dadad344b4cdcae6a5d3ced6573012406f64",
+  "declaration.json": "35c893327d29d179b3c833dfdae8a5a1cdd7568e6515675e1c4081329390a7bc",
+  "independent-inspection.json": "b34c8f206d62a3b7c0493597a17e60b7bb4a26967f64eec5bf12cdbb4d2001fd",
+  "host-after.json": "85bcc0694a6fb6bc987eb675b997cee915892fe8a0fdd4a240fa4d7fe5a37223",
+  "source.zip": "4aed2bdecfbfb6403c398dbee6d453a799d4bb9696f3d44a0d19ca29a2d815b1",
+  "physical-sha256.json": "586b42ae7cbb27b730d1fddf7d3085a236f6e12ba9dcf210645ecfe858f0e525",
+  "invocation.json": "76303ad0e6fb8d8206dec7cdf0b79ad1635042c41cc503f459c86334d06781de",
+  "binary-bindings.json": "d1213440f67b22d966438d93722459b77e672aaed10eb2f33e521a78bc18fb70",
+  "tests.txt": "b5e0b1a1b4ebf9b46be07e9f0b7d485a3963f13abd5e240324cd8d123b3f185e",
+  "native-summary.json": "d89a8eb475f6a8c59e0db62bcbda9424e51692375dfba396a83128b533425e5e",
+  "completion.json": "35fb05fff4c4cbbff55cd4159d6f6be749f46fdae1601b0a1d6fafe9c2bad880",
+  "source-sha256.json": "26685d7f97b278b9522bc3e2ebdc9153c9eb8595e7de6c38f3194460dd48fafe",
+  "native-cli.txt": "526be00c66805e58536523aca11791aa5715ab32c55920106e1187d7c9c629f1",
+  "verification-summary.json": "a79fee966da2177813aedab41d5e631a9a37bf718aa4f3af37f9708f73609bea",
+  "artifact-sha256.json": "ba328522174d262389d39af6c9efd9f59c697652ccc1ef170131411613954382"
+}

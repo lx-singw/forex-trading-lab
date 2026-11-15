@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Native helper/relay158 trial (15 November2026).
+217 checks and four actual helper trials pass with invented files. Separate158
+startup handling distinguishes absence from sampled mains failure; frozen157
+remains unchanged. Zero helper processes and unchanged configuration hashes are
+verified after every case. See [158 results](RECORDER-NATIVE-158-RESULTS.md).
+Next connect checked diagnostics to138/140 lifecycle journals using invented
+commit/abort/restart cases. Native MQL file/stop/account behaviour and actual
+source/date/run qualification remain open. No MT5/account/actual quote access;
+156 grant stays false. Qualified historical runner, broader Elliott/viewer
+acceptance and native reconciliation remain open. Protected dates/routes,16
+unavailable market cells and orders-off persist. Commit/push to main.
+
 Latest — Recorder relay157 and independent checker (15 November2026).
 205 targeted checks pass; ten invented jobs yield three consistent diagnostics
 and seven independent rejections. Default-off measured relay orchestration and

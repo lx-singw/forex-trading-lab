@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Native helper/relay158 trial (15 November2026).
+217 targeted checks pass:12 new/205 existing. Separate158 startup/inspection code
+waits for an absent initial sample; sampled power failure still stops. Four actual
+Windows helper trials pass using invented WSL files: clean107 leases, held stale,
+contradictory protocol and actual owner-input EOF. All108 prior157 bindings/46
+controls match. No helper processes remain; per-case power configuration hashes
+match. EOF exit is observed without inventing relay cleanup acknowledgements.
+See [158 results](RECORDER-NATIVE-158-RESULTS.md). No MT5/account/actual quote access;
+156 grant remains false. Next138/140 diagnostic lifecycle integration using
+invented commit/abort/restart tests; MQL runtime and source/date/run qualification
+remain open. Protected dates/routes,16 unavailable cells and orders-off persist.
+Commit/push each completed sprint to main.
+
 Latest — Recorder relay157 and independent checker (15 November2026).
 205 targeted checks pass:35 new and170 existing. A default-off runner measures
 helper receipts, owns startup/cleanup and serves one explicit bounded job folder.

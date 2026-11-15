@@ -1,5 +1,15 @@
 # Verification — updated 2026-10-06
 
+Latest — Native helper/relay158 trial (15 November2026).
+217 targeted checks pass:12 new and205 existing, zero failures/errors/skips.
+Four actual Windows helper trials use invented WSL price/context files; a clean
+107-lease stream and stale/protocol/actual-EOF failures are independently read.
+All108 prior157 bindings and46 frozen controls match. Owner/helper counts return
+to zero; per-case power configuration hashes match. No new native compilation,
+MT5/account/actual quote access or market qualification. See
+[158 results](RECORDER-NATIVE-158-RESULTS.md). Collection remains closed; MQL runtime,
+lifecycle commit integration and source/date/run qualification remain open.
+
 Latest — Recorder relay157 and independent checker (15 November2026).
 205 targeted checks pass:35 new and170 existing, zero failures/errors/skips.
 Ten wholly invented CLI jobs have three consistent diagnostics and seven

@@ -1,0 +1,28 @@
+{
+  "schema": "native158_verification_v1",
+  "modules": [
+    "test_recorder_native_158",
+    "test_recorder_relay_157",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145"
+  ],
+  "expected_tests": 217,
+  "new_tests": 12,
+  "existing_tests": 205,
+  "native_cases": [
+    "clean",
+    "held",
+    "contradictory",
+    "eof"
+  ],
+  "active_budget_us": 15000000,
+  "prices_context": "invented_only",
+  "mt5_started": false,
+  "collection_granted": false
+}

@@ -1,0 +1,12 @@
+{
+  "tests_run": 217,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 35.191,
+  "success": true,
+  "new_tests": 12,
+  "existing_tests": 205,
+  "prior_bindings_unchanged": 108,
+  "frozen_controls_unchanged": 46
+}
