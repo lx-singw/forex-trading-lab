@@ -1,0 +1,21 @@
+{
+  "schema": "native_port156_verification_v1",
+  "inputs": "invented_only",
+  "modules": [
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145"
+  ],
+  "source_date_run_granted": false,
+  "native_runtime_exercised": false,
+  "terminal_started": false,
+  "orders": false,
+  "expected_new_checks": 24,
+  "expected_existing_checks": 146,
+  "revision": "final folder/close revision; prior 001 retained, 002 config basename preflight failure retained; config resolution added without source changes"
+}

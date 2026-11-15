@@ -1,5 +1,15 @@
 # Forex Demo Lab
 
+Latest — Native recorder156 closed-entry port (15 November2026).
+A separate MQL read binding preserves raw context/quote/clock fields and uses
+bounded terminal-local helper challenge/reply files.170 targeted checks pass;
+isolated MetaEditor compilation has zero errors/warnings. It is not deployed or
+run: default-off input and an immutable unassigned grant prevent collection.
+See [results and remaining runtime work](docs/NATIVE-RECORDER-156-RESULTS.md).
+An owned measured-clock runner, native journal checks and separate source/date/run
+qualification remain outstanding.136 stays expired; protected dates/routes and
+all16 unavailable market cells remain. Automated orders stay unavailable.
+
 Latest — native helper health142 and supervision143 completed (5 November 2026).
 The helper now publishes continuing sequence/timestamp/power-state samples.
 A bounded WSL transport supplies fresh, job/challenge-matched observations to

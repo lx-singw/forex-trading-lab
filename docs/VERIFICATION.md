@@ -1,5 +1,15 @@
 # Verification — updated 2026-10-06
 
+Latest — Native recorder156 closed-entry port (15 November2026).
+170 targeted checks pass:24 new and146 existing, zero failures/errors/skips.
+Shared MQL decision headers compile with g++17 warnings-as-errors; the distinct
+MQL source compiles under isolated MetaEditor5.0.0.6320 with0 errors/0 warnings.
+All20 prior155 file bindings and46 frozen controls remain unchanged. See
+[156 results](NATIVE-RECORDER-156-RESULTS.md) and its portable source-bound evidence.
+No deployment, MT5 runtime, current account, price, power-effectiveness or market
+qualification is established. Entry is hard closed; source/date/run unassigned,
+protected dates/routes and all16 unavailable market cells remain. Orders off.
+
 Latest — native helper health142 and supervision143 completed (5 November 2026).
 The helper now publishes continuing sequence/timestamp/power-state samples.
 A bounded WSL transport supplies fresh, job/challenge-matched observations to

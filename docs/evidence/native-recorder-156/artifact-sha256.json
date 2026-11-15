@@ -1,0 +1,11 @@
+{
+  "compile-result.txt": "e07960a5f42be1b0254f9ee50a4ff6d71b0434bd159cfbe7c4aae5842ace62dd",
+  "declaration.json": "fd32433069ee0f8d1752f1eb7546db9d89a2c354b17208e20fee5587d2281611",
+  "source.zip": "7fdfb3705175d240cce699fbaaa823f58e3aede7055efcff17c28f28044f3be8",
+  "invocation.json": "95bc3034be8c9fd00731efab1c5c96c7c34ce45bf347a15009eea00cbef879a3",
+  "compile-manifest.json": "8361f0cbbd4e6373a9cd0885cf922b55d3e29d54410dfbe30ab8407f6adbe3fd",
+  "tests.txt": "a81a123f98ef07ec88c0cd07d6bf202c4b99c35b02988261361a2787060a7d74",
+  "source-sha256.json": "d6cfdb72b998b707127c471fa9fccc6827b23b722b3bf75f628168f03de659b3",
+  "verification-summary.json": "301a6ff5c85369aee70b91dc77627c7a143bc0ab72e4256da77671ccbbbeed33",
+  "preservation.json": "c7bc8148ce3ec84f17bebf5237991ea6af11231657abdec535ae2bef022f0357"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "native_port156_verification_result_v1",
+  "tests_run": 170,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 20.946,
+  "success": true,
+  "new_checks": 24,
+  "existing_checks": 146,
+  "prior155_files_unchanged": 20,
+  "frozen_controls_unchanged": 46,
+  "source_unchanged": true,
+  "compiled": true,
+  "native_runtime_exercised": false,
+  "qualified_market_cells": 0
+}

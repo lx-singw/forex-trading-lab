@@ -2,6 +2,33 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest,15 November: [native recorder156](NATIVE-RECORDER-156-RESULTS.md).
+A distinct raw context/quote/clock binding compiles in isolated MetaEditor staging;
+170 targeted recorder checks pass. Default-off input and an immutable unassigned
+run grant prevent account/price access. No deployment, native runtime or market
+qualification is claimed. The measured-clock owner/relay runner, independent
+native-journal checks, lifecycle commit integration and source/date/run admission
+remain open.136 stays expired; protected dates/routes and orders-off remain.
+
+Other continuations since145, with separate component evidence:
+
+- [149 session comparison](ELLIOTT-SESSION-COMPARISON-149-RESULTS.md) and
+  [150 entry acceptance](ELLIOTT-SESSION-ACCEPTANCE-150-RESULTS.md): calendar-aware
+  common invented inputs, automatic EW3/EW5 long/short entries and account checks.
+- [151 saved replay viewer](ELLIOTT-SESSION-VIEWER-151-RESULTS.md): as-known-then
+  projection and saved-account export; browser visual review remains outstanding.
+- [152 session faults](ELLIOTT-SESSION-FAULTS-152-RESULTS.md) and
+  [153 nested patterns](ELLIOTT-PATTERN-MATRIX-153-RESULTS.md): broader invented
+  execution faults and candle-derived catalogue/extension examples. Broader
+  acceptance is still incomplete.
+- [154 source readiness](ELLIOTT-MT5-SOURCE-154-READINESS.md) and
+  [155 payload boundary](RECORDER-BOUNDARY-155-RESULTS.md): distinguish the user's
+  expired recorder from an export and bind invented payloads to supervision.
+
+These test counts are separate revisions/suites, not additive strategy evidence.
+All16 actual-market cells remain unavailable/null. Qualified historical admission
+and runner, remaining viewer/acceptance work and native reconciliation remain open.
+
 Latest, 14 November: [study145 metadata preflight](ELLIOTT-STUDY-145-RESULTS.md).
 28 new tests pass without changing the172-test strategy runtime. The current
 source/run draft assigns no data or dates and all16 market cells remain unavailable;

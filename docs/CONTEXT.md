@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Native recorder156 closed-entry port (15 November2026).
+170 targeted checks pass:24 new and146 existing. A separate native MQL read binding
+preserves raw context/quote/clock fields and uses bounded terminal-local helper
+challenge/reply files. Isolated MetaEditor5.0.0.6320 compilation passes with zero
+errors/warnings. No deployment, terminal start, account/price read or collection.
+Both default-off input and immutable unassigned run grant stop entry. See
+[156 results](NATIVE-RECORDER-156-RESULTS.md). The owned measured-clock relay runner,
+native journal checker/138–140 commit integration, IO/runtime proof and separate
+source/date/run qualification remain open.156 is a diagnostic wire, not a145/155
+market source.136, all20 prior155 bindings and46 frozen controls remain unchanged.
+No provider/dates assigned; protected dates/routes,16 unavailable market cells and
+orders-off persist. Commit/push each completed sprint to main.
+
 Latest — Recorder155 invented payload boundary (15 November2026).
 146 targeted checks pass:33 new and113 existing. A separate default-off155 payload
 boundary binds context and clock/quote/clock records to frozen138/140 journals,

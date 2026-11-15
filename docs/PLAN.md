@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Native recorder156 closed-entry port (15 November2026).
+170 targeted checks pass and the separate MQL raw read binding compiles cleanly
+in isolated non-terminal staging. Default-off input plus an immutable unassigned
+run grant prevent account/price access and collection. See
+[156 results](NATIVE-RECORDER-156-RESULTS.md). Next build a bounded owner/relay runner
+with measured receipt times, independent native-journal checks and invented fault
+tests. Native runtime and actual source/date/run qualification remain separate;
+do not renew136 or deploy/collect from this prototype. No dates/provider assigned.
+Qualified historical runner, broader Elliott acceptance, viewer/visual review and
+native reconciliation remain open. Prior bindings/protected dates/routes,16 null
+market cells and orders-off persist. Commit/push completed sprints to main.
+
 Latest — Recorder155 invented payload boundary (15 November2026).
 146 targeted checks pass. A separate default-off payload journal joins138/140
 acquisition/supervision with142/143-compatible health observations; nine invented

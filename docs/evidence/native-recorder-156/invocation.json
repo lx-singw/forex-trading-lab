@@ -1,0 +1,21 @@
+{
+  "python": "python3",
+  "environment": {
+    "PYTHONPATH": "src:tests"
+  },
+  "argv": [
+    "-m",
+    "unittest",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145",
+    "-v"
+  ],
+  "cpp": "g++ -std=c++17 -Wall -Wextra -Werror tests/native_port_156.cpp -o TEMP/port156",
+  "native_compile": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/compile-native-port-156.ps1"
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "native_port156_compile_v1",
+  "compiler_version": "5.0.0.6320",
+  "compiler_sha256": "4d1133c5ecddde7e707f34b87635efff57aeff55fd85df3c1954c397e8446eaa",
+  "sources": {
+    "ForexDemoNativePort156.mq5": "9db967381c9c5d53d88bf17804b2a4042c12dd7ba79868f808f47d53c182f261",
+    "RecorderPort156.mqh": "2b01e1d5021ea1d4e187f230dfe9b8a9d2ec700992929081edeccbb47c1e7ce8",
+    "RunPermit156.mqh": "4f5ab8437f22828b4a71ab44552d626a2eb29a7ef3eef19aee2fdf7341ab2c59",
+    "PrivateGuard107.mqh": "61116a655b42fa9c3bf98046ef40db63af1e7d9834cbae9f1b2d6d23e1cce0bd",
+    "CostBounds128.mqh": "5a1f92db28c19f412d7fa5dad20fefb0d67caefd7510a28e23f4a9cd5a6673ca"
+  },
+  "result": "Result: 0 errors, 0 warnings, 688 ms elapsed, cpu='X64 Regular'",
+  "verified": true,
+  "deployed": false,
+  "terminal_started": false,
+  "run_granted": false,
+  "ex5_sha256": "33675e12c359c45385f1eb08d9f922836c50a487974ad90336801de75335abf1"
+}
