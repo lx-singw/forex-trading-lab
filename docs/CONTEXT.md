@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott154 identified MT5 recorder/source readiness (15 November 2026).
+User identifies ForexDemoContextRecorder136 in Experts; an existing historical
+export is not established. Official help/source review distinguishes journal
+messages from the script's separate Context136.txt output and Bars/Ticks export.
+136 remains expired after30 October;137's closed runs had zero qualified H1 bars.
+143 is still helper-only, without native market integration. See [154 readiness](ELLIOTT-MT5-SOURCE-154-READINESS.md)
+for a concrete next engineering slice: connect138/140/143 guards to a distinct
+read-only recorder boundary using invented inputs first. Documentation review
+only; no new code/test-suite result, terminal/account/log/price access, capture
+window, export or orders. Trading/frozen sources and protected dates/routes remain
+unchanged. Actual16 market cells stay unavailable/null; provider/current account
+and new collection dates remain unverified/unassigned. Commit/push sprints to main.
+
 Latest — Elliott153 candle-derived nested pattern matrix (15 November 2026).
 149 targeted checks pass:11 new and138 existing. All18 catalogue families in both
 directions plus ten single/multiple third-level impulse extensions are recognized

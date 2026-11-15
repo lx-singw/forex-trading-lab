@@ -1,0 +1,31 @@
+{
+  "kind": "elliott154_metadata_source_readiness_not_capture_authority",
+  "as_of_client_date": "2026-11-15",
+  "program_user_reported": "ForexDemoContextRecorder136",
+  "terminal_inspected": false,
+  "actual_account_type": "UNVERIFIED",
+  "provider": "UNASSIGNED",
+  "historical_export_identified": false,
+  "experts_role": "program_journal",
+  "quote_output_convention": "MQL5/Files/ForexDemoLab136/Run136-.../Context136.txt",
+  "current_output_file_located": false,
+  "old_window_dates": [
+    "2026.10.26",
+    "2026.10.27",
+    "2026.10.28",
+    "2026.10.29",
+    "2026.10.30"
+  ],
+  "old_window_status": "EXPIRED",
+  "actual_today_reason_code_observed": null,
+  "new_capture_dates": null,
+  "native143_market_recorder_integration": "UNIMPLEMENTED",
+  "applicable_source_use": "UNRESOLVED_PROJECT_FINDING",
+  "next_engineering_slice": "invented_read_only_recorder_boundary_with138_140_143_guards",
+  "quote_collection_available": false,
+  "historical_price_access_authorized": false,
+  "market_cells_run": 0,
+  "market_returns": null,
+  "orders_available": false,
+  "real_money_execution_available": false
+}

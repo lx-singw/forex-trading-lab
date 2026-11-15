@@ -1,0 +1,21 @@
+{
+  "kind": "elliott154_readiness_artifact_inventory",
+  "files": {
+    "readiness.json": {
+      "sha256": "9dc53787026f74a699126f3bc0cf1abdd85b1afd8c2dda52c81f565dfbc0caf3",
+      "bytes": 1114
+    },
+    "reviewed-source.zip": {
+      "sha256": "35a59202d30b845264565d03baf4184a6d35b23a70ea4b0923435db296057f50",
+      "bytes": 62822
+    },
+    "source_sha256.json": {
+      "sha256": "39ad9fa220ed5d1a363fb78f0fa3b0f776f4282b4e6c8f35d88b6116ec819135",
+      "bytes": 10293
+    },
+    "verification.json": {
+      "sha256": "12cfc8d35922a226908ac7bac5dea14b97922637f20c50444713fd441653e7a8",
+      "bytes": 817
+    }
+  }
+}

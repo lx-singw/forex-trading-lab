@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Elliott154 identified MT5 recorder/source readiness (15 November 2026).
+User identifies recorder136 in Experts. Source/help review confirms its separate
+quote file and expired26–30 October window; current terminal/account was not read.
+See [154 readiness](ELLIOTT-MT5-SOURCE-154-READINESS.md). Next authorized preparation
+is a distinct read-only recorder boundary integrating138/140/143, starting with
+invented observations and fault injection. Actual collection still needs a separate
+bounded source/date/run qualification; no dates are assigned or136 renewed. Keep
+broader Elliott acceptance, qualified historical runner, viewer/visual review and
+native demo reconciliation open. All16 actual market cells and orders remain
+unavailable; protected dates/routes and frozen sources persist. Commit/push to main.
+
 Latest — Elliott153 candle-derived nested pattern matrix (15 November 2026).
 149 targeted checks pass. The46 representative candle-to-pivot/parser cases cover
 all18 families both ways and ten third-level extension placements;92 coarse

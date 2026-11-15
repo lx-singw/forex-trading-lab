@@ -1,0 +1,23 @@
+{
+  "kind": "static_source_config_and_link_review_only",
+  "reviewed_local_files": 15,
+  "configuration_source_date_default_caps_agree": true,
+  "actual_demo_guard_present_in_old_source": true,
+  "native_account_guard_runtime_exercised": false,
+  "local_document_links_valid": true,
+  "local_links_checked": 7,
+  "reviewed_bytes_unchanged": true,
+  "trading_graph_matches150": true,
+  "frozen_control_files_unchanged": 46,
+  "new_strategy_test_invocations": 0,
+  "official_UI_documentation_queries": 2,
+  "official_UI_documentation_opens": 2,
+  "official_UI_documentation_finds": 3,
+  "new_legal_review": false,
+  "provider_contact_sent": false,
+  "native_queries": 0,
+  "price_or_log_files_opened": 0,
+  "capture_started": false,
+  "orders_available": false,
+  "review_procedure_and_document_bytes_archived": true
+}
