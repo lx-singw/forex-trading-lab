@@ -1,0 +1,22 @@
+{
+  "schema": "recorder157_verification_v1",
+  "modules": [
+    "test_recorder_relay_157",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145"
+  ],
+  "new_checks": 35,
+  "expected_checks": 205,
+  "inputs": "invented_only",
+  "native_launch": false,
+  "native_collection_granted": false,
+  "market_eligible": false,
+  "source_date_provider_assigned": false,
+  "revision": "Validate and allow-list health packets before receipt persistence; earlier001 source revision retained separately"
+}

@@ -1,0 +1,226 @@
+{
+  "schema": "relay157_exercise_v1",
+  "inputs": "invented_only",
+  "cases": [
+    {
+      "case": "clean",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "complete",
+        "requests": 107,
+        "published": 107,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": true,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": {
+        "schema": "native157_diagnostic_v1",
+        "job": "000000000000000000000000000003e9",
+        "queries": 53,
+        "requests": 107,
+        "failed_fields": 7,
+        "wall_marker_reversals": 0,
+        "known_reserved_bytes": 91857,
+        "writer_complete": true,
+        "native_origin_exported": false,
+        "native_runtime_certified": false,
+        "market_eligible": false,
+        "native_sha256": "f298c53e3782d1515327eb18b6730562c1d691079ed8fe7c7780bf5a8bed801c",
+        "relay_receipt_consistent": true,
+        "caller_acknowledgement_known": false,
+        "cleanup_claim_consistent": true
+      },
+      "channel_calls": 112
+    },
+    {
+      "case": "failed_metadata",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "complete",
+        "requests": 97,
+        "published": 97,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": true,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": {
+        "schema": "native157_diagnostic_v1",
+        "job": "000000000000000000000000000003ea",
+        "queries": 48,
+        "requests": 97,
+        "failed_fields": 43,
+        "wall_marker_reversals": 0,
+        "known_reserved_bytes": 83232,
+        "writer_complete": true,
+        "native_origin_exported": false,
+        "native_runtime_certified": false,
+        "market_eligible": false,
+        "native_sha256": "f4c6f3b8853dbb5c1d492746a61f4c41a2070472263b97367a1b36262a0b6751",
+        "relay_receipt_consistent": true,
+        "caller_acknowledgement_known": false,
+        "cleanup_claim_consistent": true
+      },
+      "channel_calls": 102
+    },
+    {
+      "case": "delayed_ready",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "complete",
+        "requests": 107,
+        "published": 107,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": true,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": {
+        "schema": "native157_diagnostic_v1",
+        "job": "000000000000000000000000000003eb",
+        "queries": 53,
+        "requests": 107,
+        "failed_fields": 7,
+        "wall_marker_reversals": 0,
+        "known_reserved_bytes": 91859,
+        "writer_complete": true,
+        "native_origin_exported": false,
+        "native_runtime_certified": false,
+        "market_eligible": false,
+        "native_sha256": "171747bf109a3cb80c80e36bb98a24112dc814db2babb129b4893f7916261b77",
+        "relay_receipt_consistent": true,
+        "caller_acknowledgement_known": false,
+        "cleanup_claim_consistent": true
+      },
+      "channel_calls": 113
+    },
+    {
+      "case": "power",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "fault",
+        "requests": 3,
+        "published": 2,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 8
+    },
+    {
+      "case": "stale",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "fault",
+        "requests": 3,
+        "published": 2,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 8
+    },
+    {
+      "case": "wrong_challenge",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "fault",
+        "requests": 3,
+        "published": 2,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 8
+    },
+    {
+      "case": "owner_death",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "fault",
+        "requests": 5,
+        "published": 4,
+        "start_attempted": true,
+        "cleanup_complete": false,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 10
+    },
+    {
+      "case": "start_failure",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "fault",
+        "requests": 0,
+        "published": 0,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 4
+    },
+    {
+      "case": "clear_failure",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "cleanup",
+        "requests": 107,
+        "published": 107,
+        "start_attempted": true,
+        "cleanup_complete": false,
+        "writer_complete": true,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 112
+    },
+    {
+      "case": "held_request",
+      "status": {
+        "schema": "relay157_status_v1",
+        "cause": "deadline",
+        "requests": 1,
+        "published": 1,
+        "start_attempted": true,
+        "cleanup_complete": true,
+        "writer_complete": false,
+        "receipt_acknowledged": true,
+        "native_runtime_certified": false,
+        "market_eligible": false
+      },
+      "independent": null,
+      "channel_calls": 6
+    }
+  ],
+  "native_launch": false,
+  "market_eligible": false
+}

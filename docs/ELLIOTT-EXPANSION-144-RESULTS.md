@@ -2,6 +2,15 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest,15 November: [relay157 and independent checker](RECORDER-RELAY-157-RESULTS.md).
+205 targeted recorder checks pass. Default-off measured orchestration and native
+diagnostic/receipt reconciliation are implemented; ten invented jobs retain three
+consistent completions and seven independent rejections. No native helper, MT5,
+account or actual price is accessed.156's grant stays false. A bounded helper-only
+trial with invented files, native IO/runtime proof,138/140 commit integration and
+source/date/run admission remain open. All16 market cells remain unavailable/null;
+this does not complete stage E/F or change the trading rules.
+
 Latest,15 November: [native recorder156](NATIVE-RECORDER-156-RESULTS.md).
 A distinct raw context/quote/clock binding compiles in isolated MetaEditor staging;
 170 targeted recorder checks pass. Default-off input and an immutable unassigned

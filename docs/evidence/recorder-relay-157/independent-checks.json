@@ -1,0 +1,121 @@
+[
+  {
+    "case": "clean",
+    "exit_code": 0,
+    "observation": {
+      "caller_acknowledgement_known": false,
+      "cleanup_claim_consistent": true,
+      "failed_fields": 7,
+      "job": "000000000000000000000000000003e9",
+      "known_reserved_bytes": 91857,
+      "market_eligible": false,
+      "native_origin_exported": false,
+      "native_runtime_certified": false,
+      "native_sha256": "f298c53e3782d1515327eb18b6730562c1d691079ed8fe7c7780bf5a8bed801c",
+      "queries": 53,
+      "relay_receipt_consistent": true,
+      "requests": 107,
+      "schema": "native157_diagnostic_v1",
+      "wall_marker_reversals": 0,
+      "writer_complete": true
+    }
+  },
+  {
+    "case": "failed_metadata",
+    "exit_code": 0,
+    "observation": {
+      "caller_acknowledgement_known": false,
+      "cleanup_claim_consistent": true,
+      "failed_fields": 43,
+      "job": "000000000000000000000000000003ea",
+      "known_reserved_bytes": 83232,
+      "market_eligible": false,
+      "native_origin_exported": false,
+      "native_runtime_certified": false,
+      "native_sha256": "f4c6f3b8853dbb5c1d492746a61f4c41a2070472263b97367a1b36262a0b6751",
+      "queries": 48,
+      "relay_receipt_consistent": true,
+      "requests": 97,
+      "schema": "native157_diagnostic_v1",
+      "wall_marker_reversals": 0,
+      "writer_complete": true
+    }
+  },
+  {
+    "case": "delayed_ready",
+    "exit_code": 0,
+    "observation": {
+      "caller_acknowledgement_known": false,
+      "cleanup_claim_consistent": true,
+      "failed_fields": 7,
+      "job": "000000000000000000000000000003eb",
+      "known_reserved_bytes": 91859,
+      "market_eligible": false,
+      "native_origin_exported": false,
+      "native_runtime_certified": false,
+      "native_sha256": "171747bf109a3cb80c80e36bb98a24112dc814db2babb129b4893f7916261b77",
+      "queries": 53,
+      "relay_receipt_consistent": true,
+      "requests": 107,
+      "schema": "native157_diagnostic_v1",
+      "wall_marker_reversals": 0,
+      "writer_complete": true
+    }
+  },
+  {
+    "case": "power",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "stale",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "wrong_challenge",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "owner_death",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "start_failure",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "clear_failure",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  },
+  {
+    "case": "held_request",
+    "exit_code": 2,
+    "observation": {
+      "error": "relay157_rejected",
+      "market_eligible": false
+    }
+  }
+]

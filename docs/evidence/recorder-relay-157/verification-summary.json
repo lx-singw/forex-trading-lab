@@ -1,0 +1,15 @@
+{
+  "schema": "recorder157_verification_result_v1",
+  "tests_run": 205,
+  "new_checks": 35,
+  "existing_checks": 170,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 34.552,
+  "success": true,
+  "prior156_bindings_unchanged": 99,
+  "frozen_controls_unchanged": 46,
+  "native_launch": false,
+  "market_eligible": false
+}

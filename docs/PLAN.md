@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Recorder relay157 and independent checker (15 November2026).
+205 targeted checks pass; ten invented jobs yield three consistent diagnostics
+and seven independent rejections. Default-off measured relay orchestration and
+native journal/receipt checks are implemented. No native process, MT5, account
+or actual price accessed;156's immutable grant remains false. See
+[157 results](RECORDER-RELAY-157-RESULTS.md). Next declare a bounded pinned-helper
+trial with an invented producer to check actual process cleanup and timing.
+Native IO/runtime,138/140 commit integration and source/date/run admission remain
+open, alongside qualified historical runner, broader Elliott/viewer acceptance
+and native reconciliation. No provider/dates assigned; prior bindings, protected
+dates/routes,16 unavailable cells and orders-off persist. Commit/push to main.
+
 Latest — Native recorder156 closed-entry port (15 November2026).
 170 targeted checks pass and the separate MQL raw read binding compiles cleanly
 in isolated non-terminal staging. Default-off input plus an immutable unassigned

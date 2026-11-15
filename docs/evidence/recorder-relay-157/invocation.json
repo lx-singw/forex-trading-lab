@@ -1,0 +1,35 @@
+{
+  "environment": {
+    "PYTHONPATH": "src:tests"
+  },
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_recorder_relay_157",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145",
+    "-v"
+  ],
+  "exercise": [
+    "python3",
+    "scripts/recorder-relay-157.py",
+    "--exercise-invented",
+    "--output",
+    "NEW-DIRECTORY"
+  ],
+  "checker": [
+    "python3",
+    "scripts/check-native-journal-157.py",
+    "--folder",
+    "EXPLICIT-JOB-FOLDER",
+    "--job",
+    "JOB-NONCE"
+  ]
+}

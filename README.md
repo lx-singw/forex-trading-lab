@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Recorder relay157 and independent checker (15 November2026).
+205 targeted checks pass. A default-off measured relay runner and independent
+native journal/receipt checker pass ten invented job cases. No native helper,
+MT5, account or actual price was accessed;156 collection remains hard closed.
+See [results and next runtime trial](docs/RECORDER-RELAY-157-RESULTS.md).
+Actual helper/IO behaviour, native commit integration and source/date/run
+qualification remain open. Protected dates/routes,16 unavailable market cells
+and orders-off persist.
+
 Latest — Native recorder156 closed-entry port (15 November2026).
 A separate MQL read binding preserves raw context/quote/clock fields and uses
 bounded terminal-local helper challenge/reply files.170 targeted checks pass;

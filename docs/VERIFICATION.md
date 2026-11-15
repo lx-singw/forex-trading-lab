@@ -1,5 +1,16 @@
 # Verification — updated 2026-10-06
 
+Latest — Recorder relay157 and independent checker (15 November2026).
+205 targeted checks pass:35 new and170 existing, zero failures/errors/skips.
+Ten wholly invented CLI jobs have three consistent diagnostics and seven
+rejections confirmed by separate checker processes. The maximum profile has104
+queries,209 leases, eight commission rules and128 tiers. Independent parsing,
+measured receipt binding, privacy rejection, storage/clock/cleanup faults and
+fresh-job restart are exercised. All99 prior156 bindings and46 frozen controls
+match. See [157 results](RECORDER-RELAY-157-RESULTS.md). No new native build or
+native helper/MT5/account/price access; runtime and market qualification remain
+open.156 entry remains closed; protected dates/routes and orders-off persist.
+
 Latest — Native recorder156 closed-entry port (15 November2026).
 170 targeted checks pass:24 new and146 existing, zero failures/errors/skips.
 Shared MQL decision headers compile with g++17 warnings-as-errors; the distinct

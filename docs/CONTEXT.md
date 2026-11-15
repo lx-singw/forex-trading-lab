@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Recorder relay157 and independent checker (15 November2026).
+205 targeted checks pass:35 new and170 existing. A default-off runner measures
+helper receipts, owns startup/cleanup and serves one explicit bounded job folder.
+An independent156 journal/relay checker reconciles native grammar, lease timing,
+file hashes, publication receipts and cleanup claims. Ten invented CLI jobs yield
+three consistent diagnostics and seven rejections in separate checker processes.
+No native helper/MT5/account/actual price access;156's run grant stays false.
+See [157 results](RECORDER-RELAY-157-RESULTS.md). Next a separately bounded pinned
+helper-only trial with an invented producer, before native file/runtime proof,
+138/140 commit integration and actual source/date/run qualification. All99 prior156
+bindings and46 frozen controls match. Protected dates/routes,16 unavailable market
+cells and orders-off remain. Commit/push each completed sprint to main.
+
 Latest — Native recorder156 closed-entry port (15 November2026).
 170 targeted checks pass:24 new and146 existing. A separate native MQL read binding
 preserves raw context/quote/clock fields and uses bounded terminal-local helper
