@@ -1,0 +1,188 @@
+{
+  "cases": [
+    {
+      "case": "double_three_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "double_three_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "double_zigzag_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "double_zigzag_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "ending_diagonal_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "ending_diagonal_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "expanding_diagonal_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "expanding_diagonal_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_expanded_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_expanded_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_regular_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_regular_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_running_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "flat_running_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "impulse_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "impulse_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "leading_33333_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "leading_33333_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "leading_53535_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "leading_53535_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_barrier_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_barrier_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_contracting_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_contracting_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_expanding_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_expanding_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_running_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triangle_running_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triple_three_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triple_three_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triple_zigzag_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "triple_zigzag_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "truncated_impulse_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "truncated_impulse_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "zigzag_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "zigzag_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_1_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_1_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_3_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_3_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_5_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_5_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_13_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_13_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_135_1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    },
+    {
+      "case": "extension_135_-1",
+      "recursive_OHLC_and_strict_confirmed_pivots": true
+    }
+  ]
+}

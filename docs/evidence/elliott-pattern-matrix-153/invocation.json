@@ -1,0 +1,20 @@
+{
+  "modules_and_classes": [
+    "test_elliott_pattern_matrix_153",
+    "test_elliott_full_rulebook",
+    "test_elliott_full.GeometryTests",
+    "test_elliott_full.CausalTests",
+    "test_elliott_full_incremental",
+    "test_elliott_full_policy",
+    "test_elliott_full_context_lifecycle",
+    "test_elliott_full_windows.WindowTests.test_missing_completed_parent_cannot_supply_old_context",
+    "test_elliott_full_windows.WindowTests.test_rollover_retains_latest_256",
+    "test_elliott_full_windows.WindowTests.test_future_suffix_does_not_change_retained_pivots",
+    "test_elliott_full_windows.WindowTests.test_bad_window_bounds_or_chronology_reject",
+    "test_elliott_full_windows.WindowTests.test_empty_window",
+    "test_elliott_full_boundary",
+    "test_elliott_full_crosscheck",
+    "test_elliott_study_145"
+  ],
+  "planned_tests": 149
+}

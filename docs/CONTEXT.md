@@ -1,5 +1,19 @@
 # Setup context - 2026-09-30
 
+Latest — Elliott153 candle-derived nested pattern matrix (15 November 2026).
+149 targeted checks pass:11 new and138 existing. All18 catalogue families in both
+directions plus ten single/multiple third-level impulse extensions are recognized
+from constructed H1 candles through confirmed pivots and the default bounded
+parser. All92 coarse promotions retain delayed confirmation; eight observation-only
+examples remain non-actionable. This is component evidence with declared parent
+locations, not D1/H4 context discovery or a strategy/account run. Trading/runtime,
+existing generators and all46 frozen-control bindings remain unchanged. See
+[153 results](ELLIOTT-PATTERN-MATRIX-153-RESULTS.md). Broad nested/boundary/strategy
+acceptance, qualified admission/runner, remaining viewer/visual review and disabled
+native reconciliation remain open. No actual market source, acquisition dates,
+account or terminal is assigned/accessed. Protected dates/routes remain; all16
+market cells and submissions stay unavailable. Commit/push completed sprints to main.
+
 Latest — Elliott152 automatic session fault acceptance (15 November 2026).
 144 targeted checks pass:11 new and133 existing. Four automatic EW3 long/EW5
 short prefixes under both costs retain40 declared fault branches,36 independently

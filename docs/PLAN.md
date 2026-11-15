@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Elliott153 candle-derived nested pattern matrix (15 November 2026).
+149 targeted checks pass. The46 representative candle-to-pivot/parser cases cover
+all18 families both ways and ten third-level extension placements;92 coarse
+promotions retain later confirmation. Trading/runtime and frozen-control bindings
+stay unchanged. See [153 results](ELLIOTT-PATTERN-MATRIX-153-RESULTS.md). This does not
+complete all pattern or strategy acceptance. Continue broader nested/boundary/
+strategy combinations, qualified source/clock/cost/run admission and runner,
+remaining viewer/visual review and disabled native reconciliation. No source or
+capture dates are assigned; protected dates/routes,16 unavailable market cells and
+orders-off remain. Commit/push each completed sprint to main.
+
 Latest — Elliott152 automatic session fault acceptance (15 November 2026).
 144 targeted checks pass. Four automatic prefixes exercise40 declared branches;
 36 filled accounts independently reconcile, four expiry accounts stay flat and

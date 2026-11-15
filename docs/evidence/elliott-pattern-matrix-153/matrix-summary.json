@@ -1,0 +1,1688 @@
+{
+  "cases": [
+    {
+      "case": {
+        "extensions": [],
+        "family": "double_three",
+        "id": "double_three_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "8991f203d04159a5ced249e8a2435901f860fea0c4ebf97fc9e088a236cb5149",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "double_three",
+        "id": "double_three_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "13d01f905059063043fa0e37c33cd8fa0d490993605c0e1ca014fa4d9da13b6c",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "double_zigzag",
+        "id": "double_zigzag_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "98fb334a65dd192eb7c3b1ea6d0b200169d2c81576fc3901f56724d1ddb8fb54",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 16,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "double_zigzag",
+        "id": "double_zigzag_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "af214892f5d3c345cdff965e2c205989a5ac2dd30942f3f44a52989de4d3bb91",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 16,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "ending_diagonal",
+        "id": "ending_diagonal_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "071dbe1edcc43613476645bf84b6e616242b98f44abaa75d749fc5429cde080b",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "ending_diagonal",
+        "id": "ending_diagonal_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "48912c72e5c1ea58137cb01a9be1f838434c55857a4322cbd9e41e23c089d69b",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "expanding_diagonal",
+        "id": "expanding_diagonal_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "336da6b5a8decf387f26c6ad8bcbc45fca50fe4e0428920a9ed045d00452bc27",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "expanding_diagonal",
+        "id": "expanding_diagonal_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "892899e55bc54531b2ae2cb0df9875af75d22b3575efbed0ec69ecdb630d192f",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_expanded",
+        "id": "flat_expanded_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "aa603eb475991b027a6e5520ddad243d2b9230a077673ceb567c4485499bfabc",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_expanded",
+        "id": "flat_expanded_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "b58a545a7809a1cd2a38d8b61f4f03e01707b44253f015d2b1663cd31e269414",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_regular",
+        "id": "flat_regular_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "295755f243ab7813f1c3f21bc1e3f600bfe078ae8b26bffeb506ff7ed394e053",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_regular",
+        "id": "flat_regular_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "a71c4b278f77f3f65d02b101c3ee791ffe6b6fb385a84a442a137922aba43f8b",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_running",
+        "id": "flat_running_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "f193f73297eaea39d7d8af19f04129a4130a8c26bfb50302833296b3e893a743",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "flat_running",
+        "id": "flat_running_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "e6cc82de1236392976571b324491102a346a1c4ff06ea407177b644a2abf0ebf",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 24,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "impulse",
+        "id": "impulse_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "664994519d5227d75385889394779940d620c8d3caf517f58109fb1f08fb1faf",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 75,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "impulse",
+        "id": "impulse_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "2c026a0c57787bff94e0f090e6fc8954ee0680013f28f39763ed40951c3f03b0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 75,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "leading_33333",
+        "id": "leading_33333_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "a6381162e4b8b8d7c019bfab3bbdc02c8b2fda6a9be8ccc842fe001d9e685cb7",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "leading_33333",
+        "id": "leading_33333_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "1de6dfc2a32db4dc3008e551b24086dc9e3c16aaeb73be32f976bbc7aff0fc63",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "leading_53535",
+        "id": "leading_53535_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "a721b817bfd9600aa34121e612bd47611944dc214c08c8d1ac3e74845a078067",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 75,
+        "incomplete": false,
+        "rejection_count": 3
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "leading_53535",
+        "id": "leading_53535_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "f0d117cdc5af1e258be5f6793b3704d78c18888d786d0819c91a0f3a69e44f9c",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 75,
+        "incomplete": false,
+        "rejection_count": 3
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_barrier",
+        "id": "triangle_barrier_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "b7708bc8d19aef46c4d8af0f7458e571e68c2ebec63da82ba100bb2a67bc424b",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 43,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_barrier",
+        "id": "triangle_barrier_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "f4e02debf3b4f91ef4ab900dc502093f13cd9a9e91f1421504a7c55319ca66b7",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 43,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_contracting",
+        "id": "triangle_contracting_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "0340b49edd988bababfda95029aa2172884d700455dd780715af38f41a6e5dbf",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 47,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_contracting",
+        "id": "triangle_contracting_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "dba1786e184a60b6e0808eae8b26d0b4d266b840eb00a104ba742c06d4b6f9ca",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 47,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_expanding",
+        "id": "triangle_expanding_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "05aec87530f1608b4560a9d02366b1cba261e5f66e9939067df14d752e168895",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 48,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_expanding",
+        "id": "triangle_expanding_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "9d1a131e5e36cb72170d209185a32fa73d436fae753067661b6fe3b560b623eb",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 48,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_running",
+        "id": "triangle_running_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "70d1c8fbe3e8bb00819cbacad902c50ddc82429ac2b74940384d2f08293062d0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 47,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triangle_running",
+        "id": "triangle_running_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "f6b2b11345582a6acee1e539aebbb6aac2004d069414ba0f17463aed38258f1c",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 47,
+        "incomplete": false,
+        "rejection_count": 1
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triple_three",
+        "id": "triple_three_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "6e581195adc9581dc0c7d307360dff750141476393682a5a15938df4d305aaed",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 123,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triple_three",
+        "id": "triple_three_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "9f0a1871ec89ff22a96f5bef207884fc3b68660825fc8177aa2a2cf14455d5b0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 123,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triple_zigzag",
+        "id": "triple_zigzag_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "30f0cdc703ea9973e2a99064f565d605d6d53db1905d58c649a80ff25045f9f9",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "triple_zigzag",
+        "id": "triple_zigzag_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "240c0449526c184784348b7c03b5950931e57c7ccdf94a6f5efe6acf0eafded0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 49,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "truncated_impulse",
+        "id": "truncated_impulse_1",
+        "side": 1
+      },
+      "bars": 167,
+      "input_sha256": "fd26a813dfc3478d01e71408bf7d7588708d92c192607da23cb18946e62540b0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 67,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "truncated_impulse",
+        "id": "truncated_impulse_-1",
+        "side": -1
+      },
+      "bars": 167,
+      "input_sha256": "bcc0da0b4f5c8913de9a40de9d3057a3549a4da1eb6121b672b5a19e88ae2e41",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 67,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947264402000,
+      "coarse_promotion": [
+        {
+          "available": 947271602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947271602000
+        },
+        {
+          "available": 947286002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947286002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "zigzag",
+        "id": "zigzag_1",
+        "side": 1
+      },
+      "bars": 107,
+      "input_sha256": "f43b1b94d6fc60d6ff891119dd5b20da3c3ef0133c0b9433e3edcbf70777b3c4",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 30,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [],
+        "family": "zigzag",
+        "id": "zigzag_-1",
+        "side": -1
+      },
+      "bars": 107,
+      "input_sha256": "c09fa4403a397b6a14d4f6355f5cd6dde4db0131b7f7b3c2a32c9f7e4afe2b56",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 30,
+        "incomplete": false,
+        "rejection_count": 0
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 947048402000,
+      "coarse_promotion": [
+        {
+          "available": 947055602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 947055602000
+        },
+        {
+          "available": 947070002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 947070002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0
+        ],
+        "family": "impulse",
+        "id": "extension_1_1",
+        "side": 1
+      },
+      "bars": 767,
+      "input_sha256": "27e5efece0715b068723cd27ca8f5032c385937082314c1a8f0d8e8afa13e1a1",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 179,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0
+        ],
+        "family": "impulse",
+        "id": "extension_1_-1",
+        "side": -1
+      },
+      "bars": 767,
+      "input_sha256": "3230a971aea61a608e20deaece54d3c2db768f3124cc6c0d5b25b008a6ea9515",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 179,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          2
+        ],
+        "family": "impulse",
+        "id": "extension_3_1",
+        "side": 1
+      },
+      "bars": 767,
+      "input_sha256": "00166cd016c6ec62b2426a6a35f6ca5dbd8947e3d5a541bc0119fbde98d4f943",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 189,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          2
+        ],
+        "family": "impulse",
+        "id": "extension_3_-1",
+        "side": -1
+      },
+      "bars": 767,
+      "input_sha256": "e1d12b35a9e8f2f78d50e93f79b84b6aabb8070a5ed908cf23ec96bbc22a4b97",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 189,
+        "incomplete": false,
+        "rejection_count": 2
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          4
+        ],
+        "family": "impulse",
+        "id": "extension_5_1",
+        "side": 1
+      },
+      "bars": 767,
+      "input_sha256": "897f2f38e2807e47736c9d68f12eb0525887b7adf61a5e61870d5b2bae2afdb0",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 197,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          4
+        ],
+        "family": "impulse",
+        "id": "extension_5_-1",
+        "side": -1
+      },
+      "bars": 767,
+      "input_sha256": "241b57e2f37148397a5d29682191450ca247fd3a77cbc0b3f6af7e9d25da6491",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 197,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0,
+          2
+        ],
+        "family": "impulse",
+        "id": "extension_13_1",
+        "side": 1
+      },
+      "bars": 767,
+      "input_sha256": "e61c153d5ec2ef93007243d401e7ed89004dc0c43975cbb486f2cbbf05efc376",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 343,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0,
+          2
+        ],
+        "family": "impulse",
+        "id": "extension_13_-1",
+        "side": -1
+      },
+      "bars": 767,
+      "input_sha256": "24a7ea8d800b75c15b7ec94d328d68c620b55a75b2b6dd772560b72077e4668e",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 343,
+        "incomplete": false,
+        "rejection_count": 4
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0,
+          2,
+          4
+        ],
+        "family": "impulse",
+        "id": "extension_135_1",
+        "side": 1
+      },
+      "bars": 767,
+      "input_sha256": "6133e3102a865d31e1e4c6f947210c870a1217047fe6e0d9ebd2c2bdc96c7e13",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 515,
+        "incomplete": false,
+        "rejection_count": 7
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    },
+    {
+      "case": {
+        "extensions": [
+          0,
+          2,
+          4
+        ],
+        "family": "impulse",
+        "id": "extension_135_-1",
+        "side": -1
+      },
+      "bars": 767,
+      "input_sha256": "8fb68c231b60eb93f8ee46b88915d6943446a4b738f2eee936fa4ba10f939d5a",
+      "parser": {
+        "budget": 4096,
+        "cap": 128,
+        "expansions": 515,
+        "incomplete": false,
+        "rejection_count": 7
+      },
+      "status": "RECOGNIZED",
+      "exact_candidates": 1,
+      "required_available": 949424402000,
+      "coarse_promotion": [
+        {
+          "available": 949431602000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 4,
+          "required_by": 949431602000
+        },
+        {
+          "available": 949446002000,
+          "before_confirmation": 0,
+          "exact_candidates": 1,
+          "radius": 8,
+          "required_by": 949446002000
+        }
+      ]
+    }
+  ],
+  "market_cells_run": 0,
+  "orders_available": false
+}

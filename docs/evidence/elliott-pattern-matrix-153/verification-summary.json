@@ -1,0 +1,24 @@
+{
+  "kind": "elliott153_candle_nested_pattern_acceptance",
+  "tests": {
+    "tests": 149,
+    "new_tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "passed": true,
+    "elapsed_seconds": 6.849,
+    "sources_unchanged": true
+  },
+  "base_family_direction_cases": 36,
+  "third_level_extension_cases": 10,
+  "total_recognized_cases": 46,
+  "delayed_coarse_promotions": 92,
+  "observation_only_family_direction_cases": 8,
+  "max_expansions_observed": 515,
+  "runtime_bindings_match150": true,
+  "full_prior_strategy_suites_rerun": false,
+  "scope": "H1_candle_pivot_parser_component_with_declared_parent_locations_not_trading_or_context_discovery",
+  "market_cells_run": 0,
+  "orders_available": false,
+  "market_returns": null
+}

@@ -1,0 +1,105 @@
+{
+  "runtime": {
+    "comparison": {
+      "elliott_session_comparison_149.py": "634f9375df5abca01c5b08758c7ea56bd1e9d1c160d9cb5da68872669a3badc9"
+    },
+    "paper": {
+      "paper": {
+        "elliott_session_paper_148.py": "8103f03290e574a511bee5030ae834acf81ed4e20d2afa102900e7997e84b2ac"
+      },
+      "decisions": {
+        "adapter": {
+          "elliott_session_strategy_147.py": "440d5d7cbbaafc9570c46d81fdcc3265d05259f94ade3581ec2851d9979f297c",
+          "elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359"
+        },
+        "strategy": {
+          "current": {
+            "elliott-full-v1.json": "2335e47a14108e4fde827ca8c58bf45f032da2d6467bc5e781d4ac2d827fe572",
+            "__init__.py": "ba00522ef941ec2624443703bdf94a380c0572ab847cbcdb93968ebf4fae803d",
+            "__main__.py": "e23969ceec40db7149cb4f0a2d481c6bfed7a56b35195bff7e3e2b2477ad4c11",
+            "admission.py": "a26eced4e4c2ae436c49ec6541b1729d168e4d57d862e3baed6dfff6ff26c01e",
+            "bars.py": "7f010bec687f245c4a50d535cd6aec7facfa60ec65e470cf324336d625f4189b",
+            "contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+            "controls.py": "d815cceec40626fe96f1e311959633692bd1299ef995e5f108669f353b2c0dc0",
+            "counts.py": "3595774426e36b5711dcf4d9d255f7816855e87009c449f910c553c70076b378",
+            "crosscheck.py": "33eed5946cdffc198d3ea8997f94d63ddbad2a71a83799b14dea210aea4a6472",
+            "engine.py": "049c6208824ab7c04f5a1d5cff32b44d97a25e7e5d000e734e265a977d43859b",
+            "execution.py": "b40af179c3a37256e332ae150260735d644744a8e6580ccb8b68a7c7f65ade48",
+            "incremental.py": "c6e165a43af09b15507ecb555c81568d95d80e3a1950aa78a22b82292bc8a012",
+            "interpretations.py": "3c1340bd46f3fc1c65a4f3982463e85f91dbee1a67b44d7ca2359568f9b7282f",
+            "patterns.py": "37b2613ba58986e64f549d6e2cf2cbd5328588686d78f3a92a21dc815743bcbb",
+            "replay.py": "300cbe3b75908ef555108080ba90558031a75b5e542c15c874c851197b16751e",
+            "report.py": "b692c25ada009518c16f24f5352f6b667e3455bc643e70ba2c414d414883e0a9",
+            "rulebook.py": "98059cc364deff56c0f9628e24a8d23c45eb1018fb91342d63aa8914a256dea3",
+            "setups.py": "e0b523545725586cfeaef7371cab107d5db8e36edf646ebad1ade6d016913cfe",
+            "shared.py": "380ad8daa6e64b4b62f2123158132c95a2a8b5ad6bf25f74abf4bec34677fbd7",
+            "strategy.py": "e6f7df3f33490af7e247790a14d137d2e2824783170ea9d11ca1f35efd972bfe",
+            "windows.py": "c936ef96b6ab3629ce42ee0284f66f89f06b08f3da77b986238551e31dc90c1e"
+          },
+          "frozen_controls": {
+            "src/forex_demo_lab/daily_features_118.py": "98bbc0cd2069d66016f41bb41343aae3286083514396ed3841a853b45abf9748",
+            "src/forex_demo_lab/daily_fixture_118.py": "a4d3a3de4a4f25436a351c1a031eeb615c940a04aa606d1dc6ac67e5e0d91577",
+            "scripts/daily-features-118.py": "7b464ff6cde83aa2f798563d9d9dbf6b19e6f161f2d9604c957d97f85c44bb8b",
+            "tests/test_daily_features_118.py": "65ac698373a2e371392e7b18fd5c4822d17b2654cec14cbb6b4ad5682c8d75be",
+            "config/research-candidates-117.json": "fc9629f0922700e9ea8118cbf23460f550870a5ecf17ff14e6246833766faf6f",
+            "docs/DAILY-STRATEGY-118-PROTOCOL.md": "bc7a3f96a524ba6b81a4c8bfaddaf18f6ab293fa7cfa020a2dc7e8c5aa08e054",
+            "docs/DAILY-STRATEGY-118-PLAN.md": "49ccf66b1f1c114249773a159a9e2c70046733cf4e3cb87691881d6cecd19fbe",
+            "src/forex_demo_lab/daily_risk_119.py": "fc0170647f3fd19f3299831d0d8d3e4a1522a8af96ce7c463d75a388ff13eb92",
+            "src/forex_demo_lab/daily_risk_fixture_119.py": "c0f96703241f75e63dd53d52c0edf78dfcfc3a86f8b7e1eb5fe37cae44ae2b1b",
+            "scripts/daily-risk-119.py": "835a16785aab29ac010987548bf358345b0e21753642fe0982423bb3c5558f47",
+            "tests/test_daily_risk_119.py": "abacffe5ee41520237ab8bd21a965b9795132270bd89e5274dcd1a171bd49c16",
+            "src/forex_demo_lab/model.py": "6563908f38431a036eb0438ea8c10fe42da8a97b85e2fd6979b684a8e959c70e",
+            "src/forex_demo_lab/shadow_engine_113.py": "d34d8e4508db86511dfc3b2f0b59cb63f99153650b681938b02707d0aa6303a4",
+            "docs/DAILY-RISK-119-PROTOCOL.md": "a8e36a5680358353c658065cd0fc26241a778a0aef30c71676f270dc38604749",
+            "docs/DAILY-RISK-119-PLAN.md": "60d8f7b33cee6bbc6373109a569ed385b214e8523c61cdc7a49d3e8092c47364",
+            "src/forex_demo_lab/daily_fills_120.py": "c9da3df9d291a156aebe0682db9c8672cbf6ee8c5afbb3150178bb01ca0ad6d4",
+            "src/forex_demo_lab/daily_fills_fixture_120.py": "83a2f3037e47a2bfd5230c39e8efa3ebaa0dda14ffdbb04dffc98e8d72c4102c",
+            "scripts/daily-fills-120.py": "ecded7584e056d5b142cb313d11d2c35fb3f71bf076679dd55941ed86e61ac8f",
+            "tests/test_daily_fills_120.py": "11901c0f83f979f24cdaa936769c738d898ff81beffb57011c350b5abe461b82",
+            "docs/DAILY-FILLS-120-PROTOCOL.md": "6e4b83ee61fb164523f9e55ea641ad3c99aea9fd91fb4166c7ed2e7c789ae93f",
+            "docs/DAILY-FILLS-120-PLAN.md": "9a84007529960aef08aedbf37bfc22aa123140b358e8e9911dc18c4063ea62be",
+            "src/forex_demo_lab/daily_bars_121.py": "6045d4f7372f182641e3a5d0bbbad709177992f1247b5842433e69100ef08c47",
+            "src/forex_demo_lab/daily_bars_fixture_121.py": "5ad28167fddf521e920adc20bb613292d84032c4b85912c46331c65afb2f155d",
+            "scripts/daily-bars-121.py": "d382cab809edf003d4d62b869059486c700ccabba420c2b70ffadf09b076ec03",
+            "tests/test_daily_bars_121.py": "1aa65d772253af184dfd8bf20d621294208e4d7a6ef767fdfb94f543b8bfdb47",
+            "docs/DAILY-BARS-121-PROTOCOL.md": "92fd78e2ec7595bc462b2011a0134eceef9a617d5aceafc29df057d1272ba636",
+            "docs/DAILY-BARS-121-PLAN.md": "b42d9cf87b265a5ab9cf11c7ccdc5ab64a0034c94d8fa000cbf39c840a190892",
+            "src/forex_demo_lab/daily_runs_122.py": "4f3893b38e66f146e33a265d0f02f67e55c235a9a576e6f5a3874179891e05c3",
+            "src/forex_demo_lab/daily_runs_fixture_122.py": "13479e7c52233cda91ed15cd14fab30293811ecdaf3f839eb3996956d043d385",
+            "scripts/daily-runs-122.py": "c529c8516a0116a38b17ef70c19b440eaf662be716ae31e83cd6ee1f764bd21e",
+            "tests/test_daily_runs_122.py": "0fa21528ca1adb81a58e9cca7815933bf1d179eb1cd099c9ca4abef1d411ee31",
+            "docs/DAILY-RUNS-122-PROTOCOL.md": "e93810e0fd711f68448638bbfbfc00a5d4d76e953636546aa18d4e1af1d9dd93",
+            "docs/DAILY-RUNS-122-PLAN.md": "e63d5c8ff80f0eddf9d79ed723615fde02c7eb334d60e07fc9559804f64bb890",
+            "src/forex_demo_lab/elliott_waves_124.py": "ae1a40f4ef676354b180fbf72309942c04dfd3a149cfa16ced49dbc2271268bc",
+            "src/forex_demo_lab/elliott_fixture_124.py": "10fd8d2e874a8b8e7f9cdeb190f1adeffc58c8fe2d2ffcaf3c171f2ef2e54da3",
+            "scripts/elliott-waves-124.py": "9b9e464f49336242bae6344f43b08a127fa6889c771067828692aa434b4038ac",
+            "tests/test_elliott_waves_124.py": "05fefe602a115436ce2ef73d9a4ee93ef62d48667aca8ce3cb434008c936c8bd",
+            "config/elliott-waves-124.json": "f9b192b522d22c33705afd7f595c4d09b84948f2cbfc5f95db640a06e910690e",
+            "docs/ELLIOTT-WAVES-124-PLAN.md": "cd56c35b824707cf2619a493a028ca12ca46fd3efb89f6b905b0c9f5900f3d1f",
+            "docs/ELLIOTT-WAVES-124-PROTOCOL.md": "675df8cf2944becacbc68b1d434a1ce42841a11a177f4d50db46abd20d4475eb",
+            "src/forex_demo_lab/elliott_execution_125.py": "16b0d49e1f5ef84319735b84acbcd09e200bded4a5664390d6001a503083bfa5",
+            "src/forex_demo_lab/elliott_execution_fixture_125.py": "73c8fa6b5535d7ae477c35a8c504798091d121c4a85c6c1cc34463c79def585a",
+            "scripts/elliott-execution-125.py": "2e6853a67b008dec419687ead495c6245b602f3daa425a8ce545a825b8823e6d",
+            "tests/test_elliott_execution_125.py": "41dcb037d3e53e7179bdb9827c5415a5e65e332d8216d463e5b87650aa3ca9f6",
+            "docs/ELLIOTT-EXECUTION-125-PLAN.md": "2a9a9030fb2073409a640c3668a800fe232629be54cda306600652618c8d628e",
+            "docs/ELLIOTT-EXECUTION-125-PROTOCOL.md": "bb643a8470762bbf201259b9236511bf238f38f43b9510470811190c31f68785"
+          }
+        }
+      }
+    }
+  },
+  "files": {
+    "scripts/elliott-pattern-matrix-153.py": "3de73e9e36f0c11229bef36582bedc0b1339aa85f8e1ae4f8d42e085cd6f4d6e",
+    "tests/test_elliott_pattern_matrix_153.py": "df3b6f498ce5875795f36b3cbd2671c0e05351b1887322ecf8225a55fe0b730a",
+    "/home/lx_singw/projects/forex-demo-lab/reports/elliott-pattern-matrix-153-run.py": "4ab07e140a027f166c723be5775b1b35c5f6610d6276415c04203694405ab019",
+    "tests/test_elliott_full.py": "2b43204a52d1a6ba4e2ce9259ee7e60aef366139fd484e819980b7325a3b11f9",
+    "tests/test_elliott_full_boundary.py": "627b843e4e7fb6107398b6ad8a03d97835d7c31f3e16fe4751e9c69ba781e72b",
+    "tests/test_elliott_full_context_lifecycle.py": "25af67738c0c343697dd2966e6fbb379b1b0a3d5012e67e86ea828941a9db8de",
+    "tests/test_elliott_full_crosscheck.py": "d83736986669cf5ceef8feccb113022863b9646098eb83a7ad392f3d76cdb05a",
+    "tests/test_elliott_full_incremental.py": "24bf836396bf4299fc4e74d49b51496b650405841d4defb6df4d6fb939a07541",
+    "tests/test_elliott_full_policy.py": "38c42f7140aa5242fe1b850240064e612307fc83ea7ddf31facd2157b3852c16",
+    "tests/test_elliott_full_rulebook.py": "74e451bcbcbb217636312feac32cdaa9ae9d5f31924ccbd56c7a93fa3a0abf53",
+    "tests/test_elliott_full_windows.py": "a35c521dc0586b6fa4d9f74bd2fe4948b19ef848f11e33787fc5a21e818e28a0",
+    "tests/test_elliott_study_145.py": "826c9ddf515ac9dfad39baf8d92d28d8f1750861fa358e6287ffd92e31740fd5"
+  }
+}
