@@ -1,0 +1,13 @@
+{
+  "modules": [
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145"
+  ],
+  "planned_tests": 146,
+  "native_process_launch": false
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "recorder155_invented_boundary_verification",
+  "tests": {
+    "tests": 146,
+    "new_tests": 33,
+    "errors": 0,
+    "failures": 0,
+    "passed": true,
+    "elapsed_seconds": 16.544,
+    "sources_unchanged": true
+  },
+  "fixed_invented_exercises": 9,
+  "independent_three_journal_inspection": true,
+  "legacy_136_sources_and_dates_unchanged": true,
+  "trading_graph_matches150": true,
+  "new_native_adapter_implemented": false,
+  "native_queries": 0,
+  "actual_helper_processes_launched": 0,
+  "collection_dates": null,
+  "market_cells_run": 0,
+  "orders_available": false,
+  "market_returns": null
+}

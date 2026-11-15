@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Recorder155 invented payload boundary (15 November2026).
+146 targeted checks pass:33 new and113 existing. A separate default-off155 payload
+boundary binds context and clock/quote/clock records to frozen138/140 journals,
+using142 health observations compatible with143. Nine fixed invented exercises
+cover guards, stale status, reconnect/rotation context boundaries, storage failures
+and incomplete commits. Reader/caller acknowledgement uncertainty is explicit;
+there is no append/resume. See [155 results](RECORDER-BOUNDARY-155-RESULTS.md).
+No native helper/MT5/account/price access; no native143 source adapter or new capture
+dates.136, its expiry/wire, trading/runtime and all46 frozen-control bindings remain
+unchanged. Next review native binding/transport and full raw payload feasibility;
+actual collection still requires source/date/run qualification. Protected dates/
+routes,16 unavailable market cells and orders-off remain. Commit/push sprints to main.
+
 Latest — Elliott154 identified MT5 recorder/source readiness (15 November 2026).
 User identifies ForexDemoContextRecorder136 in Experts; an existing historical
 export is not established. Official help/source review distinguishes journal

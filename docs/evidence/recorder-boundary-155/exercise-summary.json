@@ -1,0 +1,113 @@
+{
+  "cases": [
+    {
+      "name": "default_off",
+      "published_triples": null,
+      "pending_payload": null,
+      "unpublished_lifecycle_commits": null,
+      "source_queries": 0,
+      "fault": null,
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "clean_repeats",
+      "published_triples": 3,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 10,
+      "fault": "explicit_stop",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "post_guard_loss",
+      "published_triples": 0,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 3,
+      "fault": "guard_or_helper",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "stale_final",
+      "published_triples": 0,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 4,
+      "fault": "guard_or_helper",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "retry_boundary",
+      "published_triples": 1,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 8,
+      "fault": "explicit_stop",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "source_failure",
+      "published_triples": 0,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 3,
+      "fault": "source_or_payload_error",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "orphan_commit",
+      "published_triples": 0,
+      "pending_payload": true,
+      "unpublished_lifecycle_commits": 1,
+      "source_queries": 4,
+      "fault": "storage_error",
+      "payload_poisoned": true,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "rotation",
+      "published_triples": 3,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 11,
+      "fault": "explicit_stop",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    },
+    {
+      "name": "health_protocol",
+      "published_triples": 1,
+      "pending_payload": false,
+      "unpublished_lifecycle_commits": 0,
+      "source_queries": 4,
+      "fault": "explicit_stop",
+      "payload_poisoned": false,
+      "helper_cleanup_confirmed_in_model": true,
+      "native_helper_launched": false,
+      "actual_quotes_read": false
+    }
+  ],
+  "orders_available": false
+}

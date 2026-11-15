@@ -1,0 +1,38 @@
+{
+  "schema": "invented_recorder155_exercise_declaration",
+  "scenarios": [
+    "default_off",
+    "clean_repeats",
+    "post_guard_loss",
+    "stale_final",
+    "retry_boundary",
+    "source_failure",
+    "orphan_commit",
+    "rotation",
+    "health_protocol"
+  ],
+  "sources": {
+    "src/forex_demo_lab/recorder_boundary_155.py": "eb3822595cf88d2c23445476a8d037e50cd52e4210ffc890e9b1059463f0aa3e",
+    "src/forex_demo_lab/recorder_fixture_155.py": "cdeedb82ec58fec73178631ac1cd124ec8dbe92db3f2bb063358849981030c2a",
+    "scripts/recorder-boundary-155.py": "99e6d2cf628f81f39cb9b8f8b04ddc3f211a75545a539ad865162d4d3cbba9fc",
+    "tests/test_recorder_boundary_155.py": "c9387b3032ec61b08e82c7362946e2d85dfb8eefe0304be3c1fb1ee45a7d4537",
+    "src/forex_demo_lab/acquisition_lifecycle_138.py": "803e271ee2db834ac1adc97882943668fc5c118b4b1f4c0970ed1605c236da37",
+    "src/forex_demo_lab/segment_journal_138.py": "1ec0c2fc3d065aec5958794946bda1fa431a95dc3d0be15e71b1f5a099b8e509",
+    "src/forex_demo_lab/supervision_140.py": "b633d32f7db73d8aeff3696e0ec44df6fafbf42305590c1b0f0b9ff7897fc0d2",
+    "src/forex_demo_lab/helper_health_142.py": "325c27249ebf6ecaaf6ac13678f5b416093b84133275cb863d847aca622eaa62",
+    "src/forex_demo_lab/native_supervision_143.py": "3b4eec770d50d785b3496afdf97509bef486c505e1ded7daae1b646389e166ca",
+    "src/forex_demo_lab/paired_replay_133.py": "e961b9cd4665dda51331c9911a3f7868bfd8f24e7e567e4d9a8810105c7d57a8"
+  },
+  "native_helper_launched": false,
+  "collection_dates": null,
+  "source_utc_certified": false,
+  "receipt_utc_certified": false,
+  "tick_delivery_complete": false,
+  "executable_freshness_certified": false,
+  "producer_authenticated": false,
+  "market_data_qualified": false,
+  "paper_evaluation_available": false,
+  "orders_available": false,
+  "real_money_execution_available": false,
+  "source_age": null
+}

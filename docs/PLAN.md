@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Recorder155 invented payload boundary (15 November2026).
+146 targeted checks pass. A separate default-off payload journal joins138/140
+acquisition/supervision with142/143-compatible health observations; nine invented
+exercises retain commit/abort/incomplete state. See [155 results](RECORDER-BOUNDARY-155-RESULTS.md).
+Actual143/MT5 source integration is not implemented. Next review native binding/
+transport and full context/quote format feasibility, preserving136 and all frozen
+sources. Actual collection requires a separate bounded source/date/run plan;
+no provider or dates are assigned. Qualified historical runner, broader Elliott
+acceptance, viewer/visual review and native reconciliation remain open. Protected
+dates/routes,16 unavailable market cells and orders-off persist. Commit/push to main.
+
 Latest — Elliott154 identified MT5 recorder/source readiness (15 November 2026).
 User identifies recorder136 in Experts. Source/help review confirms its separate
 quote file and expired26–30 October window; current terminal/account was not read.

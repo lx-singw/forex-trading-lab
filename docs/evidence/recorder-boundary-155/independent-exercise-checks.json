@@ -1,0 +1,58 @@
+{
+  "cases": [
+    {
+      "name": "default_off",
+      "off_has_no_journals_or_queries": true
+    },
+    {
+      "name": "clean_repeats",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 3
+    },
+    {
+      "name": "post_guard_loss",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 0
+    },
+    {
+      "name": "stale_final",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 0
+    },
+    {
+      "name": "retry_boundary",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 1
+    },
+    {
+      "name": "source_failure",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 0
+    },
+    {
+      "name": "orphan_commit",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 0
+    },
+    {
+      "name": "rotation",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 3
+    },
+    {
+      "name": "health_protocol",
+      "saved_inspection_matches_independent_read": true,
+      "expected_outcome": true,
+      "published_triples": 1
+    }
+  ],
+  "native_queries": 0,
+  "orders_available": false
+}
