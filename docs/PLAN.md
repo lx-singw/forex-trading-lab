@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
+246 targeted checks and ten invented exercises pass; the closed clean158 example
+also replays without native restart. A bounded default-off two-profile bridge
+joins checked diagnostic references to frozen138/140 with independent prefix/
+publication inspection. See [159 results](DIAGNOSTIC-LIFECYCLE-159-RESULTS.md).
+Next define a separately versioned invented-data MQL file/stop handshake trial.
+Live ingestion, contemporaneous account/native guards and actual source/date/run
+qualification remain open. No MT5/account/actual quote access;156 grant stays
+false. Qualified historical runner, broader Elliott/viewer acceptance and native
+reconciliation remain incomplete. Protected dates/routes,16 unavailable market
+cells and orders-off persist. Commit/push to main.
+
 Latest — Native helper/relay158 trial (15 November2026).
 217 checks and four actual helper trials pass with invented files. Separate158
 startup handling distinguishes absence from sampled mains failure; frozen157

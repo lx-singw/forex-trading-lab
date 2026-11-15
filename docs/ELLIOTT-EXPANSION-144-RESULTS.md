@@ -2,6 +2,15 @@
 
 13 November 2026. **In progress; the full approved plan is not complete.**
 
+Latest,15 November: [diagnostic lifecycle159](DIAGNOSTIC-LIFECYCLE-159-RESULTS.md).
+246 targeted checks pass. Checked raw diagnostics join frozen138/140 in a bounded
+two-fixture-profile offline replay, with independent commit/abort/acknowledged-
+prefix inspection. Ten exercises and the archived clean158 source pass without
+native restart; original hashes remain unchanged. Replay guards/time are
+invented; no capture-time account attestation, MT5/actual quote access or market
+qualification follows. Live/MQL operation and source/date/run admission remain
+open;156 stays closed and all16 actual-market cells remain unavailable/null.
+
 Latest,15 November: [native helper/relay158 trials](RECORDER-NATIVE-158-RESULTS.md).
 217 targeted recorder checks and four actual helper trials pass with invented
 files. Separate158 startup/checker code waits for missing initial samples while

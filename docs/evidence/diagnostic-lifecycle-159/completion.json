@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "tests": 246,
+  "new_tests": 29,
+  "existing_tests": 217,
+  "independent_exercises": 10,
+  "archived158_replay_passed": true,
+  "old158_archive_unchanged": true,
+  "prior_sources_unchanged": 118,
+  "frozen_controls_unchanged": 46,
+  "new_native_launch": false,
+  "actual_accounts": 0,
+  "actual_quotes": 0,
+  "actual_orders": 0,
+  "collection_dates": null,
+  "market_eligible": false
+}

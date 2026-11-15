@@ -1,0 +1,13 @@
+{
+  "tests_run": 246,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 46.879,
+  "success": true,
+  "new_tests": 29,
+  "existing_tests": 217,
+  "prior_bindings_unchanged": 118,
+  "frozen_controls_unchanged": 46,
+  "new_native_launch": false
+}

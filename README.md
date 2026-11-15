@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
+246 targeted checks pass. A default-off two-profile replay joins checked raw
+diagnostic references to unchanged138/140 journals, with independent source,
+commit/abort/prefix and receipt checks. Ten invented exercises and the archived
+clean158 example pass; no helper restart, MT5/account/actual quote access occurs.
+See [159 results](docs/DIAGNOSTIC-LIFECYCLE-159-RESULTS.md). Live native/MQL operation
+and source/date/run admission remain open. Collection stays closed; protected
+dates/routes,16 unavailable market cells and orders-off persist.
+
 Latest — Native helper/relay158 trial (15 November2026).
 217 targeted checks and four actual Windows helper trials pass with wholly
 invented price/context files. A separate158 startup policy waits for an initial

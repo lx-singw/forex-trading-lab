@@ -1,5 +1,15 @@
 # Verification — updated 2026-10-06
 
+Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
+246 targeted checks pass:29 new and217 existing, zero failures/errors/skips.
+Ten invented CLI jobs retain two publication receipts and eight zero-publication
+fault/crash outcomes, confirmed in separate checker processes. Closed158 archive
+replay also passes and leaves original hashes unchanged. All118 prior158 bindings
+and46 controls match. See [159 results](DIAGNOSTIC-LIFECYCLE-159-RESULTS.md).
+No new native/helper/MT5/account/actual quote access. Replay time/guards remain
+invented; live capture, MQL runtime and source/date/run qualification stay open.
+Collection is closed; protected dates/routes and orders-off persist.
+
 Latest — Native helper/relay158 trial (15 November2026).
 217 targeted checks pass:12 new and205 existing, zero failures/errors/skips.
 Four actual Windows helper trials use invented WSL price/context files; a clean

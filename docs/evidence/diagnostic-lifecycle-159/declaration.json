@@ -1,0 +1,24 @@
+{
+  "schema": "diagnostic159_verification_v1",
+  "modules": [
+    "test_diagnostic_lifecycle_159",
+    "test_recorder_native_158",
+    "test_recorder_relay_157",
+    "test_recorder_lease_156",
+    "test_recorder_boundary_155",
+    "test_acquisition_138",
+    "test_supervision_140",
+    "test_helper_health_142",
+    "test_native_supervision_143",
+    "test_context_recorder_136",
+    "test_elliott_study_145"
+  ],
+  "expected_tests": 246,
+  "new_tests": 29,
+  "existing_tests": 217,
+  "cases": 10,
+  "archived158_replay": true,
+  "new_native_launch": false,
+  "new_account_query": false,
+  "market_eligible": false
+}

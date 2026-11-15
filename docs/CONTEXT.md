@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
+246 checks pass:29 new/217 existing. A default-off two-fixture-profile bridge binds
+checked source manifests/raw blocks to unchanged138/140 journals and separate
+invented replay guards/time. Ten exercises retain two publications/eight zero-
+publication fault/prefix outcomes; fresh checker processes agree. The original
+clean158 archive replays once without helper restart and stays hash-identical.
+All118 prior158 bindings/46 controls match. See
+[159 results](DIAGNOSTIC-LIFECYCLE-159-RESULTS.md). No MT5/account/actual quote access;
+156 grant stays false. Next define an invented-data MQL file/stop trial. Live
+ingestion, capture-time guards, MQL runtime and source/date/run admission remain
+open. Protected dates/routes,16 unavailable cells and orders-off persist.
+Commit/push each completed sprint to main.
+
 Latest — Native helper/relay158 trial (15 November2026).
 217 targeted checks pass:12 new/205 existing. Separate158 startup/inspection code
 waits for an absent initial sample; sampled power failure still stops. Four actual

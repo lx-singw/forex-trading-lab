@@ -1,0 +1,14 @@
+{
+  "exercise-cli.txt": "bbed9df915dc7b81668d636f5aa3835f26ea0b2ea245a295346f83508498fee5",
+  "declaration.json": "fa3f9daabea8d636011e7799eb87cd21f80e1f2b471c85cb9cb3ed6c3dcc7858",
+  "source.zip": "6520b1de533126d0b3edd78eaa5ba56cf69733eaa8bbd7414a618b7f9a31b064",
+  "physical-sha256.json": "cbe90720d016d88d205b0f8819aeb84659f16887c28182263a7c6f2a576e2ef0",
+  "independent-checks.json": "ef421202f3494e300b429518d51b39076ba7c4df5cbbb060817917475156a589",
+  "invocation.json": "f1bc6f81bd101e7f1682d750b9501372baf10db45c5be6c085db76133161e0f5",
+  "tests.txt": "397bcd9888a68a5d1846864fcd0d3d433382fa6f8318c1d6b895e5978ea3a92e",
+  "completion.json": "5e9be8c56c14ce80003df238009b83604b3ed893f825b84d721897aa3c349973",
+  "source-sha256.json": "964af83efcfe4848ba566807b5c88cbd4c56a92b6e9335387b8f9e9def94f1db",
+  "exercise-summary.json": "a9facaac037a507e7e3590ca4a9d168fe840ada014ca28abfd456b955d5df594",
+  "archived158-replay.json": "628ae65904cb6ce7b130f4f2a846f50eb8ae713547bc02ec61edac0ef76eb3f3",
+  "verification-summary.json": "3df0540268bbdef3a76352b530b6284b0ea8583913404189a5c3e9a80617dc25"
+}
