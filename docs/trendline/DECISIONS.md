@@ -22,6 +22,9 @@ evidence and is not being presented as untouched market validation.
 | 161-03 | Assess any permitted available source, or future collection, as user requested | Wait for user to name a dataset | New source metadata reconnaissance allowed; no old provider-stop renewal, paid service or broker-account creation | No |
 | 162-01 | Correct G01 formation/trigger timing and derived geometry; retain economic rules | Keep an impossible first-age-valid same-bar break | Separate rule/readability review found first-age eligibility at30, so formation30 and trigger31 replace15/30; append arithmetic checks | No |
 | 162-02 | Accept Phase1 written-rule/example milestone after separate primary-agent review | Require an additional human approval not explicitly specified | Roadmap acceptance is readability/agreement with written outputs; no second human/agent review is claimed. Later executable acceptance remains mandatory | No |
+| 163-01 | Reuse unchanged146 calendar/aggregation behind an invented B boundary | Copy/rewrite frozen utilities; relabel their invented inputs market-qualified | Stable interfaces with parity evidence, explicit labels and no market admission | No |
+| 163-02 | Keep whole-file binding separate from causal child lineage | Rename earlier pivots whenever future input is appended | Preserves future-suffix invariance while reports bind all inspected bytes | No |
+| 163-03 | Explicit descriptor-bound audit receipt only for invented validation; refuse market loading entirely | Generic bypass/unlock for protected data | Exercises access ordering without granting market or execution authority | No |
 
 Source reconnaissance on16 November encountered incidental undated EURUSD ticker
 banners on provider documentation pages. No time series/API price request or

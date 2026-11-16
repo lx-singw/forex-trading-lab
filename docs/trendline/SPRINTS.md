@@ -8,7 +8,7 @@ next sprint starts. Later sprint numbers are assigned at start, not promised her
 | --- | --- | --- | --- |
 | 0 | Freeze decisions and research protocol | Complete | 160, RESULTS-160.md |
 | 1 | Rulebook and hand-computed invented examples | Complete: separate primary-agent rule/readability review; no independent human review claimed | 161-162, RESULTS-162.md |
-| 2 | Data manifest, H4/D1 bars, coverage and protected partitions | Pending; market source unassigned | Invented engineering does not satisfy market-data acceptance |
+| 2 | Data manifest, H4/D1 bars, coverage and protected partitions | In progress: invented data boundary/bar/coverage checks pass; B fill model and actual source acceptance open | 163, RESULTS-163.md |
 | 3 | Causal confirmed pivots | Pending | After Phase 2 acceptance |
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Pending | Multiple sprints allowed |
 | 5 | D1 context gate | Pending | All eight decision outcomes |

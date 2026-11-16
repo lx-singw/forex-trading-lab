@@ -1,5 +1,16 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline163 Phase2 invented data boundary (16 November2026).
+93 targeted tests pass:34 new/59 existing. New strict B descriptors and explicit
+file loader bind invented H1 rows to unchanged146 session/aggregation interfaces.
+Coverage, causal parent publication, future-prefix identity and validation unlock
+ordering pass; six invented exercises retained. [163 results](trendline/RESULTS-163.md).
+New metadata plan assigns no source/dates; all28 trendline cells unavailable/null.
+Actual source semantics/use/calendar/coverage remain unqualified. Composite-feed
+documentation is not broker bid/spread evidence. Next Phase2 invented B fill model;
+do not bypass remaining source admission. No market price/API/account/native run,
+orders or grant renewal. Protected dates/routes/frozen Elliott/control code persist.
+
 Latest — Trendline162 Phase1 written-rule/example acceptance (16 November2026).
 Separate primary-agent review corrects G01 formation/trigger to30/31 and derived
 geometry, preserving economic rules and original161 commit. 80 fixture records,

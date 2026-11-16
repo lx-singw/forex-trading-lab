@@ -1,5 +1,15 @@
 # Proposed milestones
 
+Latest — Trendline163 Phase2 engineering increment (16 November2026).
+93 tests pass together:34 new source/bar/coverage/access tests and59 existing
+session/preflight checks. Six invented exercises pass. [163 results](trendline/RESULTS-163.md)
+and [usage](trendline/DATA-163-USAGE.md). Phase1 accepted at162; Phase2 partial.
+Next implement B first-open entry/post-fill adverse exit-price approximation,
+then complete remaining source/manifest/calendar/coverage acceptance. Current
+metadata plan leaves all28 market cells unavailable; actual source qualification
+and historical study lengths/terms are not supplied by invented hashes. Preserve
+protected dates/routes, frozen strategies and orders-off. Commit/push each sprint.
+
 Latest — Trendline162 Phase1 accepted (16 November2026).
 Written rules/examples reviewed in a separate primary-agent pass; G01 fixture
 timing corrected without changing strategy economics. 80 records/28 arithmetic

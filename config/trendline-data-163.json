@@ -1,0 +1,26 @@
+{
+  "schema": "TRL_DATA_163_V1",
+  "kind": "trendline_market_source_plan",
+  "symbol": "EURUSD",
+  "data_level": "B",
+  "source_alias": "unassigned",
+  "geometry_basis": null,
+  "input_sha256": null,
+  "calendar_sha256": null,
+  "spread_semantics": null,
+  "scope": {
+    "warmup": null,
+    "development": null,
+    "validation": null
+  },
+  "evidence_sha256": {
+    "source_use": null,
+    "clock_timezone_dst": null,
+    "session_calendar": null,
+    "coverage_lineage": null,
+    "price_semantics": null,
+    "entry_spread": null,
+    "commission_swap_contract": null,
+    "prior_exposure": null
+  }
+}

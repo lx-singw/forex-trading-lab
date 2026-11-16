@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Trendline163 Phase2 data-boundary engineering (16 November2026).
+93 tests pass together, including34 new checks. Explicit invented B files feed
+unchanged146 calendars/aggregation, with causal H1/H4/D1 bars, gap diagnostics,
+bound validation unlocking and strict source labels. Six invented exercises pass.
+See [163 results](docs/trendline/RESULTS-163.md) and [usage](docs/trendline/DATA-163-USAGE.md).
+Phase2 remains in progress: B fill model and actual source qualification are open.
+All28 trendline market cells remain unavailable/null; no price API, account,
+native runtime or orders. Protected periods/routes and frozen runtime persist.
+
 Latest — Trendline162 Phase 1 acceptance review (16 November 2026).
 Separate rule/readability review corrects one component fixture pair's formation
 timing before engine implementation. All80 fixture records,28 arithmetic equalities
