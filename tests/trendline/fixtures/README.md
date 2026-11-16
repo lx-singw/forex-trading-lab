@@ -13,6 +13,11 @@ formation. No source prices were used to choose them. Their arithmetic and
 existing batch-pivot crosschecks are verification of fixtures, not acceptance of
 new strategy software. Independent human reading has not been performed.
 
+Sprint162 performed a separate primary-agent rule/readability review. G01's
+component formation was corrected from15/trigger30 to30/trigger31: age first
+qualifies at30, so the trigger must follow. Its line/stop arithmetic is updated
+and checked. The original161 bytes remain in Git; no rule or market result changed.
+
 | Pair | Expected distinction |
 | --- | --- |
 | G01 | Valid three-touch close-break; opposing safety, stop and distance |

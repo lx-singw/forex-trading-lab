@@ -59,6 +59,22 @@ def verify():
     arithmetic_checks = 0
     existing_pivot_crosschecks = 0
     for side, sign in (("LONG", 1), ("SHORT", -1)):
+        formation = cases[f"G01_{side}"]
+        inp, expected = formation["inputs"], formation["expected"]
+        first = inp["action_pivots"][0][0]
+        assert first + 30 <= inp["formed_index"] < inp["bar_index"]
+        def line_value(points, index):
+            (a, pa), (b, pb) = points[:2]
+            return F(pa) + (F(pb)-F(pa)) * F(index-a, b-a)
+        action = line_value(inp["action_pivots"], inp["bar_index"])
+        safety = line_value(inp["safety_pivots"], inp["bar_index"])
+        assert action == F(expected["action_value"])
+        assert safety == F(expected["safety_value"])
+        stop = safety - sign * max(F(inp["tick"]), F(inp["atr"])/10)
+        assert stop == F(expected["stop"])
+        entry = F(inp["ask"] if sign == 1 else inp["bid"])
+        assert sign * (entry-stop) == F(expected["distance"])
+        arithmetic_checks += 4
         # Independent price-only gap arithmetic: no strategy detection.
         gap = cases[f"G16_{side}"]
         inp, expected = gap["inputs"], gap["expected"]
@@ -112,12 +128,14 @@ def verify():
     outcomes = [cases[f"G{n:02}_{s}"]["expected"]["outcome"]
                 for n in range(17, 21) for s in ("LONG", "SHORT")]
     assert len(outcomes) == 8 and outcomes.count("ALLOW") == 2
-    summary = {"sprint":161,"kind":"fixture_integrity_and_arithmetic_not_engine_tests",
+    summary = {"sprint":162,"fixture_authorship_sprint":161,
+               "kind":"fixture_integrity_and_arithmetic_not_engine_tests",
                "scenario_count":80,"direction_pairs":40,"rule_count":34,
                "d1_gate_outcomes":8,"independent_arithmetic_equalities":arithmetic_checks,
                "existing_batch_pivot_crosschecks":existing_pivot_crosschecks,
                "engine_implemented":False,"market_trials_run":0,
-               "independent_human_review":"pending",
+               "review":"separate primary-agent rule/readability pass in sprint162",
+               "independent_human_review":"not_performed",
                "sha256":{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()
                          for p in (fixture_path,rule_path)}}
     return summary

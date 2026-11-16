@@ -32,8 +32,8 @@
       "inputs": {
         "evidence": "declared confirmed pivots; not candle-discovery acceptance",
         "strategy": "TRL_BRK3_E1",
-        "bar_index": 30,
-        "formed_index": 15,
+        "bar_index": 31,
+        "formed_index": 30,
         "atr": "2",
         "tick": "0.1",
         "confirmation_radius": 3,
@@ -63,21 +63,21 @@
             "100.6"
           ]
         ],
-        "previous_close": "104.2",
+        "previous_close": "104",
         "close": "105",
         "bid": "105",
         "ask": "105.1"
       },
       "expected": {
-        "action_value": "104",
-        "safety_value": "103",
-        "stop": "102.8",
-        "distance": "2.3",
+        "action_value": "103.8",
+        "safety_value": "103.1",
+        "stop": "102.9",
+        "distance": "2.2",
         "touches": 3,
         "state": "READY",
         "consumed": true
       },
-      "hand_calculation": "Action slope +/-0.2, safety +/-0.1; buffer max(0.1,0.1*2)=0.2. Distance 2.3 is within [1,5]. Spread 0.1 < 0.23. ATR-slope=0.1."
+      "hand_calculation": "Age first qualifies at index30; formation30 precedes trigger31. Action slope +/-0.2, safety +/-0.1; buffer max(0.1,0.1*2)=0.2. At31 long action103.8, safety103.1, stop102.9 and ask105.1 give distance2.2. Short mirrors at200: action96.2, safety96.9, stop97.1 and bid94.9. Distance2.2 is within[1,5]; spread0.1<0.22. No rule was changed."
     },
     {
       "id": "G01_SHORT",
@@ -102,8 +102,8 @@
       "inputs": {
         "evidence": "declared confirmed pivots; not candle-discovery acceptance",
         "strategy": "TRL_BRK3_E1",
-        "bar_index": 30,
-        "formed_index": 15,
+        "bar_index": 31,
+        "formed_index": 30,
         "atr": "2",
         "tick": "0.1",
         "confirmation_radius": 3,
@@ -133,21 +133,21 @@
             "99.4"
           ]
         ],
-        "previous_close": "95.8",
+        "previous_close": "96",
         "close": "95",
         "bid": "94.9",
         "ask": "95"
       },
       "expected": {
-        "action_value": "96",
-        "safety_value": "97",
-        "stop": "97.2",
-        "distance": "2.3",
+        "action_value": "96.2",
+        "safety_value": "96.9",
+        "stop": "97.1",
+        "distance": "2.2",
         "touches": 3,
         "state": "READY",
         "consumed": true
       },
-      "hand_calculation": "Action slope +/-0.2, safety +/-0.1; buffer max(0.1,0.1*2)=0.2. Distance 2.3 is within [1,5]. Spread 0.1 < 0.23. ATR-slope=0.1."
+      "hand_calculation": "Age first qualifies at index30; formation30 precedes trigger31. Action slope +/-0.2, safety +/-0.1; buffer max(0.1,0.1*2)=0.2. At31 long action103.8, safety103.1, stop102.9 and ask105.1 give distance2.2. Short mirrors at200: action96.2, safety96.9, stop97.1 and bid94.9. Distance2.2 is within[1,5]; spread0.1<0.22. No rule was changed."
     },
     {
       "id": "G02_LONG",

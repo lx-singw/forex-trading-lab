@@ -1,5 +1,12 @@
 # Forex Demo Lab
 
+Latest — Trendline162 Phase 1 acceptance review (16 November 2026).
+Separate rule/readability review corrects one component fixture pair's formation
+timing before engine implementation. All80 fixture records,28 arithmetic equalities
+and four existing pivot crosschecks pass. See [162 results](docs/trendline/RESULTS-162.md).
+Phase1 written examples are accepted; no independent human/engine/market review
+is claimed. Next Phase2 data-boundary engineering; market source remains unqualified.
+
 Latest — Trendline161 Phase 1 rulebook and fixtures (16 November 2026).
 34 rules and80 hand-authored invented scenarios precede engine implementation.
 Fixture integrity,20 arithmetic equalities and four unchanged batch-pivot checks

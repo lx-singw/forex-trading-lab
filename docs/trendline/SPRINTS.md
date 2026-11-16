@@ -7,7 +7,7 @@ next sprint starts. Later sprint numbers are assigned at start, not promised her
 | Phase | Milestone | Status | Sprint/evidence |
 | --- | --- | --- | --- |
 | 0 | Freeze decisions and research protocol | Complete | 160, RESULTS-160.md |
-| 1 | Rulebook and hand-computed invented examples | Authored and arithmetic-verified; independent reading not performed | 161, RESULTS-161.md |
+| 1 | Rulebook and hand-computed invented examples | Complete: separate primary-agent rule/readability review; no independent human review claimed | 161-162, RESULTS-162.md |
 | 2 | Data manifest, H4/D1 bars, coverage and protected partitions | Pending; market source unassigned | Invented engineering does not satisfy market-data acceptance |
 | 3 | Causal confirmed pivots | Pending | After Phase 2 acceptance |
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Pending | Multiple sprints allowed |

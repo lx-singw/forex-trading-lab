@@ -20,6 +20,8 @@ evidence and is not being presented as untouched market validation.
 | 161-01 | DLY expires at elapsed>=10 before safety acceptance; post-rounding target still needs >=2R; protocol revision2 | Illustrative >10 pseudocode; check only unrounded target | Resolve fixture-discovered boundary ambiguity before engine code; disabled DLY remains unrun | No |
 | 161-02 | Standard-library JSON rulebook and literal source fixtures; authoring helper is not a strategy evaluator | Add YAML dependency; derive expected results from engine | No dependency installation; preserve expectations before implementation | No |
 | 161-03 | Assess any permitted available source, or future collection, as user requested | Wait for user to name a dataset | New source metadata reconnaissance allowed; no old provider-stop renewal, paid service or broker-account creation | No |
+| 162-01 | Correct G01 formation/trigger timing and derived geometry; retain economic rules | Keep an impossible first-age-valid same-bar break | Separate rule/readability review found first-age eligibility at30, so formation30 and trigger31 replace15/30; append arithmetic checks | No |
+| 162-02 | Accept Phase1 written-rule/example milestone after separate primary-agent review | Require an additional human approval not explicitly specified | Roadmap acceptance is readability/agreement with written outputs; no second human/agent review is claimed. Later executable acceptance remains mandatory | No |
 
 Source reconnaissance on16 November encountered incidental undated EURUSD ticker
 banners on provider documentation pages. No time series/API price request or

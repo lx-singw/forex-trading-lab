@@ -1,5 +1,14 @@
 # Proposed milestones
 
+Latest — Trendline162 Phase1 accepted (16 November2026).
+Written rules/examples reviewed in a separate primary-agent pass; G01 fixture
+timing corrected without changing strategy economics. 80 records/28 arithmetic
+equalities/four unchanged pivot crosschecks pass. See [162 results](trendline/RESULTS-162.md).
+Next163 Phase2 source/run declaration, invented explicit-calendar H1/H4/D1 bars,
+coverage and causal publication checks. No market phase acceptance from invented
+fixtures; qualified source and historical-use evidence remain outstanding.
+Commit/push each sprint before continuing. Orders remain unavailable.
+
 Latest — Trendline161 Phase 1 authorship increment (16 November 2026).
 80 invented expected scenarios and34 rule records are ready for independent
 reading;20 arithmetic equalities/four unchanged batch-pivot checks pass. Engine

@@ -1,0 +1,19 @@
+{
+  "sprint": 162,
+  "fixture_authorship_sprint": 161,
+  "kind": "fixture_integrity_and_arithmetic_not_engine_tests",
+  "scenario_count": 80,
+  "direction_pairs": 40,
+  "rule_count": 34,
+  "d1_gate_outcomes": 8,
+  "independent_arithmetic_equalities": 28,
+  "existing_batch_pivot_crosschecks": 4,
+  "engine_implemented": false,
+  "market_trials_run": 0,
+  "review": "separate primary-agent rule/readability pass in sprint162",
+  "independent_human_review": "not_performed",
+  "sha256": {
+    "tests/trendline/fixtures/golden-161.json": "eff6a93d14dd325c41f80193b6fad0a28e00a1bbdc11f0c6da2c65ae1b1f1801",
+    "docs/trendline/rules-161.json": "58930528aa0dcb774bd29e1807f49d0fa319bb2239b0c403c445a74d2666a2a4"
+  }
+}

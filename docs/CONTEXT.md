@@ -1,5 +1,14 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline162 Phase1 written-rule/example acceptance (16 November2026).
+Separate primary-agent review corrects G01 formation/trigger to30/31 and derived
+geometry, preserving economic rules and original161 commit. 80 fixture records,
+28 arithmetic equalities/four existing pivot crosschecks pass. No second human
+or strategy-engine evidence is claimed. See [162 results](trendline/RESULTS-162.md).
+Next163 Phase2 strict metadata, invented calendar/bar publication and coverage
+engineering. Actual source/calendar/coverage/cost qualification stays open;
+orders, protected dates/provider routes and frozen Elliott runtime unchanged.
+
 Latest — Trendline161 Phase 1 authored expectations (16 November 2026).
 34 source-tagged rules,24 ambiguity resolutions,34 parameter rows and80 invented
 scenarios are authored before engine code. All eight D1 cells,20 independent
