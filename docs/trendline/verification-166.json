@@ -1,0 +1,147 @@
+{
+  "sprint": 166,
+  "date": "2026-11-16",
+  "kind": "invented_causal_pivot_software_verification",
+  "predecessor": "9860d22",
+  "tests": {
+    "total": 198,
+    "new": 27,
+    "existing": 171,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 5.188,
+    "command": "PYTHONPATH=src:tests python3 -m unittest test_trendline_pivots_166 test_trendline_study_165 test_trendline_fills_164 test_trendline_data_163 test_elliott_study_145 test_elliott_sessions_146 -v"
+  },
+  "examples": [
+    {
+      "case": "H4_long",
+      "timeframe": "H4",
+      "observed_bars": 49,
+      "pivot_indices": [
+        17,
+        20,
+        23,
+        26,
+        29
+      ],
+      "confirmed_indices": [
+        20,
+        23,
+        26,
+        29,
+        32
+      ],
+      "gaps": [],
+      "window_state": "COMPLETE",
+      "market_source_qualified": false,
+      "orders_available": false
+    },
+    {
+      "case": "H4_short",
+      "timeframe": "H4",
+      "observed_bars": 49,
+      "pivot_indices": [
+        17,
+        20,
+        23,
+        26,
+        29
+      ],
+      "confirmed_indices": [
+        20,
+        23,
+        26,
+        29,
+        32
+      ],
+      "gaps": [],
+      "window_state": "COMPLETE",
+      "market_source_qualified": false,
+      "orders_available": false
+    },
+    {
+      "case": "D1_low",
+      "timeframe": "D1",
+      "observed_bars": 7,
+      "pivot_indices": [
+        3
+      ],
+      "confirmed_indices": [
+        6
+      ],
+      "gaps": [],
+      "window_state": "COMPLETE",
+      "market_source_qualified": false,
+      "orders_available": false
+    },
+    {
+      "case": "D1_high",
+      "timeframe": "D1",
+      "observed_bars": 7,
+      "pivot_indices": [
+        3
+      ],
+      "confirmed_indices": [
+        6
+      ],
+      "gaps": [],
+      "window_state": "COMPLETE",
+      "market_source_qualified": false,
+      "orders_available": false
+    },
+    {
+      "case": "H4_missing22",
+      "timeframe": "H4",
+      "observed_bars": 48,
+      "pivot_indices": [
+        17,
+        26,
+        29
+      ],
+      "confirmed_indices": [
+        20,
+        29,
+        32
+      ],
+      "gaps": [
+        {
+          "missing_first_index": 22,
+          "missing_last_index": 22,
+          "observed_at": 947109602000
+        }
+      ],
+      "window_state": "COMPLETE",
+      "market_source_qualified": false,
+      "orders_available": false
+    },
+    {
+      "case": "before_confirmation",
+      "timeframe": "H4",
+      "observed_bars": 6,
+      "pivot_indices": [],
+      "confirmed_indices": [],
+      "gaps": [],
+      "window_state": "INSUFFICIENT_CONTIGUOUS_BARS",
+      "market_source_qualified": false,
+      "orders_available": false
+    }
+  ],
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "80cd9f633dfd75420ca853ace1d175749b79c8b944baf68dfc6aeb0e83d87100",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/pivots.py": "c1320e808771fec9a8daaa0d7e77157ccf2fd3dd29afc6159da5aaad22f77180",
+    "src/forex_demo_lab/elliott_full/patterns.py": "37b2613ba58986e64f549d6e2cf2cbd5328588686d78f3a92a21dc815743bcbb",
+    "scripts/trendline-pivots-166.py": "4cfc646db6833461b60a24f422c3f110e411c6f05d446ed9af958f1e2dd2b515"
+  },
+  "tests_sha256": "bde544c82c0e99b8d8a29750f20e9666dfbc5a63c5dd740ce9c1aa89c44296ad",
+  "phase2_engineering_accepted": true,
+  "phase3_software_complete": true,
+  "actual_source_admitted": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "orders_available": false,
+  "workflow_correction": "original_roadmap_Phases1_to9_software_before_Phase10_market_data"
+}

@@ -308,3 +308,20 @@ This is a documented pre-market interpretation, not evidence of executable quote
 timing, a favourable path selection or a new market trial. The price kernel applies
 spread/slippage; commissions, financing, account sizing/reservations, daily loss
 latches, sequence/restart reconciliation and native orders remain separate work.
+
+## Dated clarification — protocol revision 4, sprint 166
+
+16 November 2026. Reconcile the original roadmap's section0 ('Phases1 to9 are
+software. Phase10 is the first contact with data') and Phase2's software acceptance
+bullets with the overly restrictive status notes from160-165. Actual source
+admission is not a prerequisite for implementing/testing Phase3-9 on invented
+inputs. Phase2 engineering criteria are accepted on the labelled163-165 software
+evidence; its actual source/use/calendar/coverage admission remains open. This
+does not mark real data qualified or silently complete its missing evidence.
+
+Continue software phases in order after their engineering checks pass. Before
+any actual development counts, price replay, historical study, collection or
+demo step, the appropriate source/run/date/clock/cost/exposure gates still apply.
+No protected data, stopped provider route, grant, account or order is unlocked.
+The market gates, all five strategies, parameter values and economic rules are
+unchanged. This corrects workflow ordering, not market acceptance.

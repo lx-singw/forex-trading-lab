@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Trendline166 Phase3 software complete (16 November2026).
+198 tests pass together:27 new and171 existing; six invented pivot exports pass.
+See [166 results](trendline/RESULTS-166.md) and [usage](trendline/PIVOTS-166-USAGE.md).
+Correct the165 workflow interpretation: original roadmap0 says Phases1-9 are
+software, Phase10 first market-data contact. Phase2 engineering accepted on
+invented evidence; actual source admission remains OPEN and is not claimed.
+Next Phase4 exact line geometry/ATR_SMA14, then enumeration/strict validation/
+ranking/lifecycle. Continue authorized software work without inventing a source
+prerequisite. Before real counts/replay/study/collection/demo, retain all source/
+run/date/cost/exposure gates. No market prices/provider requests/orders or grants.
+Commit/push each completed sprint to main.
+
 Latest — Trendline165 source/run preflight increment (16 November2026).
 171 tests pass together:37 new,41 price164,34 data163,28 study145 and31 sessions146.
 Canonical config/trendline-study-v1.json now supports the full prospective

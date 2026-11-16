@@ -1,5 +1,17 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline166 workflow correction and Phase3 pivots (16 November2026).
+198 tests pass:27 new/171 existing; six invented CLI exports agree with hand
+expectations. Radius3 H4/D1 raw pivots confirm only with three later available
+bars, retain same-clock ordinals and immutable history, reset on missing scheduled
+bars and reject retrospective backfill. Batch parity passes every tested prefix.
+[166 results](trendline/RESULTS-166.md). Protocol revision4 corrects160-165's extra
+source prerequisite: original roadmap0 permits software Phases1-9 on invented
+inputs. Phase2 engineering and Phase3 software accepted; actual source/use/clock/
+cost/coverage admission remains open before market counts/studies/collection/demo.
+Next Phase4 geometry/ATR_SMA14. All five strategies, protected dates/routes,
+frozen Elliott/account sources,28+16 unavailable market cells and orders-off persist.
+
 Latest — Trendline165 prospective source/run checks (16 November2026).
 171 checks pass:37 new/134 existing. New28-cell adapter reuses unchanged145
 chronology/exposure/evidence logic; adds B/Q semantics,390-H4 history, budgets,

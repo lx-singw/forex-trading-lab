@@ -1,5 +1,15 @@
 # Forex Demo Lab
 
+Latest — Trendline166 Phase3 causal pivots (16 November2026).
+198 tests pass, including27 new checks; six invented CLI exercises pass. Strict
+radius3 H4/D1 pivots preserve confirmation timing/raw history and reject unknown
+neighbours/backfill, with every-prefix parity against unchanged batch detection.
+See [166 results](docs/trendline/RESULTS-166.md). Corrects earlier workflow notes:
+the approved roadmap permits Phases1-9 software on invented inputs. Phase2
+engineering and Phase3 software are accepted; actual source admission remains
+open before market counts/studies. Next Phase4 geometry/ATR. No actual prices,
+provider/account/native access or orders; protected dates/routes remain intact.
+
 Latest — Trendline165 source/run preflight (16 November2026).
 171 tests pass together, including37 new checks. A28-cell trendline adapter reuses
 unchanged145 chronology/evidence checks and adds source semantics,390-H4 warmup,

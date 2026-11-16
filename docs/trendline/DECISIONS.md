@@ -31,6 +31,9 @@ evidence and is not being presented as untouched market validation.
 | 165-01 | Reuse unchanged145 chronological checks with a separate28-cell adapter | Rewrite preflight or reuse its16-cell budget incorrectly | Preserve prior evidence while enforcing the full trendline run scope | No |
 | 165-02 | Full canonical source/run draft in config/trendline-study-v1.json;163 config retained only as coarse-lint example | Maintain competing active source declarations | One current study declaration, no assigned source/date or executed market batch | No |
 | 165-03 | Record Basic non-display lead, unresolved use/price/spread terms and one tool-inaccessible metadata attempt | Infer provider denial, retry through another transport or synthesize executable data | Distinguish observed documents/tool limits from actual source qualification; no quote request or credential disclosure | No |
+| 166-01 | Correct earlier status ordering: accept Phase2 engineering and continue Phase3 software on invented inputs | Keep actual source admission as an extra Phase3 prerequisite | Original roadmap0 explicitly separates Phases1-9 software from Phase10 data contact; protocol revision4 preserves all actual-data/order gates | No |
+| 166-02 | Radius3 incremental raw journal with unchanged batch-reference parity and a separate diagnostic alternating view | Modify frozen2/4/8 observer; rewrite prior pivots on supersession | Implements the existing frozen pivot rule without changing Elliott sources or confirmation history | No |
+| 166-03 | Missing scheduled bars reset the neighbourhood; late/reordered backfill rejects; known closures preserve adjacency | Stitch across unknown candles or retrospectively restore pivots | Avoids hidden neighbours and backdated confirmations; gaps/limits remain explicit | No |
 
 Source reconnaissance on16 November encountered incidental undated EURUSD ticker
 banners on provider documentation pages. No time series/API price request or
