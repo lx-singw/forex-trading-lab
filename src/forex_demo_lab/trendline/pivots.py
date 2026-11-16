@@ -5,6 +5,7 @@ editing frozen Elliott code. Missing scheduled bars start a fresh neighbourhood;
 late/reordered backfill cannot rewrite earlier confirmation history.
 """
 from collections import deque
+from copy import copy
 from dataclasses import dataclass
 from decimal import Decimal
 import hashlib
@@ -71,6 +72,17 @@ class PivotStream:
     def _check(self):
         if self.source._json != self._source_json or self._bindings != bindings():
             raise ValueError("pivot source/protocol bindings changed")
+
+    def fork(self):
+        """Copy mutable frontier; immutable source, bars and pivots may be shared."""
+        self._check()
+        result = copy(self)
+        result._bindings = dict(self._bindings)
+        result._window = deque(self._window,maxlen=self._window.maxlen)
+        result._journal = list(self._journal)
+        result._chain = list(self._chain)
+        result._gaps = list(self._gaps)
+        return result
 
     @property
     def clock(self):

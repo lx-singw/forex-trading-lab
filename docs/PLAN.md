@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Trendline167 Phase4 first increment (16 November2026).
+227 tests pass together:29 geometry/ATR checks and198 existing; six invented CLI
+exports match hand expectations. [167 results](trendline/RESULTS-167.md) and
+[usage](trendline/GEOMETRY-167-USAGE.md). Exact interpolation/projection, simple14-TR
+ATR, frozen pivot-confirmation tolerance and current slope/angle tests are ready.
+Phase4 continues next with bounded enumeration, chronological touches and strict
+penetration/profile validity, followed by dedupe/ranking/lifecycle. Full golden
+line/property acceptance remains pending. Actual market-source/run admission is
+open; no market evaluation, provider/account/native access, orders or grants.
+Commit/push every completed sprint to main.
+
 Latest — Trendline166 Phase3 software complete (16 November2026).
 198 tests pass together:27 new and171 existing; six invented pivot exports pass.
 See [166 results](trendline/RESULTS-166.md) and [usage](trendline/PIVOTS-166-USAGE.md).

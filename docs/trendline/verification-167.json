@@ -1,0 +1,158 @@
+{
+  "sprint": 167,
+  "date": "2026-11-16",
+  "kind": "invented_exact_geometry_atr_software_verification",
+  "predecessor": "f849011",
+  "tests": {
+    "total": 227,
+    "new": 29,
+    "existing": 198,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 9.526,
+    "command": "PYTHONPATH=src:tests python3 -m unittest test_trendline_geometry_167 test_trendline_pivots_166 test_trendline_study_165 test_trendline_fills_164 test_trendline_data_163 test_elliott_study_145 test_elliott_sessions_146 -q"
+  },
+  "examples": [
+    {
+      "case": "H4_long",
+      "timeframe": "H4",
+      "observed_bars": 49,
+      "atr_sma14": {
+        "numerator": 263,
+        "denominator": 140
+      },
+      "angle_range": null,
+      "gap_count": 0,
+      "orders_available": false
+    },
+    {
+      "case": "H4_short",
+      "timeframe": "H4",
+      "observed_bars": 49,
+      "atr_sma14": {
+        "numerator": 263,
+        "denominator": 140
+      },
+      "angle_range": null,
+      "gap_count": 0,
+      "orders_available": false
+    },
+    {
+      "case": "before_confirmation",
+      "timeframe": "H4",
+      "observed_bars": 6,
+      "atr_sma14": null,
+      "angle_range": null,
+      "gap_count": 0,
+      "orders_available": false
+    },
+    {
+      "case": "H4_missing40",
+      "timeframe": "H4",
+      "observed_bars": 48,
+      "atr_sma14": null,
+      "angle_range": null,
+      "gap_count": 1,
+      "orders_available": false
+    },
+    {
+      "case": "D1_warmup15",
+      "timeframe": "D1",
+      "observed_bars": 15,
+      "atr_sma14": {
+        "numerator": 2,
+        "denominator": 1
+      },
+      "angle_range": null,
+      "gap_count": 0,
+      "orders_available": false
+    },
+    {
+      "case": "H4_angle391",
+      "timeframe": "H4",
+      "observed_bars": 391,
+      "atr_sma14": {
+        "numerator": 2,
+        "denominator": 1
+      },
+      "angle_range": {
+        "numerator": 2,
+        "denominator": 1
+      },
+      "gap_count": 0,
+      "orders_available": false
+    }
+  ],
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "80cd9f633dfd75420ca853ace1d175749b79c8b944baf68dfc6aeb0e83d87100",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/pivots.py": "9c9c51b3d3b6b733b8fdb61f49f9ed56b092ff6b5e1975e75bbbe8d921db4350",
+    "src/forex_demo_lab/elliott_full/patterns.py": "37b2613ba58986e64f549d6e2cf2cbd5328588686d78f3a92a21dc815743bcbb",
+    "scripts/trendline-pivots-166.py": "4cfc646db6833461b60a24f422c3f110e411c6f05d446ed9af958f1e2dd2b515",
+    "src/forex_demo_lab/trendline/geometry.py": "b0e2133727d561038b0447c89cd2fd298c77d886c3054c225479af7cf0cd5e8b",
+    "scripts/trendline-geometry-167.py": "bca75a94f5936b0eb72800a6ec8cded79d8e109dc9ed8728ce166cba949689e6"
+  },
+  "tests_sha256": "f2cbf38d946772e5a4947936092f3e44a0bf1f2dee7c74be4de32d63488cf346",
+  "unchanged_git_filtered_paths": [
+    "config/baseline.json",
+    "config/challenger-chronology-093.json",
+    "config/context-recorder-136.json",
+    "config/cost-probe-128.json",
+    "config/coverage-137.json",
+    "config/demo-source-103.json",
+    "config/demo-source-103.sha256",
+    "config/elliott-full-v1.json",
+    "config/elliott-waves-124.json",
+    "config/engine-readiness-123.json",
+    "config/evidence-summary-129.json",
+    "config/forward-eligibility-134.json",
+    "config/forward-quality-131.json",
+    "config/fresh-input-135.json",
+    "config/historical-evidence-094.json",
+    "config/metadata-probe-127.json",
+    "config/paired-recorder-132.json",
+    "config/paired-replay-133.json",
+    "config/research-actions-036.json",
+    "config/research-actions-038.json",
+    "config/research-candidates-008.json",
+    "config/research-candidates-028.json",
+    "config/research-candidates-030.json",
+    "config/research-candidates-117.json",
+    "config/tick-pilot-003-adverse.json",
+    "config/tick-pilot-003.json",
+    "config/timing-probe-130.json",
+    "config/trendline-data-163.json",
+    "config/trendline-study-v1.json",
+    "src/forex_demo_lab/elliott_full/__init__.py",
+    "src/forex_demo_lab/elliott_full/__main__.py",
+    "src/forex_demo_lab/elliott_full/admission.py",
+    "src/forex_demo_lab/elliott_full/bars.py",
+    "src/forex_demo_lab/elliott_full/contracts.py",
+    "src/forex_demo_lab/elliott_full/controls.py",
+    "src/forex_demo_lab/elliott_full/counts.py",
+    "src/forex_demo_lab/elliott_full/crosscheck.py",
+    "src/forex_demo_lab/elliott_full/engine.py",
+    "src/forex_demo_lab/elliott_full/execution.py",
+    "src/forex_demo_lab/elliott_full/incremental.py",
+    "src/forex_demo_lab/elliott_full/interpretations.py",
+    "src/forex_demo_lab/elliott_full/patterns.py",
+    "src/forex_demo_lab/elliott_full/replay.py",
+    "src/forex_demo_lab/elliott_full/report.py",
+    "src/forex_demo_lab/elliott_full/rulebook.py",
+    "src/forex_demo_lab/elliott_full/setups.py",
+    "src/forex_demo_lab/elliott_full/shared.py",
+    "src/forex_demo_lab/elliott_full/strategy.py",
+    "src/forex_demo_lab/elliott_full/windows.py",
+    "src/forex_demo_lab/elliott_sessions_146.py",
+    "tests/trendline/fixtures/README.md",
+    "tests/trendline/fixtures/golden-161.json"
+  ],
+  "phase4_status": "in_progress_geometry_atr_increment_verified",
+  "actual_source_admitted": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "orders_available": false
+}

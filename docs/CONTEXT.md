@@ -1,5 +1,15 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline167 Phase4 geometry/ATR increment (16 November2026).
+227 tests pass:29 new/198 existing; six invented CLI examples pass. Exact rational
+rays and current ATR/390-bar normalized-angle slope checks are implemented; each
+pivot's quarter-ATR tolerance is frozen at confirmation. Missing bars reset warmup,
+known closures retain gap-aware prior close, and rejected input is atomic. See
+[167 results](trendline/RESULTS-167.md). Phase4 remains in progress: next bounded
+enumeration/touches/strict validity, then dedupe/ranking/lifecycle. Actual source
+admission stays open; frozen Elliott/account sources,28+16 unavailable market cells,
+protected dates/routes, native grants and orders-off persist.
+
 Latest — Trendline166 workflow correction and Phase3 pivots (16 November2026).
 198 tests pass:27 new/171 existing; six invented CLI exports agree with hand
 expectations. Radius3 H4/D1 raw pivots confirm only with three later available

@@ -1,5 +1,13 @@
 # Forex Demo Lab
 
+Latest — Trendline167 Phase4 geometry/ATR increment (16 November2026).
+227 tests pass:29 new/198 existing; six invented CLI exercises match expectations.
+Exact ray arithmetic, ATR_SMA14, frozen confirmation tolerances and inclusive
+normalized-angle filters preserve causal gap/closure handling. See
+[167 results](docs/trendline/RESULTS-167.md). Phase4 continues with enumeration and
+strict validity, then ranking/lifecycle. Actual-source admission remains open;
+market cells, protected routes/dates, native grants and orders-off persist.
+
 Latest — Trendline166 Phase3 causal pivots (16 November2026).
 198 tests pass, including27 new checks; six invented CLI exercises pass. Strict
 radius3 H4/D1 pivots preserve confirmation timing/raw history and reject unknown
