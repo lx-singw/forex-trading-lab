@@ -1,0 +1,277 @@
+# TRL_V1 research protocol
+
+Frozen in sprint 160 on 16 November 2026 (Africa/Johannesburg), before any
+trendline market prices, counts or returns were inspected. Full roadmap approved
+by the user; phases remain milestones containing one or more numbered sprints.
+
+## Authority and scope
+
+The imported [revision-2 specification](../tori_trendline_strategy_full/TORI-TRENDLINE-STRATEGY-SPEC.md)
+and [full roadmap](../tori_trendline_strategy_full/TORI-TRENDLINE-BUILD-ROADMAP.md)
+are retained unchanged as source proposals. This protocol records the Phase 0
+decisions and takes precedence where it explicitly resolves their ambiguities.
+No strategy, phase or acceptance requirement is silently removed. A later change
+to economic rules needs a dated decision, a new protocol/config revision and a
+recorded trial before its results are inspected. A hash identifies bytes; it does
+not qualify a source, authenticate a claim or prove an untouched holdout.
+
+TRL_V1 is a mechanical strategy inspired by Tori Trades, not a reconstruction of
+her discretionary trading. This phase permits research, historical simulation
+and invented fixtures. Orders remain unavailable. There is no real-money mode,
+live toggle, recovery sizing, martingale, averaging down or pyramiding.
+
+## Phase 0 decisions
+
+| ID | Frozen decision |
+| --- | --- |
+| D1 | EURUSD first, USD accounting. Additional instruments require a declaration before their outcomes. |
+| D2 | H4 setups, derived from H1; completed D1 for the context variant. |
+| D3 | Baseline context off; D1 table is a separate strategy. W1/MN and connected chains are later optional trials. |
+| D4 | All five initial strategies retained, built in order: TRL_BRK3_E1, TRL_FXR_M, TRL_BRK2_E1, TRL_BNC_E1, TRL_BRK3_E1_D1. |
+| D5 | Strict penetration allowance zero, no touch exception and no retroactive restoration. |
+| D6 | Core stop uses current safety-line value plus outward buffer. Only FXR_M projects four bars ahead. |
+| D7 | Risk fraction 0.0025 of positive executable equity, floored lots; daily entry pause 0.01. Not a pure rescaling of trades. |
+| D8 | Pyramiding off. One held position/reservation per account. |
+| D9 | Level B for development, signal counting and separately labelled behaviour research. Level Q required for qualified execution research/demo gates. No market source, dates or geometry basis is assigned today. Invented data are software evidence only. |
+| D10 | Retain lab base/adverse cost definitions and accounting. Hypothetical terms cannot become verified broker costs. |
+| D11 | Inherit all existing date/exposure/provider restrictions below. No new acquisition window or holdout assigned. |
+| D12 | Experiment A independent accounts; B paired exits on identical BRK3 entries/stops/sizes; C combined portfolio deferred. |
+| D13 | Consume each opportunity at the trigger, including skips, expiry, abstention and no fill. Preserve through restart and alias merges. |
+| D14 | Initial 28 qualified comparison cells plus declared paired analysis; at most one separately frozen hypothetical-cost sensitivity batch of the same shape. Count every variant, revision and attempted alternative. |
+| D15 | At least 60 entry-eligible opportunities per strategy in development for feasibility. Counts are not closed trades or evidence of an edge. |
+| D16 | DLY remains declared, disabled and outside initial market trials. Phase 10 may propose a separately frozen trial from NO_SAFETY_LINE counts before returns. |
+
+These defaults are implementation decisions within the user's approval of the
+full roadmap. No missing source fact or data permission is inferred from that
+approval. Research implementation approval does not activate a demo run.
+
+## Parameters
+
+This is the frozen P-xx table from specification 7.2 with explicit operational
+clarifications below. One machine-readable config will be introduced with its
+loader; do not maintain a second independently editable parameter declaration.
+
+| ID | Parameter | Value |
+| --- | --- | --- |
+| P-01 | TF_SETUP | H4 |
+| P-02 | TF_CONTEXT | D1 |
+| P-03 | PIV_RADIUS | 3, strict extrema; equal and dual-extreme bars excluded |
+| P-04 | MIN_TAP_SPACING | 6 bar indices, earliest accepted wins |
+| P-05 | Touches | BRK3/FXR_M >=3; BRK2 exactly 2; BNC >=2 prior |
+| P-06 | AGE_MIN_BARS | 30 H4; D1 context 15 D1 |
+| P-06b | FORMATION_MIN_BARS | 90 H4, FXR_M only |
+| P-07 | TOUCH_TOL | 0.25 times ATR_SMA14 at each pivot's confirmation; frozen per pivot |
+| P-08 | PEN_ALLOW | 0 ticks |
+| P-09 | MAX_ANGLE_DEG | 45, approximate FXR_M chart-normalisation test |
+| P-10 | ANGLE_WINDOW_BARS | 390, complete history required for this test |
+| P-11 | CHART_ASPECT | 0.5 |
+| P-12 | MAX_SLOPE_ATR_PER_BAR | 0.5, ATR at evaluation bar |
+| P-13 | BREAK_MARGIN | 1 tick |
+| P-14 | SAFETY_MIN_TOUCHES | 2 |
+| P-15 | STOP_PROJ_BARS | 0 core; 4 FXR_M |
+| P-16 | STOP_BUFFER | max(1 tick, 0.10 times ATR_SMA14) |
+| P-17 | MIN_STOP_ATR / MAX_STOP_ATR | 0.5 / 2.5, inclusive |
+| P-18 | MAX_SPREAD_STOP_FRAC | 0.10, inclusive |
+| P-19 | Eligibility expiry | next declared H4 close, exclusive |
+| P-20 | TP_R_MIN | 2.0 |
+| P-21 | RISK_FRAC | 0.0025 |
+| P-22 | DAILY_LOSS_PAUSE | 0.01 of UTC-day reference executable equity |
+| P-23 | MAX_CONCURRENT | 1 per independent account |
+| P-24 | Attempt consumption | trigger |
+| P-25 | CONTEXT_GATE | off baseline; D1 variant only |
+| P-26 | Level Q limits | age <=2s; spread <=1.5 pips |
+| P-27 | MAX_HOLD | none, except partition liquidation policy |
+| P-28 | LINE_LOOKBACK_BARS | 600 H4 (or 600 D1 for D1 line engine), before cap |
+| P-29 | PIVOT_CAP | 256 per kind; excess blocks this snapshot, never silently truncates |
+| P-30 | RETIRE_AFTER_BARS | retire after >500 valid untriggered bars |
+| P-31 | CONTEXT_MAX_ATR | 3 times ATR_SMA14(D1) |
+| P-32 | MAX_CHASE_ATR | 1.0, disabled DLY only |
+| P-33 | SETUP_EXPIRY_BARS | 10 H4, disabled DLY only |
+
+ATR_SMA14 is the arithmetic mean of 14 true ranges with prior close, not RMA.
+All geometry, comparisons and rounding use decimal/rational arithmetic. No float
+epsilon or rounding may erase a penetration. A chart-angle approximation is not
+a faithful reproduction of chart pixels. Missing/zero ATR or incomplete required
+angle history blocks eligibility with a diagnostic.
+
+## Source ambiguities resolved
+
+| ID | Binding resolution |
+| --- | --- |
+| A-01 | Confirmed same-kind pivots, correct-side distance within frozen tolerance, chronological spacing; C1 resolves anchors. |
+| A-02 | Any strict penetration kills the line; no pivot/touch exemption or later restoration. |
+| A-03 | Close beyond by >=1 tick, previous close at/on opposite side, pre-existing formation. |
+| A-04 | Enumerate all eligible lines; consume all simultaneous triggers; opposing sides abstain, same side ranks; unresolved economic ties abstain. |
+| A-05 | BRK2 exactly 2; BRK3/FXR_M >=3; BNC >=2 prior, disjoint break categories per line. |
+| A-06 | Age 30 H4 for core; formation span 90 H4 for FXR_M; use declared bar indices, not elapsed weekend hours. |
+| A-07 | Fixed approximate angle and ATR-slope tests; no zoom-dependent tuning. |
+| A-08 | Missing safety line abstains baseline; only declared disabled DLY may wait. |
+| A-09 | Opposing line >=2 touches, correct side, confirmed and unpoked through trigger bar, C3. |
+| A-10 | Entry-side stop distance 0.5 to 2.5 ATR; spread <=0.10 distance. |
+| A-11 | Current buffered core line; four-bar projected buffered FXR_M line; reject crossed stops. |
+| A-12 | E1 hard stop, favourable-only trail and next-quote close-beyond exit; E2 initial hard stop plus S/R target, no trail. |
+| A-13 | Fixed lowest-price-anchored clusters, >=2 observations, median, nearest target >=2R; C7 resolves source wording. |
+| A-14 | Adds off. |
+| A-15 | Context off baseline; D1 table variant, no self-reference. |
+| A-16 | Source-specific declared calendar and availability; never infer from server name. |
+| A-17 | Exclude trigger bar only for the action-line break test; apply C3 to safety/context. |
+| A-18 | Newly eligible after a prior close beyond -> MISSED_BREAK; no backdated entry. |
+| A-19 | Immutable revisions, recompute on confirmations; check penetration each completed bar; stable geometry/group history. |
+| A-20 | EURUSD first; futures/metals findings do not establish EURUSD results. |
+| A-21 | Consume at trigger, before context, reservation and execution filters. |
+| A-22 | Distinct Q/B input, geometry, execution and result labels. B cannot satisfy demo gate. |
+| A-23 | Six-bar spacing is FXR origin only for FXR_M, borrowed convention elsewhere. |
+| A-24 | Ordinary completed bounce contact is distinct from confirmed pivot touch; never wait for future confirmation to backdate entry. |
+
+## Implementation clarifications
+
+### C1. Anchor spacing
+
+Start with A and process every available same-kind pivot chronologically. Accept
+only correct-side, within-tolerance pivots at least six indices after the previous
+accepted touch. B has no spacing override. If B is skipped, reject that candidate
+pair as ANCHOR_SPACING_CONFLICT. This preserves earliest-wins spacing and ensures
+both anchors of an admitted candidate really count. Fixture: indices A=0, C=8,
+B=12 on the same line accept 0,8 and reject pair (0,12); do not count 0,8,12.
+
+### C2. Deduplication and ranking
+
+Deduplicate only fully validated candidate pairs sharing exactly the same ordered
+touch set. Prefer an existing validated pair joining earliest/latest touches if
+it produces exactly that set. Otherwise use the existing validated candidate with
+least summed absolute touch distance, then canonical geometry id. Never invent a
+new line by reanchoring without rerunning touches, spacing, penetration, age/span
+and slope checks. Drop strict subsets only within the same strategy eligibility
+profile; deduplication must not erase an exactly-two-touch BRK2 candidate because
+a separate BRK3 profile has more touches. Canonical ids settle geometry/display
+ties only, never an economic trade tie.
+
+### C3. Completed-bar order and line eligibility
+
+Publish completed bars at available_at in a stable, recorded event order. Derive
+confirmations only from available observations. Evaluate action-line breaks using
+lines formed before this bar and no penetration in earlier completed bars. A
+penetration on this action bar with no qualifying close-break makes it POKED.
+A bounce requires no penetration on its own contact bar. A proposed safety or
+D1 context line must survive penetration checks INCLUDING the current completed
+bar: the action-break exception cannot make a wick-poked safety line eligible.
+All groups triggering now are consumed before selection/filters. Newly confirmed
+geometry/revisions cannot generate a break on their own formation bar. Late
+availability never creates an entry at an already passed bar open.
+
+### C4. Entry and data-level semantics
+
+Q requires a recorded eligible observation after the decision is available;
+source and receipt order must both support causality/freshness. Same timestamps
+need an explicit sequence; unresolved material ordering abstains. B enters at the
+first scheduled H1 open at/after the H4 close, only if the decision was available
+by that open in declared event order. Missing/late data -> unavailable opportunity,
+not a later favourable substitute. Geometry may be bid_only or supplied mid
+candles, but B execution additionally needs bid bars and declared spread semantics
+or separately supplied executable-side bars. Mid candles alone cannot produce a
+bid/ask ledger. Never average separate bid/ask extremes into a midpoint.
+
+Initial stop geometry/ATR is frozen at the decision, then crossed-stop,
+distance/spread, sizing, margin, pause and reservation gates are rechecked at the
+entry observation. First eligible execution attempt is final; no blind retries.
+Protection/exit checks continue even when entry filters fail. A stop cannot execute
+before a fill. Stops tightened from a completed bar apply only to later events;
+they are never tested against that bar's earlier range. Preserve the old hard stop
+until any replacement is effective. E1 close-beyond schedules exit before changing
+the line; selection of a new line cannot cancel that exit. Replacement lines must
+form after entry; unresolved safety-selection ties abstain, not use parser order.
+
+### C5. Partition endpoints
+
+Funded intervals are [start,end). Before replay, the run manifest must declare a
+liquidation_at inside that partition: default start of its last scheduled complete
+H1 slot. New entries stop at liquidation_at. A held position exits on the first
+eligible exit observation at/after liquidation_at and strictly before end. Q uses
+observed bid/ask, B uses that declared slot's open. If no such observation exists,
+report OPEN_AT_BOUNDARY; never use a later held-out quote or retrospectively choose
+the best/last quote. Keep its marked equity and open liability visible, exclude it
+from closed-trade statistics, and mark the cell unavailable. Stops/financing still
+apply until liquidation. No incoming position/profits cross into validation.
+
+### C6. Signal counting
+
+Phase 10 counts line triggers and entry-eligible opportunities using frozen
+geometry, safety, spread and stop rules, BEFORE account occupancy, lot/margin,
+realised equity and exit-dependent loss pauses. Call them opportunities, not
+executed trades. Report every filter denominator and NO_SAFETY_LINE share. Actual
+entries/closed trades and capacity effects belong to Phase 11 simulation. The
+60-opportunity gate does not guarantee 50 closed validation trades. Do not compute
+or hide P&L to claim an outcome-free count.
+
+### C7. Levels, controls and comparison interpretation
+
+S/R clusters are anchored at their lowest member, not transitive single-linkage:
+prices 0,0.2,0.4 with tolerance 0.25 give {0,0.2} and {0.4}, not one chain. Dedup
+the same physical H4/D1 extreme by occurrence and price, not all historical equal
+prices. Paired exit analysis uses a common entry stream and fixed initial sizes;
+report counterfactual overlapping holds explicitly, without claiming an executable
+one-position portfolio. Frozen T12_D/CASH controls need compatible qualified input;
+incompatible Level B control cells are UNAVAILABLE, never silently reimplemented.
+
+## Data, costs and study admission
+
+2024 remains already-seen development; 2025 consumed/excluded; October 2026
+quarantined; November-December 2026 reserved/untouched. These restrictions include
+warmup access. Older 2020-2023 input qualification remains unresolved. Closed
+provider/native090/attach-only SDK routes stay closed. Recorder136 remains expired;
+156's immutable grant stays false. This protocol assigns no source, dates, native
+runtime trial, capture window, terminal or account. No recursive data discovery.
+
+Study admission needs 253 complete eligible prior bars on each required D1/H4/H1
+timeframe plus all history needed by an active rule (including the 390-bar angle
+window), 24 calendar months development and 24 genuinely unseen validation, with
+declared timezone/DST, session boundaries, costs and source-use/lineage evidence.
+Source aliases, file hashes and explicit permitted scopes go into a separate run
+manifest before prices/returns; unknowns remain unknown. Level B permission does
+not relax protected dates or qualify a provider. Qualification and complete trial
+history require review; self-declarations alone cannot admit a market study.
+
+Experiment A retains five strategies, T12_D and CASH, two cost profiles, two
+partitions (28 cells). Hypothetical profiles retain commission USD7/10 per
+round-turn lot, slippage 0.2/0.5 pip per fill and adverse spread floor 1.2 pips;
+commission, financing, contract and margin terms require exact pre-run declarations
+from existing definitions or explicitly labelled hypothetical assumptions.
+Spread/slippage count once. Swaps, triple rollover, gaps and risk exceedances are
+reported. Stops and entry pauses are not guaranteed loss caps.
+
+Screen: positive net profit/expectancy under both validation costs, observed adverse
+drawdown <=5%, >=50 closed validation trades and 24 monthly marks. Missing evidence
+is UNAVAILABLE; too few trades INSUFFICIENT; economic failure FAIL. A pass earns
+research review only. Inferential claims need a separately frozen uncertainty
+method accounting for correlated trades and every attempted alternative.
+
+## Phase gates and operational scope
+
+Follow phases 0-12 in order; phase 13 tracks are optional as written. Software can
+be built/tested on invented fixtures, but a data-dependent phase cannot be declared
+complete without its required admitted input. Record partial progress and the
+concrete blocker rather than bypassing the gate. Verification accompanies each
+increment; Phase 9 remains the complete acceptance matrix. Phase 10 retains its
+position after software acceptance, as the approved full roadmap specifies.
+
+Phase 12 requires qualified Q historical evidence, then a separately frozen shadow
+window (proposed 60 scheduled sessions, >=20 closed trades and zero unexplained
+operational faults); no extending a window just to pass. A future native boundary
+must default off, reject actual REAL/CONTEST/unknown enums, check actual DEMO and
+continuity again before every submission/modification/cancellation, reconcile
+restart/partial/ambiguous fills and preserve protective stops. Native transport is
+separate from research. No real-money toggle, credentials, identity-derived hashes,
+paid services, broker-account creation or unrelated terminal changes are permitted.
+An actual bounded demo run requires the user's specific enablement at that stage.
+
+Every completed sprint: review intended diff, run relevant verification, document
+scope/limits, commit descriptively and push main. Generated prices/reports/runtime
+artifacts remain ignored. Do not alter frozen Elliott/control/evidence sources.
+
+## Acceptance and current state
+
+Phase 0 is complete when decisions, all A-01..A-24 resolutions, the parameter
+table, clarifications, repository reuse inventory and pause/resume note are reviewed
+and committed. No test-suite count or market result is claimed for a document
+freeze. Phase 1 next supplies a rulebook and independently hand-computed invented
+fixtures before any trendline implementation. All five strategies remain in scope.

@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline160 Phase 0 protocol freeze (16 November 2026).
+User approved the full roadmap, sequential phases as milestones and commit/push
+each sprint. [Protocol](trendline/PROTOCOL.md) freezes D1-D16, P-xx, A-01..A-24 and
+seven operational clarifications; all five strategies retained. Level B selected
+for labelled development, source/dates unassigned; Q required for execution/demo
+evidence. Repository reuse assumptions reconciled through159, existing151 viewer
+acknowledged. Elliott/recorder expansion is paused at43b5f9a without editing frozen
+records. See [160 results](trendline/RESULTS-160.md) and [tracker](trendline/SPRINTS.md).
+Documentation verification only; no runtime/market/account access or strategy
+test-suite claim. Protected periods/provider closures, expired136, false156 grant,
+16 prior unavailable market cells and orders-off persist. Next Phase 1 fixtures
+and rulebook. Commit/push every completed sprint to main.
+
 Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
 246 checks pass:29 new/217 existing. A default-off two-fixture-profile bridge binds
 checked source manifests/raw blocks to unchanged138/140 journals and separate

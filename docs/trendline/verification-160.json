@@ -1,0 +1,24 @@
+{
+  "sprint": 160,
+  "kind": "documentation_review_not_strategy_tests",
+  "date": "2026-11-16",
+  "baseline": "43b5f9a",
+  "decisions": 16,
+  "parameter_rows": 34,
+  "ambiguities": 24,
+  "clarifications": 7,
+  "broken_local_links": [],
+  "tracked_changes": [
+    "README.md",
+    "docs/CONTEXT.md",
+    "docs/PLAN.md"
+  ],
+  "frozen_runtime_changed": false,
+  "imported_reference_sha256": {
+    "docs/tori_trendline_strategy_full/TORI-TRENDLINE-BUILD-ROADMAP.md": "6c7b933a1c379ee32e82b50c5afa9186d98e14da3d4607905714fbbb1faa1987",
+    "docs/tori_trendline_strategy_full/TORI-TRENDLINE-STRATEGY-SPEC.md": "f037ab3c82587fc7616b45c1fb66bb6bc25d840206c37d1f3973435456c005c2"
+  },
+  "market_source_assigned": false,
+  "market_prices_read": false,
+  "orders_available": false
+}

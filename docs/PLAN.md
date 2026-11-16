@@ -1,5 +1,18 @@
 # Proposed milestones
 
+Latest — Trendline160 Phase 0 complete (16 November 2026).
+Follow the user's full Tori-inspired roadmap in order, using numbered sprints
+within phase milestones. [Frozen protocol](trendline/PROTOCOL.md), decision log,
+reuse inventory and Elliott/recorder pause note retain all five strategies and
+resolve the identified rule ambiguities before prices/results. Level B development
+selected; market source/dates remain unassigned and Q execution qualification is
+separate. See [160 results](trendline/RESULTS-160.md) and [tracker](trendline/SPRINTS.md).
+Next sprint161: Phase 1 rulebook and hand-computed invented fixtures; then Phase 2
+source/manifest/bar/coverage acceptance. Do not silently bypass a data-dependent
+phase or treat invented evidence as market acceptance. No changes to frozen
+runtime/evidence, native grants, protected periods, closed provider routes or
+orders-off. Commit/push each completed sprint to main.
+
 Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
 246 targeted checks and ten invented exercises pass; the closed clean158 example
 also replays without native restart. A bounded default-off two-profile bridge

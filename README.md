@@ -1,5 +1,17 @@
 # Forex Demo Lab
 
+Latest — Trendline160 Phase 0 protocol freeze (16 November 2026).
+The user selected the full Tori-inspired trendline roadmap. All five initial
+strategies and phases are retained; phases are milestones with numbered sprints.
+The [protocol](docs/trendline/PROTOCOL.md) freezes decisions, parameters and explicit
+causality/geometry/counting/end-boundary clarifications before results. Level B
+development is selected, with no assigned market source or dates; Level Q remains
+required for execution/demo evidence. See [160 results](docs/trendline/RESULTS-160.md)
+and the [sprint tracker](docs/trendline/SPRINTS.md). Active Elliott/recorder expansion
+is [paused at159](docs/ELLIOTT-EXPANSION-144-PAUSED.md), preserving its records.
+No runtime, price access or orders; protected dates/routes and closed grants persist.
+Next Phase 1: rulebook and hand-computed invented fixtures before engine code.
+
 Latest — Diagnostic lifecycle159 offline bridge (15 November2026).
 246 targeted checks pass. A default-off two-profile replay joins checked raw
 diagnostic references to unchanged138/140 journals, with independent source,
