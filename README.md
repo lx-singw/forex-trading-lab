@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Trendline164 Phase2 invented price model (16 November2026).
+190 tests pass together, including41 new checks. Sixteen invented price exercises
+cover both directions/costs, gap stops, adverse intrabar ambiguity, known opening
+targets and late-entry skips. Explicit B opening assumptions are separate from
+later available ranges; midpoint-only input stays non-executable. See
+[164 results](docs/trendline/RESULTS-164.md) and [usage](docs/trendline/FILLS-164-USAGE.md).
+Phase2 source/run qualification remains open. No account ledger, native orders or
+market result is introduced; protected dates/routes and frozen trading code persist.
+
 Latest — Trendline163 Phase2 data-boundary engineering (16 November2026).
 93 tests pass together, including34 new checks. Explicit invented B files feed
 unchanged146 calendars/aggregation, with causal H1/H4/D1 bars, gap diagnostics,

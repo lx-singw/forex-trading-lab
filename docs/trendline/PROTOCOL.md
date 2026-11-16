@@ -285,3 +285,26 @@ the illustrative pseudocode's >10 is not authoritative. Target rounding toward
 entry must be followed by the >=2R check; rounding cannot turn a sub-2R target
 into a qualifying one. No numerical parameter changes, variant activation or
 market trial occurred. Revision1 remains recoverable at sprint160's commit.
+
+## Dated clarification — protocol revision 3, sprint 164
+
+16 November 2026, before any TRL market counts/returns. A Level B historical H1
+open is an explicit price/spread and event-order assumption, not evidence that a
+completed H1 row was received at its opening time. A decision arriving after the
+first scheduled H1 open cannot fill that passed open. Nonzero finalization delays
+can therefore make every otherwise eligible entry late; do not reset them to
+obtain trades. The later range is usable only after the hour is available.
+
+For a position already held before an opening event, a stop/target reached at
+that opening precedes the unresolved later range. Targets fill at their original
+limit with no favourable gap overshoot or extra slippage, matching retained120
+accounting. A stop gap fills the opening exit-side price with adverse market
+slippage. Only if neither level was reached at the opening and both are reached
+within the later unresolved range does the adverse stop win. This clarifies the
+spec's 'always adverse' as an intrabar ambiguity rule, not permission to ignore a
+known preceding opening event. Newly filled positions use only the post-open range.
+
+This is a documented pre-market interpretation, not evidence of executable quote
+timing, a favourable path selection or a new market trial. The price kernel applies
+spread/slippage; commissions, financing, account sizing/reservations, daily loss
+latches, sequence/restart reconciliation and native orders remain separate work.

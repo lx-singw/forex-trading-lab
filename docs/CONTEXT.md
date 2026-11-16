@@ -1,5 +1,17 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline164 invented B price calculations (16 November2026).
+190 targeted checks pass:41 new/149 existing. Exact opening/closed-hour pricing
+separates decisions from future range, refuses late/missing opens and mid-only
+execution, applies inherited spread/slippage and preserves pre-fill/prospective
+protection. Sixteen invented exercises retain four skips/twelve price outcomes;
+no account/trade-return evidence is claimed. [164 results](trendline/RESULTS-164.md).
+Protocol revision3 records known opening reach before ambiguous later range.
+Phase2 source/run/calendar/coverage/use qualification remains open; all28 new
+market cells unavailable. Phase7 account/restart/risk integration is unfinished.
+No actual prices/accounts/provider requests/native run/orders/grant renewal.
+Protected dates/routes and frozen Elliott/control/accounting sources persist.
+
 Latest — Trendline163 Phase2 invented data boundary (16 November2026).
 93 targeted tests pass:34 new/59 existing. New strict B descriptors and explicit
 file loader bind invented H1 rows to unchanged146 session/aggregation interfaces.

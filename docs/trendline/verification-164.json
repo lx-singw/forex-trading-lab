@@ -1,0 +1,179 @@
+{
+  "sprint": 164,
+  "date": "2026-11-16",
+  "kind": "invented_price_component_verification",
+  "predecessor": "4930d85",
+  "tests": {
+    "total": 190,
+    "new": 41,
+    "existing": 149,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 44.479,
+    "command": "PYTHONPATH=src:tests python3 -m unittest test_trendline_fills_164 test_trendline_data_163 test_elliott_sessions_146 test_elliott_study_145 test_daily_fills_120 -v"
+  },
+  "exercises": [
+    {
+      "case": "base_long_gap_stop",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10054",
+      "exit_reason": "STOP_OPEN_GAP",
+      "exit_price": "1.09698",
+      "price_risk_excess": "0.00152"
+    },
+    {
+      "case": "base_long_ambiguous",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10054",
+      "exit_reason": "STOP_ADVERSE_AMBIGUITY",
+      "exit_price": "1.09848",
+      "price_risk_excess": "0.00002"
+    },
+    {
+      "case": "base_long_target_open",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10054",
+      "exit_reason": "TARGET_OPEN_REACH",
+      "exit_price": "1.105",
+      "price_risk_excess": "0"
+    },
+    {
+      "case": "base_long_late_decision",
+      "entry_status": "SKIPPED",
+      "entry_reason": "LATE_DECISION",
+      "entry_price": null,
+      "exit_reason": null,
+      "exit_price": null,
+      "price_risk_excess": null
+    },
+    {
+      "case": "base_short_gap_stop",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09946",
+      "exit_reason": "STOP_OPEN_GAP",
+      "exit_price": "1.10302",
+      "price_risk_excess": "0.00152"
+    },
+    {
+      "case": "base_short_ambiguous",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09946",
+      "exit_reason": "STOP_ADVERSE_AMBIGUITY",
+      "exit_price": "1.10152",
+      "price_risk_excess": "0.00002"
+    },
+    {
+      "case": "base_short_target_open",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09946",
+      "exit_reason": "TARGET_OPEN_REACH",
+      "exit_price": "1.095",
+      "price_risk_excess": "0"
+    },
+    {
+      "case": "base_short_late_decision",
+      "entry_status": "SKIPPED",
+      "entry_reason": "LATE_DECISION",
+      "entry_price": null,
+      "exit_reason": null,
+      "exit_price": null,
+      "price_risk_excess": null
+    },
+    {
+      "case": "adverse_long_gap_stop",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10057",
+      "exit_reason": "STOP_OPEN_GAP",
+      "exit_price": "1.09695",
+      "price_risk_excess": "0.00155"
+    },
+    {
+      "case": "adverse_long_ambiguous",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10057",
+      "exit_reason": "STOP_ADVERSE_AMBIGUITY",
+      "exit_price": "1.09845",
+      "price_risk_excess": "0.00005"
+    },
+    {
+      "case": "adverse_long_target_open",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.10057",
+      "exit_reason": "TARGET_OPEN_REACH",
+      "exit_price": "1.105",
+      "price_risk_excess": "0"
+    },
+    {
+      "case": "adverse_long_late_decision",
+      "entry_status": "SKIPPED",
+      "entry_reason": "LATE_DECISION",
+      "entry_price": null,
+      "exit_reason": null,
+      "exit_price": null,
+      "price_risk_excess": null
+    },
+    {
+      "case": "adverse_short_gap_stop",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09943",
+      "exit_reason": "STOP_OPEN_GAP",
+      "exit_price": "1.10305",
+      "price_risk_excess": "0.00155"
+    },
+    {
+      "case": "adverse_short_ambiguous",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09943",
+      "exit_reason": "STOP_ADVERSE_AMBIGUITY",
+      "exit_price": "1.10155",
+      "price_risk_excess": "0.00005"
+    },
+    {
+      "case": "adverse_short_target_open",
+      "entry_status": "FILLED",
+      "entry_reason": "H1_OPEN_PRICE",
+      "entry_price": "1.09943",
+      "exit_reason": "TARGET_OPEN_REACH",
+      "exit_price": "1.095",
+      "price_risk_excess": "0"
+    },
+    {
+      "case": "adverse_short_late_decision",
+      "entry_status": "SKIPPED",
+      "entry_reason": "LATE_DECISION",
+      "entry_price": null,
+      "exit_reason": null,
+      "exit_price": null,
+      "price_risk_excess": null
+    }
+  ],
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "ebbc3bf2919950b9cae15115487ef84c9e149aa29cfa2b8c58de1fd177210346",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/fills.py": "9f9ef6540457bc6b72292a054b2c6e1507d9e8e5662c8177eff8b120190c4645",
+    "config/research-candidates-117.json": "fc9629f0922700e9ea8118cbf23460f550870a5ecf17ff14e6246833766faf6f"
+  },
+  "extra_sha256": {
+    "tests/test_trendline_fills_164.py": "5ea7b12179c5fa8ac6eee34d0e8035866e8188bb55c4cb9a2d013c35e6d1ca58",
+    "scripts/trendline-fill-demo-164.py": "ade0e3182c9716da59ed01b2a11055bace8a2c78d951a036b6bc1c86069d5743"
+  },
+  "phase2_complete": false,
+  "account_ledger_available": false,
+  "market_source_qualified": false,
+  "market_cells_run": 0,
+  "orders_available": false
+}

@@ -25,6 +25,9 @@ evidence and is not being presented as untouched market validation.
 | 163-01 | Reuse unchanged146 calendar/aggregation behind an invented B boundary | Copy/rewrite frozen utilities; relabel their invented inputs market-qualified | Stable interfaces with parity evidence, explicit labels and no market admission | No |
 | 163-02 | Keep whole-file binding separate from causal child lineage | Rename earlier pivots whenever future input is appended | Preserves future-suffix invariance while reports bind all inspected bytes | No |
 | 163-03 | Explicit descriptor-bound audit receipt only for invented validation; refuse market loading entirely | Generic bypass/unlock for protected data | Exercises access ordering without granting market or execution authority | No |
+| 164-01 | Level B openings are explicit historical assumptions; range available only at completed-hour receipt | Use full hour to select entry or backdate late decisions | Separates opening inputs from future extremes and preserves decision/open order | No |
+| 164-02 | Known opening reach precedes ambiguous range; original-limit target has no overshoot/extra slippage | Ignore known open order and always choose later stop | Protocol revision3 records interpretation of the ambiguous-bar wording; matches retained120 price policy | No |
+| 164-03 | Price-only kernel, fixed inherited profiles, rational arithmetic and prospective protection checks | Build account/native engine before Phase7; silently round computed asks | Phase2 fills without extra account/execution scope; calculated prices preserve up to16 decimal places | No |
 
 Source reconnaissance on16 November encountered incidental undated EURUSD ticker
 banners on provider documentation pages. No time series/API price request or

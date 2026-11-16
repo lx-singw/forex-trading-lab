@@ -1,5 +1,15 @@
 # Proposed milestones
 
+Latest — Trendline164 Phase2 price-model increment (16 November2026).
+190 tests pass together:41 new price checks,34 data163,31 sessions146,28 study145
+and56 retained120 accounting tests. Sixteen invented exercises pass. See
+[164 results](trendline/RESULTS-164.md) and [usage](trendline/FILLS-164-USAGE.md).
+Phase2 opening/range software now exists; source/run/use/calendar/coverage
+acceptance is still required before phase completion. No advance to Phase3 or
+market evaluation is claimed. Phase7 still owns account sizing, one reservation,
+consumption, loss latches, full financing, sequential path/partition/restart work.
+All28 market cells remain unavailable, and orders stay off. Commit/push each sprint.
+
 Latest — Trendline163 Phase2 engineering increment (16 November2026).
 93 tests pass together:34 new source/bar/coverage/access tests and59 existing
 session/preflight checks. Six invented exercises pass. [163 results](trendline/RESULTS-163.md)
