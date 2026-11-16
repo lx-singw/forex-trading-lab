@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "strategy_version": "TRL_V1",
+  "protocol_revision": 2,
+  "kind": "research_rulebook_not_executable_strategy",
+  "market_trials_run": 0,
+  "rules": [
+    {
+      "id": "R01",
+      "text": "Completed available bars only; future suffixes cannot alter earlier output",
+      "origin": "CONV",
+      "reference": "7.1;7.8",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G02_LONG",
+        "G02_SHORT",
+        "G03_LONG",
+        "G03_SHORT",
+        "G27_LONG",
+        "G27_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R02",
+      "text": "Strict radius3 pivots, separate occurrence/confirmation, exclude ties/dual extremes",
+      "origin": "CONV",
+      "reference": "7.3.3",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G02_LONG",
+        "G02_SHORT",
+        "G03_LONG",
+        "G03_SHORT",
+        "G27_LONG",
+        "G27_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R03",
+      "text": "Correct-side chronological touches, frozen confirmation ATR, six-bar spacing",
+      "origin": "CONV*",
+      "reference": "7.3.5;C1",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G05_LONG",
+        "G05_SHORT",
+        "G06_LONG",
+        "G06_SHORT",
+        "G07_LONG",
+        "G07_SHORT",
+        "G13_LONG",
+        "G13_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R04",
+      "text": "Strict zero-penetration validity; no retroactive touch exemption",
+      "origin": "CONV",
+      "reference": "7.3.6",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G04_LONG",
+        "G04_SHORT",
+        "G05_LONG",
+        "G05_SHORT",
+        "G13_LONG",
+        "G13_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R05",
+      "text": "Action-break bar exception does not make poked safety/context eligible",
+      "origin": "CONV",
+      "reference": "A-17;C3",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G04_LONG",
+        "G04_SHORT",
+        "G31_LONG",
+        "G31_SHORT"
+      ]
+    },
+    {
+      "id": "R06",
+      "text": "Profile-specific touch counts, age and formation span",
+      "origin": "CONV*",
+      "reference": "7.2;7.4;C2",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G06_LONG",
+        "G06_SHORT",
+        "G08_LONG",
+        "G08_SHORT",
+        "G09_LONG",
+        "G09_SHORT",
+        "G30_LONG",
+        "G30_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R07",
+      "text": "ATR-normalised slope, missing history and zero-ATR abstention",
+      "origin": "CONV",
+      "reference": "7.3.8",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G10_LONG",
+        "G10_SHORT",
+        "G33_LONG",
+        "G33_SHORT",
+        "G38_LONG",
+        "G38_SHORT"
+      ]
+    },
+    {
+      "id": "R08",
+      "text": "FXR approximate angle with fixed aspect/window",
+      "origin": "CONV*",
+      "reference": "7.3.8",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G10_LONG",
+        "G10_SHORT"
+      ]
+    },
+    {
+      "id": "R09",
+      "text": "Pre-existing line, close-break margin, previous close and missed-break discard",
+      "origin": "CONV",
+      "reference": "7.7.1",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G14_LONG",
+        "G14_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R10",
+      "text": "Opposing unpoked safety exists at trigger; missing means baseline abstention",
+      "origin": "CONV",
+      "reference": "7.7.1;C3",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G11_LONG",
+        "G11_SHORT",
+        "G31_LONG",
+        "G31_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R11",
+      "text": "Current buffered core stop, projected FXR stop, outward tick rounding",
+      "origin": "CONV*",
+      "reference": "7.7.1;7.7.3",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G12_LONG",
+        "G12_SHORT",
+        "G21_LONG",
+        "G21_SHORT",
+        "G35_LONG",
+        "G35_SHORT",
+        "G39_LONG",
+        "G39_SHORT"
+      ]
+    },
+    {
+      "id": "R12",
+      "text": "Entry-side stop window/spread checks and already-crossed stop rejection",
+      "origin": "CONV",
+      "reference": "7.7.1;C4",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G12_LONG",
+        "G12_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R13",
+      "text": "Consume all opportunities at trigger; one reservation; tie/opposing abstention",
+      "origin": "CONV",
+      "reference": "7.9;7.11",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G01_LONG",
+        "G01_SHORT",
+        "G11_LONG",
+        "G11_SHORT",
+        "G15_LONG",
+        "G15_SHORT",
+        "G23_LONG",
+        "G23_SHORT",
+        "G35_LONG",
+        "G35_SHORT"
+      ]
+    },
+    {
+      "id": "R14",
+      "text": "Bounce contact is completed correct-side bar, not future confirmed pivot",
+      "origin": "CONV",
+      "reference": "7.7.2",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G13_LONG",
+        "G13_SHORT"
+      ]
+    },
+    {
+      "id": "R15",
+      "text": "Frozen economic ranking; canonical ids never choose trades",
+      "origin": "CONV",
+      "reference": "7.4;C2",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G15_LONG",
+        "G15_SHORT"
+      ]
+    },
+    {
+      "id": "R16",
+      "text": "Executable sides, no pre-fill stop, adverse unresolved intrabar order",
+      "origin": "CONV",
+      "reference": "7.8;C4",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G16_LONG",
+        "G16_SHORT",
+        "G24_LONG",
+        "G24_SHORT",
+        "G29_LONG",
+        "G29_SHORT"
+      ]
+    },
+    {
+      "id": "R17",
+      "text": "Gap fills/slippage may exceed estimated entry risk",
+      "origin": "CONV",
+      "reference": "7.9.7",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G16_LONG",
+        "G16_SHORT",
+        "G34_LONG",
+        "G34_SHORT"
+      ]
+    },
+    {
+      "id": "R18",
+      "text": "Spread, slippage, commission and financing counted once",
+      "origin": "CONV",
+      "reference": "7.10",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G16_LONG",
+        "G16_SHORT",
+        "G34_LONG",
+        "G34_SHORT"
+      ]
+    },
+    {
+      "id": "R19",
+      "text": "D1 table uses trade direction, never unfinished higher timeframe",
+      "origin": "CONV",
+      "reference": "7.6",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G17_LONG",
+        "G17_SHORT",
+        "G18_LONG",
+        "G18_SHORT",
+        "G19_LONG",
+        "G19_SHORT",
+        "G20_LONG",
+        "G20_SHORT",
+        "G27_LONG",
+        "G27_SHORT"
+      ]
+    },
+    {
+      "id": "R20",
+      "text": "E1 hard protection, favourable-only prospective trail/replacement and next-quote close exit",
+      "origin": "CONV",
+      "reference": "7.7.4;C4",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G21_LONG",
+        "G21_SHORT",
+        "G24_LONG",
+        "G24_SHORT",
+        "G36_LONG",
+        "G36_SHORT"
+      ]
+    },
+    {
+      "id": "R21",
+      "text": "Fixed risk with floor lots, margin, minimum lot and loss headroom",
+      "origin": "CONV",
+      "reference": "7.9",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G22_LONG",
+        "G22_SHORT",
+        "G32_LONG",
+        "G32_SHORT"
+      ]
+    },
+    {
+      "id": "R22",
+      "text": "UTC-day equity loss pause latches; protection continues",
+      "origin": "CONV",
+      "reference": "7.9.5",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G22_LONG",
+        "G22_SHORT",
+        "G32_LONG",
+        "G32_SHORT"
+      ]
+    },
+    {
+      "id": "R23",
+      "text": "Restart preserves consumed groups, held protection and pause; no blind retry",
+      "origin": "CONV",
+      "reference": "7.11;roadmap4.4",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G23_LONG",
+        "G23_SHORT",
+        "G32_LONG",
+        "G32_SHORT"
+      ]
+    },
+    {
+      "id": "R24",
+      "text": "One attempt cannot be backdated, restored or repeated after skip",
+      "origin": "CONV",
+      "reference": "A-18;A-21",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G04_LONG",
+        "G04_SHORT",
+        "G11_LONG",
+        "G11_SHORT",
+        "G14_LONG",
+        "G14_SHORT",
+        "G23_LONG",
+        "G23_SHORT"
+      ]
+    },
+    {
+      "id": "R25",
+      "text": "DLY disabled; failed-break/chase/expiry before decision-bar safety",
+      "origin": "CONV",
+      "reference": "7.7.5;decision161-01",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G25_LONG",
+        "G25_SHORT"
+      ]
+    },
+    {
+      "id": "R26",
+      "text": "Lowest-anchored levels, physical duplicate removal, median >=2 observations",
+      "origin": "CONV",
+      "reference": "7.7.6;C7",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G26_LONG",
+        "G26_SHORT",
+        "G37_LONG",
+        "G37_SHORT"
+      ]
+    },
+    {
+      "id": "R27",
+      "text": "Immutable as-known revisions and future-suffix invariance",
+      "origin": "CONV",
+      "reference": "7.8",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G27_LONG",
+        "G27_SHORT"
+      ]
+    },
+    {
+      "id": "R28",
+      "text": "Prospective in-partition liquidation; missing exit keeps open liability/unavailable",
+      "origin": "CONV",
+      "reference": "7.14;C5",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G28_LONG",
+        "G28_SHORT"
+      ]
+    },
+    {
+      "id": "R29",
+      "text": "Level B late-open abstention/adverse ambiguity; no Q or demo claim",
+      "origin": "CONV",
+      "reference": "7.1;C4",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G29_LONG",
+        "G29_SHORT"
+      ]
+    },
+    {
+      "id": "R30",
+      "text": "Reanchoring reruns validation; dedupe within eligibility profile",
+      "origin": "CONV",
+      "reference": "7.4;C2",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G30_LONG",
+        "G30_SHORT"
+      ]
+    },
+    {
+      "id": "R31",
+      "text": "Window before cap, no silent truncation, deterministic retirement",
+      "origin": "CONV",
+      "reference": "7.2;7.4;7.5",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G33_LONG",
+        "G33_SHORT"
+      ]
+    },
+    {
+      "id": "R32",
+      "text": "Hypothetical cost labels; declared rollover and triple charge",
+      "origin": "CONV",
+      "reference": "7.10",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G34_LONG",
+        "G34_SHORT"
+      ]
+    },
+    {
+      "id": "R33",
+      "text": "E2 qualifying target, no trailing, tick rounding toward entry",
+      "origin": "CONV*",
+      "reference": "7.7.4;7.7.6;7.3.10",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G37_LONG",
+        "G37_SHORT",
+        "G39_LONG",
+        "G39_SHORT"
+      ]
+    },
+    {
+      "id": "R34",
+      "text": "All five strategies and28 cells; separate accounts; no self-admission/native activation",
+      "origin": "CONV",
+      "reference": "7.12;protocol gates",
+      "implementation_status": "specified_not_implemented",
+      "positive_and_negative_fixture_ids": [
+        "G40_LONG",
+        "G40_SHORT"
+      ]
+    }
+  ],
+  "ambiguity_resolutions": [
+    {
+      "id": "A-01",
+      "resolution": "Confirmed same-kind pivots, correct-side distance within frozen tolerance, chronological spacing; C1 resolves anchors.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-02",
+      "resolution": "Any strict penetration kills the line; no pivot/touch exemption or later restoration.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-03",
+      "resolution": "Close beyond by >=1 tick, previous close at/on opposite side, pre-existing formation.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-04",
+      "resolution": "Enumerate all eligible lines; consume all simultaneous triggers; opposing sides abstain, same side ranks; unresolved economic ties abstain.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-05",
+      "resolution": "BRK2 exactly 2; BRK3/FXR_M >=3; BNC >=2 prior, disjoint break categories per line.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-06",
+      "resolution": "Age 30 H4 for core; formation span 90 H4 for FXR_M; use declared bar indices, not elapsed weekend hours.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-07",
+      "resolution": "Fixed approximate angle and ATR-slope tests; no zoom-dependent tuning.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-08",
+      "resolution": "Missing safety line abstains baseline; only declared disabled DLY may wait.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-09",
+      "resolution": "Opposing line >=2 touches, correct side, confirmed and unpoked through trigger bar, C3.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-10",
+      "resolution": "Entry-side stop distance 0.5 to 2.5 ATR; spread <=0.10 distance.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-11",
+      "resolution": "Current buffered core line; four-bar projected buffered FXR_M line; reject crossed stops.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-12",
+      "resolution": "E1 hard stop, favourable-only trail and next-quote close-beyond exit; E2 initial hard stop plus S/R target, no trail.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-13",
+      "resolution": "Fixed lowest-price-anchored clusters, >=2 observations, median, nearest target >=2R; C7 resolves source wording.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-14",
+      "resolution": "Adds off.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-15",
+      "resolution": "Context off baseline; D1 table variant, no self-reference.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-16",
+      "resolution": "Source-specific declared calendar and availability; never infer from server name.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-17",
+      "resolution": "Exclude trigger bar only for the action-line break test; apply C3 to safety/context.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-18",
+      "resolution": "Newly eligible after a prior close beyond -> MISSED_BREAK; no backdated entry.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-19",
+      "resolution": "Immutable revisions, recompute on confirmations; check penetration each completed bar; stable geometry/group history.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-20",
+      "resolution": "EURUSD first; futures/metals findings do not establish EURUSD results.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-21",
+      "resolution": "Consume at trigger, before context, reservation and execution filters.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-22",
+      "resolution": "Distinct Q/B input, geometry, execution and result labels. B cannot satisfy demo gate.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-23",
+      "resolution": "Six-bar spacing is FXR origin only for FXR_M, borrowed convention elsewhere.",
+      "status": "frozen_before_market_results"
+    },
+    {
+      "id": "A-24",
+      "resolution": "Ordinary completed bounce contact is distinct from confirmed pivot touch; never wait for future confirmation to backdate entry.",
+      "status": "frozen_before_market_results"
+    }
+  ],
+  "parameter_declarations": [
+    {
+      "id": "P-01",
+      "name": "TF_SETUP",
+      "value": "H4"
+    },
+    {
+      "id": "P-02",
+      "name": "TF_CONTEXT",
+      "value": "D1"
+    },
+    {
+      "id": "P-03",
+      "name": "PIV_RADIUS",
+      "value": "3, strict extrema; equal and dual-extreme bars excluded"
+    },
+    {
+      "id": "P-04",
+      "name": "MIN_TAP_SPACING",
+      "value": "6 bar indices, earliest accepted wins"
+    },
+    {
+      "id": "P-05",
+      "name": "Touches",
+      "value": "BRK3/FXR_M >=3; BRK2 exactly 2; BNC >=2 prior"
+    },
+    {
+      "id": "P-06",
+      "name": "AGE_MIN_BARS",
+      "value": "30 H4; D1 context 15 D1"
+    },
+    {
+      "id": "P-06b",
+      "name": "FORMATION_MIN_BARS",
+      "value": "90 H4, FXR_M only"
+    },
+    {
+      "id": "P-07",
+      "name": "TOUCH_TOL",
+      "value": "0.25 times ATR_SMA14 at each pivot's confirmation; frozen per pivot"
+    },
+    {
+      "id": "P-08",
+      "name": "PEN_ALLOW",
+      "value": "0 ticks"
+    },
+    {
+      "id": "P-09",
+      "name": "MAX_ANGLE_DEG",
+      "value": "45, approximate FXR_M chart-normalisation test"
+    },
+    {
+      "id": "P-10",
+      "name": "ANGLE_WINDOW_BARS",
+      "value": "390, complete history required for this test"
+    },
+    {
+      "id": "P-11",
+      "name": "CHART_ASPECT",
+      "value": "0.5"
+    },
+    {
+      "id": "P-12",
+      "name": "MAX_SLOPE_ATR_PER_BAR",
+      "value": "0.5, ATR at evaluation bar"
+    },
+    {
+      "id": "P-13",
+      "name": "BREAK_MARGIN",
+      "value": "1 tick"
+    },
+    {
+      "id": "P-14",
+      "name": "SAFETY_MIN_TOUCHES",
+      "value": "2"
+    },
+    {
+      "id": "P-15",
+      "name": "STOP_PROJ_BARS",
+      "value": "0 core; 4 FXR_M"
+    },
+    {
+      "id": "P-16",
+      "name": "STOP_BUFFER",
+      "value": "max(1 tick, 0.10 times ATR_SMA14)"
+    },
+    {
+      "id": "P-17",
+      "name": "MIN_STOP_ATR / MAX_STOP_ATR",
+      "value": "0.5 / 2.5, inclusive"
+    },
+    {
+      "id": "P-18",
+      "name": "MAX_SPREAD_STOP_FRAC",
+      "value": "0.10, inclusive"
+    },
+    {
+      "id": "P-19",
+      "name": "Eligibility expiry",
+      "value": "next declared H4 close, exclusive"
+    },
+    {
+      "id": "P-20",
+      "name": "TP_R_MIN",
+      "value": "2.0"
+    },
+    {
+      "id": "P-21",
+      "name": "RISK_FRAC",
+      "value": "0.0025"
+    },
+    {
+      "id": "P-22",
+      "name": "DAILY_LOSS_PAUSE",
+      "value": "0.01 of UTC-day reference executable equity"
+    },
+    {
+      "id": "P-23",
+      "name": "MAX_CONCURRENT",
+      "value": "1 per independent account"
+    },
+    {
+      "id": "P-24",
+      "name": "Attempt consumption",
+      "value": "trigger"
+    },
+    {
+      "id": "P-25",
+      "name": "CONTEXT_GATE",
+      "value": "off baseline; D1 variant only"
+    },
+    {
+      "id": "P-26",
+      "name": "Level Q limits",
+      "value": "age <=2s; spread <=1.5 pips"
+    },
+    {
+      "id": "P-27",
+      "name": "MAX_HOLD",
+      "value": "none, except partition liquidation policy"
+    },
+    {
+      "id": "P-28",
+      "name": "LINE_LOOKBACK_BARS",
+      "value": "600 H4 (or 600 D1 for D1 line engine), before cap"
+    },
+    {
+      "id": "P-29",
+      "name": "PIVOT_CAP",
+      "value": "256 per kind; excess blocks this snapshot, never silently truncates"
+    },
+    {
+      "id": "P-30",
+      "name": "RETIRE_AFTER_BARS",
+      "value": "retire after >500 valid untriggered bars"
+    },
+    {
+      "id": "P-31",
+      "name": "CONTEXT_MAX_ATR",
+      "value": "3 times ATR_SMA14(D1)"
+    },
+    {
+      "id": "P-32",
+      "name": "MAX_CHASE_ATR",
+      "value": "1.0, disabled DLY only"
+    },
+    {
+      "id": "P-33",
+      "name": "SETUP_EXPIRY_BARS",
+      "value": "10 H4, disabled DLY only"
+    }
+  ]
+}

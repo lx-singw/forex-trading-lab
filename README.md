@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Trendline161 Phase 1 rulebook and fixtures (16 November 2026).
+34 rules and80 hand-authored invented scenarios precede engine implementation.
+Fixture integrity,20 arithmetic equalities and four unchanged batch-pivot checks
+pass; these are not engine tests or market performance. See
+[161 results](docs/trendline/RESULTS-161.md) and [source leads](docs/trendline/SOURCE-CANDIDATES-161.md).
+Independent human reading remains unperformed. Next Phase2 needs a permitted
+source/manifest and bar/coverage acceptance; no market source or run is admitted.
+All five strategies remain in scope. Frozen runtime and orders-off persist.
+
 Latest — Trendline160 Phase 0 protocol freeze (16 November 2026).
 The user selected the full Tori-inspired trendline roadmap. All five initial
 strategies and phases are retained; phases are milestones with numbered sprints.

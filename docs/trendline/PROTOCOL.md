@@ -275,3 +275,13 @@ table, clarifications, repository reuse inventory and pause/resume note are revi
 and committed. No test-suite count or market result is claimed for a document
 freeze. Phase 1 next supplies a rulebook and independently hand-computed invented
 fixtures before any trendline implementation. All five strategies remain in scope.
+
+## Dated clarification — protocol revision 2, sprint 161
+
+16 November 2026, before TRL market counts/returns or engine implementation.
+The disabled DLY branch expires when elapsed H4 bars >=10, before considering a
+new safety line on that bar. This follows the roadmap's explicit at10 transition;
+the illustrative pseudocode's >10 is not authoritative. Target rounding toward
+entry must be followed by the >=2R check; rounding cannot turn a sub-2R target
+into a qualifying one. No numerical parameter changes, variant activation or
+market trial occurred. Revision1 remains recoverable at sprint160's commit.

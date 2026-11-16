@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline161 Phase 1 authored expectations (16 November 2026).
+34 source-tagged rules,24 ambiguity resolutions,34 parameter rows and80 invented
+scenarios are authored before engine code. All eight D1 cells,20 independent
+arithmetic equalities and four existing batch-pivot crosschecks pass. No engine
+test count or market result is claimed. [161 results](trendline/RESULTS-161.md),
+[source reconnaissance](trendline/SOURCE-CANDIDATES-161.md). Protocol revision2
+clarifies disabled DLY expiry and target rounding before outcomes. Independent
+human reading is unperformed; source/calendar/coverage/price semantics remain
+unassigned. User permits any available source or consideration of collection;
+no paid service/account creation, protected-data access, old-route renewal or
+capture grant follows. Incidental undated provider ticker exposure is recorded
+for validation review. Frozen runtime, expired136, false156 and orders-off persist.
+
 Latest — Trendline160 Phase 0 protocol freeze (16 November 2026).
 User approved the full roadmap, sequential phases as milestones and commit/push
 each sprint. [Protocol](trendline/PROTOCOL.md) freezes D1-D16, P-xx, A-01..A-24 and

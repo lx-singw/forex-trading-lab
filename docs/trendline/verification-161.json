@@ -1,0 +1,17 @@
+{
+  "sprint": 161,
+  "kind": "fixture_integrity_and_arithmetic_not_engine_tests",
+  "scenario_count": 80,
+  "direction_pairs": 40,
+  "rule_count": 34,
+  "d1_gate_outcomes": 8,
+  "independent_arithmetic_equalities": 20,
+  "existing_batch_pivot_crosschecks": 4,
+  "engine_implemented": false,
+  "market_trials_run": 0,
+  "independent_human_review": "pending",
+  "sha256": {
+    "tests/trendline/fixtures/golden-161.json": "43675f8dd956cf552e2086ca2d062124d29d06932d8c11bf41c577408eb51665",
+    "docs/trendline/rules-161.json": "58930528aa0dcb774bd29e1807f49d0fa319bb2239b0c403c445a74d2666a2a4"
+  }
+}

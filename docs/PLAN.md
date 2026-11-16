@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Trendline161 Phase 1 authorship increment (16 November 2026).
+80 invented expected scenarios and34 rule records are ready for independent
+reading;20 arithmetic equalities/four unchanged batch-pivot checks pass. Engine
+implementation has not started. See [161 results](trendline/RESULTS-161.md).
+Next complete Phase1 readability acceptance and Phase2 source/manifest/bar/coverage
+requirements. User permits any available source or future collection; the
+[source note](trendline/SOURCE-CANDIDATES-161.md) identifies a Twelve Data metadata
+candidate, not admitted prices or a native run. No later phase is bypassed.
+Protected dates/routes, frozen Elliott/control sources and orders-off persist.
+Commit/push every completed sprint to main.
+
 Latest — Trendline160 Phase 0 complete (16 November 2026).
 Follow the user's full Tori-inspired roadmap in order, using numbered sprints
 within phase milestones. [Frozen protocol](trendline/PROTOCOL.md), decision log,

@@ -17,6 +17,16 @@ evidence and is not being presented as untouched market validation.
 | 160-09 | Count pre-account entry-eligible opportunities; actual entries in outcome study | Simulate occupancy/equity but claim no outcomes used | Makes Phase 10 count genuinely outcome-free (C6) | No |
 | 160-10 | Lowest-anchored level clusters, occurrence-aware H4/D1 duplicates; explicit paired counterfactuals | Transitive clustering; collapsing all equal prices; portfolio claim | Resolves source wording without hindsight (C7) | No |
 | 160-11 | Pause active Elliott/recorder expansion at 159; retain frozen records and completed work | Continue both strategies concurrently | User selected trendline full roadmap; keep resumable state | No |
+| 161-01 | DLY expires at elapsed>=10 before safety acceptance; post-rounding target still needs >=2R; protocol revision2 | Illustrative >10 pseudocode; check only unrounded target | Resolve fixture-discovered boundary ambiguity before engine code; disabled DLY remains unrun | No |
+| 161-02 | Standard-library JSON rulebook and literal source fixtures; authoring helper is not a strategy evaluator | Add YAML dependency; derive expected results from engine | No dependency installation; preserve expectations before implementation | No |
+| 161-03 | Assess any permitted available source, or future collection, as user requested | Wait for user to name a dataset | New source metadata reconnaissance allowed; no old provider-stop renewal, paid service or broker-account creation | No |
+
+Source reconnaissance on16 November encountered incidental undated EURUSD ticker
+banners on provider documentation pages. No time series/API price request or
+strategy evaluation followed. Observation dates of those banner values are
+unknown. Record this exposure in any future untouched-validation review; do not
+claim the banners independently authenticate prices or silently assume unseen
+status. No price values or account identities are reproduced in this log.
 
 Changes after this freeze append new dated rows, explaining economic impact,
 version/trial identity and whether any relevant outcomes had already been seen.
