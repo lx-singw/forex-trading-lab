@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Trendline165 source/run preflight increment (16 November2026).
+171 tests pass together:37 new,41 price164,34 data163,28 study145 and31 sessions146.
+Canonical config/trendline-study-v1.json now supports the full prospective
+28-cell declaration/freeze/check without price access. See [165 results](trendline/RESULTS-165.md).
+Phase2 software checks are in place; actual-source admission remains blocked on
+permitted historical export/access with time/price/spread/coverage/use evidence.
+[Source review](trendline/SOURCE-165-FINDINGS.md) records a free non-display lead
+and tool-inaccessible metadata attempt, not qualified data or a provider denial.
+Next review concrete external source evidence; do not bypass to Phase3, fabricate
+qualification, reopen stopped routes or renew collection grants. All market cells
+and orders remain unavailable. Commit/push each completed sprint to main.
+
 Latest — Trendline164 Phase2 price-model increment (16 November2026).
 190 tests pass together:41 new price checks,34 data163,31 sessions146,28 study145
 and56 retained120 accounting tests. Sixteen invented exercises pass. See

@@ -10,6 +10,10 @@ The checked-in config/trendline-data-163.json assigns no provider or dates. Its
 assessment is metadata lint, not a full study preflight or admission. Complete
 self-authored evidence hashes still leave all28 market cells UNAVAILABLE.
 
+Since sprint165, config/trendline-study-v1.json is the canonical current source/run
+declaration, with the full [prospective preflight](STUDY-165-USAGE.md). The163 file
+and commands below are retained coarse-lint examples, not a competing active plan.
+
 ```sh
 PYTHONPATH=src python3 -m forex_demo_lab.trendline assess-plan config/trendline-data-163.json
 PYTHONPATH=src python3 -m forex_demo_lab.trendline draft-plan NEW-PLAN.json

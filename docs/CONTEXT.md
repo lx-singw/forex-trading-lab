@@ -1,5 +1,19 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline165 prospective source/run checks (16 November2026).
+171 checks pass:37 new/134 existing. New28-cell adapter reuses unchanged145
+chronology/exposure/evidence logic; adds B/Q semantics,390-H4 history, budgets,
+undated exposures, latency and partition endpoints with source-bound metadata
+freezes. [165 results](trendline/RESULTS-165.md). Canonical full source/run draft
+is config/trendline-study-v1.json, unassigned;163 config is retained coarse lint.
+Basic non-display use is listed publicly; actual history/price/spread/use scope
+remains unqualified. One unauthenticated metadata URL was tool-inaccessible, not
+a certified provider denial; no retry/alternate transport/price request. Named
+key absent only in this WSL environment, private configuration unscanned.
+Phase2 needs actual permitted export/access/evidence; no Phase3 advance or more
+synthetic evidence can qualify it. Protected dates/routes, expired136, false156,
+28 new/16 prior unavailable market cells and orders-off remain.
+
 Latest — Trendline164 invented B price calculations (16 November2026).
 190 targeted checks pass:41 new/149 existing. Exact opening/closed-hour pricing
 separates decisions from future range, refuses late/missing opens and mid-only

@@ -1,0 +1,123 @@
+{
+  "sprint": 165,
+  "date": "2026-11-16",
+  "kind": "source_run_metadata_verification_not_admission",
+  "predecessor": "ae3ecbd",
+  "tests": {
+    "total": 171,
+    "new": 37,
+    "existing": 134,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 2.973,
+    "command": "PYTHONPATH=src:tests python3 -m unittest test_trendline_study_165 test_trendline_fills_164 test_trendline_data_163 test_elliott_study_145 test_elliott_sessions_146 -v"
+  },
+  "exercises": [
+    {
+      "case": "complete_B",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": null,
+      "issues": 18,
+      "blocked_issues": 0
+    },
+    {
+      "case": "complete_Q",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": null,
+      "issues": 15,
+      "blocked_issues": 0
+    },
+    {
+      "case": "mid_only",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "mid_only_execution_side_data_unavailable",
+      "issues": 19,
+      "blocked_issues": 1
+    },
+    {
+      "case": "short_angle_history",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "insufficient_FXR_390_H4_angle_history",
+      "issues": 19,
+      "blocked_issues": 1
+    },
+    {
+      "case": "reserved_dates",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "date_reserved_untouched",
+      "issues": 32,
+      "blocked_issues": 14
+    },
+    {
+      "case": "undated_exposure",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "undated_price_exposure_requires_validation_review",
+      "issues": 19,
+      "blocked_issues": 1
+    },
+    {
+      "case": "exhausted_budget",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "initial_28_cell_track_budget_exhausted",
+      "issues": 19,
+      "blocked_issues": 1
+    },
+    {
+      "case": "outside_endpoint",
+      "status": "UNAVAILABLE",
+      "cells": 28,
+      "returns": null,
+      "expected_issue": "liquidation_outside_partition",
+      "issues": 19,
+      "blocked_issues": 1
+    }
+  ],
+  "current_status": "UNAVAILABLE",
+  "current_cells": 28,
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "ebbc3bf2919950b9cae15115487ef84c9e149aa29cfa2b8c58de1fd177210346",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/fills.py": "9f9ef6540457bc6b72292a054b2c6e1507d9e8e5662c8177eff8b120190c4645",
+    "config/research-candidates-117.json": "fc9629f0922700e9ea8118cbf23460f550870a5ecf17ff14e6246833766faf6f",
+    "src/forex_demo_lab/elliott_study_145.py": "602aa7d96d3dd32d0ea1e8f4d94b20eff3522e523d2ee2fb4ce61705926d22ac",
+    "src/forex_demo_lab/trendline/study.py": "b424ed274cac37331ab8524012e96b166bf06b0caba5d48dd2b40682c0f0ac76",
+    "scripts/trendline-study-165.py": "39940bc1dcdb0f81140657c0bacefa7a22c85d63b6345e022cea1772ef598555"
+  },
+  "extra_sha256": {
+    "tests/test_trendline_study_165.py": "3d30070c11318ea4a07f624be06bdb4eda8afb9a2550c19df419c5f168b6725f",
+    "config/trendline-study-v1.json": "9680990b2e5ca334e7b8452b75ab2fb1f08472282f6a8949f344ebe4d40c0b4e"
+  },
+  "source_review": {
+    "searches": 3,
+    "primary_opens": 3,
+    "finds": 4,
+    "unauthenticated_metadata_url_attempts": 1,
+    "result": "web_tool_inaccessible",
+    "provider_HTTP_status_established": false,
+    "price_series_requests": 0,
+    "named_key_present_in_checked_WSL_environment": false,
+    "credential_value_disclosed": false,
+    "credential_files_scanned": false
+  },
+  "phase2_complete": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "orders_available": false
+}

@@ -1,0 +1,136 @@
+{
+  "schema": "TRL_STUDY_165_V1",
+  "kind": "trendline_metadata_only_plan",
+  "case": "current_unassigned",
+  "track": "hypothetical_cost_sensitivity",
+  "source": {
+    "alias": null,
+    "route": null
+  },
+  "partitions": {
+    "development": {
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "warmup": {
+        "interval": {
+          "start": null,
+          "end": null
+        },
+        "declared_complete_bars": {
+          "D1": null,
+          "H4": null,
+          "H1": null
+        }
+      }
+    },
+    "validation": {
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "warmup": {
+        "interval": {
+          "start": null,
+          "end": null
+        },
+        "declared_complete_bars": {
+          "D1": null,
+          "H4": null,
+          "H1": null
+        }
+      }
+    }
+  },
+  "history": {
+    "complete": false,
+    "exposures": [],
+    "undated_price_exposure_count": null,
+    "tried_alternatives_count": null
+  },
+  "joint_study_sha256": null,
+  "evidence": {
+    "source_use": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "prior_trials": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "clock_timezone_dst": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "session_calendar": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "coverage_lineage": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "availability_model": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "commission_swap": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "contract_margin_conversion": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "bar_price_semantics": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    },
+    "entry_spread_semantics": {
+      "sha256": null,
+      "intervals": [],
+      "timeframes": []
+    }
+  },
+  "costs": {
+    "status": "unknown",
+    "profile_declaration_sha256": "fc9629f0922700e9ea8118cbf23460f550870a5ecf17ff14e6246833766faf6f",
+    "contradictions": false
+  },
+  "prior_cells": {
+    "qualified": 0,
+    "hypothetical_cost_sensitivity": 0
+  },
+  "data_level": "B",
+  "geometry_basis": null,
+  "spread_semantics": null,
+  "input_sha256": null,
+  "calendar_sha256": null,
+  "uncertainty_sha256": null,
+  "paired_exit": {
+    "planned": true,
+    "prior_analyses": 0
+  },
+  "latency": {
+    "availability_assumption": null,
+    "finalization_delay_ms": null
+  },
+  "endpoints": {
+    "development": {
+      "liquidation_at": null
+    },
+    "validation": {
+      "liquidation_at": null
+    }
+  }
+}

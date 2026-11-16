@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Trendline165 source/run preflight (16 November2026).
+171 tests pass together, including37 new checks. A28-cell trendline adapter reuses
+unchanged145 chronology/evidence checks and adds source semantics,390-H4 warmup,
+exposure/budget/latency and liquidation declarations with immutable metadata freezes.
+See [165 results](docs/trendline/RESULTS-165.md) and [source findings](docs/trendline/SOURCE-165-FINDINGS.md).
+Phase2 actual-source evidence remains the dependency: no dataset admitted, no
+Phase3 advance, no provider price request/account/native run/orders. Protected
+dates/routes and all unavailable market cells persist.
+
 Latest — Trendline164 Phase2 invented price model (16 November2026).
 190 tests pass together, including41 new checks. Sixteen invented price exercises
 cover both directions/costs, gap stops, adverse intrabar ambiguity, known opening

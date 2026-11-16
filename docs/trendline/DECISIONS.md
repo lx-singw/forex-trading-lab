@@ -28,6 +28,9 @@ evidence and is not being presented as untouched market validation.
 | 164-01 | Level B openings are explicit historical assumptions; range available only at completed-hour receipt | Use full hour to select entry or backdate late decisions | Separates opening inputs from future extremes and preserves decision/open order | No |
 | 164-02 | Known opening reach precedes ambiguous range; original-limit target has no overshoot/extra slippage | Ignore known open order and always choose later stop | Protocol revision3 records interpretation of the ambiguous-bar wording; matches retained120 price policy | No |
 | 164-03 | Price-only kernel, fixed inherited profiles, rational arithmetic and prospective protection checks | Build account/native engine before Phase7; silently round computed asks | Phase2 fills without extra account/execution scope; calculated prices preserve up to16 decimal places | No |
+| 165-01 | Reuse unchanged145 chronological checks with a separate28-cell adapter | Rewrite preflight or reuse its16-cell budget incorrectly | Preserve prior evidence while enforcing the full trendline run scope | No |
+| 165-02 | Full canonical source/run draft in config/trendline-study-v1.json;163 config retained only as coarse-lint example | Maintain competing active source declarations | One current study declaration, no assigned source/date or executed market batch | No |
+| 165-03 | Record Basic non-display lead, unresolved use/price/spread terms and one tool-inaccessible metadata attempt | Infer provider denial, retry through another transport or synthesize executable data | Distinguish observed documents/tool limits from actual source qualification; no quote request or credential disclosure | No |
 
 Source reconnaissance on16 November encountered incidental undated EURUSD ticker
 banners on provider documentation pages. No time series/API price request or
