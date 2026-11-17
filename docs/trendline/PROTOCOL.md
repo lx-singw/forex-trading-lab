@@ -354,3 +354,23 @@ engine fixtures, with the same five strategies, parameter values and zero market
 trials. The initial market study remains unassigned/unrun; all source/run gates,
 protected dates/routes, grants and orders-off are unchanged. Engineering version
 TRL_ENGINE_170_V1 binds this revision; no prior source/outcome record is rewritten.
+
+## Dated clarification for sprint 172, protocol revision 6
+
+17 November 2026. Evaluate the D1 bias at the latest available completed daily
+bar. Here price means that bar's close, and each line is valued at that bar's
+scheduled D1 index. A line must be strictly below or above the close on its
+respective side and at most three daily ATRs away, including the boundary.
+Report all equally near line IDs in display order by ID. Equal distances
+within one side have the same effect on bias.
+
+H4 reads the D1 snapshot at the H4 publication time. The existing aggregation
+order publishes D1 before H4 when receipt times tie. Before a subsequent
+session is due, use the latest completed D1 snapshot. An overdue missing
+session makes the context unavailable. A calendar closure adds no due session.
+Missing history resets D1 indicator warm-up and line coverage according to the
+existing line engine. An unavailable or zero daily ATR and an incomplete
+search also make the bias unavailable.
+
+This interpretation was recorded before the sprint's invented replay checks.
+Only TRL_BRK3_E1_D1 uses the table. W1 and MN remain later extensions.

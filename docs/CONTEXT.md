@@ -1,5 +1,12 @@
 # Setup context - 2026-09-30
 
+17 November 2026. Sprint 172 implements the Phase 5 D1 gate on invented data.
+The context variant reads the latest available completed daily close and its
+nearest eligible D1 lines within three ATRs. An overdue missing daily bar
+blocks context. All four baseline profiles retain their H4 results.
+Phase 6 will use the gate after setup detection and trigger consumption.
+[Sprint 172 results](trendline/RESULTS-172.md)
+
 17 November 2026. Sprint 171 completes Phase 4 software acceptance on invented
 paths, including the §9.3 replacement, exact-union group consumption and competing
 support and resistance. A received wick can now invalidate a line while a later

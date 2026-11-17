@@ -67,3 +67,10 @@ The inspector now copies the binding map when publishing debug reports. Both
 changes repair implementation defects under protocol revision 5. The review
 used invented candles and observed zero market outcomes.
 [Failure cases and verification](RESULTS-171.md)
+
+17 November 2026, sprint 172. The D1 gate measures proximity against the
+completed daily close and values lines at that day's index. A gap at the
+daily publication deadline makes context unavailable, and equal receipt
+times follow the existing daily-first bar order. The inclusive three-ATR
+distance and eight frozen outcomes apply to TRL_BRK3_E1_D1 before any
+market evidence is inspected. [Protocol revision 6](PROTOCOL.md)

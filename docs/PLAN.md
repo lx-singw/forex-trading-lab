@@ -1,5 +1,12 @@
 # Proposed milestones
 
+17 November 2026. Sprint 172 delivers Phase 5. Next start Phase 6 with BRK3
+close-break detection, pre-existing formation, missed breaks, trigger
+consumption and safety selection. Apply the D1 table to the proposed trade
+direction for the context variant after trigger consumption. Follow with
+FXR, BRK2 and bounce according to the frozen strategy build order.
+[Phase 5 evidence](trendline/RESULTS-172.md)
+
 17 November 2026. Phase 4 software acceptance is complete through sprint 171.
 Next implement Phase 5 using the nearest eligible D1 support and resistance
 within three daily ATRs, the eight direction/bias outcomes, and publication-aware

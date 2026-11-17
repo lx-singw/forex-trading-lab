@@ -1,5 +1,9 @@
 # Forex Demo Lab
 
+Sprint 172 adds the optional Phase 5 daily context gate. The H4 replay reads
+completed D1 support and resistance for the context variant. Next is Phase 6
+setup detection. [Sprint 172 results](docs/trendline/RESULTS-172.md)
+
 Sprint 171 completes Phase 4 line-engine verification on invented candles.
 The tests cover competing lines, permanent wick invalidation, replacement,
 and consumption through group merges. Next is the Phase 5 daily context gate.

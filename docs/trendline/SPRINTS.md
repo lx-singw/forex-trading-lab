@@ -15,7 +15,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 2 | Data manifest, H4/D1 bars, coverage and protected partitions | Engineering accepted on invented inputs; actual source admission OPEN | 163-166, RESULTS-166.md |
 | 3 | Causal confirmed pivots | Software complete on invented H4/D1; no market-source claim | 166, RESULTS-166.md |
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Software accepted on invented candles, component fixtures and generated paths | 167–171, [phase acceptance](RESULTS-171.md) |
-| 5 | D1 context gate | Pending | All eight decision outcomes |
+| 5 | D1 context gate | Software accepted on invented publications | 172, [eight outcomes and baseline parity](RESULTS-172.md) |
 | 6 | All setup machines, disabled DLY, reason codes | Pending | All five initial strategies retained |
 | 7 | Costs, execution, risk, exits, independent accounting | Pending | Meaningful gap/restart/limit tests required |
 | 8 | Causal replay viewer and reports | Pending | Line layers plus visual review |

@@ -58,6 +58,11 @@ class Engine:
     @property
     def clock(self):return self._inspector.clock
 
+    @property
+    def metrics(self):
+        """Immutable indicator metrics for the most recent observed bar."""
+        return self._inspector.metrics
+
     def _action_ids(self,inspector,snapshot,prior):
         report = snapshot.record()
         if self.profile not in lines.STRATEGIES or report["search_incomplete"] or report["coverage_state"] != "CURRENT":return ()
