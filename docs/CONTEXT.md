@@ -1,5 +1,18 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline169 reduction/ranking and lifecycle storage (17 November2026).
+303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
+lifecycle-interface exercises pass.
+New profile-local reduction prefers existing validated earliest/latest pairs,
+removes strict subsets locally and reports economic ties without selecting trades.
+Source-bound append-only journal commands cover candidate/valid/terminal states,
+500/501 retirement, simultaneous declared consumption, consumed-group alias union
+and checkpoint replay. Causal ids exclude whole-file hash; checkpoints stay bound.
+[169 results](trendline/RESULTS-169.md). Automatic per-bar revisions/transition order,
+alias decisions and full golden/property acceptance remain next Phase4 work.
+Explicit trigger commands do not detect/certify setups. No market/source admission,
+account/native access/orders/grants;28+16 market cells and frozen sources persist.
+
 Latest — Trendline168 Phase4 enumeration/validity increment (17 November2026).
 261 tests pass:34 new/227 existing; seven invented CLI exercises pass. New stateless
 line inspection applies600-index lookback before256-per-kind cap, greedy confirmed

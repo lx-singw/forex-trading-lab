@@ -1,5 +1,14 @@
 # Forex Demo Lab
 
+Latest — Trendline169 selection and lifecycle journal (17 November2026).
+303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
+lifecycle-interface exercises match expectations.
+Profile-local deduplication and frozen display ranking now reduce validated lines;
+explicit lifecycle commands preserve terminal states and consumed groups through
+merge/restart. See [169 results](docs/trendline/RESULTS-169.md). Automatic per-bar
+lifecycle and trigger integration remain pending; Phase4 is still in progress.
+Invented software evidence only; source admission stays open and orders stay off.
+
 Latest — Trendline168 Phase4 bounded line inspection (17 November2026).
 261 tests pass:34 new/227 existing; seven invented CLI exercises pass. Pair search,
 earliest-wins touches, strict penetration and profile age/span/slope checks now

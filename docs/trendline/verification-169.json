@@ -1,0 +1,143 @@
+{
+  "sprint": 169,
+  "date": "2026-11-17",
+  "kind": "invented_selection_lifecycle_command_verification",
+  "predecessor": "92ce402",
+  "tests": {
+    "total": 303,
+    "new": 42,
+    "existing": 261,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 119.167,
+    "command": "PYTHONPATH=src:tests python3 -m unittest test_trendline_selection_169 test_trendline_lines_168 test_trendline_geometry_167 test_trendline_pivots_166 test_trendline_study_165 test_trendline_fills_164 test_trendline_data_163 test_elliott_study_145 test_elliott_sessions_146 -q"
+  },
+  "examples": {
+    "cli": [
+      {
+        "case": "H4_long_ready",
+        "role": "full",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 1,
+        "registration_events": 2,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_short_ready",
+        "role": "full",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 1,
+        "registration_events": 2,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_action_break",
+        "role": "action_break",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 1,
+        "registration_events": null,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_full_poked",
+        "role": "full",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 0,
+        "registration_events": 0,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_too_young",
+        "role": "full",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 0,
+        "registration_events": 0,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_missing40",
+        "role": "full",
+        "profile": "TRL_BRK3_E1",
+        "ranked_lines": 0,
+        "registration_events": 0,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "D1_BRK3",
+        "role": "full",
+        "profile": "D1_BRK3",
+        "ranked_lines": 1,
+        "registration_events": 2,
+        "entry_ready": false,
+        "orders_available": false
+      }
+    ],
+    "lifecycle_interfaces": [
+      {
+        "case": "POKE",
+        "state": "POKED",
+        "consumed": false,
+        "events": 3,
+        "restart_matches": true,
+        "trigger_detection": false
+      },
+      {
+        "case": "DECLARED_TRIGGER",
+        "state": "TRIGGERED",
+        "consumed": true,
+        "events": 3,
+        "restart_matches": true,
+        "trigger_detection": false
+      }
+    ]
+  },
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "80cd9f633dfd75420ca853ace1d175749b79c8b944baf68dfc6aeb0e83d87100",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/pivots.py": "9c9c51b3d3b6b733b8fdb61f49f9ed56b092ff6b5e1975e75bbbe8d921db4350",
+    "src/forex_demo_lab/elliott_full/patterns.py": "37b2613ba58986e64f549d6e2cf2cbd5328588686d78f3a92a21dc815743bcbb",
+    "scripts/trendline-pivots-166.py": "4cfc646db6833461b60a24f422c3f110e411c6f05d446ed9af958f1e2dd2b515",
+    "src/forex_demo_lab/trendline/geometry.py": "b0e2133727d561038b0447c89cd2fd298c77d886c3054c225479af7cf0cd5e8b",
+    "scripts/trendline-geometry-167.py": "bca75a94f5936b0eb72800a6ec8cded79d8e109dc9ed8728ce166cba949689e6",
+    "src/forex_demo_lab/trendline/lines.py": "61859b696a93790075cdaea700df0fd613560f665c1a76f95e629fb30f714c25",
+    "scripts/trendline-lines-168.py": "9de69719394601f61ef699f7973427628ae025f29fd70c8368a2723d034e6362",
+    "src/forex_demo_lab/trendline/selection.py": "1ba87b2752c5c991fa7265a5e731b6ba2ffac46859cc96e494518e812e754389",
+    "scripts/trendline-lines-169.py": "cbd77bb141e716f8cb57f64981d7d311d65b1d3ec3f45bf553a55f65cc554b75",
+    "src/forex_demo_lab/trendline/lifecycle.py": "a6690a82388048150c75a8949ae72ae5eb1a492f6d586ea3d75332960274a7f2"
+  },
+  "tests_sha256": "80627d3d8e82252c38372bfe7f5df60193f268b20ce05f6208fc0e988343d062",
+  "unchanged_git_filtered_audit": {
+    "baseline": "92ce402",
+    "selection": [
+      "src",
+      "scripts",
+      "tests/trendline/fixtures",
+      "config",
+      "tests/test_trendline_lines_168.py",
+      "tests/test_trendline_geometry_167.py",
+      "tests/test_trendline_pivots_166.py",
+      "tests/test_trendline_study_165.py",
+      "tests/test_trendline_fills_164.py",
+      "tests/test_trendline_data_163.py"
+    ],
+    "paths_checked": 585,
+    "sorted_paths_sha256": "b2579ec843946a24e0d80a061b7a3139d9242dafc063df6ed95e0feae57045b1"
+  },
+  "phase4_complete": false,
+  "automatic_lifecycle_integrated": false,
+  "trigger_detection_available": false,
+  "actual_source_admitted": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "entry_ready": false,
+  "orders_available": false
+}

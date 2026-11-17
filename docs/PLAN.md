@@ -1,5 +1,17 @@
 # Proposed milestones
 
+Latest — Trendline169 Phase4 selection/journal increment (17 November2026).
+303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
+lifecycle-interface exercises match expectations.
+[169 results](trendline/RESULTS-169.md) and [usage](trendline/SELECTION-169-USAGE.md).
+Profile-local deduplication, frozen display ranking and explicit lifecycle journal
+commands are implemented. Next integrate automatic per-bar immutable revisions,
+poke/retirement ordering, bounds/gaps and alias/group replacement decisions; then
+finish all Phase4 golden/generated-path acceptance. Trigger detection remains for
+setup integration, and the journal's explicit trigger interface is not an entry.
+Actual-source admission stays open and all market cells/orders remain unavailable.
+Commit/push every completed sprint to main.
+
 Latest — Trendline168 Phase4 second increment (17 November2026).
 261 tests pass together:34 new/227 existing; seven invented CLI examples match
 declared counts. [168 results](trendline/RESULTS-168.md),
