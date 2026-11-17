@@ -1,6 +1,6 @@
 # Full-roadmap sprint tracker
 
-16 November 2026. Phase milestones are accepted only when every required criterion
+17 November 2026. Phase milestones are accepted only when every required criterion
 passes. Each completed sprint is reviewed, committed and pushed to main before the
 next sprint starts. Later sprint numbers are assigned at start, not promised here.
 
@@ -14,7 +14,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 1 | Rulebook and hand-computed invented examples | Complete: separate primary-agent rule/readability review; no independent human review claimed | 161-162, RESULTS-162.md |
 | 2 | Data manifest, H4/D1 bars, coverage and protected partitions | Engineering accepted on invented inputs; actual source admission OPEN | 163-166, RESULTS-166.md |
 | 3 | Causal confirmed pivots | Software complete on invented H4/D1; no market-source claim | 166, RESULTS-166.md |
-| 4 | Geometry, enumeration, strict validity, ranking, lifecycle | In progress: geometry/ATR software verified; next enumeration and strict validity | 167, RESULTS-167.md; multiple sprints allowed |
+| 4 | Geometry, enumeration, strict validity, ranking, lifecycle | In progress: geometry/ATR and bounded enumeration/touch/profile-validity inspection verified; next deduplication/ranking/lifecycle | 167-168, RESULTS-168.md; multiple sprints allowed |
 | 5 | D1 context gate | Pending | All eight decision outcomes |
 | 6 | All setup machines, disabled DLY, reason codes | Pending | All five initial strategies retained |
 | 7 | Costs, execution, risk, exits, independent accounting | Pending | Meaningful gap/restart/limit tests required |

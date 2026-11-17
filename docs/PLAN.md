@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Trendline168 Phase4 second increment (17 November2026).
+261 tests pass together:34 new/227 existing; seven invented CLI examples match
+declared counts. [168 results](trendline/RESULTS-168.md),
+[usage](trendline/LINES-168-USAGE.md). Bounded pair enumeration, chronological
+touches, strict penetration and strategy-profile validity now produce debug dumps.
+Next Phase4 profile-local deduplication, frozen ranking, immutable line revisions
+and opportunity-group handling. Full golden/property acceptance remains pending;
+snapshot profile validity is not formation, trigger or entry readiness. No actual
+market-source admission/evaluation, provider/account/native access, orders or grants.
+Commit/push every completed sprint to main.
+
 Latest — Trendline167 Phase4 first increment (16 November2026).
 227 tests pass together:29 geometry/ATR checks and198 existing; six invented CLI
 exports match hand expectations. [167 results](trendline/RESULTS-167.md) and

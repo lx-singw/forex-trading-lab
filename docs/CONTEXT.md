@@ -1,5 +1,16 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline168 Phase4 enumeration/validity increment (17 November2026).
+261 tests pass:34 new/227 existing; seven invented CLI exercises pass. New stateless
+line inspection applies600-index lookback before256-per-kind cap, greedy confirmed
+touches with frozen tolerances, strict no-exception pokes and profile touch/age/
+span/slope tests. Full checks include the current bar by default; only explicit
+H4 action-break checks may exclude it. [168 results](trendline/RESULTS-168.md).
+Phase4 remains in progress: next profile-local dedupe, ranking and lifecycle/group
+history; no trigger/formation/consumption or entry decision yet. Actual source
+admission stays open;28+16 market cells unavailable, protected dates/routes, native
+grants, frozen Elliott/account code and orders-off remain unchanged.
+
 Latest — Trendline167 Phase4 geometry/ATR increment (16 November2026).
 227 tests pass:29 new/198 existing; six invented CLI examples pass. Exact rational
 rays and current ATR/390-bar normalized-angle slope checks are implemented; each

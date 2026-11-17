@@ -1,5 +1,13 @@
 # Forex Demo Lab
 
+Latest — Trendline168 Phase4 bounded line inspection (17 November2026).
+261 tests pass:34 new/227 existing; seven invented CLI exercises pass. Pair search,
+earliest-wins touches, strict penetration and profile age/span/slope checks now
+produce source-bound debug dumps. [168 results](docs/trendline/RESULTS-168.md).
+Next Phase4 deduplication, ranking and lifecycle; no entry or full Phase4 acceptance
+is claimed. Actual source admission remains open, market cells unavailable and
+orders off; protected dates/routes and frozen legacy sources persist.
+
 Latest — Trendline167 Phase4 geometry/ATR increment (16 November2026).
 227 tests pass:29 new/198 existing; six invented CLI exercises match expectations.
 Exact ray arithmetic, ATR_SMA14, frozen confirmation tolerances and inclusive
