@@ -292,7 +292,7 @@ def _snapshot(source,observer,indexed,timeframe,profile,role,bound):
             "geometry_basis":source.record()["geometry_basis"],"timeframe":timeframe,"profile":profile,
             "penetration_role":role,"as_of":report["as_of"],"bar_index":now_index,
             "declaration_sha256":source.sha256,"input_sha256":source.record()["input_sha256"],
-            "source_bindings":bound,"coverage_state":coverage,"lookback_index_distance":LOOKBACK_BARS,
+            "source_bindings":dict(bound),"coverage_state":coverage,"lookback_index_distance":LOOKBACK_BARS,
             "window_pivot_counts":counts,"search_incomplete":incomplete,"pair_rejections":rejected,
             "snapshot_reasons":(["SEARCH_INCOMPLETE"] if incomplete else [])+
                                (["MISSING_COMPLETED_BAR"] if coverage != "CURRENT" else []),

@@ -59,3 +59,11 @@ Changes after this freeze append new dated rows, explaining economic impact,
 version/trial identity and whether any relevant outcomes had already been seen.
 Do not rewrite this log to conceal prior alternatives. Optional tracks are declared
 possibilities, not permission to run undeclared market trials.
+
+17 November 2026, sprint 171. A late completed bar is evidence of its own wick
+and scheduled index even when the next bar is due. The journal accepts poke and
+age facts on that receipt while coverage continues to block new eligibility.
+The inspector now copies the binding map when publishing debug reports. Both
+changes repair implementation defects under protocol revision 5. The review
+used invented candles and observed zero market outcomes.
+[Failure cases and verification](RESULTS-171.md)

@@ -208,7 +208,7 @@ class Engine:
                 "limitations":["declared trigger interface only; no setup predicate or entry selection",
                                 "historical VALID state is separate from current eligibility",
                                 "checkpoint/trace bounds are software limits, not successful market qualification",
-                                "remaining full golden/generated-path acceptance and real-source admission are open"]}
+                                "invented replay provides software evidence only; actual source admission is open"]}
 
     def checkpoint(self):
         self._check()

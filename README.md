@@ -1,5 +1,10 @@
 # Forex Demo Lab
 
+Sprint 171 completes Phase 4 line-engine verification on invented candles.
+The tests cover competing lines, permanent wick invalidation, replacement,
+and consumption through group merges. Next is the Phase 5 daily context gate.
+Historical source admission remains open. [Sprint 171 results](docs/trendline/RESULTS-171.md)
+
 Latest — Trendline170 automatic lifecycle integration (17 November2026).
 327 unique checks pass across new/focused/regression verification. Incremental
 bar replay now stages source-bound selection, trigger-interface consumption,

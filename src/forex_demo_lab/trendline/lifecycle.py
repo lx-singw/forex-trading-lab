@@ -79,19 +79,25 @@ class Journal:
         root = self._root(self._parents,group_id)
         return root,self._consumed[root]
 
-    def _verified(self,snapshot,*,full=False,require_search=True):
+    def _verified(self,snapshot,*,full=False,observed_fact=False):
         self._check()
         if not isinstance(snapshot,s.SelectedSnapshot):raise ValueError("typed selected snapshot required")
         r = snapshot.record()
         if (r["schema"] != s.VERSION or r["kind"] != "invented_trendline_selection" or r["data_level"] != "B"
                 or r["declaration_sha256"] != self._source_sha or r["source_bindings"] != s.bindings()
                 or r["profile"] != self.profile or r["timeframe"] != self.timeframe
-                or r["coverage_state"] != "CURRENT" or (require_search and r["search_incomplete"] is not False)
+                or (not observed_fact and r["search_incomplete"] is not False)
                 or r["orders_available"] is not False or r["entry_ready"] is not False
                 or r["selection"]["ranked"] != [v.record() for v in snapshot.selected]
                 or (full and r["penetration_role"] != "full") or r["latest_bar"] is None):
             raise ValueError("matching current invented snapshot with required penetration checks needed")
         bar = Bar(**r["latest_bar"])
+        # A delayed publication can prove a poke or age retirement even when
+        # a newer bar is due. A clock-only view cannot supply that observation.
+        if r["coverage_state"] != "CURRENT" and not (
+                observed_fact and r["coverage_state"] == "MISSING_COMPLETED_BAR"
+                and r["as_of"] == bar.available):
+            raise ValueError("current coverage or a newly received lifecycle fact required")
         index,ordinal = r["bar_index"],r["publication_ordinal"]
         data.integer(index);data.integer(ordinal);data.integer(r["as_of"]);data.sha(bar.lineage)
         windows = self.source.calendar.frame(self.timeframe)
@@ -121,11 +127,11 @@ class Journal:
         return self._execute({"op":"VALID","cursor":list(cursor),"payload":{"line_id":line_id}})
 
     def poke(self,snapshot,line_id):
-        cursor,bar = self._verified(snapshot,require_search=False)
+        cursor,bar = self._verified(snapshot,observed_fact=True)
         return self._execute({"op":"POKE","cursor":list(cursor),"payload":{"line_id":line_id,"bar":bar.record()}})
 
     def retire(self,snapshot,line_id,*,replacement_geometry_id=None):
-        cursor,_ = self._verified(snapshot,full=True,require_search=replacement_geometry_id is not None)
+        cursor,_ = self._verified(snapshot,full=True,observed_fact=replacement_geometry_id is None)
         replacement = None if replacement_geometry_id is None else self._selected(snapshot,replacement_geometry_id).record()
         return self._execute({"op":"RETIRE","cursor":list(cursor),"payload":{"line_id":line_id,"replacement":replacement}})
 

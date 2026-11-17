@@ -1,5 +1,12 @@
 # Setup context - 2026-09-30
 
+17 November 2026. Sprint 171 completes Phase 4 software acceptance on invented
+paths, including the §9.3 replacement, exact-union group consumption and competing
+support and resistance. A received wick can now invalidate a line while a later
+bar is overdue. Diagnostic consumers can edit their own reports safely.
+Phase 5 uses completed daily bars for the optional D1 gate. All 28 trendline
+market cells still await source admission. [Sprint 171 results](trendline/RESULTS-171.md)
+
 Latest — Trendline170 automatic bar lifecycle (17 November2026).
 327 unique checks pass:24 new scenarios and303 retained regressions, with focused
 reruns after a CLI reader fix/D1 fixture correction. Incremental inspector and

@@ -1,5 +1,12 @@
 # Proposed milestones
 
+17 November 2026. Phase 4 software acceptance is complete through sprint 171.
+Next implement Phase 5 using the nearest eligible D1 support and resistance
+within three daily ATRs, the eight direction/bias outcomes, and publication-aware
+H4 access to D1 context. Verify all eight cells against a second reading of the
+decision table and prove baseline parity with the gate off.
+[Phase 4 acceptance](trendline/RESULTS-171.md)
+
 Latest — Trendline170 Phase4 automatic lifecycle increment (17 November2026).
 327 unique checks pass across new/focused/regression runs; see
 [170 results](trendline/RESULTS-170.md) and [usage](trendline/REPLAY-170-USAGE.md).
