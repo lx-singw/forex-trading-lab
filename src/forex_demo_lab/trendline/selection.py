@@ -165,9 +165,19 @@ class SelectedSnapshot:
 def select(source,bars,*,timeframe="H4",profile="TRL_BRK3_E1",role="full",as_of=None):
     bound = bindings()
     report = lines.inspect(source,bars,timeframe=timeframe,profile=profile,role=role,as_of=as_of)
+    publications = [bar for i,bar in enumerate(bars) if i == 0 or bar != bars[i-1]]
+    return _selected(report,publications,profile,timeframe,bound)
+
+
+def from_inspector(inspector,profile="TRL_BRK3_E1",role="full"):
+    if not isinstance(inspector,lines.Inspector):raise ValueError("typed incremental inspector required")
+    bound = bindings()
+    return _selected(inspector.snapshot(profile,role),inspector.publications,profile,inspector.timeframe,bound)
+
+
+def _selected(report,publications,profile,timeframe,bound):
     candidates = tuple(ValidatedLine.from_candidate(c,profile,timeframe) for c in report["candidates"] if c["profile_valid"])
     reduction = reduce_lines(candidates)
-    publications = [bar for i,bar in enumerate(bars) if i == 0 or bar != bars[i-1]]
     report.update({"schema":VERSION,"kind":"invented_trendline_selection","source_bindings":bound,
                    "selection":reduction.record(),"publication_ordinal":len(publications),
                    "latest_bar":None if not publications else publications[-1].record(),

@@ -4,6 +4,7 @@ Geometry is not an eligible trading line. Touches, pokes, enumeration, ranking
 and lifecycle acceptance remain the next Phase4 increments.
 """
 from collections import deque
+from copy import copy
 from dataclasses import dataclass
 from decimal import Decimal
 from fractions import Fraction as F
@@ -209,6 +210,20 @@ class GeometryStream:
     def _check(self):
         if self._bindings != bindings():
             raise ValueError("geometry source/protocol bindings changed")
+
+    def fork(self):
+        """Stage an independent mutable frontier; published records are immutable."""
+        self._check()
+        result = copy(self)
+        result._pivots = self._pivots.fork()
+        result._bindings = dict(self._bindings)
+        result._bars = deque(self._bars,maxlen=self._bars.maxlen)
+        result._ranges = deque(self._ranges,maxlen=self._ranges.maxlen)
+        result._seen_lineage = set(self._seen_lineage)
+        result._snapshots = list(self._snapshots)
+        result._confirmation = dict(self._confirmation)
+        result._pivot_by_id = dict(self._pivot_by_id)
+        return result
 
     @property
     def timeframe(self):

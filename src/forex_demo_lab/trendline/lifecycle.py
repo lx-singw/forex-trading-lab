@@ -4,6 +4,7 @@ This journal verifies transition/consumption rules. Declared trigger commands ar
 an interface for later setup machines, not proof of a detected break or bounce.
 """
 from dataclasses import dataclass, replace
+from copy import copy
 import hashlib
 import json
 
@@ -45,24 +46,47 @@ class Journal:
         self.profile,self.timeframe = profile,timeframe
         self._scope = (profile,timeframe)
         self._source_sha = self.source.sha256
+        self._source_json = self.source._json
         self._bindings = bindings()
         self._states,self._parents,self._consumed,self._requests = {},{},{},{}
         self._events = ()
         self._cursor = None
 
     def _check(self):
-        if (self.source.sha256 != self._source_sha or bindings() != self._bindings
+        if (self.source._json != self._source_json or bindings() != self._bindings
                 or (self.profile,self.timeframe) != self._scope):
             raise ValueError("journal source/protocol/code binding changed")
 
-    def _verified(self,snapshot,*,full=False):
+    def fork(self):
+        self._check()
+        result = copy(self)
+        result._bindings = dict(self._bindings)
+        for name in ("_states","_parents","_consumed","_requests"):
+            setattr(result,name,dict(getattr(self,name)))
+        return result
+
+    @property
+    def states(self):return tuple(value for _,value in sorted(self._states.items()))
+
+    @property
+    def event_count(self):return len(self._events)
+
+    def events_since(self,index):
+        data.integer(index)
+        return json.loads(data.canonical(self._events[index:]))
+
+    def group_state(self,group_id):
+        root = self._root(self._parents,group_id)
+        return root,self._consumed[root]
+
+    def _verified(self,snapshot,*,full=False,require_search=True):
         self._check()
         if not isinstance(snapshot,s.SelectedSnapshot):raise ValueError("typed selected snapshot required")
         r = snapshot.record()
         if (r["schema"] != s.VERSION or r["kind"] != "invented_trendline_selection" or r["data_level"] != "B"
                 or r["declaration_sha256"] != self._source_sha or r["source_bindings"] != s.bindings()
                 or r["profile"] != self.profile or r["timeframe"] != self.timeframe
-                or r["coverage_state"] != "CURRENT" or r["search_incomplete"] is not False
+                or r["coverage_state"] != "CURRENT" or (require_search and r["search_incomplete"] is not False)
                 or r["orders_available"] is not False or r["entry_ready"] is not False
                 or r["selection"]["ranked"] != [v.record() for v in snapshot.selected]
                 or (full and r["penetration_role"] != "full") or r["latest_bar"] is None):
@@ -97,11 +121,11 @@ class Journal:
         return self._execute({"op":"VALID","cursor":list(cursor),"payload":{"line_id":line_id}})
 
     def poke(self,snapshot,line_id):
-        cursor,bar = self._verified(snapshot)
+        cursor,bar = self._verified(snapshot,require_search=False)
         return self._execute({"op":"POKE","cursor":list(cursor),"payload":{"line_id":line_id,"bar":bar.record()}})
 
     def retire(self,snapshot,line_id,*,replacement_geometry_id=None):
-        cursor,_ = self._verified(snapshot,full=True)
+        cursor,_ = self._verified(snapshot,full=True,require_search=replacement_geometry_id is not None)
         replacement = None if replacement_geometry_id is None else self._selected(snapshot,replacement_geometry_id).record()
         return self._execute({"op":"RETIRE","cursor":list(cursor),"payload":{"line_id":line_id,"replacement":replacement}})
 

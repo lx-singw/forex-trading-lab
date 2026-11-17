@@ -1,5 +1,13 @@
 # Forex Demo Lab
 
+Latest — Trendline170 automatic lifecycle integration (17 November2026).
+327 unique checks pass across new/focused/regression verification. Incremental
+bar replay now stages source-bound selection, trigger-interface consumption,
+pokes, retirement and immutable revisions together. [170 results](docs/trendline/RESULTS-170.md).
+Protocol revision5 records deterministic group alias handling. Next is the full
+Phase4 golden/generated-path acceptance review. Setup detection, source admission,
+market evaluation and orders remain unavailable.
+
 Latest — Trendline169 selection and lifecycle journal (17 November2026).
 303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
 lifecycle-interface exercises match expectations.

@@ -1,0 +1,189 @@
+{
+  "sprint": 170,
+  "date": "2026-11-17",
+  "kind": "invented_automatic_lifecycle_software_verification",
+  "predecessor": "f523660",
+  "tests": {
+    "unique_total": 327,
+    "new_unique": 24,
+    "retained": 303,
+    "final_unresolved_failures": 0,
+    "initial_new_run": {
+      "ran": 24,
+      "passed": 22,
+      "failures": 2,
+      "errors": 0,
+      "seconds": 491.05
+    },
+    "focused_rerun": {
+      "ran": 3,
+      "passed": 3,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 35.549,
+      "covers": [
+        "CLI checkpoint reader/resume/overwrite",
+        "D1/BNC full-bar profile fixture",
+        "CLI validation/market refusal"
+      ]
+    },
+    "retained_run": {
+      "ran": 303,
+      "passed": 303,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 153.515
+    },
+    "single_combined_run_claimed": false,
+    "post_initial_changes": "CLI unwraps read_json tuple; D1 fixture touches after ATR warmup; Engine algorithm unchanged"
+  },
+  "examples": {
+    "cli": [
+      {
+        "case": "H4_long",
+        "profile": "TRL_BRK3_E1",
+        "publications": 49,
+        "states": {
+          "POKED": 1
+        },
+        "journal_events": 3,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_short",
+        "profile": "TRL_BRK3_E1",
+        "publications": 49,
+        "states": {
+          "POKED": 1
+        },
+        "journal_events": 3,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_prefix",
+        "profile": "TRL_BRK3_E1",
+        "publications": 48,
+        "states": {
+          "VALID": 1
+        },
+        "journal_events": 2,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_resumed",
+        "profile": "TRL_BRK3_E1",
+        "publications": 49,
+        "states": {
+          "POKED": 1
+        },
+        "journal_events": 3,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_missing40",
+        "profile": "TRL_BRK3_E1",
+        "publications": 48,
+        "states": {},
+        "journal_events": 0,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "H4_superset",
+        "profile": "TRL_BRK3_E1",
+        "publications": 62,
+        "states": {
+          "VALID": 1,
+          "RETIRED": 1
+        },
+        "journal_events": 5,
+        "entry_ready": false,
+        "orders_available": false
+      },
+      {
+        "case": "D1_history",
+        "profile": "D1_BRK3",
+        "publications": 50,
+        "states": {
+          "VALID": 1
+        },
+        "journal_events": 2,
+        "entry_ready": false,
+        "orders_available": false
+      }
+    ],
+    "resumed_matches_uninterrupted": true,
+    "api": [
+      {
+        "case": "declared_trigger_before_poke",
+        "state": "TRIGGERED",
+        "consumed": true,
+        "restart_matches": true,
+        "trigger_detection": false
+      },
+      {
+        "case": "gap_after_formation",
+        "historical_state": "VALID",
+        "current_eligible": false,
+        "restart_matches": true
+      }
+    ]
+  },
+  "source_sha256": {
+    "src/forex_demo_lab/trendline/data.py": "8a1d566dc88cdc49f4284ee39cee0c6d31d3e598fc2ec5d66890ff1f318edfce",
+    "src/forex_demo_lab/trendline/__main__.py": "c3bba05acfeb5776f4e1084f9a5f5ad15e2855c44262b4b95904500253ac259e",
+    "docs/trendline/PROTOCOL.md": "f9e308e484e9cbb4af53160acccd4e4f3240170edfef87d112300d72cbf2927f",
+    "src/forex_demo_lab/elliott_sessions_146.py": "ea72630e774abdb361bd4962554d8870427bf93c1a6647702787153728c67359",
+    "src/forex_demo_lab/elliott_full/contracts.py": "0dc7a400d5eadb188562c3a62164b86ea7e1fb2b3ac41ce197c65215d08a9935",
+    "src/forex_demo_lab/trendline/pivots.py": "9c9c51b3d3b6b733b8fdb61f49f9ed56b092ff6b5e1975e75bbbe8d921db4350",
+    "src/forex_demo_lab/elliott_full/patterns.py": "37b2613ba58986e64f549d6e2cf2cbd5328588686d78f3a92a21dc815743bcbb",
+    "scripts/trendline-pivots-166.py": "4cfc646db6833461b60a24f422c3f110e411c6f05d446ed9af958f1e2dd2b515",
+    "src/forex_demo_lab/trendline/geometry.py": "e8bc1ca0776f28e1315d81fc71ace22b7fbc37109ab04f0d20374a54edf154dc",
+    "scripts/trendline-geometry-167.py": "bca75a94f5936b0eb72800a6ec8cded79d8e109dc9ed8728ce166cba949689e6",
+    "src/forex_demo_lab/trendline/lines.py": "ef46c103e6bdb90f0418274b427db91206e2751cadfd95a33a900545e53780be",
+    "scripts/trendline-lines-168.py": "9de69719394601f61ef699f7973427628ae025f29fd70c8368a2723d034e6362",
+    "src/forex_demo_lab/trendline/selection.py": "e2b86444c77d263b7f8a97f57eb3ee903312994831d8d2b7a3e3f914a71dd78a",
+    "scripts/trendline-lines-169.py": "cbd77bb141e716f8cb57f64981d7d311d65b1d3ec3f45bf553a55f65cc554b75",
+    "src/forex_demo_lab/trendline/lifecycle.py": "19de16eff56e384fc2d3d484ab3b5391ba98edfd80b9d4408554a5c556959364",
+    "src/forex_demo_lab/trendline/engine.py": "bc1d0216ce94ad9b1a0e94e729e263076b05a204dd21989ec216423df1d0e7cd",
+    "scripts/trendline-replay-170.py": "975d71c885c95f325ab24855ff413bce2dbedcc5ac00d0a9c8591b8050eb9cc0"
+  },
+  "tests_sha256": "0cf4c8010b141c473a4eaac1d4a85d8acc912e67b9baa3aced1b8beeaea555b2",
+  "unchanged_git_filtered_audit": {
+    "selection": [
+      "src",
+      "scripts",
+      "tests/trendline/fixtures",
+      "config",
+      "tests/test_trendline_selection_169.py",
+      "tests/test_trendline_lines_168.py",
+      "tests/test_trendline_geometry_167.py",
+      "tests/test_trendline_pivots_166.py",
+      "tests/test_trendline_study_165.py",
+      "tests/test_trendline_fills_164.py",
+      "tests/test_trendline_data_163.py"
+    ],
+    "intentional_adapters": [
+      "src/forex_demo_lab/trendline/geometry.py",
+      "src/forex_demo_lab/trendline/lines.py",
+      "src/forex_demo_lab/trendline/selection.py",
+      "src/forex_demo_lab/trendline/lifecycle.py"
+    ],
+    "paths_checked": 585,
+    "sorted_paths_sha256": "77a67538763ff384c4eafe3524b381e50dc6c82e9cfa977dd5371c242f97db24"
+  },
+  "protocol_revision": 5,
+  "protocol_prior_git_text_preserved": true,
+  "automatic_lifecycle_integrated": true,
+  "phase4_complete": false,
+  "trigger_detection_available": false,
+  "actual_source_admitted": false,
+  "market_cells_run": 0,
+  "returns_computed": false,
+  "entry_ready": false,
+  "orders_available": false
+}

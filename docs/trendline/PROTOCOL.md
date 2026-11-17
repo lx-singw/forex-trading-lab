@@ -325,3 +325,32 @@ demo step, the appropriate source/run/date/clock/cost/exposure gates still apply
 No protected data, stopped provider route, grant, account or order is unlocked.
 The market gates, all five strategies, parameter values and economic rules are
 unchanged. This corrects workflow ordering, not market acceptance.
+
+## Dated clarification — protocol revision 5, sprint170
+
+17 November2026, before any TRL market counts/returns. Implement automatic group
+identity using169's exact-touch groups. A new selected touch set receives a fresh
+group unless it is exactly the union of prior registered same-profile/frame/kind
+strict-subset groups. That exact-union case is an alias merge: union consumed
+state with the new representative. A set containing a touch not represented by
+those prior groups remains genuinely new, even if its confirmation preceded its
+first eligibility. Exact-touch geometry aliases already share a group. A mere
+strict-subset retirement is not by itself permission to merge opportunities.
+Use registered history before the current bar, including terminal/consumed groups;
+do not let same-bar registration order decide whether an opportunity is new.
+
+On each completed publication, stage declared pre-existing trigger consumption
+before current-bar pokes, then age retirement, new validated registrations/alias
+merges and strict-superset retirements. A poke takes precedence over age retirement.
+Declared triggers remain an interface, not detected setups. Search incompleteness
+blocks eligibility/new registration/trigger admission but cannot suppress an
+observable poke or age retirement. Missing interval coverage blocks eligibility;
+it does not fabricate a wick or reopen a terminal instance. Known calendar closures
+preserve bar-index adjacency. Lifecycle VALID history and current entry eligibility
+are separate; neither grants an entry. Automatic setup predicates remain Phase6.
+
+This records the deterministic group/transition interpretation before automatic
+engine fixtures, with the same five strategies, parameter values and zero market
+trials. The initial market study remains unassigned/unrun; all source/run gates,
+protected dates/routes, grants and orders-off are unchanged. Engineering version
+TRL_ENGINE_170_V1 binds this revision; no prior source/outcome record is rewritten.

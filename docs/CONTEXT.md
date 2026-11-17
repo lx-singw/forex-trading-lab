@@ -1,5 +1,19 @@
 # Setup context - 2026-09-30
 
+Latest — Trendline170 automatic bar lifecycle (17 November2026).
+327 unique checks pass:24 new scenarios and303 retained regressions, with focused
+reruns after a CLI reader fix/D1 fixture correction. Incremental inspector and
+forked journal now publish immutable per-bar revisions atomically. Declared
+pre-existing trigger consumption precedes current pokes, then age retirement,
+registrations/alias merges and subset retirement. Protocol revision5 defines
+fresh groups versus exact unions of prior same-scope groups. Gaps/caps block
+eligibility while observable pokes/age facts remain recordable; VALID history is
+separate from current eligibility. [170 results](trendline/RESULTS-170.md).
+Next full Phase4 golden/generated-path acceptance and boundary review. Trigger
+predicates remain Phase6; actual source/run admission stays open. All28+16 market
+cells, protected dates/routes, frozen Elliott/account code, grants and orders-off
+persist. Current code/protocol cannot resume older169-bound checkpoints.
+
 Latest — Trendline169 reduction/ranking and lifecycle storage (17 November2026).
 303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
 lifecycle-interface exercises pass.

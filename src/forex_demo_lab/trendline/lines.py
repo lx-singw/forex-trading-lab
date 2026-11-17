@@ -4,6 +4,7 @@ Profile validity precedes deduplication/ranking/lifecycle. No trading decision,
 formation event or execution permission is produced here.
 """
 from dataclasses import dataclass
+from copy import copy
 from decimal import Decimal
 from itertools import combinations
 import hashlib
@@ -192,18 +193,68 @@ def inspect(source,bars,*,timeframe="H4",profile="TRL_BRK3_E1",role="full",as_of
     validate_profile(profile,timeframe,role)
     if not isinstance(bars,(list,tuple)) or len(bars) > pivots.MAX_BARS:
         raise ValueError("bounded explicit bar prefix required")
-    source = data.Declaration.from_record(source.record())
-    bound = bindings()
-    observer = g.GeometryStream(source,timeframe)
-    windows = {w.start:i for i,w in enumerate(source.calendar.frame(timeframe))}
-    indexed = []
+    inspector = Inspector(source,timeframe)
     if as_of is not None:data.integer(as_of)
     for bar in bars:
         if not isinstance(bar,Bar):raise ValueError("typed prefix bar required")
         if as_of is not None and bar.available > as_of:raise ValueError("prefix contains future publication")
-        observer.observe(bar)
-        if not indexed or bar != indexed[-1][1]:indexed.append((windows[bar.start],bar))
-    if as_of is not None:observer.advance(as_of)
+        inspector.observe(bar)
+    if as_of is not None:inspector.advance(as_of)
+    return inspector.snapshot(profile,role)
+
+
+class Inspector:
+    """Same168 calculations over an incremental, forkable geometry frontier."""
+    def __init__(self,source,timeframe="H4"):
+        self.source = data.Declaration.from_record(source.record())
+        self.timeframe = timeframe
+        self._source_sha = self.source.sha256
+        self._source_json = self.source._json
+        self._bindings = bindings()
+        self._observer = g.GeometryStream(self.source,timeframe)
+        self._windows = {w.start:i for i,w in enumerate(self.source.calendar.frame(timeframe))}
+        self._indexed = []
+
+    def _check(self):
+        if self.source._json != self._source_json or bindings() != self._bindings or self.timeframe != self._observer.timeframe:
+            raise ValueError("inspector source/frame/code changed")
+
+    def fork(self):
+        self._check()
+        result = copy(self)
+        result._bindings = dict(self._bindings)
+        result._observer = self._observer.fork()
+        result._indexed = list(self._indexed)
+        return result
+
+    @property
+    def publications(self):return tuple(bar for _,bar in self._indexed)
+
+    @property
+    def indexed(self):return tuple(self._indexed)
+
+    @property
+    def clock(self):return self._observer._pivots.clock
+
+    @property
+    def metrics(self):return None if not self._observer.snapshots else self._observer.snapshots[-1]
+
+    def observe(self,bar):
+        self._check()
+        result = self._observer.observe(bar)
+        if not self._indexed or bar != self._indexed[-1][1]:self._indexed.append((self._windows[bar.start],bar))
+        return result
+
+    def advance(self,now):
+        self._check();self._observer.advance(now)
+
+    def snapshot(self,profile="TRL_BRK3_E1",role="full"):
+        self._check()
+        validate_profile(profile,self.timeframe,role)
+        return _snapshot(self.source,self._observer,self._indexed,self.timeframe,profile,role,self._bindings)
+
+
+def _snapshot(source,observer,indexed,timeframe,profile,role,bound):
     report = observer.report()
     latest = observer.snapshots[-1] if observer.snapshots else None
     now_index = None if latest is None else latest.bar_index

@@ -1,5 +1,16 @@
 # Proposed milestones
 
+Latest — Trendline170 Phase4 automatic lifecycle increment (17 November2026).
+327 unique checks pass across new/focused/regression runs; see
+[170 results](trendline/RESULTS-170.md) and [usage](trendline/REPLAY-170-USAGE.md).
+Automatic bar observations, immutable revisions, cap/gap eligibility, strict poke/
+retirement ordering and protocol5 group alias policy are integrated. Checkpoint
+commands rebuild the complete causal prefix and refuse edited/mismatched history.
+Next complete the full Phase4 golden/generated-path matrix and a separate
+primary-agent boundary review before Phase5. Actual setup detection remains Phase6; declared
+trigger ids are an interface only. No market admission/counts/returns, native run,
+orders or renewed grants. Commit/push each completed sprint to main.
+
 Latest — Trendline169 Phase4 selection/journal increment (17 November2026).
 303 tests pass:42 new/261 existing; seven invented CLI selections and two explicit
 lifecycle-interface exercises match expectations.
