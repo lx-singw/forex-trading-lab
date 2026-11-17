@@ -47,10 +47,9 @@ class ValidatedLine:
                 or self.touch_indices[-1]+3 > self.touch_indices[0]+self.age
                 or self.geometry_id != data.digest(["EURUSD",self.ray.timeframe,self.ray.kind,self.a_id,self.b_id])):
             raise ValueError("validated anchor/touch geometry metadata required")
-        minimum = 2 if self.profile in ("TRL_BRK2_E1","TRL_BNC_E1") else 3
-        if (len(self.touch_ids) < minimum or (self.profile == "TRL_BRK2_E1" and len(self.touch_ids) != 2)
+        if (not lines.touch_count_valid(self.profile,len(self.touch_ids))
                 or (self.profile == "TRL_FXR_M" and self.span < 90)
-                or (self.profile != "TRL_FXR_M" and self.age < (15 if self.ray.timeframe == "D1" else 30))):
+                or (self.profile != "TRL_FXR_M" and self.age < lines.minimum_age(self.profile,self.ray.timeframe))):
             raise ValueError("frozen profile touch/age/span requirements required")
 
     @classmethod

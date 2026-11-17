@@ -16,7 +16,8 @@ VERSION = "TRL_LINES_168_V1"
 LOOKBACK_BARS = 600
 PIVOT_CAP = 256
 STRATEGIES = ("TRL_BRK3_E1","TRL_FXR_M","TRL_BRK2_E1","TRL_BNC_E1","TRL_BRK3_E1_D1")
-PROFILES = STRATEGIES+("D1_BRK3",)
+SAFETY_PROFILE = "H4_SAFETY"
+PROFILES = STRATEGIES+("D1_BRK3",SAFETY_PROFILE)
 BREAK_PROFILES = tuple(p for p in STRATEGIES if p != "TRL_BNC_E1")
 
 
@@ -27,6 +28,19 @@ def validate_profile(profile,timeframe,role):
         raise ValueError("profile requires its frozen timeframe")
     if role == "action_break" and profile not in BREAK_PROFILES:
         raise ValueError("current-bar exception is restricted to action breaks")
+
+
+def touch_count_valid(profile, count):
+    if profile == "TRL_BRK2_E1":
+        return count == 2
+    minimum = 2 if profile in ("TRL_BNC_E1", SAFETY_PROFILE) else 3
+    return count >= minimum
+
+
+def minimum_age(profile, timeframe):
+    if profile == SAFETY_PROFILE:
+        return 0
+    return 15 if timeframe == "D1" else 30
 
 
 def available_pivots(values,cursor,now_index):
@@ -163,14 +177,13 @@ def profile_tests(touches,now_index,timeframe,profile,atr,angle_range=None,*,slo
                    for a,b in zip(touches,touches[1:]))):
         raise ValueError("prior confirmed, chronologically spaced matching-frame touches required")
     count = len(touches)
-    minimum = 2 if profile in ("TRL_BRK2_E1","TRL_BNC_E1") else 3
     issues = []
-    if count < minimum or (profile == "TRL_BRK2_E1" and count != 2):issues.append("TOUCH_COUNT")
+    if not touch_count_valid(profile,count):issues.append("TOUCH_COUNT")
     age = None if not touches else now_index-touches[0].bar_index
     span = None if not touches else touches[-1].bar_index-touches[0].bar_index
     if profile == "TRL_FXR_M":
         if span is None or span < 90:issues.append("FORMATION_TOO_SHORT")
-    elif age is None or age < (15 if timeframe == "D1" else 30):issues.append("LINE_TOO_YOUNG")
+    elif age is None or age < minimum_age(profile,timeframe):issues.append("LINE_TOO_YOUNG")
     slopes = g.slope_tests(slope,atr,angle_range,require_angle=profile == "TRL_FXR_M")
     issues.extend(slopes["reasons"])
     return {"passes":not issues,"reasons":issues,"age_bars":age,"formation_span_bars":span,

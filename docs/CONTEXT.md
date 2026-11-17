@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+17 November 2026. Sprint 173 delivers the BRK3 setup-detection increment.
+Both BRK3 profiles consume qualifying triggers before ranking or safety filters.
+The optional D1 gate reads completed daily context. Safety uses two or more
+confirmed touches and the full trigger-bar wick, with the exact buffered stop
+frozen for later entry-observation checks. [Sprint 173 results](trendline/RESULTS-173.md)
+
 17 November 2026. Sprint 172 implements the Phase 5 D1 gate on invented data.
 The context variant reads the latest available completed daily close and its
 nearest eligible D1 lines within three ATRs. An overdue missing daily bar

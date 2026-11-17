@@ -1,5 +1,10 @@
 # Forex Demo Lab
 
+Sprint 173 adds invented-candle BRK3 setup replay, including trigger consumption,
+opposing safety selection and an outward-rounded stop. Phase 6 continues with
+entry-observation checks and the other setup families.
+[Sprint 173 results](docs/trendline/RESULTS-173.md)
+
 Sprint 172 adds the optional Phase 5 daily context gate. The H4 replay reads
 completed D1 support and resistance for the context variant. Next is Phase 6
 setup detection. [Sprint 172 results](docs/trendline/RESULTS-172.md)

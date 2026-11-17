@@ -91,13 +91,22 @@ class Engine:
             previous = next(c for c in reversed(self._commands) if c["op"] == "BAR")
             if previous != command:raise ValueError("conflicting trigger retry on already committed bar")
             return self._last_bar_frame()
+        staged = self._prepare_bar(bar)
+        return self._finish_bar(bar, staged, triggers)
+
+    def _prepare_bar(self, bar):
         self._bound()
         inspector = self._inspector.fork();inspector.observe(bar)
         full = s.from_inspector(inspector,self.profile,"full")
         action = s.from_inspector(inspector,self.profile,"action_break") if self.profile in lines.BREAK_PROFILES else full
+        action_ids = self._action_ids(inspector,action,self._journal.states)
+        return inspector, full, action, action_ids
+
+    def _finish_bar(self, bar, staged, triggers):
+        inspector, full, action, action_ids = staged
+        command = {"op":"BAR","bar":bar.record(),"declared_triggers":list(triggers)}
         report = full.record();index = report["bar_index"]
         prior = self._journal.states
-        action_ids = self._action_ids(inspector,action,prior)
         if not set(triggers) <= set(action_ids):raise ValueError("declared trigger lacks pre-existing current eligible instance")
         journal = self._journal.fork();start_events = journal.event_count
         if triggers:journal.trigger_many(action,triggers)

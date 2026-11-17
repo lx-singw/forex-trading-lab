@@ -1,5 +1,11 @@
 # Proposed milestones
 
+17 November 2026. Sprint 173 implements BRK3 trigger and safety decisions.
+Next connect the entry-observation checks to the existing invented Level B
+price model, including expiry, stop window, spread and crossed protection.
+Then extend the setup machine to FXR, BRK2 and bounce in their declared order.
+[BRK3 increment](trendline/RESULTS-173.md)
+
 17 November 2026. Sprint 172 delivers Phase 5. Next start Phase 6 with BRK3
 close-break detection, pre-existing formation, missed breaks, trigger
 consumption and safety selection. Apply the D1 table to the proposed trade

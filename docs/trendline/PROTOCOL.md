@@ -374,3 +374,23 @@ search also make the bias unavailable.
 
 This interpretation was recorded before the sprint's invented replay checks.
 Only TRL_BRK3_E1_D1 uses the table. W1 and MN remain later extensions.
+
+## Dated clarification for sprint 173, protocol revision 7
+
+17 November 2026. For the first BRK3 setup increment, compare the previous
+scheduled H4 close with the same action ray at the previous index. The
+current close must reach one declared price tick beyond the ray, inclusive.
+When a selected action geometry would first qualify but its current close is
+already beyond the ray, record MISSED_BREAK even inside one tick. Its current
+penetration prevents future use of that geometry.
+
+Use a separate H4 lifecycle for opposing safety lines with the core slope rule
+and two or more confirmed touches. The 30-bar minimum applies to core action
+lines. G35's safety line is 28 bars old at the trigger, as expected under the
+separate safety requirement. Check the current wick. Rank strictly correct-side
+lines by distance from the trigger close, then by descending touch count.
+Equal safety scores abstain with SAFETY_LINE_TIE. Consume all current triggers
+first. Resolve opposing directions and economic rank ties before evaluating
+the selected setup's safety and optional D1 gate, without falling back to a
+lower-ranked setup. The core stop uses the current (unprojected) value and
+outward tick rounding. Entry-observation checks remain a separate increment.

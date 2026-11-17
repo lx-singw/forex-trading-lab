@@ -74,3 +74,10 @@ daily publication deadline makes context unavailable, and equal receipt
 times follow the existing daily-first bar order. The inclusive three-ATR
 distance and eight frozen outcomes apply to TRL_BRK3_E1_D1 before any
 market evidence is inspected. [Protocol revision 6](PROTOCOL.md)
+
+17 November 2026, sprint 173. Use the previous scheduled close on the same
+action ray and an inclusive one-tick trigger margin. Protection has a
+separate two-confirmed-touch profile. The G35 safety anchors mature before
+the trigger even though the first touch is 28 bars old. Resolve action and
+safety ties by abstaining after trigger consumption.
+[Protocol revision 7](PROTOCOL.md)
