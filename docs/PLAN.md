@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 195 prioritizes the Exness public archive for
+Phase 10 Level B development evidence. Confirm local research and retention
+terms, the historical EURUSD variant, its clock and session calendar, and
+available archive scope before admission. [Source feasibility](trendline/RESULTS-195.md)
+
 18 November 2026. Sprint 194 delivers the Phase 10 counter and its
 metadata status report. Continue with permitted historical EURUSD
 source evidence and development-scope admission, then run the 60-opportunity

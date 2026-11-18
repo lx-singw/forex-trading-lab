@@ -1,5 +1,12 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 195 identifies Exness’s public bid/ask tick
+archive as the lead for Phase 10 source qualification. The provider
+describes account-free downloads and historical backtesting. Local-use
+terms, date-specific clock and session evidence, and the full EURUSD
+development coverage still need confirmation. Historical counts are
+`UNAVAILABLE`. [Sprint 195 results](trendline/RESULTS-195.md)
+
 18 November 2026. Sprint 194 adds development-only Level B and Level Q
 opportunity counts using the frozen setup and opening-price checks.
 The canonical source plan has no admitted historical input, so the

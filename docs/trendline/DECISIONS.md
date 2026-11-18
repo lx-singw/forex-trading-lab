@@ -87,3 +87,11 @@ for equal timestamps in invented Level B. The first H1 row may confirm the
 assumed opening through the next scheduled H4 close. If it arrives later,
 the attempt stays expired. Transfer the exact trigger ATR to the price
 model without decimal approximation. [Protocol revision 8](PROTOCOL.md)
+
+18 November 2026, sprint 195. Prioritize the Exness public tick archive as
+a candidate for Level B development, pending exact archive-use terms,
+historical variant and clock/session evidence, and coverage of the declared
+warmup and development span. Documentation review encountered illustrative
+pricing with uncertain observation dates. Include it in future exposure
+review. No TRL market count or outcome preceded this decision.
+[Source feasibility](RESULTS-195.md)

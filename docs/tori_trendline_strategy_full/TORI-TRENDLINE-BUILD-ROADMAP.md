@@ -527,8 +527,10 @@ This is the single most useful early step for a swing strategy. Setups on H4 may
 
 **Acceptance:** a written feasibility result with counts. If the gate fails, stop and decide, do not loosen rules to create signals.
 
-Sprint 194 verifies the software and reports the source admission dependency.
-[Counter and current feasibility status](../trendline/RESULTS-194.md)
+Sprint 194 verifies the counter. Sprint 195 reviews historical sources and
+prioritizes the Exness public archive for qualification. Historical counts
+remain `UNAVAILABLE` pending the source-use, clock, calendar and coverage review.
+[Counter](../trendline/RESULTS-194.md) · [Source feasibility](../trendline/RESULTS-195.md)
 
 **Decision tree:**
 
