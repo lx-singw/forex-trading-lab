@@ -17,3 +17,4 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 forex_demo_lab = ["elliott_session_viewer_151.html"]
+"forex_demo_lab.trendline" = ["replay_viewer.html"]

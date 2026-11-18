@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 187 adds an offline Level B viewer for saved
+invented ledger runs. The receipt cursor reveals H4 candles, confirmed
+pivots, line revisions, account events and skipped entries. Phase 8
+continues with quote viewing and fuller evidence exports.
+[Sprint 187 results](trendline/RESULTS-187.md)
+
 18 November 2026. Sprint 186 independently reconciles Level Q quote
 selection and accounting and verifies that day references appear in
 receipt order. Phase 7 software acceptance is complete on invented

@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 187 adds the offline Level B viewer with a receipt-time cursor.
+[Sprint 187 results](docs/trendline/RESULTS-187.md)
+
 Sprint 186 completes Phase 7 software acceptance on invented Level B and
 Level Q inputs. [Sprint 186 results](docs/trendline/RESULTS-186.md)
 

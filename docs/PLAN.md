@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 187 delivers the initial Level B causal
+viewer. Next add the Level Q evidence path and trade-linked inspection
+of the action and safety lines. Continue Phase 8 with the retrospective
+view, readable and machine-readable ledger exports, and manual annotation
+comparison.
+[Viewer increment](trendline/RESULTS-187.md)
+
 18 November 2026. Sprint 186 completes Phase 7 software acceptance on
 invented Level B and Level Q inputs. Next build the Phase 8 read-only
 causal replay viewer. Start with a receipt-time cursor, line and pivot

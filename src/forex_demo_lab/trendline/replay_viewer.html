@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Trendline replay</title>
+<style>
+:root{color-scheme:dark;--bg:#0a101b;--panel:#101b2a;--raised:#152335;--line:#27394e;--text:#eef4fa;--muted:#a0b2c6;--teal:#75e2d4;--rose:#f1999e;--amber:#f2c879;--blue:#9bb9fb;font:14px system-ui,sans-serif}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--text);margin:0}
+.shell{max-width:1480px;margin:auto;padding:28px clamp(16px,3vw,48px)}
+.mast{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+h1,h2,p{margin:0}h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.04em;line-height:1.05}
+h2{font-size:16px;font-weight:650}.scope{color:var(--muted);margin-top:8px;line-height:1.5}
+.label{color:var(--teal);padding:6px 10px;border:1px solid #385c65;border-radius:6px;white-space:nowrap}
+.cursor-panel,.metric,.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.cursor-panel{padding:14px 18px;margin-bottom:12px}.toolbar,.controls,.legend,.panel-head{display:flex;align-items:center;flex-wrap:wrap;gap:9px}
+.toolbar,.panel-head{justify-content:space-between}.clock{font-variant-numeric:tabular-nums;font-size:15px;color:var(--teal)}
+button,select{color:var(--text);background:var(--raised);border:1px solid var(--line);border-radius:6px;font:inherit;padding:7px 10px}
+button{cursor:pointer}button:hover{border-color:var(--blue)}button:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+input[type=range]{width:100%;accent-color:var(--teal);margin:16px 0 3px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 12px}
+.metric{padding:13px 15px;min-width:0}.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+.metric strong{font-size:16px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.workspace{display:grid;grid-template-columns:minmax(0,2.5fr) minmax(290px,1fr);gap:12px;align-items:start}
+.panel{min-width:0}.panel-head{padding:14px 16px;border-bottom:1px solid var(--line)}
+.layers{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:12px}.layers label{display:flex;align-items:center;gap:5px}
+.layers input{accent-color:var(--teal);margin:0}canvas{display:block;width:100%;height:clamp(300px,43vh,470px)}
+.legend{border-top:1px solid var(--line);padding:11px 16px;color:var(--muted);font-size:12px;gap:13px}
+.legend span{white-space:nowrap}.key{display:inline-block;width:11px;height:3px;vertical-align:middle;background:var(--key);margin-right:5px}
+.inspector{padding:14px 16px}.inspector>label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+.inspector select{width:100%;min-width:0;margin-bottom:12px}.item-head{font-weight:650;overflow-wrap:anywhere}
+.meta{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.45}
+dl{display:grid;grid-template-columns:minmax(84px,1fr) minmax(100px,1.5fr);gap:6px 9px;margin:13px 0 0;font-size:13px}
+dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+details{margin-top:14px;color:var(--muted);font-size:12px}summary{cursor:pointer}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;color:var(--text);line-height:1.45}
+.recent{margin-top:12px}.list{padding:5px 12px;list-style:none;margin:0}
+.list button{display:grid;grid-template-columns:155px minmax(0,1fr);gap:6px;padding:9px 6px;width:100%;background:none;border:0;border-bottom:1px solid var(--line);text-align:left;color:var(--text)}
+.list li:last-child button{border:0}.list button:hover{color:var(--teal)}.list time{color:var(--muted);font-size:12px}
+.list .empty{padding:12px 6px;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.mast{align-items:start}}
+@media(max-width:520px){.mast{flex-direction:column;gap:10px;margin-bottom:16px}.metrics{grid-template-columns:1fr 1fr}
+.cursor-panel,.panel-head,.inspector{padding:11px}.list button{grid-template-columns:110px minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="mast"><div><h1>Trendline replay</h1><p class="scope" id="scope"></p></div>
+    <span class="label">Invented · Read-only</span></header>
+  <section class="cursor-panel" aria-label="Receipt-time replay controls">
+    <div class="toolbar"><time id="stamp" class="clock"></time>
+      <div class="controls">
+        <button id="first">First</button><button id="previous" aria-label="Previous matching receipt">←</button>
+        <button id="next" aria-label="Next matching receipt">→</button><button id="last">Latest</button>
+        <label class="sr-only" for="filter">Navigate by evidence</label>
+        <select id="filter"><option value="all">All receipts</option><option value="SETUP">Setups</option>
+          <option value="fills">Fills</option><option value="ADMISSION">Entry gates</option>
+          <option value="PROTECTION">Protection</option></select>
+      </div>
+    </div>
+    <input id="cursor" type="range" min="0" step="1" value="0" aria-label="Receipt-time cursor">
+  </section>
+  <section class="metrics" aria-label="Account at cursor">
+    <div class="metric"><span>Equity · USD</span><strong id="equity">—</strong></div>
+    <div class="metric"><span>Cash · USD</span><strong id="cash">—</strong></div>
+    <div class="metric"><span>Position</span><strong id="position">Flat</strong></div>
+    <div class="metric"><span>Last entry gate</span><strong id="gate">Awaiting setup</strong></div>
+  </section>
+  <div class="workspace">
+    <section class="panel">
+      <div class="panel-head"><h2>EURUSD · H4</h2><div class="layers">
+        <label><input id="pivots" type="checkbox" checked> Pivots</label>
+        <label><input id="rays" type="checkbox" checked> Lines</label>
+        <label><input id="fills" type="checkbox" checked> Fills</label>
+        <label><input id="protection" type="checkbox" checked> Stop and target</label>
+      </div></div>
+      <canvas id="chart" role="img" aria-label="H4 price chart through the selected receipt"></canvas>
+      <div class="legend"><span><i class="key" style="--key:var(--blue)"></i>Action</span>
+        <span><i class="key" style="--key:var(--teal)"></i>Safety</span>
+        <span><i class="key" style="--key:#8292a4"></i>Poked</span>
+        <span><i class="key" style="--key:var(--amber)"></i>Confirmed pivot</span>
+        <span><i class="key" style="--key:var(--rose)"></i>Exit / stop</span></div>
+    </section>
+    <aside class="panel" aria-label="Evidence inspector">
+      <div class="panel-head"><h2>Evidence at cursor</h2></div>
+      <div class="inspector"><label for="evidence">Receipt item or visible line</label><select id="evidence"></select>
+        <div id="item-title" class="item-head"></div><p id="item-meta" class="meta"></p><dl id="facts"></dl>
+        <details><summary>Recorded fields</summary><pre id="raw"></pre></details>
+      </div>
+    </aside>
+  </div>
+  <section class="panel recent"><div class="panel-head"><h2>Recent evidence</h2></div><ol id="activity" class="list"></ol></section>
+</main>
+<script id="replay-data" type="application/json">/*REPLAY_DATA*/</script>
+<script>
+'use strict';
+
+// CURSOR_PROJECTION
+function stateAt(view, index){
+  const candles=[], pivots=[], lines={}, setups={}, fills=[], activity=[];
+  let account=null, held=null, setup=null, admission=null, reservation=null, endpoint=null;
+  for(let i=0;i<=index;i++){
+    const group=view.groups[i];
+    for(const item of group.items){
+      const record=item.value;
+      switch(item.kind){
+        case 'CANDLE': candles.push(record); break;
+        case 'PIVOT': pivots.push(record); break;
+        case 'LINE': lines[record.role+':'+record.line_id]=record; break;
+        case 'SETUP': setup=record;setups[record.h4_frame_id]=record;break;
+        case 'ADMISSION':
+          admission=record;
+          if(record.status==='RESERVED')reservation=record.attempt_id;
+          else if(reservation===record.attempt_id)reservation=null;
+          break;
+        case 'ACCOUNT':
+          account=record.event.account;
+          if(record.event.kind==='ENTRY_FILL'){
+            fills.push(record);
+            held={...record.held,stop:record.held.initial_stop,attempt_id:record.event.attempt_id,
+                  h4_frame_id:record.h4_frame_id};
+          }else if(record.event.kind==='EXIT_FILL'){
+            fills.push(record);held=null;
+          }
+          break;
+        case 'PROTECTION':
+          if(held?.attempt_id===record.attempt_id && record.stop!==undefined){
+            held={...held,stop:record.stop,safety_line_id:record.line_id};
+          }
+          break;
+        case 'END': endpoint=record;break;
+      }
+      if(item.kind==='ADMISSION'||item.kind==='PROTECTION'||item.kind==='SETUP'&&record.state!=='FORMING'
+         ||item.kind==='ACCOUNT'&&['ENTRY_FILL','EXIT_FILL','FINANCING'].includes(record.event.kind)){
+        activity.push({index:i,item,at:group.at});
+      }
+    }
+  }
+  return {group:view.groups[index],candles,pivots,lines,setups,fills,activity,
+          account,held,setup,admission,reservation,endpoint};
+}
+// END_CURSOR_PROJECTION
+
+const $=id=>document.getElementById(id);
+const view=JSON.parse($('replay-data').textContent);
+const cursor=$('cursor'), evidence=$('evidence'), canvas=$('chart');
+const number=value=>typeof value==='object'&&value!==null?value.numerator/value.denominator:Number(value);
+const iso=time=>new Date(time).toISOString().replace('T',' ').replace('Z',' UTC');
+const shortTime=time=>iso(time).slice(5,16);
+const words=value=>value===null||value===undefined?'—':String(value).replaceAll('_',' ').toLowerCase();
+const price=value=>value===null||value===undefined?'—':String(value);
+const lineName=line=>`${line.role} ${line.ray.kind} · ${words(line.view.status)}`;
+const fillKind=item=>item.kind==='ACCOUNT'&&['ENTRY_FILL','EXIT_FILL'].includes(item.value.event.kind);
+const shownLines=state=>Object.values(state.lines).filter(line=>['VALID','POKED','TRIGGERED'].includes(line.view.status));
+const headline=item=>{
+  const v=item.value;
+  switch(item.kind){
+    case 'START':return 'Partition opens';
+    case 'CANDLE':return 'H4 publication';
+    case 'PIVOT':return 'Confirmed '+v.kind+' pivot';
+    case 'LINE':return lineName(v);
+    case 'SETUP':return 'Setup · '+words(v.reason??v.state);
+    case 'ADMISSION':return 'Entry · '+words(v.reason);
+    case 'PROTECTION':return 'Protection · '+words(v.reason);
+    case 'ACCOUNT':return words(v.event.kind)+(v.trade?' · '+words(v.trade.reason):'');
+    case 'END':return 'Saved cursor ends · '+words(v.status);
+    default:return words(item.kind);
+  }
+};
+
+$('scope').textContent=`Level ${view.data_level} · ${view.profile} · ${words(view.geometry_basis)} · ${view.partition} · ${view.cost} costs`;
+cursor.max=String(view.groups.length-1);
+let current, choices=[];
+
+function inspect(){
+  const selected=choices[evidence.selectedIndex];
+  $('facts').replaceChildren();
+  if(!selected)return;
+  const {item,at}=selected,v=item.value;
+  $('item-title').textContent=headline(item);
+  $('item-meta').textContent='Available '+iso(at);
+  const facts={};
+  if(item.kind==='CANDLE')Object.assign(facts,{'H4 index':v.index,'Opened':iso(v.start),'Closed':iso(v.end),
+    'Open':v.open,'High':v.high,'Low':v.low,'Close':v.close});
+  if(item.kind==='PIVOT')Object.assign(facts,{'Price':v.price,'Occurred':iso(v.occurred_at),'Confirmed':iso(v.confirmed_at)});
+  if(item.kind==='LINE')Object.assign(facts,{'Revision':v.revision,'Touches':v.view.touch_indices.join(', '),
+    'Age in H4 bars':v.view.age_bars,'Eligible':v.view.eligible?'Yes':'No',
+    'Penetrating H4':v.poke_index,'Reason':v.view.reasons.map(words).join(', ')||null});
+  if(item.kind==='SETUP')Object.assign(facts,{'State':words(v.state),'Direction':v.direction,'H4 index':v.bar_index,
+    'Action line':v.selected_line_id?.slice(0,12),'Safety line':v.safety?.line_id.slice(0,12)});
+  if(item.kind==='ADMISSION')Object.assign(facts,{'State':words(v.status),'Lots':v.sizing?.lots,
+    'Estimated loss · USD':v.sizing?.estimated_stop_loss_usd});
+  if(item.kind==='PROTECTION')Object.assign(facts,{'Prior stop':v.old_stop,'Stop':v.stop,'H4 index':v.h4_index});
+  if(item.kind==='ACCOUNT')Object.assign(facts,{'Effective':iso(v.event.effective_at),'Price':v.event.price,
+    'Fee · USD':v.event.fee_usd,'Net · USD':v.trade?.net_usd,'Equity · USD':v.event.account.equity_usd});
+  if(item.kind==='END'&&v.open_liability)Object.assign(facts,{'Last mark':v.open_liability.last_mark.price,
+    'Mark received':iso(v.open_liability.last_mark.available_at),'Unpaid exit fee · USD':v.open_liability.unpaid_exit_commission_usd});
+  for(const [name,value] of Object.entries(facts)){
+    if(value===null||value===undefined)continue;
+    const term=document.createElement('dt'),definition=document.createElement('dd');
+    term.textContent=name;definition.textContent=value;$('facts').append(term,definition);
+  }
+  $('raw').textContent=JSON.stringify(v,null,2);
+}
+
+function drawChart(){
+  if(!current)return;
+  const state=current, bounds=canvas.getBoundingClientRect();
+  const width=bounds.width,height=bounds.height,dpr=window.devicePixelRatio||1;
+  if(width<10||height<10)return;
+  canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  const left=width<490?62:76, right=width-18, top=18, bottom=height-36;
+  const bars=state.candles.slice(-120);
+  if(!bars.length){
+    ctx.fillStyle='#a0b2c6';ctx.font='14px system-ui';ctx.textAlign='center';
+    ctx.fillText('No H4 candles have arrived',width/2,height/2);
+    canvas.setAttribute('aria-label','No H4 candles have arrived');
+    return;
+  }
+  const lowIndex=bars[0].index-.7;
+  const fills=$('fills').checked?state.fills.filter(fill=>fill.index>=lowIndex):[];
+  const highIndex=Math.max(bars.at(-1).index,...fills.map(fill=>fill.index))+.8;
+  const levels=$('protection').checked&&state.held?
+    [{name:'Stop',price:state.held.stop,color:'#f1999e'},{name:'Target',price:state.held.target,color:'#75e2d4'}].filter(l=>l.price!==null):[];
+  const prices=[...bars.flatMap(b=>[Number(b.low),Number(b.high)]),...levels.map(l=>Number(l.price)),
+                ...fills.map(f=>Number(f.event.price))];
+  const padding=Math.max((Math.max(...prices)-Math.min(...prices))*.11,.00001);
+  const lo=Math.min(...prices)-padding, hi=Math.max(...prices)+padding;
+  const x=index=>left+(right-left)*(index-lowIndex)/(highIndex-lowIndex);
+  const y=value=>bottom-(bottom-top)*(Number(value)-lo)/(hi-lo);
+  const stroke=(x1,y1,x2,y2,color,width=1)=>{
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();
+  };
+  ctx.font='11px system-ui';ctx.textAlign='right';
+  for(let i=0;i<=5;i++){
+    const value=lo+(hi-lo)*i/5, gridY=y(value);
+    stroke(left,gridY,right,gridY,'#26364b');
+    ctx.fillStyle='#a0b2c6';ctx.fillText(value.toFixed(5),left-8,gridY+4);
+  }
+  ctx.textAlign='center';
+  const step=Math.max(1,Math.ceil(bars.length/(width<500?3:6)));
+  for(const bar of bars.filter((_,i)=>i%step===0)){
+    stroke(x(bar.index),top,x(bar.index),bottom,'#202f42');
+    ctx.fillText(shortTime(bar.start),x(bar.index),height-12);
+  }
+  ctx.save();ctx.beginPath();ctx.rect(left,top,right-left,bottom-top);ctx.clip();
+  const candleWidth=Math.max(2,Math.min(12,(right-left)/(highIndex-lowIndex)*.58));
+  for(const bar of bars){
+    const center=x(bar.index), up=Number(bar.close)>=Number(bar.open), color=up?'#66c5b9':'#db858c';
+    stroke(center,y(bar.high),center,y(bar.low),color);
+    ctx.fillStyle=color;
+    ctx.fillRect(center-candleWidth/2,Math.min(y(bar.open),y(bar.close)),candleWidth,Math.max(1,Math.abs(y(bar.close)-y(bar.open))));
+  }
+  if($('rays').checked){
+    const selected=state.held?state.setups[state.held.h4_frame_id]:state.setup;
+    for(const line of shownLines(state)){
+      const ray=line.ray;
+      const value=index=>number(ray.a_price)+(index-ray.a_index)*number(ray.slope);
+      const begin=Math.max(ray.a_index,lowIndex), end=Math.min(line.poke_index??bars.at(-1).index,bars.at(-1).index);
+      if(end<=begin)continue;
+      const picked=line.line_id===(line.role==='action'?selected?.selected_line_id:
+        state.held?.safety_line_id??selected?.safety?.line_id);
+      const poked=line.view.status==='POKED', color=poked?'#8292a4':line.role==='action'?'#9bb9fb':'#75e2d4';
+      ctx.globalAlpha=poked ? .55 : picked ? .96 : .44;
+      ctx.setLineDash(poked?[5,4]:[]);stroke(x(begin),y(value(begin)),x(end),y(value(end)),color,picked?2.4:1.3);
+      ctx.setLineDash([]);ctx.globalAlpha=1;
+      if(poked){
+        const bar=bars.find(b=>b.index===end);
+        if(bar){
+          const yy=y(ray.kind==='support'?bar.low:bar.high), xx=x(end);
+          stroke(xx-4,yy-4,xx+4,yy+4,'#a0b2c6',1.6);stroke(xx-4,yy+4,xx+4,yy-4,'#a0b2c6',1.6);
+        }
+      }
+    }
+  }
+  if($('pivots').checked){
+    ctx.fillStyle='#f2c879';
+    for(const pivot of state.pivots.filter(p=>p.bar_index>=lowIndex)){
+      const xx=x(pivot.bar_index), yy=y(pivot.price)+(pivot.kind==='high'?-6:6);
+      ctx.beginPath();ctx.moveTo(xx,yy-3);ctx.lineTo(xx+3,yy);ctx.lineTo(xx,yy+3);ctx.lineTo(xx-3,yy);ctx.fill();
+    }
+  }
+  for(const level of levels){
+    ctx.setLineDash([5,4]);stroke(left,y(level.price),right,y(level.price),level.color);ctx.setLineDash([]);
+    ctx.textAlign='right';ctx.fillStyle=level.color;ctx.fillText(level.name+' '+level.price,right-5,y(level.price)-5);
+  }
+  for(const fill of fills){
+    const entry=fill.event.kind==='ENTRY_FILL', xx=x(fill.index)+(entry?-4:4), yy=y(fill.event.price);
+    ctx.fillStyle=entry?'#9bb9fb':'#f1999e';ctx.beginPath();
+    ctx.moveTo(xx,yy+(entry?-7:7));ctx.lineTo(xx+5,yy+(entry?4:-4));ctx.lineTo(xx-5,yy+(entry?4:-4));ctx.fill();
+  }
+  ctx.restore();
+  canvas.setAttribute('aria-label',`H4 chart with ${bars.length} received candles and ${fills.length} visible fills`);
+}
+
+function matches(item){
+  const filter=$('filter').value;
+  return filter==='all'||(filter==='fills'?fillKind(item):item.kind===filter);
+}
+function step(direction){
+  let index=Number(cursor.value)+direction;
+  while(index>=0&&index<view.groups.length){
+    if(view.groups[index].items.some(matches)){move(index);return;}
+    index+=direction;
+  }
+}
+function move(index,selectedItem=null){
+  cursor.value=String(index);
+  current=stateAt(view,index);
+  const at=current.group.at,stamp=$('stamp');
+  stamp.textContent=iso(at);stamp.dateTime=new Date(at).toISOString();
+  cursor.setAttribute('aria-valuetext',iso(at));
+  $('equity').textContent=price(current.account?.equity_usd);
+  $('cash').textContent=price(current.account?.cash_usd);
+  $('position').textContent=current.held?current.held.direction:(current.reservation?'Reserved':'Flat');
+  $('gate').textContent=current.account?.entries_paused?'Daily pause':current.admission?words(current.admission.reason):
+    current.setup?.state==='READY'?'Setup ready':'Awaiting setup';
+  choices=current.group.items.map(item=>({item,at}));
+  for(const line of shownLines(current)){
+    if(!choices.some(choice=>choice.item.value===line)){
+      choices.push({item:{kind:'LINE',value:line},at:line.available_at});
+    }
+  }
+  evidence.replaceChildren(...choices.map(choice=>new Option(headline(choice.item))));
+  const selectedIndex=choices.findIndex(choice=>choice.item===selectedItem);
+  const preferred=selectedIndex>=0?selectedIndex:
+    choices.findIndex(choice=>fillKind(choice.item)||choice.item.kind==='ADMISSION');
+  evidence.selectedIndex=Math.max(0,preferred);
+  inspect();
+  const recent=current.activity.filter(entry=>matches(entry.item)).slice(-8).reverse();
+  $('activity').replaceChildren(...recent.map(entry=>{
+    const li=document.createElement('li'),button=document.createElement('button'),time=document.createElement('time');
+    time.textContent=shortTime(entry.at)+' UTC';
+    button.type='button';button.append(time,headline(entry.item));button.addEventListener('click',()=>move(entry.index,entry.item));
+    li.append(button);return li;
+  }));
+  if(!recent.length){
+    const empty=document.createElement('li');empty.className='empty';empty.textContent='No matching evidence through this receipt';
+    $('activity').append(empty);
+  }
+  $('previous').disabled=index===0;
+  $('next').disabled=index===view.groups.length-1;
+  drawChart();
+}
+cursor.addEventListener('input',()=>move(Number(cursor.value)));
+evidence.addEventListener('change',inspect);
+$('filter').addEventListener('change',()=>move(Number(cursor.value)));
+for(const id of ['pivots','rays','fills','protection'])$(id).addEventListener('change',drawChart);
+$('first').addEventListener('click',()=>move(0));$('last').addEventListener('click',()=>move(view.groups.length-1));
+$('previous').addEventListener('click',()=>step(-1));$('next').addEventListener('click',()=>step(1));
+new ResizeObserver(drawChart).observe(canvas);
+move(0);
+</script>
+</body>
+</html>
