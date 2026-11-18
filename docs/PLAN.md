@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 177 implements BNC close-confirmed contacts and
+Level B entry checks. Next implement the disabled DLY state machine with
+its expiry, failed-break and chase rules, then close out Phase 6 setup
+acceptance. [BNC increment](trendline/RESULTS-177.md)
+
 18 November 2026. Sprint 176 delivers BRK2 setup and Level B entry replay.
 Next implement BNC close-confirmed contacts, including the correct-side
 tolerance and six-bar spacing checks, then verify disabled DLY and the

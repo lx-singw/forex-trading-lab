@@ -1,4 +1,4 @@
-"""Causal break setup decisions from completed invented publications."""
+"""Causal setup decisions from completed invented publications."""
 from copy import copy
 from dataclasses import replace
 import hashlib
@@ -10,11 +10,14 @@ from . import context, data, engine, geometry, lines, selection
 VERSION = "TRL_BREAKS_173_V1"
 FXR_PROFILE = "TRL_FXR_M"
 BRK2_PROFILE = "TRL_BRK2_E1"
+BNC_PROFILE = "TRL_BNC_E1"
 FXR_STOP_PROJECTION = 4
+BOUNCE_SPACING = 6
 SETUP_FAMILIES = {
     "TRL_BRK3_E1": "brk3",
     FXR_PROFILE: "fxr_m",
     BRK2_PROFILE: "brk2",
+    BNC_PROFILE: "bnc",
     context.PROFILE: "brk3",
 }
 PROFILES = tuple(SETUP_FAMILIES)
@@ -28,6 +31,8 @@ def bindings():
 
 
 def trade_direction(line):
+    if line.profile == BNC_PROFILE:
+        return "LONG" if line.ray.kind == "support" else "SHORT"
     return "LONG" if line.ray.kind == "resistance" else "SHORT"
 
 
@@ -79,16 +84,16 @@ def _stop(safety_value, atr, tick, direction):
 
 
 class BreakReplay:
-    """Replay completed-bar break setups on the selected profile."""
+    """Replay completed-bar setups on the selected profile."""
 
     def __init__(self, source, tick, profile="TRL_BRK3_E1"):
         if profile not in PROFILES:
-            raise ValueError("implemented break profile required")
+            raise ValueError("implemented setup profile required")
         self._tick = geometry.exact(tick)
         if self._tick <= 0:
             raise ValueError("positive declared price tick required")
         self._h4 = engine.Engine(source, profile)
-        self._safety = engine.Engine(source, lines.SAFETY_PROFILE)
+        self._safety = None if profile == BNC_PROFILE else engine.Engine(source, lines.SAFETY_PROFILE)
         self._daily = context.DailyContext(source) if profile == context.PROFILE else None
         self._bindings = bindings()
         self._events = []
@@ -141,12 +146,22 @@ class BreakReplay:
         prior = action_engine._journal.states
         indexed = inspector.indexed
         index = indexed[-1][0]
-        previous = indexed[-2][1] if len(indexed) > 1 and indexed[-2][0] == index - 1 else None
-        triggered = _triggered(prior, action_ids, previous, bar, index, self._tick)
+        atr = inspector.metrics.atr_sma14
+        contacts = None
+        if action_engine.profile == BNC_PROFILE:
+            contacts = self._bounce_contacts(action.selected, prior, action_ids, bar, index, atr)
+            trigger_ids = {item["line_id"] for item in contacts if item["reason"] == "CONTACT"}
+            triggered = tuple(state for state in prior if state.line_id in trigger_ids)
+        else:
+            previous = indexed[-2][1] if len(indexed) > 1 and indexed[-2][0] == index - 1 else None
+            triggered = _triggered(prior, action_ids, previous, bar, index, self._tick)
         frame = action_engine._finish_bar(bar, staged, tuple(sorted(state.line_id for state in triggered)))
-        safety_frame = safety_engine.observe(bar)
-        decision = self._decision(bar, index, action, prior, triggered, frame, safety_frame,
-                                  safety_engine.metrics.atr_sma14)
+        safety_frame = frame if safety_engine is None else safety_engine.observe(bar)
+        if contacts:
+            groups = {state.line_id: state.group_id for state in action_engine._journal.states}
+            for item in contacts:
+                item["group_id"] = groups[item["line_id"]]
+        decision = self._decision(bar, index, action, prior, triggered, frame, safety_frame, atr, contacts)
         encoded = data.canonical(decision)
         if self._bytes + len(encoded) > engine.MAX_TRACE_BYTES:
             raise ValueError("bounded setup decision trace")
@@ -156,9 +171,54 @@ class BreakReplay:
         self._bytes += len(encoded)
         return json.loads(encoded)
 
-    def _decision(self, bar, index, action, prior, triggered, frame, safety_frame, atr):
+    def _bounce_contacts(self, selected, prior, action_ids, bar, index, atr):
+        if not selected:
+            return []
+        eligible = set(action_ids)
+        states = {state.line_id: state for state in prior}
+        journal = self._h4._journal
+        by_geometry, by_group = {}, {}
+        for row in self._decisions[-(BOUNCE_SPACING - 1):]:
+            previous = json.loads(row)
+            for contact in previous["contacts"]:
+                root, _ = journal.group_state(contact["group_id"])
+                by_group[root] = previous["bar_index"]
+                by_geometry[contact["geometry_id"]] = previous["bar_index"]
+        tolerance = atr * geometry.TOUCH_TOLERANCE
+        contacts = []
+        for line in selected:
+            line_id = engine.instance_id(line)
+            state = states.get(line_id)
+            if state is not None and line_id not in eligible:
+                continue
+            extreme = bar.low if line.ray.kind == "support" else bar.high
+            distance = line.ray.correct_side_distance(index, extreme)
+            if not 0 <= distance <= tolerance or line.ray.correct_side_distance(index, bar.close) <= 0:
+                continue
+            last_approach = by_geometry.get(line.geometry_id, -BOUNCE_SPACING)
+            if state is None:
+                reason = "FORMATION_BAR_CONTACT"
+            else:
+                root, _ = journal.group_state(state.group_id)
+                last_approach = max(last_approach, by_group.get(root, -BOUNCE_SPACING))
+                if index - line.touch_indices[-1] < BOUNCE_SPACING:
+                    reason = "TOUCH_TOO_CLOSE"
+                elif index - last_approach < BOUNCE_SPACING:
+                    reason = "CONTACT_TOO_CLOSE"
+                else:
+                    reason = "CONTACT"
+            contacts.append({
+                "line_id": line_id,
+                "geometry_id": line.geometry_id,
+                "distance": geometry.rational_record(distance),
+                "tolerance": geometry.rational_record(tolerance),
+                "reason": reason,
+            })
+        return contacts
+
+    def _decision(self, bar, index, action, prior, triggered, frame, safety_frame, atr, contacts):
         known = {state.line_id for state in prior}
-        missed = sorted(engine.instance_id(line) for line in action.selected
+        missed = [] if contacts is not None else sorted(engine.instance_id(line) for line in action.selected
                         if engine.instance_id(line) not in known
                         and line.ray.correct_side_distance(index, bar.close) < 0)
         decision = {
@@ -174,8 +234,10 @@ class BreakReplay:
             "safety": None,
             "context": None,
         }
+        if contacts is not None:
+            decision["contacts"] = contacts
         if not triggered:
-            reason = _no_trigger_reason(frame, missed)
+            reason = _no_trigger_reason(frame, missed, contacts)
             state = {"MISSED_BREAK": "DISCARDED", "POKED": "INVALIDATED"}.get(reason, "FORMING")
             decision.update(state=state, reason=reason)
             return decision
@@ -186,14 +248,16 @@ class BreakReplay:
 
         direction = trade_direction(winner.line)
         decision.update(selected_line_id=winner.line_id, direction=direction)
-        eligible = set(safety_frame["eligible_line_ids"])
-        candidates = (selection.ValidatedLine.from_record(row)
-                      for row in safety_frame["selection"]["ranked"])
-        safety, reason = _safety_choice((line for line in candidates if engine.instance_id(line) in eligible),
-                                        direction, bar.close, index)
-        if reason:
-            decision.update(state="ABSTAINED", reason=reason)
-            return decision
+        safety = winner.line
+        if contacts is None:
+            eligible = set(safety_frame["eligible_line_ids"])
+            candidates = (selection.ValidatedLine.from_record(row)
+                          for row in safety_frame["selection"]["ranked"])
+            safety, reason = _safety_choice((line for line in candidates if engine.instance_id(line) in eligible),
+                                            direction, bar.close, index)
+            if reason:
+                decision.update(state="ABSTAINED", reason=reason)
+                return decision
 
         value = safety.ray.value(index)
         projection = FXR_STOP_PROJECTION if self._h4.profile == FXR_PROFILE else 0
@@ -231,7 +295,7 @@ class BreakReplay:
             "tick": geometry.rational_record(self._tick),
             "source_bindings": dict(self._bindings),
             "action_replay": self._h4.report(),
-            "safety_replay": self._safety.report(),
+            "safety_replay": None if self._safety is None else self._safety.report(),
             "decisions": [json.loads(row) for row in self._decisions],
             "trigger_detection_available": True,
             "actual_source_admitted": False,
@@ -277,7 +341,7 @@ def _receipt_key(bar):
     return bar.available, bar.timeframe != "D1", bar.start
 
 
-def _no_trigger_reason(frame, missed):
+def _no_trigger_reason(frame, missed, contacts=None):
     if frame["search_incomplete"]:
         return "SEARCH_INCOMPLETE"
     if frame["coverage_state"] != "CURRENT":
@@ -287,4 +351,8 @@ def _no_trigger_reason(frame, missed):
     if any(row["view"]["status"] == "POKED" and row["at"]["bar_index"] == frame["bar_index"]
            for row in frame["revisions"]):
         return "POKED"
+    if contacts is not None:
+        if contacts:
+            return contacts[0]["reason"]
+        return "NO_CONTACT" if frame["action_line_ids"] else "NO_VALID_LINE"
     return "NO_BREAK" if frame["action_line_ids"] else "NO_VALID_LINE"

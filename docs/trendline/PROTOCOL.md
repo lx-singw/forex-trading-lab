@@ -426,3 +426,21 @@ and price checks with exit model E2. If those checks pass, report
 E2_TARGET_SELECTION_UNAVAILABLE until the Phase 7 support and resistance
 finder can supply a qualifying fixed target. The setup has consumed its
 opportunity. No fill is recorded without the required target.
+
+## Implementation note for sprint 177
+
+18 November 2026. BNC uses the current completed H4 ATR for the contact
+band. Its support low or resistance high must be on the correct side,
+including equality, within one quarter ATR. Its close must be strictly
+on the correct side. The trigger requires a pre-existing eligible line
+and at least six scheduled indices since the last accepted confirmed
+touch and the last observed approach.
+
+An approach satisfies the wick and close conditions on a currently
+selected line, including its formation bar and a bar blocked by spacing.
+It resets spacing when observed. Do not backfill approaches for geometry
+that was unavailable at the time. Match prior approaches by unchanged
+geometry or resolved opportunity group. Use the contact line as E1
+protection at its current value with the standard buffer and outward tick
+rounding. Consume qualifying groups at the completed contact before
+ranking or entry price checks.

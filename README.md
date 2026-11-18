@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 177 adds BNC bounce setup and Level B entry replay on completed H4
+contacts. [Sprint 177 results](docs/trendline/RESULTS-177.md)
+
 Sprint 176 adds BRK2 setup and Level B entry replay. Its action line must
 have exactly two confirmed touches. Phase 6 continues with bounce.
 [Sprint 176 results](docs/trendline/RESULTS-176.md)

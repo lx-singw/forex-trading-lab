@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 177 adds invented BNC replay. Completed H4
+contacts use the current ATR band, strict wick validity and spacing from
+both a confirmed touch and prior approach. The contact line supplies E1
+protection. [Sprint 177 results](trendline/RESULTS-177.md)
+
 18 November 2026. Sprint 176 adds BRK2 to the invented setup and entry
 replay. The action profile requires exactly two confirmed touches at both
 formation and trigger. Level B pricing uses the current buffered E1 stop.

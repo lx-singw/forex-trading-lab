@@ -1,4 +1,4 @@
-"""Resolve invented break setups against their first scheduled H1 opening."""
+"""Resolve invented break and bounce setups at the first scheduled H1 opening."""
 import hashlib
 
 from . import breaks, data, fills, selection
@@ -61,7 +61,7 @@ def _resolve(model, request, window, expires_at, hours, as_of, bid_only):
 def evaluate(replay, hours, *, as_of, cost_profile="base"):
     """Evaluate a setup replay and completed-hour receipt prefix from its source."""
     if not isinstance(replay, breaks.BreakReplay):
-        raise ValueError("break replay required")
+        raise ValueError("setup replay required")
     data.integer(as_of)
     source = replay.source
     calendar = source.calendar
