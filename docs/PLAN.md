@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 188 adds Level Q quote inspection and trade
+links to the action and safety revisions at setup. Continue Phase 8
+with provisional pivots, bounce contacts and fuller no-trade inspection.
+The retrospective view, ledger exports and manual comparison follow.
+[Level Q viewer increment](trendline/RESULTS-188.md)
+
 18 November 2026. Sprint 187 delivers the initial Level B causal
 viewer. Next add the Level Q evidence path and trade-linked inspection
 of the action and safety lines. Continue Phase 8 with the retrospective

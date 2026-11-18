@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 188 extends the offline viewer to saved
+invented Level Q ledgers. It shows quote source time, receipt and
+sequence, and links fills and entry gates to their setup lines.
+[Sprint 188 results](trendline/RESULTS-188.md)
+
 18 November 2026. Sprint 187 adds an offline Level B viewer for saved
 invented ledger runs. The receipt cursor reveals H4 candles, confirmed
 pivots, line revisions, account events and skipped entries. Phase 8

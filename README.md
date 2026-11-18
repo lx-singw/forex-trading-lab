@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 188 adds Level Q quote evidence and links fills to their setup lines.
+[Sprint 188 results](docs/trendline/RESULTS-188.md)
+
 Sprint 187 adds the offline Level B viewer with a receipt-time cursor.
 [Sprint 187 results](docs/trendline/RESULTS-187.md)
 

@@ -34,6 +34,8 @@ input[type=range]{width:100%;accent-color:var(--teal);margin:16px 0 3px}
 dl{display:grid;grid-template-columns:minmax(84px,1fr) minmax(100px,1.5fr);gap:6px 9px;margin:13px 0 0;font-size:13px}
 dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 details{margin-top:14px;color:var(--muted);font-size:12px}summary{cursor:pointer}
+.linked{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.linked:empty{display:none}.linked details{margin-top:8px}.linked button{margin-top:10px;font-size:12px}
 pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;color:var(--text);line-height:1.45}
 .recent{margin-top:12px}.list{padding:5px 12px;list-style:none;margin:0}
 .list button{display:grid;grid-template-columns:155px minmax(0,1fr);gap:6px;padding:9px 6px;width:100%;background:none;border:0;border-bottom:1px solid var(--line);text-align:left;color:var(--text)}
@@ -56,6 +58,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
         <label class="sr-only" for="filter">Navigate by evidence</label>
         <select id="filter"><option value="all">All receipts</option><option value="SETUP">Setups</option>
           <option value="fills">Fills</option><option value="ADMISSION">Entry gates</option>
+          <option id="quote-filter" value="QUOTE" hidden>Quote observations</option>
           <option value="PROTECTION">Protection</option></select>
       </div>
     </div>
@@ -86,6 +89,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
       <div class="panel-head"><h2>Evidence at cursor</h2></div>
       <div class="inspector"><label for="evidence">Receipt item or visible line</label><select id="evidence"></select>
         <div id="item-title" class="item-head"></div><p id="item-meta" class="meta"></p><dl id="facts"></dl>
+        <div id="linked" class="linked"></div>
         <details><summary>Recorded fields</summary><pre id="raw"></pre></details>
       </div>
     </aside>
@@ -98,7 +102,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
 
 // CURSOR_PROJECTION
 function stateAt(view, index){
-  const candles=[], pivots=[], lines={}, setups={}, fills=[], activity=[];
+  const candles=[], pivots=[], lines={}, setups={}, setupEvidence={}, fills=[], activity=[];
   let account=null, held=null, setup=null, admission=null, reservation=null, endpoint=null;
   for(let i=0;i<=index;i++){
     const group=view.groups[i];
@@ -108,7 +112,14 @@ function stateAt(view, index){
         case 'CANDLE': candles.push(record); break;
         case 'PIVOT': pivots.push(record); break;
         case 'LINE': lines[record.role+':'+record.line_id]=record; break;
-        case 'SETUP': setup=record;setups[record.h4_frame_id]=record;break;
+        case 'SETUP': {
+          setup=record;
+          const id=record.h4_frame_id, safetyId=record.safety?.line_id;
+          setups[id]=record;
+          setupEvidence[id]={index:i,item,action:lines['action:'+record.selected_line_id],
+                             safety:lines['safety:'+safetyId]??lines['action:'+safetyId]};
+          break;
+        }
         case 'ADMISSION':
           admission=record;
           if(record.status==='RESERVED')reservation=record.attempt_id;
@@ -131,13 +142,13 @@ function stateAt(view, index){
           break;
         case 'END': endpoint=record;break;
       }
-      if(item.kind==='ADMISSION'||item.kind==='PROTECTION'||item.kind==='SETUP'&&record.state!=='FORMING'
+      if(item.kind==='ADMISSION'&&record.status!=='PENDING'||item.kind==='PROTECTION'||item.kind==='SETUP'&&record.state!=='FORMING'
          ||item.kind==='ACCOUNT'&&['ENTRY_FILL','EXIT_FILL','FINANCING'].includes(record.event.kind)){
         activity.push({index:i,item,at:group.at});
       }
     }
   }
-  return {group:view.groups[index],candles,pivots,lines,setups,fills,activity,
+  return {group:view.groups[index],candles,pivots,lines,setups,setupEvidence,fills,activity,
           account,held,setup,admission,reservation,endpoint};
 }
 // END_CURSOR_PROJECTION
@@ -150,6 +161,7 @@ const iso=time=>new Date(time).toISOString().replace('T',' ').replace('Z',' UTC'
 const shortTime=time=>iso(time).slice(5,16);
 const words=value=>value===null||value===undefined?'—':String(value).replaceAll('_',' ').toLowerCase();
 const price=value=>value===null||value===undefined?'—':String(value);
+const ratio=value=>value.denominator===1?String(value.numerator):`${value.numerator} / ${value.denominator}`;
 const lineName=line=>`${line.role} ${line.ray.kind} · ${words(line.view.status)}`;
 const fillKind=item=>item.kind==='ACCOUNT'&&['ENTRY_FILL','EXIT_FILL'].includes(item.value.event.kind);
 const shownLines=state=>Object.values(state.lines).filter(line=>['VALID','POKED','TRIGGERED'].includes(line.view.status));
@@ -159,19 +171,63 @@ const headline=item=>{
     case 'START':return 'Partition opens';
     case 'CANDLE':return 'H4 publication';
     case 'PIVOT':return 'Confirmed '+v.kind+' pivot';
+    case 'QUOTE':return `Quote #${v.quote.sequence} · ${words(v.reason)}`;
     case 'LINE':return lineName(v);
     case 'SETUP':return 'Setup · '+words(v.reason??v.state);
-    case 'ADMISSION':return 'Entry · '+words(v.reason);
+    case 'ADMISSION':return 'Entry · '+words(v.reason)+(v.quote?` · #${v.quote.sequence}`:'');
     case 'PROTECTION':return 'Protection · '+words(v.reason);
-    case 'ACCOUNT':return words(v.event.kind)+(v.trade?' · '+words(v.trade.reason):'');
+    case 'ACCOUNT':return words(v.event.kind)+(v.trade?' · '+words(v.trade.reason):'')+(v.quote?` · #${v.quote.sequence}`:'');
     case 'END':return 'Saved cursor ends · '+words(v.status);
     default:return words(item.kind);
   }
 };
 
 $('scope').textContent=`Level ${view.data_level} · ${view.profile} · ${words(view.geometry_basis)} · ${view.partition} · ${view.cost} costs`;
+$('quote-filter').hidden=view.data_level!=='Q';
 cursor.max=String(view.groups.length-1);
-let current, choices=[];
+let current, choices=[], markers=[];
+
+function writeFacts(list,facts){
+  for(const [name,value] of Object.entries(facts)){
+    if(value===null||value===undefined)continue;
+    const term=document.createElement('dt'),definition=document.createElement('dd');
+    term.textContent=name;definition.textContent=value;list.append(term,definition);
+  }
+}
+
+function lineFacts(line){
+  const touches=line.view.touch_indices;
+  return {'Status':words(line.view.status),'Revision':line.revision,'Available':iso(line.available_at),
+    'Touches':touches.join(', '),'Age · H4 bars':line.view.age_bars,'Span · H4 bars':touches.at(-1)-touches[0],
+    'Slope · price per H4':ratio(line.ray.slope),'Eligible':line.view.eligible?'Yes':'No',
+    'Penetrating H4':line.poke_index,'Reason':line.view.reasons.map(words).join(', ')||null};
+}
+
+function quoteFacts(quote){
+  return {'Quote sequence':quote.sequence,'Quote source':iso(quote.source),'Quote receipt':iso(quote.time),
+    'Quote age · ms':quote.time-quote.source,'Bid':quote.bid,'Ask':quote.ask};
+}
+
+function showSetupLinks(item){
+  const panel=$('linked');
+  panel.replaceChildren();
+  if(!['SETUP','ADMISSION','ACCOUNT'].includes(item.kind))return;
+  const link=current.setupEvidence[item.value.h4_frame_id];
+  if(!link)return;
+  if(item.kind!=='SETUP'){
+    const route=document.createElement('button');
+    route.type='button';route.textContent='Go to setup receipt';
+    route.addEventListener('click',()=>move(link.index,link.item));
+    panel.append(route);
+  }
+  for(const [role,line] of [['Action',link.action],['Safety',link.safety]]){
+    if(!line)continue;
+    const section=document.createElement('details'),title=document.createElement('summary'),list=document.createElement('dl');
+    title.textContent=`${role} ${line.ray.kind} at setup`;
+    writeFacts(list,lineFacts(line));
+    section.append(title,list);panel.append(section);
+  }
+}
 
 function inspect(){
   const selected=choices[evidence.selectedIndex];
@@ -184,28 +240,37 @@ function inspect(){
   if(item.kind==='CANDLE')Object.assign(facts,{'H4 index':v.index,'Opened':iso(v.start),'Closed':iso(v.end),
     'Open':v.open,'High':v.high,'Low':v.low,'Close':v.close});
   if(item.kind==='PIVOT')Object.assign(facts,{'Price':v.price,'Occurred':iso(v.occurred_at),'Confirmed':iso(v.confirmed_at)});
-  if(item.kind==='LINE')Object.assign(facts,{'Revision':v.revision,'Touches':v.view.touch_indices.join(', '),
-    'Age in H4 bars':v.view.age_bars,'Eligible':v.view.eligible?'Yes':'No',
-    'Penetrating H4':v.poke_index,'Reason':v.view.reasons.map(words).join(', ')||null});
+  if(item.kind==='LINE')Object.assign(facts,lineFacts(v));
+  if(item.kind==='QUOTE')Object.assign(facts,{'Quote status':words(v.reason),
+    'Modeled bid':v.modeled_bid,'Modeled ask':v.modeled_ask,'Effective spread · pips':v.effective_spread_pips,
+    'Entry spread cap':v.entry_spread_passes===undefined?null:v.entry_spread_passes?'Passes':'Exceeded'});
+  if(v.quote)Object.assign(facts,quoteFacts(v.quote));
   if(item.kind==='SETUP')Object.assign(facts,{'State':words(v.state),'Direction':v.direction,'H4 index':v.bar_index,
     'Action line':v.selected_line_id?.slice(0,12),'Safety line':v.safety?.line_id.slice(0,12)});
-  if(item.kind==='ADMISSION')Object.assign(facts,{'State':words(v.status),'Lots':v.sizing?.lots,
+  if(item.kind==='ADMISSION')Object.assign(facts,{'State':words(v.status),'Entry gate':words(v.reason),'Lots':v.sizing?.lots,
     'Estimated loss · USD':v.sizing?.estimated_stop_loss_usd});
-  if(item.kind==='PROTECTION')Object.assign(facts,{'Prior stop':v.old_stop,'Stop':v.stop,'H4 index':v.h4_index});
+  if(item.kind==='PROTECTION')Object.assign(facts,{'Prior stop':v.old_stop,'Stop':v.stop,'H4 index':v.h4_index,
+    'H4 decision':iso(v.decision_at.time)});
   if(item.kind==='ACCOUNT')Object.assign(facts,{'Effective':iso(v.event.effective_at),'Price':v.event.price,
-    'Fee · USD':v.event.fee_usd,'Net · USD':v.trade?.net_usd,'Equity · USD':v.event.account.equity_usd});
+    'Lots':v.admission?.sizing?.lots,'Exit model':v.admission?.request?.exit_model,
+    'Entry gate':v.admission?words(v.admission.reason):null,
+    'Exit reason':v.trade?words(v.trade.reason):null,'Fee · USD':v.event.fee_usd,
+    'Net · USD':v.trade?.net_usd,'Equity · USD':v.event.account.equity_usd});
   if(item.kind==='END'&&v.open_liability)Object.assign(facts,{'Last mark':v.open_liability.last_mark.price,
-    'Mark received':iso(v.open_liability.last_mark.available_at),'Unpaid exit fee · USD':v.open_liability.unpaid_exit_commission_usd});
-  for(const [name,value] of Object.entries(facts)){
-    if(value===null||value===undefined)continue;
-    const term=document.createElement('dt'),definition=document.createElement('dd');
-    term.textContent=name;definition.textContent=value;$('facts').append(term,definition);
-  }
+    'Mark received':iso(v.open_liability.last_mark.available_at),'Reported stop':v.open_liability.stop,
+    'Reported target':v.open_liability.target,'Reason':v.open_liability.reason&&words(v.open_liability.reason),
+    'Unpaid exit fee · USD':v.open_liability.unpaid_exit_commission_usd});
+  const setup=current.setupEvidence[v.h4_frame_id]?.item.value;
+  if(item.kind!=='SETUP'&&setup)Object.assign(facts,{'Setup receipt':iso(setup.available_at),'Setup state':words(setup.state),
+    'Setup reason':setup.reason&&words(setup.reason),'Context gate':setup.context&&words(setup.context.outcome)});
+  writeFacts($('facts'),facts);
+  showSetupLinks(item);
   $('raw').textContent=JSON.stringify(v,null,2);
 }
 
 function drawChart(){
   if(!current)return;
+  markers=[];
   const state=current, bounds=canvas.getBoundingClientRect();
   const width=bounds.width,height=bounds.height,dpr=window.devicePixelRatio||1;
   if(width<10||height<10)return;
@@ -291,6 +356,7 @@ function drawChart(){
     const entry=fill.event.kind==='ENTRY_FILL', xx=x(fill.index)+(entry?-4:4), yy=y(fill.event.price);
     ctx.fillStyle=entry?'#9bb9fb':'#f1999e';ctx.beginPath();
     ctx.moveTo(xx,yy+(entry?-7:7));ctx.lineTo(xx+5,yy+(entry?4:-4));ctx.lineTo(xx-5,yy+(entry?4:-4));ctx.fill();
+    markers.push({x:xx,y:yy,fill});
   }
   ctx.restore();
   canvas.setAttribute('aria-label',`H4 chart with ${bars.length} received candles and ${fills.length} visible fills`);
@@ -303,7 +369,8 @@ function matches(item){
 function step(direction){
   let index=Number(cursor.value)+direction;
   while(index>=0&&index<view.groups.length){
-    if(view.groups[index].items.some(matches)){move(index);return;}
+    const item=view.groups[index].items.find(matches);
+    if(item){move(index,$('filter').value==='all'?null:item);return;}
     index+=direction;
   }
 }
@@ -347,6 +414,16 @@ function move(index,selectedItem=null){
 }
 cursor.addEventListener('input',()=>move(Number(cursor.value)));
 evidence.addEventListener('change',inspect);
+canvas.addEventListener('click',event=>{
+  const bounds=canvas.getBoundingClientRect(), x=event.clientX-bounds.left, y=event.clientY-bounds.top;
+  let selected, nearest=12;
+  for(const marker of markers){
+    const distance=Math.hypot(marker.x-x,marker.y-y);
+    if(distance<nearest){selected=marker.fill;nearest=distance;}
+  }
+  const fill=current.activity.find(entry=>entry.item.value===selected);
+  if(fill)move(fill.index,fill.item);
+});
 $('filter').addEventListener('change',()=>move(Number(cursor.value)));
 for(const id of ['pivots','rays','fills','protection'])$(id).addEventListener('change',drawChart);
 $('first').addEventListener('click',()=>move(0));$('last').addEventListener('click',()=>move(view.groups.length-1));
