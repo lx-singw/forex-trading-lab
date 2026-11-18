@@ -7,9 +7,9 @@ import json
 from pathlib import Path
 
 from ..elliott_full.contracts import Bar
-from . import breaks, context, data, engine, entries, exits, fills, ledger, pivots, quote_replay, quotes, selection
+from . import breaks, context, data, engine, entries, exits, fills, ledger, pivots, quote_replay, quotes, replay_exports, selection
 
-VERSION = "TRL_VIEWER_189_V1"
+VERSION = "TRL_VIEWER_190_V1"
 TEMPLATE = Path(__file__).with_suffix(".html")
 REPORT_LIMIT = 96 * 1024 * 1024
 
@@ -293,7 +293,7 @@ def _setup_rows(source, setups, schedule, add):
 
 
 def _view(groups, add, *, account, source, profile, level, basis):
-    add(account["as_of"], "END", {"status": account["status"], "open_liability": account["open_liability"]})
+    add(account["as_of"], "END", {key: account[key] for key in ("status", "open_liability", "account")})
     return {"version": VERSION, "kind": "saved_invented_trendline_view", "profile": profile,
             "data_level": level, "geometry_basis": basis, "partition": source.record()["partition"],
             "cost": account["cost_profile"],
@@ -511,13 +511,27 @@ def export(descriptor, report_directory, output, *, unlock_receipt=None):
         inputs = {"source_sha256": source.sha256, "descriptor_file_sha256": descriptor_sha,
                   "reports": {name: digest for name, (_, digest) in loaded.items()}}
     html = render(view).encode("utf-8")
+    artifacts = {"replay.html": html, **replay_exports.artifacts(view)}
     manifest = {"version": VERSION, "kind": view["kind"], **inputs, "data_level": view["data_level"],
                 "geometry_basis": view["geometry_basis"], "profile": view["profile"], "cost": view["cost"],
                 "partition": view["partition"], "receipt_groups": len(view["groups"]),
-                "html_sha256": hashlib.sha256(html).hexdigest(), "orders_available": False}
+                "as_of_ms": view["groups"][-1]["at"],
+                "files": {name: hashlib.sha256(content).hexdigest() for name, content in artifacts.items()},
+                "orders_available": False}
+    manifest["html_sha256"] = manifest["files"]["replay.html"]
+    artifacts["manifest.json"] = (json.dumps(manifest, indent=2, allow_nan=False) + "\n").encode("utf-8")
     destination = data.no_links(output)
     destination.mkdir(exist_ok=False, parents=True)
-    with (destination / "replay.html").open("xb") as handle:
-        handle.write(html)
-    data.write_new(destination / "manifest.json", manifest)
+    created = []
+    try:
+        for name, content in artifacts.items():
+            path = destination / name
+            with path.open("xb") as handle:
+                created.append(path)
+                handle.write(content)
+    except OSError:
+        for path in reversed(created):
+            path.unlink(missing_ok=True)
+        destination.rmdir()
+        raise
     return manifest

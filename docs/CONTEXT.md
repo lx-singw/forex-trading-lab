@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 190 adds a labelled retrospective chart and a
+readable report with ordered JSON and CSV ledgers for invented Level B
+and Level Q saved runs. The viewer restores the earlier receipt on return.
+[Sprint 190 results](trendline/RESULTS-190.md)
+
 18 November 2026. Sprint 189 shows provisional H4 pivots, accepted and
 blocked bounce contacts, and recorded no-trade reasons at receipt in
 the invented Level B and Level Q viewer.

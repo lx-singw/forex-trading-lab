@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 190 adds saved-cutoff retrospective browsing
+and readable and machine-readable ledger exports. Continue Phase 8
+with side-by-side manual annotations and the visual acceptance review.
+[Retrospective and exports](trendline/RESULTS-190.md)
+
 18 November 2026. Sprint 189 delivers provisional pivot and bounce
 contact layers with a filter for recorded no-trade reasons. Continue
 Phase 8 with a labelled retrospective view, readable and machine-readable

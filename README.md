@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 190 adds retrospective browsing and saved-run reports with JSON and CSV ledgers.
+[Sprint 190 results](docs/trendline/RESULTS-190.md)
+
 Sprint 189 adds provisional pivots, bounce contacts and no-trade inspection.
 [Sprint 189 results](docs/trendline/RESULTS-189.md)
 

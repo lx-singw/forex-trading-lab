@@ -14,6 +14,13 @@ h1,h2,p{margin:0}h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.04em;line-he
 h2{font-size:16px;font-weight:650}.scope{color:var(--muted);margin-top:8px;line-height:1.5}
 .label{color:var(--teal);padding:6px 10px;border:1px solid #385c65;border-radius:6px;white-space:nowrap}
 .cursor-panel,.metric,.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.mode-bar,.mode-options{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.mode-bar{justify-content:space-between;margin-bottom:12px}.mode-bar a{color:var(--blue);padding:7px 0}
+.mode-options button[aria-pressed=true]{color:var(--teal);border-color:#45817e}
+.retrospective-panel{border-color:#745f3e}.retrospective-panel strong{color:var(--amber)}
+.retrospective-panel time{display:block;color:var(--muted);margin-top:4px}
+.window-control{display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}
+.window-control[hidden],.toolbar[hidden]{display:none}
 .cursor-panel{padding:14px 18px;margin-bottom:12px}.toolbar,.controls,.legend,.panel-head{display:flex;align-items:center;flex-wrap:wrap;gap:9px}
 .toolbar,.panel-head{justify-content:space-between}.clock{font-variant-numeric:tabular-nums;font-size:15px;color:var(--teal)}
 button,select{color:var(--text);background:var(--raised);border:1px solid var(--line);border-radius:6px;font:inherit;padding:7px 10px}
@@ -53,7 +60,14 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
 <main class="shell">
   <header class="mast"><div><h1>Trendline replay</h1><p class="scope" id="scope"></p></div>
     <span class="label">Invented · Read-only</span></header>
-  <section class="cursor-panel" aria-label="Receipt-time replay controls">
+  <nav class="mode-bar" aria-label="Replay and report">
+    <div class="mode-options" role="group" aria-label="Chart mode">
+      <button id="mode-receipt" aria-pressed="true">Receipt replay</button>
+      <button id="mode-retrospective" aria-pressed="false">Retrospective</button>
+    </div>
+    <a href="report.html">Saved run report</a>
+  </nav>
+  <section id="receipt-controls" class="cursor-panel" aria-label="Receipt-time replay controls">
     <div class="toolbar"><time id="stamp" class="clock"></time>
       <div class="controls">
         <button id="first">First</button><button id="previous" aria-label="Previous matching receipt">←</button>
@@ -69,7 +83,14 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
     </div>
     <input id="cursor" type="range" min="0" step="1" value="0" aria-label="Receipt-time cursor">
   </section>
-  <section class="metrics" aria-label="Account at cursor">
+  <section id="retrospective-controls" class="cursor-panel retrospective-panel" aria-label="Retrospective chart" hidden>
+    <div class="toolbar"><div><strong>Retrospective · all evidence through saved cutoff</strong><time id="retrospective-stamp"></time></div>
+      <label id="window-label" class="window-control" for="chart-window" hidden>H4 window
+        <select id="chart-window"><option value="all">All saved candles</option></select>
+      </label>
+    </div>
+  </section>
+  <section id="metrics" class="metrics" aria-label="Account at cursor">
     <div class="metric"><span>Equity · USD</span><strong id="equity">—</strong></div>
     <div class="metric"><span>Cash · USD</span><strong id="cash">—</strong></div>
     <div class="metric"><span>Position</span><strong id="position">Flat</strong></div>
@@ -95,11 +116,11 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
         <span><i class="key" style="--key:var(--rose)"></i>Exit / stop</span></div>
     </section>
     <aside class="panel" aria-label="Evidence inspector">
-      <div class="panel-head"><h2>Evidence at cursor</h2></div>
+      <div class="panel-head"><h2 id="evidence-heading">Evidence at cursor</h2></div>
       <div class="inspector"><label for="evidence">Receipt item or visible line</label><select id="evidence"></select>
         <div id="item-title" class="item-head"></div><p id="item-meta" class="meta"></p><dl id="facts"></dl>
         <div id="linked" class="linked"></div>
-        <details><summary>Recorded fields</summary><pre id="raw"></pre></details>
+        <details id="recorded-fields"><summary>Recorded fields</summary><pre id="raw"></pre></details>
       </div>
     </aside>
   </div>
@@ -180,6 +201,7 @@ function stateAt(view, index){
 const $=id=>document.getElementById(id);
 const view=JSON.parse($('replay-data').textContent);
 const cursor=$('cursor'), evidence=$('evidence'), canvas=$('chart');
+const layerIds=['pivots','rays','contacts','fills','protection'], candleWindow=120;
 const number=value=>typeof value==='object'&&value!==null?value.numerator/value.denominator:Number(value);
 const iso=time=>new Date(time).toISOString().replace('T',' ').replace('Z',' UTC');
 const shortTime=time=>iso(time).slice(5,16);
@@ -212,7 +234,7 @@ $('scope').textContent=`Level ${view.data_level} · ${view.profile} · ${words(v
 $('quote-filter').hidden=view.data_level!=='Q';
 for(const id of ['contact-filter','contact-layer','contact-legend','blocked-legend'])$(id).hidden=view.profile!=='TRL_BNC_E1';
 cursor.max=String(view.groups.length-1);
-let current, choices=[], markers=[];
+let current, choices=[], markers=[], retrospective=false, savedReceipt;
 
 function writeFacts(list,facts){
   for(const [name,value] of Object.entries(facts)){
@@ -252,8 +274,8 @@ function showLinkedEvidence(item){
   if(!link)return;
   if(item.kind!=='SETUP'){
     const route=document.createElement('button');
-    route.type='button';route.textContent='Go to setup receipt';
-    route.addEventListener('click',()=>move(link.index,link.item));
+    route.type='button';route.textContent=retrospective?'Inspect setup receipt':'Go to setup receipt';
+    route.addEventListener('click',()=>visitEvidence(link.index,link.item));
     panel.append(route);
   }
   const lines=item.kind==='CONTACT'?[['Contact',current.contacts.find(entry=>entry.item===item)?.line]]:
@@ -332,7 +354,9 @@ function drawChart(){
   canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
   const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
   const left=width<490?62:76, right=width-18, top=18, bottom=height-36;
-  const bars=state.candles.slice(-120);
+  const windowStart=$('chart-window').value;
+  const bars=retrospective?(windowStart==='all'?state.candles:
+    state.candles.slice(Number(windowStart),Number(windowStart)+candleWindow)):state.candles.slice(-candleWindow);
   if(!bars.length){
     ctx.fillStyle='#a0b2c6';ctx.font='14px system-ui';ctx.textAlign='center';
     ctx.fillText('No H4 candles have arrived',width/2,height/2);
@@ -340,11 +364,13 @@ function drawChart(){
     return;
   }
   const lowIndex=bars[0].index-.7;
-  const fills=$('fills').checked?state.fills.filter(fill=>fill.index>=lowIndex):[];
-  const contacts=$('contacts').checked?state.contacts.filter(entry=>entry.item.value.bar_index>=lowIndex):[];
-  const pending=$('pivots').checked?(state.provisional?.item.value.active??[]):[];
+  const latest=bars.at(-1)===state.candles.at(-1), lastIndex=bars.at(-1).index;
+  const inWindow=index=>index>=lowIndex&&index<=lastIndex;
+  const fills=$('fills').checked?state.fills.filter(fill=>fill.index>=lowIndex&&(latest||fill.index<=lastIndex)):[];
+  const contacts=$('contacts').checked?state.contacts.filter(entry=>inWindow(entry.item.value.bar_index)):[];
+  const pending=$('pivots').checked?(state.provisional?.item.value.active??[]).filter(pivot=>inWindow(pivot.bar_index)):[];
   const highIndex=Math.max(bars.at(-1).index,...fills.map(fill=>fill.index))+.8;
-  const levels=$('protection').checked&&state.held?
+  const levels=$('protection').checked&&latest&&state.held?
     [{name:'Stop',price:state.held.stop,color:'#f1999e'},{name:'Target',price:state.held.target,color:'#75e2d4'}].filter(l=>l.price!==null):[];
   const prices=[...bars.flatMap(b=>[Number(b.low),Number(b.high)]),...levels.map(l=>Number(l.price)),
                 ...fills.map(f=>Number(f.event.price))];
@@ -369,7 +395,7 @@ function drawChart(){
     ctx.fillText(shortTime(bar.start),x(bar.index),height-12);
   }
   ctx.save();ctx.beginPath();ctx.rect(left,top,right-left,bottom-top);ctx.clip();
-  const candleWidth=Math.max(2,Math.min(12,(right-left)/(highIndex-lowIndex)*.58));
+  const candleWidth=Math.max(retrospective ? .5 : 2,Math.min(12,(right-left)/(highIndex-lowIndex)*.58));
   for(const bar of bars){
     const center=x(bar.index), up=Number(bar.close)>=Number(bar.open), color=up?'#66c5b9':'#db858c';
     stroke(center,y(bar.high),center,y(bar.low),color);
@@ -400,7 +426,7 @@ function drawChart(){
   }
   if($('pivots').checked){
     ctx.fillStyle=ctx.strokeStyle='#f2c879';ctx.lineWidth=1.3;
-    for(const pivot of [...state.pivots,...pending].filter(p=>p.bar_index>=lowIndex)){
+    for(const pivot of [...state.pivots.filter(p=>inWindow(p.bar_index)),...pending]){
       const xx=x(pivot.bar_index), yy=y(pivot.price)+(pivot.kind==='high'?-7:7);
       ctx.beginPath();ctx.moveTo(xx,yy-4);ctx.lineTo(xx+4,yy);ctx.lineTo(xx,yy+4);ctx.lineTo(xx-4,yy);ctx.closePath();
       if(pivot.right_bars_needed!==undefined){
@@ -426,11 +452,11 @@ function drawChart(){
     markers.push({x:xx,y:yy,fill});
   }
   ctx.restore();
-  canvas.setAttribute('aria-label',`H4 chart with ${bars.length} received candles and ${fills.length} visible fills, ${pending.length} provisional pivots, ${contacts.length} bounce contacts`);
+  canvas.setAttribute('aria-label',`${retrospective?'Retrospective H4 chart':'H4 chart'} with ${bars.length} received candles and ${fills.length} visible fills, ${pending.length} provisional pivots, ${contacts.length} bounce contacts`);
 }
 
 function matches(item){
-  const filter=$('filter').value;
+  const filter=retrospective?'all':$('filter').value;
   if(filter==='no-trade')return hasNoTradeReason(item);
   return filter==='all'||(filter==='fills'?fillKind(item):item.kind===filter);
 }
@@ -443,11 +469,60 @@ function step(direction){
   }
 }
 function move(index,selectedItem=null){
+  if(retrospective)return;
   cursor.value=String(index);
+  renderAt(index,selectedItem);
+}
+function choiceIndex(item){
+  return choices.findIndex(choice=>choice.item.kind===item?.kind&&choice.item.value===item.value);
+}
+function visitEvidence(index,item){
+  if(!retrospective){move(index,item);return;}
+  let selected=choiceIndex(item);
+  if(selected<0){
+    selected=choices.length;
+    choices.push({item,at:view.groups[index].at});
+    evidence.add(new Option(headline(item)));
+  }
+  evidence.selectedIndex=selected;
+  inspect();
+}
+function toggleRetrospective(enabled){
+  if(enabled===retrospective)return;
+  if(enabled){
+    savedReceipt={index:Number(cursor.value),item:choices[evidence.selectedIndex]?.item,
+      layers:layerIds.map(id=>$(id).checked),recorded:$('recorded-fields').open};
+  }
+  retrospective=enabled;
+  $('receipt-controls').hidden=enabled;
+  $('retrospective-controls').hidden=!enabled;
+  $('mode-receipt').setAttribute('aria-pressed',String(!enabled));
+  $('mode-retrospective').setAttribute('aria-pressed',String(enabled));
+  $('metrics').setAttribute('aria-label',enabled?'Account at saved cutoff':'Account at cursor');
+  $('evidence-heading').textContent=enabled?'Saved evidence':'Evidence at cursor';
+  if(enabled){
+    $('recorded-fields').open=false;
+    renderAt(view.groups.length-1);
+  }else{
+    layerIds.forEach((id,index)=>{$(id).checked=savedReceipt.layers[index];});
+    $('recorded-fields').open=savedReceipt.recorded;
+    move(savedReceipt.index,savedReceipt.item);
+  }
+}
+function renderAt(index,selectedItem=null){
   current=stateAt(view,index);
-  const at=current.group.at,stamp=$('stamp');
+  const at=current.group.at,stamp=$(retrospective?'retrospective-stamp':'stamp');
   stamp.textContent=iso(at);stamp.dateTime=new Date(at).toISOString();
-  cursor.setAttribute('aria-valuetext',iso(at));
+  if(retrospective){
+    const range=$('chart-window'), bars=current.candles;
+    $('window-label').hidden=bars.length<=candleWindow;
+    if(bars.length>candleWindow&&range.options.length===1){
+      for(let start=0;start<bars.length;start+=candleWindow){
+        const finish=Math.min(start+candleWindow,bars.length)-1;
+        range.add(new Option(`${shortTime(bars[start].start)} – ${shortTime(bars[finish].start)} UTC`,String(start)));
+      }
+    }
+  }else cursor.setAttribute('aria-valuetext',iso(at));
   $('equity').textContent=price(current.account?.equity_usd);
   $('cash').textContent=price(current.account?.cash_usd);
   $('position').textContent=current.held?current.held.direction:(current.reservation?'Reserved':'Flat');
@@ -464,25 +539,25 @@ function move(index,selectedItem=null){
     }
   }
   evidence.replaceChildren(...choices.map(choice=>new Option(headline(choice.item))));
-  const selectedIndex=choices.findIndex(choice=>choice.item===selectedItem);
+  const selectedIndex=choiceIndex(selectedItem), all=retrospective||$('filter').value==='all';
   const preferred=selectedIndex>=0?selectedIndex:
-    choices.findIndex(choice=>$('filter').value==='all'?(fillKind(choice.item)||choice.item.kind==='ADMISSION'):matches(choice.item));
+    choices.findIndex(choice=>all?(fillKind(choice.item)||choice.item.kind==='ADMISSION'):matches(choice.item));
   evidence.selectedIndex=Math.max(0,preferred);
   inspect();
-  const recent=current.activity.filter(({item})=>$('filter').value==='all'?
+  const recent=current.activity.filter(({item})=>all?
     item.kind!=='PIVOT_CANDIDATES'&&(item.kind!=='SETUP'||item.value.state!=='FORMING'):matches(item)).slice(-8).reverse();
   $('activity').replaceChildren(...recent.map(entry=>{
     const li=document.createElement('li'),button=document.createElement('button'),time=document.createElement('time');
     time.textContent=shortTime(entry.at)+' UTC';
-    button.type='button';button.append(time,headline(entry.item));button.addEventListener('click',()=>move(entry.index,entry.item));
+    button.type='button';button.append(time,headline(entry.item));button.addEventListener('click',()=>visitEvidence(entry.index,entry.item));
     li.append(button);return li;
   }));
   if(!recent.length){
-    const empty=document.createElement('li');empty.className='empty';empty.textContent='No matching evidence through this receipt';
+    const empty=document.createElement('li');empty.className='empty';empty.textContent=retrospective?
+      'No matching evidence through the saved cutoff':'No matching evidence through this receipt';
     $('activity').append(empty);
   }
-  $('previous').disabled=index===0;
-  $('next').disabled=index===view.groups.length-1;
+  if(!retrospective){$('previous').disabled=index===0;$('next').disabled=index===view.groups.length-1;}
   drawChart();
 }
 cursor.addEventListener('input',()=>move(Number(cursor.value)));
@@ -496,10 +571,13 @@ canvas.addEventListener('click',event=>{
   }
   if(!selected)return;
   const entry=selected.entry??current.activity.find(entry=>entry.item.value===selected.fill);
-  if(entry)move(entry.index,entry.item);
+  if(entry)visitEvidence(entry.index,entry.item);
 });
 $('filter').addEventListener('change',()=>move(Number(cursor.value)));
-for(const id of ['pivots','rays','contacts','fills','protection'])$(id).addEventListener('change',drawChart);
+for(const id of layerIds)$(id).addEventListener('change',drawChart);
+$('chart-window').addEventListener('change',drawChart);
+$('mode-receipt').addEventListener('click',()=>toggleRetrospective(false));
+$('mode-retrospective').addEventListener('click',()=>toggleRetrospective(true));
 $('first').addEventListener('click',()=>move(0));$('last').addEventListener('click',()=>move(view.groups.length-1));
 $('previous').addEventListener('click',()=>step(-1));$('next').addEventListener('click',()=>step(1));
 new ResizeObserver(drawChart).observe(canvas);
