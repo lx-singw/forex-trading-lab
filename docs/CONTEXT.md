@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 178 adds the disabled DLY state machine. With
+explicit opt-in to invented replay, the original break consumes its group
+and can wait for safety until the tenth scheduled H4 close. Coverage,
+failed-break and chase guards precede safety. [Sprint 178 results](trendline/RESULTS-178.md)
+
 18 November 2026. Sprint 177 adds invented BNC replay. Completed H4
 contacts use the current ATR band, strict wick validity and spacing from
 both a confirmed touch and prior approach. The contact line supplies E1

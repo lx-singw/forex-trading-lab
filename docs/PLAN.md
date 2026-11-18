@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 178 delivers disabled DLY and its opt-in
+invented replay. Next audit Phase 6 setup fixtures and replay each
+remaining state boundary before starting the account and exit work.
+[DLY increment](trendline/RESULTS-178.md)
+
 18 November 2026. Sprint 177 implements BNC close-confirmed contacts and
 Level B entry checks. Next implement the disabled DLY state machine with
 its expiry, failed-break and chase rules, then close out Phase 6 setup

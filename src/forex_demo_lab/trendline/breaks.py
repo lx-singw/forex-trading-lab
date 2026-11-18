@@ -5,7 +5,7 @@ import hashlib
 import json
 
 from ..elliott_full.contracts import Bar
-from . import context, data, engine, geometry, lines, selection
+from . import context, data, delayed, engine, geometry, lines, selection
 
 VERSION = "TRL_BREAKS_173_V1"
 FXR_PROFILE = "TRL_FXR_M"
@@ -19,13 +19,15 @@ SETUP_FAMILIES = {
     BRK2_PROFILE: "brk2",
     BNC_PROFILE: "bnc",
     context.PROFILE: "brk3",
+    lines.DLY_PROFILE: "brk3_dly",
 }
 PROFILES = tuple(SETUP_FAMILIES)
 
 
 def bindings():
     result = context.bindings()
-    for path in ("src/forex_demo_lab/trendline/breaks.py", "scripts/trendline-breaks-173.py"):
+    for path in ("src/forex_demo_lab/trendline/breaks.py",
+                 "src/forex_demo_lab/trendline/delayed.py", "scripts/trendline-breaks-173.py"):
         result[path] = hashlib.sha256((data.ROOT / path).read_bytes()).hexdigest()
     return result
 
@@ -76,6 +78,12 @@ def _safety_choice(lines, direction, close, index):
     return candidates[0][1], None
 
 
+def _eligible_safety(frame):
+    eligible = set(frame["eligible_line_ids"])
+    candidates = (selection.ValidatedLine.from_record(row) for row in frame["selection"]["ranked"])
+    return tuple(line for line in candidates if engine.instance_id(line) in eligible)
+
+
 def _stop(safety_value, atr, tick, direction):
     buffer = max(tick, atr / 10)
     if direction == "LONG":
@@ -86,9 +94,11 @@ def _stop(safety_value, atr, tick, direction):
 class BreakReplay:
     """Replay completed-bar setups on the selected profile."""
 
-    def __init__(self, source, tick, profile="TRL_BRK3_E1"):
+    def __init__(self, source, tick, profile="TRL_BRK3_E1", *, enable_dly=False):
         if profile not in PROFILES:
             raise ValueError("implemented setup profile required")
+        if type(enable_dly) is not bool or enable_dly != (profile == lines.DLY_PROFILE):
+            raise ValueError("DLY profile and explicit invented-replay opt-in must agree")
         self._tick = geometry.exact(tick)
         if self._tick <= 0:
             raise ValueError("positive declared price tick required")
@@ -100,6 +110,8 @@ class BreakReplay:
         self._decisions = []
         self._last = None
         self._bytes = 0
+        self._waiting = ()
+        self._dly_ends = tuple(window.end for window in source.calendar.frame("H4")) if enable_dly else ()
 
     @property
     def publications(self):
@@ -147,13 +159,13 @@ class BreakReplay:
         indexed = inspector.indexed
         index = indexed[-1][0]
         atr = inspector.metrics.atr_sma14
+        previous = indexed[-2][1] if len(indexed) > 1 and indexed[-2][0] == index - 1 else None
         contacts = None
         if action_engine.profile == BNC_PROFILE:
             contacts = self._bounce_contacts(action.selected, prior, action_ids, bar, index, atr)
             trigger_ids = {item["line_id"] for item in contacts if item["reason"] == "CONTACT"}
             triggered = tuple(state for state in prior if state.line_id in trigger_ids)
         else:
-            previous = indexed[-2][1] if len(indexed) > 1 and indexed[-2][0] == index - 1 else None
             triggered = _triggered(prior, action_ids, previous, bar, index, self._tick)
         frame = action_engine._finish_bar(bar, staged, tuple(sorted(state.line_id for state in triggered)))
         safety_frame = frame if safety_engine is None else safety_engine.observe(bar)
@@ -162,11 +174,15 @@ class BreakReplay:
             for item in contacts:
                 item["group_id"] = groups[item["line_id"]]
         decision = self._decision(bar, index, action, prior, triggered, frame, safety_frame, atr, contacts)
+        waiting = self._waiting
+        if self._dly_ends:
+            waiting = self._resolve_delays(decision, triggered, bar, index, atr, safety_frame, previous)
         encoded = data.canonical(decision)
         if self._bytes + len(encoded) > engine.MAX_TRACE_BYTES:
             raise ValueError("bounded setup decision trace")
         self._check()
         self._h4, self._safety = action_engine, safety_engine
+        self._waiting = waiting
         self._decisions.append(encoded.decode())
         self._bytes += len(encoded)
         return json.loads(encoded)
@@ -250,30 +266,13 @@ class BreakReplay:
         decision.update(selected_line_id=winner.line_id, direction=direction)
         safety = winner.line
         if contacts is None:
-            eligible = set(safety_frame["eligible_line_ids"])
-            candidates = (selection.ValidatedLine.from_record(row)
-                          for row in safety_frame["selection"]["ranked"])
-            safety, reason = _safety_choice((line for line in candidates if engine.instance_id(line) in eligible),
-                                            direction, bar.close, index)
+            safety, reason = _safety_choice(_eligible_safety(safety_frame), direction, bar.close, index)
             if reason:
                 decision.update(state="ABSTAINED", reason=reason)
                 return decision
 
-        value = safety.ray.value(index)
-        projection = FXR_STOP_PROJECTION if self._h4.profile == FXR_PROFILE else 0
-        stop_reference = safety.ray.project(index, projection)
-        buffer, stop = _stop(stop_reference, atr, self._tick, direction)
-        decision["safety"] = {
-            "line_id": engine.instance_id(safety),
-            "line_value": geometry.rational_record(value),
-            "atr_sma14": geometry.rational_record(atr),
-            "buffer": geometry.rational_record(buffer),
-            "stop": geometry.rational_record(stop),
-        }
-        if projection:
-            decision["safety"].update(projected_index=index + projection,
-                                      projected_line_value=geometry.rational_record(stop_reference))
-        if stop <= 0:
+        decision["safety"] = self._protection(safety, index, atr, direction)
+        if selection.fraction(decision["safety"]["stop"]) <= 0:
             decision.update(state="SKIPPED", reason="INVALID_STOP_PRICE")
             return decision
         if self._daily is not None:
@@ -286,9 +285,84 @@ class BreakReplay:
         decision.update(state="READY", reason=None)
         return decision
 
-    def report(self):
+    def _protection(self, safety, index, atr, direction):
+        value = safety.ray.value(index)
+        projection = FXR_STOP_PROJECTION if self._h4.profile == FXR_PROFILE else 0
+        stop_reference = safety.ray.project(index, projection)
+        buffer, stop = _stop(stop_reference, atr, self._tick, direction)
+        result = {
+            "line_id": engine.instance_id(safety),
+            "line_value": geometry.rational_record(value),
+            "atr_sma14": geometry.rational_record(atr),
+            "buffer": geometry.rational_record(buffer),
+            "stop": geometry.rational_record(stop),
+        }
+        if projection:
+            result.update(projected_index=index + projection,
+                          projected_line_value=geometry.rational_record(stop_reference))
+        return result
+
+    def _resolve_delays(self, decision, triggered, bar, index, atr, safety_frame, previous):
+        events, ready, waiting = [], {}, []
+        safety_lines = _eligible_safety(safety_frame) if self._waiting else ()
+        data_gap = previous is None or safety_frame["coverage_state"] != "CURRENT"
+        for pending in self._waiting:
+            outcome = pending.guard(bar, index, atr, data_gap=data_gap,
+                                    search_incomplete=safety_frame["search_incomplete"])
+            if outcome:
+                events.append(pending.record(*outcome))
+                continue
+            safety, reason = _safety_choice(safety_lines, pending.direction, bar.close, index)
+            if reason == "NO_SAFETY_LINE":
+                waiting.append(pending)
+            elif reason:
+                events.append(pending.record("ABSTAINED", reason))
+            else:
+                protection = self._protection(safety, index, atr, pending.direction)
+                if selection.fraction(protection["stop"]) <= 0:
+                    events.append(pending.record("SKIPPED", "INVALID_STOP_PRICE"))
+                else:
+                    ready[pending.line_state.line_id] = (pending, protection)
+
+        if decision["state"] == "READY" or decision["reason"] == "NO_SAFETY_LINE":
+            selected = next(state for state in triggered if state.line_id == decision["selected_line_id"])
+            deadline_index = min(index + delayed.EXPIRY_BARS, len(self._dly_ends) - 1)
+            fresh = delayed.AwaitingSafety(selected, index, decision["h4_frame_id"],
+                                           bar.close, self._dly_ends[deadline_index])
+            if decision["state"] == "READY":
+                ready[selected.line_id] = (fresh, decision["safety"])
+            elif bar.available >= fresh.expires_at:
+                decision.update(state="EXPIRED", reason="DLY_EXPIRED")
+                events.append(fresh.record("EXPIRED", "DLY_EXPIRED"))
+            else:
+                decision.update(state="AWAITING_SAFETY", reason="NO_SAFETY_LINE")
+                waiting.append(fresh)
+                events.append(fresh.record("AWAITING_SAFETY", "NO_SAFETY_LINE"))
+
+        decision["dly_transitions"] = events
+        if ready:
+            winner, reason = _rank(tuple(pending.line_state for pending, _ in ready.values()), index)
+            if winner is None:
+                events.extend(pending.record("ABSTAINED", reason) for pending, _ in ready.values())
+                decision.update(state="ABSTAINED", reason=reason, selected_line_id=None,
+                                direction=None, safety=None)
+            else:
+                pending, protection = ready[winner.line_id]
+                origin = pending.record("READY")
+                events.extend(other.record("ABSTAINED", "LOWER_RANKED_SETUP")
+                              for line_id, (other, _) in ready.items() if line_id != winner.line_id)
+                events.append(origin)
+                decision.update(state="READY", reason=None, selected_line_id=winner.line_id,
+                                direction=pending.direction, safety=protection, dly_origin=origin)
+        elif decision["state"] == "FORMING" and (events or waiting):
+            summary = events[0] if events else waiting[0].record("AWAITING_SAFETY", "NO_SAFETY_LINE")
+            decision.update(state=summary["state"], reason=summary["reason"],
+                            selected_line_id=summary["line_id"], direction=summary["direction"])
+        return tuple(waiting)
+
+    def report(self, *, as_of=None):
         self._check()
-        return {
+        result = {
             "schema": VERSION,
             "kind": f"invented_{SETUP_FAMILIES[self._h4.profile]}_setup_replay",
             "data_level": "B",
@@ -302,6 +376,17 @@ class BreakReplay:
             "entry_ready": False,
             "orders_available": False,
         }
+        if self._dly_ends:
+            clock = self._h4.clock if as_of is None else as_of
+            data.integer(clock)
+            if not self._h4.clock <= clock <= self.source.calendar.end + 60000:
+                raise ValueError("DLY report clock outside supplied prefix or source scope")
+            result["dly_waiting"] = [
+                pending.record("EXPIRED", "DLY_EXPIRED") if clock >= pending.expires_at
+                else pending.record("AWAITING_SAFETY", "NO_SAFETY_LINE")
+                for pending in self._waiting
+            ]
+        return result
 
     def checkpoint(self):
         report = self.report()
@@ -320,14 +405,14 @@ class BreakReplay:
         return record
 
     @classmethod
-    def restore(cls, source, record):
+    def restore(cls, source, record, *, enable_dly=False):
         data.fields(record, ("schema", "profile", "tick", "source_bindings", "source_sha256", "bars", "state_sha256"))
         if (record["schema"] != VERSION or record["source_sha256"] != source.sha256
                 or record["source_bindings"] != bindings()
                 or type(record["bars"]) is not list or len(record["bars"]) > data.ROW_LIMIT
                 or len(data.canonical(record)) > engine.MAX_CHECKPOINT_BYTES):
             raise ValueError("matching bounded setup checkpoint required")
-        result = cls(source, selection.fraction(record["tick"]), record["profile"])
+        result = cls(source, selection.fraction(record["tick"]), record["profile"], enable_dly=enable_dly)
         for count, row in enumerate(record["bars"], 1):
             result.observe(Bar(**row))
             if len(result._events) != count:

@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 178 adds the disabled DLY state machine for explicitly opted-in
+invented replays. [Sprint 178 results](docs/trendline/RESULTS-178.md)
+
 Sprint 177 adds BNC bounce setup and Level B entry replay on completed H4
 contacts. [Sprint 177 results](docs/trendline/RESULTS-177.md)
 

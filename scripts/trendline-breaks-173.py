@@ -1,7 +1,7 @@
 """Replay break and bounce setup decisions on invented hourly data."""
 import argparse
 
-from forex_demo_lab.trendline import breaks, context, data, engine, entries
+from forex_demo_lab.trendline import breaks, context, data, engine, entries, lines
 
 
 def main():
@@ -11,11 +11,14 @@ def main():
     parser.add_argument("new_output_directory")
     parser.add_argument("--tick-size", required=True)
     parser.add_argument("--profile", choices=breaks.PROFILES, default=breaks.PROFILES[0])
+    parser.add_argument("--enable-dly", action="store_true", help="opt in to invented DLY replay")
     parser.add_argument("--cost-profile", choices=("base", "adverse"), default="base")
     parser.add_argument("--as-of", type=int)
     parser.add_argument("--unlock-receipt")
     parser.add_argument("--restore-checkpoint")
     args = parser.parse_args()
+    if args.enable_dly != (args.profile == lines.DLY_PROFILE):
+        parser.error("DLY profile and --enable-dly must be used together")
 
     source, hours = data.load_dataset(args.descriptor, args.hours, args.unlock_receipt)
     as_of = args.as_of if args.as_of is not None else hours[-1].available_at
@@ -30,11 +33,11 @@ def main():
     frames = ("H4", "D1") if args.profile == context.PROFILE else ("H4",)
     bars = tuple(bar for bar in stream.bars() if bar.timeframe in frames)
 
-    replay = breaks.BreakReplay(source, args.tick_size, args.profile)
+    replay = breaks.BreakReplay(source, args.tick_size, args.profile, enable_dly=args.enable_dly)
     start = 0
     if args.restore_checkpoint:
         checkpoint, _ = data.read_json(args.restore_checkpoint, limit=engine.MAX_CHECKPOINT_BYTES)
-        restored = breaks.BreakReplay.restore(source, checkpoint)
+        restored = breaks.BreakReplay.restore(source, checkpoint, enable_dly=args.enable_dly)
         start = len(restored.publications)
         if (checkpoint["profile"], checkpoint["tick"], restored.publications) != (
                 args.profile, replay.report()["tick"], bars[:start]):
@@ -42,7 +45,7 @@ def main():
         replay = restored
     for bar in bars[start:]:
         replay.observe(bar)
-    report, checkpoint = replay.report(), replay.checkpoint()
+    report, checkpoint = replay.report(as_of=as_of), replay.checkpoint()
     entry_report = entries.evaluate(replay, visible_hours, as_of=as_of, cost_profile=args.cost_profile)
     output = data.no_links(args.new_output_directory)
     output.mkdir(exist_ok=False)

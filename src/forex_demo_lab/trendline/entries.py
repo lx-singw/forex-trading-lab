@@ -85,23 +85,23 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
     for decision in report["decisions"]:
         if decision["state"] != "READY":
             continue
-        trigger = trigger_bars[decision["h4_frame_id"]]
+        publication = trigger_bars[decision["h4_frame_id"]]
         stop = fills.text(selection.fraction(decision["safety"]["stop"]))
         request = {
             "kind": "invented_b_price_request",
             "direction": decision["direction"],
-            "trigger_end": trigger["end"],
-            "decision_at": fills.Event(trigger["available"], H4_DECISION_ORDINAL).record(),
+            "trigger_end": publication["end"],
+            "decision_at": fills.Event(publication["available"], H4_DECISION_ORDINAL).record(),
             "stop": stop,
             "target": None,
             "atr": decision["safety"]["atr_sma14"],
             "tick": tick,
             "exit_model": "E2" if fxr else "E1",
         }
-        window = model.entry_window(trigger["end"])
-        expires_at = expiry.get(trigger["end"])
+        window = model.entry_window(publication["end"])
+        expires_at = expiry.get(publication["end"])
         status, reason, price = _resolve(model, request, window, expires_at, hourly, as_of, bid_only)
-        attempts.append({
+        attempt = {
             "id": data.digest([decision["h4_frame_id"], decision["selected_line_id"], cost_profile]),
             "h4_frame_id": decision["h4_frame_id"],
             "selected_line_id": decision["selected_line_id"],
@@ -112,7 +112,10 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
             "status": status,
             "reason": reason,
             "price_result": price,
-        })
+        }
+        if "dly_origin" in decision:
+            attempt["dly_origin"] = decision["dly_origin"]
+        attempts.append(attempt)
 
     if bound != bindings():
         raise ValueError("entry replay source bindings changed")

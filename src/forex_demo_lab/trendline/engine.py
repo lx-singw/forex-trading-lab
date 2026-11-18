@@ -65,7 +65,9 @@ class Engine:
 
     def _action_ids(self,inspector,snapshot,prior):
         report = snapshot.record()
-        if self.profile not in lines.STRATEGIES or report["search_incomplete"] or report["coverage_state"] != "CURRENT":return ()
+        if (self.profile not in (*lines.STRATEGIES, lines.DLY_PROFILE)
+                or report["search_incomplete"] or report["coverage_state"] != "CURRENT"):
+            return ()
         observed = {i for i,_ in inspector.indexed}
         current = {c["id"]:c for c in report["candidates"] if c["profile_valid"]}
         result = []

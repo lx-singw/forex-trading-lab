@@ -444,3 +444,27 @@ geometry or resolved opportunity group. Use the contact line as E1
 protection at its current value with the standard buffer and outward tick
 rounding. Consume qualifying groups at the completed contact before
 ranking or entry price checks.
+
+## Implementation note for sprint 178
+
+18 November 2026. The declared DLY profile is available to invented replay
+through an explicit opt-in. Scope the initial break geometry and consumed
+group to that profile. Start waiting only when the selected break lacks
+protection. When safety already exists, use the immediate E1 path. Each
+waiting record keeps its own original trigger, direction and action ray.
+
+The tenth scheduled H4 close is the exclusive waiting deadline. If the
+source ends sooner, its final scheduled H4 close bounds the wait. At each
+observed bar, check expiry, required coverage and search, a close back across
+the original ray, and travel strictly greater than the current one-ATR limit
+before selecting safety. Equality at the ray or chase boundary passes those
+respective guards. A gap invalidates a pending wait because the earlier
+invalidation order is unavailable. DLY uses the context-off declaration.
+
+The first valid protection gives the decision close, its ATR and its
+rounded E1 stop. If several pending or fresh setups reach a decision on
+the same bar, apply the existing opposing-direction and economic tie rules.
+Enter through the existing Level B checks on the first scheduled opening
+after that decision. The report can show an elapsed deadline without a
+synthetic bar. Checkpoints reconstruct from the supplied bar prefix and
+require explicit DLY opt-in on restore. The initial study grid excludes DLY.
