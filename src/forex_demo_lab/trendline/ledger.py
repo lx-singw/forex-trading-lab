@@ -108,15 +108,23 @@ class _Book:
         if adverse:
             adverse_bid = hour.low if direction == "LONG" else hour.high
             mark["price"] = fills.text(Fraction(mark["price"]) - Fraction(hour.close) + Fraction(adverse_bid))
+        observation = "H1_ADVERSE_RANGE" if adverse else "H1_OPEN" if opening else "H1_CLOSE"
+        self.record_mark(mark, observation)
+
+    def record_mark(self, mark, observation):
         self.mark = mark
         self._post("MARK", mark["time"], mark["available_at"], attempt_id=self.held["attempt_id"],
                    price=mark["price"], side=mark["side"],
-                   observation="H1_ADVERSE_RANGE" if adverse else "H1_OPEN" if opening else "H1_CLOSE")
+                   observation=observation)
 
     def _close(self, path, hour):
-        held = self.held
         exit_fill = path["exit"]
         opening = exit_fill["event"] is not None
+        self.close_trade(path["entry"], exit_fill, hour.start if opening else hour.end, hour.available_at)
+        return path
+
+    def close_trade(self, position, exit_fill, at, available):
+        held = self.held
         price = Fraction(exit_fill["price"])
         gross = held["sign"] * (price - held["entry"]) * held["units"]
         fee = held["fee"]
@@ -125,32 +133,37 @@ class _Book:
         trade = {"attempt_id": held["attempt_id"], "direction": held["direction"],
                  "lots": fills.text(held["lots"]), "entry_price": fills.text(held["entry"]),
                  "exit_price": exit_fill["price"], "reason": exit_fill["reason"],
-                 "entry_at": path["entry"]["entry_at"], "exit_at": exit_fill["event"],
+                 "entry_at": position["entry_at"], "exit_at": exit_fill["event"],
                  "exit_window": exit_fill["event_window"], "gross_usd": fills.text(gross),
                  "commission_usd": fills.text(2 * fee), "financing_usd": fills.text(held["financing"]),
                  "net_usd": fills.text(net), "estimated_stop_loss_usd": fills.text(held["risk"]),
                  "realized_loss_excess_usd": fills.text(max(0, -net - held["risk"]))}
         self.trades.append(trade)
         self.held, self.mark = None, None
-        self._post("EXIT_FILL", hour.start if opening else hour.end, hour.available_at,
+        self._post("EXIT_FILL", at, available,
                    attempt_id=trade["attempt_id"], price=exit_fill["price"], fee_usd=fills.text(fee))
-        return path
 
-    def admit(self, path, sizing):
-        position = path["entry"]
+    def open_trade(self, position, sizing, attempt_id, mark):
+        if self.held is not None:
+            raise ValueError("account slot is occupied")
         start, direction = position["entry_at"]["time"], position["direction"]
         lots, entry = Fraction(sizing["lots"]), Fraction(position["entry_price"])
         units = lots * self.terms["contract_size"]
         fee = Fraction(sizing["estimated_entry_commission_usd"])
-        self.held = {"attempt_id": path["attempt_id"], "direction": direction,
+        self.held = {"attempt_id": attempt_id, "direction": direction,
                      "sign": 1 if direction == "LONG" else -1, "lots": lots, "units": units,
                      "entry": entry, "fee": fee, "margin": entry * units / self.terms["leverage"],
                      "risk": Fraction(sizing["estimated_stop_loss_usd"]), "financing": Fraction(0)}
-        first = self.hours[start]
-        self.mark = exits._mark(self.model, first, direction, at_open=True)
+        self.mark = mark
         self.cash -= fee
-        self._post("ENTRY_FILL", start, first.available_at, attempt_id=path["attempt_id"],
+        self._post("ENTRY_FILL", start, mark["available_at"], attempt_id=attempt_id,
                    price=position["entry_price"], fee_usd=fills.text(fee), lots=sizing["lots"], mark=self.mark)
+
+    def admit(self, path, sizing):
+        position = path["entry"]
+        start = position["entry_at"]["time"]
+        mark = exits._mark(self.model, self.hours[start], position["direction"], at_open=True)
+        self.open_trade(position, sizing, path["attempt_id"], mark)
 
         fill = path["exit"]
         closing_start = None if fill is None else (
@@ -182,10 +195,11 @@ class _Book:
             self._roll(hour.end, hour.available_at)
 
         self.liability = {"attempt_id": path["attempt_id"], "state": path["state"], "reason": path["reason"],
-                          "direction": direction, "lots": sizing["lots"], "entry_price": position["entry_price"],
+                          "direction": position["direction"], "lots": sizing["lots"],
+                          "entry_price": position["entry_price"],
                           "stop": path["position"]["stop"], "target": path["position"]["target"],
                           "last_mark": self.mark, "floating_usd": fills.text(self._floating()),
-                          "unpaid_exit_commission_usd": fills.text(fee),
+                          "unpaid_exit_commission_usd": fills.text(self.held["fee"]),
                           "financing_usd": fills.text(self.held["financing"]),
                           "unmarked_ms": min(self.as_of, self.boundary) - self.mark["time"]}
         return path

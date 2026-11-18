@@ -559,3 +559,31 @@ Unresolved paths retain the last exit-side mark and open commission
 liability. Financing is posted only through reconciled exposure.
 Same-opening entry remains blocked and cash becomes reusable only
 when the closing observation has arrived.
+
+## Implementation note for sprint 185
+
+18 November 2026. The invented Level Q adapter uses ordered bid and ask
+observations. Geometry uses the per-quote midpoint, aggregated into
+scheduled H1 slots and completed H4 and D1 publications. A slot seals at
+its declared finalization time. Empty slots remain missing. The invented
+tape provides clock and sequence fixtures for software verification.
+
+An entry quote must have source time strictly after the setup receipt.
+Quote receipt must precede expiry and liquidation. Explicit sequence
+orders quote observations at an equal timestamp. They must be within
+two seconds of source time and inside their declared session. Repeated
+identical observations at one source timestamp do not advance execution.
+The effective spread cap of 1.5 pips determines entry observation
+eligibility. Stop, distance, size, and capacity checks settle the first
+eligible attempt. A held position uses fresh bid and ask even on a wide
+spread and blocks admission on the quote that closes it.
+
+E1 updates require a publication strictly before the quote's source
+time. An H4 overlapping entry can latch a close-beyond exit. Whole-bar
+trailing and wick checks start with the first fully post-entry H4.
+Liquidation requires an eligible source observation at or after the
+declared cutoff, with receipt inside the partition. A missing close
+leaves the last mark and open liability. UTC day reference resets require
+a fresh prior boundary mark or a fresh closing mark carried through a
+declared closure. Checkpoints bind and reconstruct the attempted tape
+prefix, settings and account state.

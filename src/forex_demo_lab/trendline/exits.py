@@ -27,7 +27,7 @@ class Protection:
         self.market_exit = None
         self.events = []
 
-    def update(self, frame, atr):
+    def update(self, frame, atr, *, close_only=False):
         if self.market_exit is not None:
             return
         record = self.position.record()
@@ -42,6 +42,8 @@ class Protection:
             self.market_exit = {"reason": "SAFETY_CLOSE_BEYOND", "decision_at": at,
                                 "line_id": self.line_id, "h4_index": index}
             self.events.append(self.market_exit)
+            return
+        if close_only:
             return
 
         extreme = bar["low"] if ray.kind == "support" else bar["high"]

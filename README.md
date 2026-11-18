@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 185 adds an invented Level Q quote replay with synchronized midpoint
+geometry and bid/ask accounting. [Sprint 185 results](docs/trendline/RESULTS-185.md)
+
 Sprint 184 checks invented Level B accounting against retained 120 and
 125 cases and an independent exact-arithmetic calculation. [Sprint 184 results](docs/trendline/RESULTS-184.md)
 

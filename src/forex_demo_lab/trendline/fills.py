@@ -248,8 +248,9 @@ class PriceModel:
         decision = Event.from_record(request["decision_at"])
         if decision.time < request["trigger_end"]:
             raise ValueError("decision cannot precede trigger close")
-        stop, tick = (decimal(request[k],True) for k in ("stop","tick"))
-        atr = _entry_atr(request["atr"])
+        decimal(request["stop"], positive=True)
+        decimal(request["tick"], positive=True)
+        _entry_atr(request["atr"])
         target = None if request["target"] is None else decimal(request["target"],True)
         if request["exit_model"] == "E1" and target is not None:
             raise ValueError("E1 has no target")
@@ -272,8 +273,15 @@ class PriceModel:
             return self._result("SKIPPED","LATE_DECISION")
         if decision >= opening.event:
             return self._result("SKIPPED","UNRESOLVED_OPEN_ORDER")
+        return self._entry_at(request, self._sides(opening), opening.event, target_levels, opening=opening.record())
+
+    def _entry_at(self, request, prices, event, target_levels, **evidence):
+        """Price an already ordered, eligible observation for either replay."""
+        stop, tick = (decimal(request[k],True) for k in ("stop","tick"))
+        atr = _entry_atr(request["atr"])
+        target = None if request["target"] is None else decimal(request["target"],True)
         side = 1 if request["direction"] == "LONG" else -1
-        bid, ask, spread = self._sides(opening)
+        bid, ask, spread = prices
         stop = rounded(stop,tick,upward=side == -1)
         if stop <= 0:
             return self._result("SKIPPED","NONPOSITIVE_STOP")
@@ -302,16 +310,16 @@ class PriceModel:
             else:
                 return self._result("SKIPPED","NO_VALID_TARGET")
         position = {"kind":"invented_b_price_position","schema":VERSION,
-                    "direction":request["direction"],"entry_at":opening.event.record(),
+                    "direction":request["direction"],"entry_at":event.record(),
                     "entry_price":text(fill),"initial_stop":text(stop),"stop":text(stop),
                     "target":None if target is None else text(target),
-                    "stop_effective_at":opening.event.record(),"tick":text(tick),
+                    "stop_effective_at":event.record(),"tick":text(tick),
                     "exit_model":request["exit_model"],"profile":self.costs["name"],
                     "geometry_identity":self.geometry_identity}
         Position.from_record(position)
         return self._result("FILLED","H1_OPEN_PRICE", price=text(fill), stop_distance=text(distance),
                             effective_spread_pips=text(spread/PIP), position=position,
-                            opening=opening.record(), **target_evidence)
+                            **evidence, **target_evidence)
 
     def exit_open(self, position, opening, scheduled_exit=False):
         if type(scheduled_exit) is not bool:
@@ -324,16 +332,20 @@ class PriceModel:
             return self._result("NO_EXIT","HELD_NOT_BEFORE_OPEN")
         if effective > opening.event:
             return self._result("UNAVAILABLE","PROTECTION_NOT_YET_EFFECTIVE")
+        return self._exit_at(p, self._sides(opening), opening.event, scheduled_exit)
+
+    def _exit_at(self, p, prices, event, scheduled_exit):
+        """Apply hard protection and scheduled exits to an eligible point observation."""
         side = 1 if p["direction"] == "LONG" else -1
-        bid, ask, _ = self._sides(opening)
+        bid, ask, _ = prices
         price = bid if side == 1 else ask
         stop = decimal(p["stop"],True)
         if side*(price-stop) <= 0:
-            return self._exit(p,price-side*F(self.costs["slippage_pips"])*PIP,"STOP_OPEN_GAP",opening.event.record())
+            return self._exit(p,price-side*F(self.costs["slippage_pips"])*PIP,"STOP_OPEN_GAP",event.record())
         if p["target"] is not None and side*(price-decimal(p["target"],True)) >= 0:
-            return self._exit(p,decimal(p["target"],True),"TARGET_OPEN_REACH",opening.event.record())
+            return self._exit(p,decimal(p["target"],True),"TARGET_OPEN_REACH",event.record())
         if scheduled_exit:
-            return self._exit(p,price-side*F(self.costs["slippage_pips"])*PIP,"SCHEDULED_OPEN_EXIT",opening.event.record())
+            return self._exit(p,price-side*F(self.costs["slippage_pips"])*PIP,"SCHEDULED_OPEN_EXIT",event.record())
         return self._result("NO_EXIT","OPEN_INSIDE_PROTECTION")
 
     def exit_hour(self, position, hour, *, as_of, open_ordinal):
