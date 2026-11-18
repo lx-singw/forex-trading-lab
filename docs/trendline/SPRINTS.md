@@ -19,7 +19,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 6 | All setup machines, disabled DLY, reason codes | Software accepted on invented inputs. E2 target selection and account simulation belong to Phase 7. | 173–179, [setup acceptance](RESULTS-179.md) |
 | 7 | Costs, execution, risk, exits, independent accounting | Software accepted on invented Level B and Level Q inputs. Actual source admission is open. | 180–186, [Level B accounting](RESULTS-184.md), [Level Q adapter](RESULTS-185.md), [phase acceptance](RESULTS-186.md) |
 | 8 | Causal replay viewer and reports | Software accepted on invented Level B and Level Q runs. Manual lines share the saved chart scale with the engine. | 187–191, [Retrospective and exports](RESULTS-190.md), [Visual acceptance](RESULTS-191.md) |
-| 9 | Complete verification matrix | Pending | Earlier incremental tests remain necessary |
+| 9 | Complete verification matrix | In progress. Research evidence is mapped, with new account isolation and restart checks. Native boundary evidence remains open. | 192, [Matrix](VERIFICATION.md), [Results](RESULTS-192.md) |
 | 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |
 | 11 | Chronological study, paired exits, all declared cells | Pending | Q/B labels; no invented market results |
 | 12 | Shadow and disabled native demo readiness | Pending/gated | Actual enablement separately bounded |

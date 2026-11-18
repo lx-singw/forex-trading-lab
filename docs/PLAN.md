@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 192 maps the Phase 9 matrix and verifies
+in-process Level B ledger isolation and Level Q resumes after tightened
+protection and a loss pause. Continue with the disabled native boundary's
+account enum, acknowledgement, partial-fill and restart fault cases.
+[Phase 9 verification matrix](trendline/VERIFICATION.md)
+
 18 November 2026. Sprint 191 completes Phase 8 software acceptance with
 side-by-side manual lines and a receipt-time inspection of a target exit,
 stop exit and skipped entry. Next audit the Phase 9 verification matrix,

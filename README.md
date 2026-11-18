@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 192 starts Phase 9 with a verification matrix and tests for account isolation, stop restart and loss-pause restart.
+[Sprint 192 results](docs/trendline/RESULTS-192.md)
+
 Sprint 191 adds manual trendline comparison and completes Phase 8 software acceptance on invented replays.
 [Sprint 191 results](docs/trendline/RESULTS-191.md)
 

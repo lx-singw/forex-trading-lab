@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 192 maps the Phase 9 verification matrix and
+checks independent Level B ledgers and Level Q checkpoint continuation
+after stop tightening and a daily loss pause. Native boundary evidence
+remains open. [Sprint 192 results](trendline/RESULTS-192.md)
+
 18 November 2026. Sprint 191 completes Phase 8 software acceptance on
 invented Level B and Level Q runs. The viewer compares imported manual
 lines with the engine on the same chart scale and reproduces the original

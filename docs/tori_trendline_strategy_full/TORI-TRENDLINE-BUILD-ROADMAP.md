@@ -504,6 +504,9 @@ Use deliberately constructed paths and bounded generated sequences. These establ
 
 **Acceptance:** every row has passing success and failure tests.
 
+Sprint 192 maps retained research tests to these rows and adds account
+isolation and restart evidence. [Working verification matrix](../trendline/VERIFICATION.md)
+
 ---
 
 ### Phase 10. Signal-count gate (size M; first contact with data)
