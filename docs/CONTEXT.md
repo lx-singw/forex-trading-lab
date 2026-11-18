@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 191 completes Phase 8 software acceptance on
+invented Level B and Level Q runs. The viewer compares imported manual
+lines with the engine on the same chart scale and reproduces the original
+receipt evidence for a target exit, stop exit and skipped setup.
+[Sprint 191 results](trendline/RESULTS-191.md)
+
 18 November 2026. Sprint 190 adds a labelled retrospective chart and a
 readable report with ordered JSON and CSV ledgers for invented Level B
 and Level Q saved runs. The viewer restores the earlier receipt on return.

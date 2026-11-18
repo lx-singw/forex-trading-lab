@@ -9,7 +9,8 @@ from pathlib import Path
 from ..elliott_full.contracts import Bar
 from . import breaks, context, data, engine, entries, exits, fills, ledger, pivots, quote_replay, quotes, replay_exports, selection
 
-VERSION = "TRL_VIEWER_190_V1"
+VERSION = "TRL_VIEWER_191_V1"
+ANNOTATION_SCHEMA = "TRL_MANUAL_LINES_191_V1"
 TEMPLATE = Path(__file__).with_suffix(".html")
 REPORT_LIMIT = 96 * 1024 * 1024
 
@@ -294,8 +295,11 @@ def _setup_rows(source, setups, schedule, add):
 
 def _view(groups, add, *, account, source, profile, level, basis):
     add(account["as_of"], "END", {key: account[key] for key in ("status", "open_liability", "account")})
+    partition = source.record()["partition"]
+    chart = {"source_sha256": source.sha256, "symbol": "EURUSD", "timeframe": "H4",
+             "data_level": level, "geometry_basis": basis, "partition": partition}
     return {"version": VERSION, "kind": "saved_invented_trendline_view", "profile": profile,
-            "data_level": level, "geometry_basis": basis, "partition": source.record()["partition"],
+            "data_level": level, "geometry_basis": basis, "partition": partition, "chart": chart,
             "cost": account["cost_profile"],
             "groups": [{"at": at, "items": rows} for at, rows in sorted(groups.items())],
             "orders_available": False}
@@ -511,10 +515,12 @@ def export(descriptor, report_directory, output, *, unlock_receipt=None):
         inputs = {"source_sha256": source.sha256, "descriptor_file_sha256": descriptor_sha,
                   "reports": {name: digest for name, (_, digest) in loaded.items()}}
     html = render(view).encode("utf-8")
-    artifacts = {"replay.html": html, **replay_exports.artifacts(view)}
+    template = {"schema": ANNOTATION_SCHEMA, "chart": view["chart"], "lines": []}
+    artifacts = {"replay.html": html, **replay_exports.artifacts(view),
+                 "annotation-template.json": (json.dumps(template, indent=2) + "\n").encode("utf-8")}
     manifest = {"version": VERSION, "kind": view["kind"], **inputs, "data_level": view["data_level"],
                 "geometry_basis": view["geometry_basis"], "profile": view["profile"], "cost": view["cost"],
-                "partition": view["partition"], "receipt_groups": len(view["groups"]),
+                "partition": view["partition"], "chart": view["chart"], "receipt_groups": len(view["groups"]),
                 "as_of_ms": view["groups"][-1]["at"],
                 "files": {name: hashlib.sha256(content).hexdigest() for name, content in artifacts.items()},
                 "orders_available": False}

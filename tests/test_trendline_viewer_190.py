@@ -42,9 +42,13 @@ class SavedReplayExportTests(unittest.TestCase):
         for directory, level, basis in ((self.b_export, "B", "bid_only"), (self.q_export, "Q", "mid_sync")):
             with self.subTest(level=level):
                 manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
-                self.assertEqual({"replay.html", "report.html", "ledger.json", "ledger.csv"}, set(manifest["files"]))
+                self.assertEqual({"replay.html", "report.html", "ledger.json", "ledger.csv", "annotation-template.json"},
+                                 set(manifest["files"]))
                 for name, digest in manifest["files"].items():
                     self.assertEqual(digest, hashlib.sha256((directory / name).read_bytes()).hexdigest())
+                template = json.loads((directory / "annotation-template.json").read_text(encoding="utf-8"))
+                self.assertEqual({"schema": replay_viewer.ANNOTATION_SCHEMA, "chart": manifest["chart"], "lines": []}, template)
+                self.assertEqual((level, basis), (template["chart"]["data_level"], template["chart"]["geometry_basis"]))
                 ledger_data = json.loads((directory / "ledger.json").read_text(encoding="utf-8"))
                 self.assertEqual((level, basis, manifest["as_of_ms"]),
                                  (ledger_data["data_level"], ledger_data["geometry_basis"], ledger_data["as_of_ms"]))

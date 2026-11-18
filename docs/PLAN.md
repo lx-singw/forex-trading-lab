@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 191 completes Phase 8 software acceptance with
+side-by-side manual lines and a receipt-time inspection of a target exit,
+stop exit and skipped entry. Next audit the Phase 9 verification matrix,
+identify uncovered success and failure cases, and close them on invented
+inputs before evaluating market data.
+[Viewer acceptance](trendline/RESULTS-191.md)
+
 18 November 2026. Sprint 190 adds saved-cutoff retrospective browsing
 and readable and machine-readable ledger exports. Continue Phase 8
 with side-by-side manual annotations and the visual acceptance review.

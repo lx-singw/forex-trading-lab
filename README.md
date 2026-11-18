@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 191 adds manual trendline comparison and completes Phase 8 software acceptance on invented replays.
+[Sprint 191 results](docs/trendline/RESULTS-191.md)
+
 Sprint 190 adds retrospective browsing and saved-run reports with JSON and CSV ledgers.
 [Sprint 190 results](docs/trendline/RESULTS-190.md)
 

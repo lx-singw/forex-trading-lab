@@ -454,14 +454,17 @@ AWAITING_SAFETY --(10 bars)--> EXPIRED
 **Goal:** make every trade and every non-trade inspectable, which is essential for a strategy as visual as this one.
 
 **Tasks**
-- [ ] Local HTML viewer with a time cursor. By default only what was known at the cursor is drawn.
-- [ ] Layers: H4 candles, confirmed pivots (provisional versus confirmed), valid lines with their revisions, poked lines (greyed, with the penetrating bar marked), the action line, the safety line, stop, target, fills, bounce contacts, and every no-trade reason.
-- [ ] A clearly labelled retrospective view for the completed chart that never rewrites the earlier view.
-- [ ] Export a readable report plus JSON and CSV ledgers, labelled with the data level and geometry basis.
-- [ ] Line and trade explanations: click a trade to see touches, age or span, slope metrics, safety line and the exact reason chain.
-- [ ] Side-by-side with a manual annotation: load your hand-drawn lines for the same chart to compare with what the engine found.
+- [x] Local HTML viewer with a time cursor. By default only what was known at the cursor is drawn.
+- [x] Layers: H4 candles, confirmed pivots (provisional versus confirmed), valid lines with their revisions, poked lines (greyed, with the penetrating bar marked), the action line, the safety line, stop, target, fills, bounce contacts, and every no-trade reason.
+- [x] A clearly labelled retrospective view for the completed chart that never rewrites the earlier view.
+- [x] Export a readable report plus JSON and CSV ledgers, labelled with the data level and geometry basis.
+- [x] Line and trade explanations: click a trade to see touches, age or span, slope metrics, safety line and the exact reason chain.
+- [x] Side-by-side with a manual annotation: load your hand-drawn lines for the same chart to compare with what the engine found.
 
 **Acceptance:** you can pick any trade, a loss and a skipped setup, and see the lines as they were known then, with exact timing.
+
+Software acceptance passed on invented Level B and Level Q runs in sprint 191.
+[Visual acceptance and annotation format](../trendline/RESULTS-191.md)
 
 **Risks:** the viewer tempts you to fit parameters to what looks right. Counter: the protocol forbids parameter changes after viewing development outcomes; the viewer shows what the frozen rules did.
 

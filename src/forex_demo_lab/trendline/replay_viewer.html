@@ -30,6 +30,14 @@ input[type=range]{width:100%;accent-color:var(--teal);margin:16px 0 3px}
 .metric{padding:13px 15px;min-width:0}.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
 .metric strong{font-size:16px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .workspace{display:grid;grid-template-columns:minmax(0,2.5fr) minmax(290px,1fr);gap:12px;align-items:start}
+.workspace.compare{grid-template-columns:minmax(0,1fr)}
+.chart-pair{display:grid;grid-template-columns:minmax(0,1fr)}
+.compare .chart-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+.chart-pair>div{min-width:0}.chart-title{font-size:13px;margin:0;padding:10px 16px 0;color:var(--muted)}
+.manual-pane{border-left:1px solid var(--line)}.manual-pane .chart-title{color:#cdb8ff}
+.annotation-controls{margin:0 0 12px;padding:10px 14px;background:var(--panel);border:1px solid var(--line);border-radius:9px}
+.annotation-controls summary{font-size:14px;color:var(--text)}.annotation-inputs{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}
+.annotation-inputs label{display:grid;gap:5px;min-width:0}.annotation-inputs input{max-width:100%}.annotation-inputs a{color:var(--blue)}
 .panel{min-width:0}.panel-head{padding:14px 16px;border-bottom:1px solid var(--line)}
 .layers{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:12px}.layers label{display:flex;align-items:center;gap:5px}
 .layers [hidden]{display:none}
@@ -52,6 +60,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
 .list li:last-child button{border:0}.list button:hover{color:var(--teal)}.list time{color:var(--muted);font-size:12px}
 .list .empty{padding:12px 6px;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%)}
 @media(max-width:850px){.workspace{grid-template-columns:1fr}.mast{align-items:start}}
+@media(max-width:760px){.compare .chart-pair{grid-template-columns:minmax(0,1fr)}.manual-pane{border-left:0;border-top:1px solid var(--line)}}
 @media(max-width:520px){.mast{flex-direction:column;gap:10px;margin-bottom:16px}.metrics{grid-template-columns:1fr 1fr}
 .cursor-panel,.panel-head,.inspector{padding:11px}.list button{grid-template-columns:110px minmax(0,1fr)}}
 </style>
@@ -96,7 +105,16 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
     <div class="metric"><span>Position</span><strong id="position">Flat</strong></div>
     <div class="metric"><span>Last entry gate</span><strong id="gate">Awaiting setup</strong></div>
   </section>
-  <div class="workspace">
+  <details class="annotation-controls" id="annotation-controls">
+    <summary>Manual annotations</summary>
+    <div class="annotation-inputs">
+      <label for="annotation-file">Load annotation JSON <input id="annotation-file" type="file" accept=".json,application/json"></label>
+      <a href="annotation-template.json" target="_blank" rel="noopener" download>Annotation template</a>
+      <button type="button" id="clear-annotations" hidden>Clear</button>
+    </div>
+    <p class="meta" id="annotation-status" role="status"></p>
+  </details>
+  <div class="workspace" id="workspace">
     <section class="panel">
       <div class="panel-head"><h2>EURUSD · H4</h2><div class="layers">
         <label><input id="pivots" type="checkbox" checked> Pivots</label>
@@ -105,7 +123,12 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;c
         <label><input id="fills" type="checkbox" checked> Fills</label>
         <label><input id="protection" type="checkbox" checked> Stop and target</label>
       </div></div>
-      <canvas id="chart" role="img" aria-label="H4 price chart through the selected receipt"></canvas>
+      <div class="chart-pair">
+        <div><h3 class="chart-title" id="engine-chart-title" hidden>Engine lines</h3>
+          <canvas id="chart" role="img" aria-label="H4 price chart through the selected receipt"></canvas></div>
+        <div class="manual-pane" id="manual-pane" hidden><h3 class="chart-title">Manual lines</h3>
+          <canvas id="manual-chart" role="img" aria-label="Manual annotation comparison"></canvas></div>
+      </div>
       <div class="legend"><span><i class="key" style="--key:var(--blue)"></i>Action</span>
         <span><i class="key" style="--key:var(--teal)"></i>Safety</span>
         <span><i class="key" style="--key:#8292a4"></i>Poked</span>
@@ -198,9 +221,60 @@ function stateAt(view, index){
 }
 // END_CURSOR_PROJECTION
 
+// ANNOTATION_PROJECTION
+function hasFields(record,fields){
+  return record!==null&&typeof record==='object'&&!Array.isArray(record)&&
+    Object.keys(record).length===fields.length&&fields.every(field=>Object.hasOwn(record,field));
+}
+
+function parseAnnotations(document,chart,candles){
+  if(!hasFields(document,['schema','chart','lines'])||document.schema!=='TRL_MANUAL_LINES_191_V1'||!Array.isArray(document.lines)){
+    throw new Error('Use the exported annotation template.');
+  }
+  const fields=Object.keys(chart);
+  if(!hasFields(document.chart,fields)||fields.some(key=>document.chart[key]!==chart[key])){
+    throw new Error('These annotations belong to a different chart.');
+  }
+  const byStart=new Map(candles.map(bar=>[bar.start,bar]));
+  function anchor(record){
+    if(!hasFields(record,['bar_start_ms','price'])||!byStart.has(record.bar_start_ms)||
+       typeof record.price!=='string'||!/^[0-9]{1,12}(?:\.[0-9]{1,12})?$/.test(record.price)||Number(record.price)<=0){
+      throw new Error('Each anchor needs a saved H4 opening and a positive decimal price.');
+    }
+    const bar=byStart.get(record.bar_start_ms);
+    return {index:bar.index,available:bar.available,price:Number(record.price)};
+  }
+  return document.lines.map(line=>{
+    if(!hasFields(line,['label','a','b','available_at_ms','extend_right'])||typeof line.label!=='string'||
+       !line.label.trim()||line.label.length>80||typeof line.extend_right!=='boolean'){
+      throw new Error('Each line needs a label, two anchors, a receipt or null, and an extend-right setting.');
+    }
+    const [a,b]=[anchor(line.a),anchor(line.b)].sort((left,right)=>left.index-right.index);
+    if(a.index===b.index)throw new Error('A manual line needs two different H4 candles.');
+    const available=line.available_at_ms, anchorsReceived=Math.max(a.available,b.available);
+    if(available!==null&&(!Number.isSafeInteger(available)||available<anchorsReceived)){
+      throw new Error('The annotation receipt must be at or after both anchor receipts.');
+    }
+    return {label:line.label.trim(),a,b,available,anchorsReceived,extendRight:line.extend_right};
+  });
+}
+
+function annotationSegments(lines,at,retrospective,firstIndex,lastIndex){
+  const segments=[];
+  for(const line of lines){
+    if(line.anchorsReceived>at||!retrospective&&(line.available===null||line.available>at))continue;
+    const {a,b}=line, from=Math.max(a.index,firstIndex), to=line.extendRight?lastIndex:Math.min(b.index,lastIndex);
+    if(to<=from)continue;
+    const slope=(b.price-a.price)/(b.index-a.index), price=index=>a.price+(index-a.index)*slope;
+    segments.push({label:line.label,from,to,start:price(from),end:price(to)});
+  }
+  return segments;
+}
+// END_ANNOTATION_PROJECTION
+
 const $=id=>document.getElementById(id);
 const view=JSON.parse($('replay-data').textContent);
-const cursor=$('cursor'), evidence=$('evidence'), canvas=$('chart');
+const cursor=$('cursor'), evidence=$('evidence'), canvas=$('chart'), manualCanvas=$('manual-chart');
 const layerIds=['pivots','rays','contacts','fills','protection'], candleWindow=120;
 const number=value=>typeof value==='object'&&value!==null?value.numerator/value.denominator:Number(value);
 const iso=time=>new Date(time).toISOString().replace('T',' ').replace('Z',' UTC');
@@ -235,6 +309,7 @@ $('quote-filter').hidden=view.data_level!=='Q';
 for(const id of ['contact-filter','contact-layer','contact-legend','blocked-legend'])$(id).hidden=view.profile!=='TRL_BNC_E1';
 cursor.max=String(view.groups.length-1);
 let current, choices=[], markers=[], retrospective=false, savedReceipt;
+let manualLines=null, annotationRead=0;
 
 function writeFacts(list,facts){
   for(const [name,value] of Object.entries(facts)){
@@ -348,34 +423,41 @@ function inspect(){
 function drawChart(){
   if(!current)return;
   markers=[];
-  const state=current, bounds=canvas.getBoundingClientRect();
-  const width=bounds.width,height=bounds.height,dpr=window.devicePixelRatio||1;
-  if(width<10||height<10)return;
-  canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
-  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
-  const left=width<490?62:76, right=width-18, top=18, bottom=height-36;
   const windowStart=$('chart-window').value;
-  const bars=retrospective?(windowStart==='all'?state.candles:
-    state.candles.slice(Number(windowStart),Number(windowStart)+candleWindow)):state.candles.slice(-candleWindow);
-  if(!bars.length){
-    ctx.fillStyle='#a0b2c6';ctx.font='14px system-ui';ctx.textAlign='center';
-    ctx.fillText('No H4 candles have arrived',width/2,height/2);
-    canvas.setAttribute('aria-label','No H4 candles have arrived');
-    return;
-  }
-  const lowIndex=bars[0].index-.7;
-  const latest=bars.at(-1)===state.candles.at(-1), lastIndex=bars.at(-1).index;
-  const inWindow=index=>index>=lowIndex&&index<=lastIndex;
+  const bars=retrospective?(windowStart==='all'?current.candles:
+    current.candles.slice(Number(windowStart),Number(windowStart)+candleWindow)):current.candles.slice(-candleWindow);
+  const chart=bars.length?chartBounds(current,bars):{bars};
+  drawChartPane(canvas,chart);
+  if(manualLines!==null)drawChartPane(manualCanvas,chart);
+}
+
+function chartBounds(state,bars){
+  const lowIndex=bars[0].index-.7, lastIndex=bars.at(-1).index;
+  const latest=bars.at(-1)===state.candles.at(-1);
   const fills=$('fills').checked?state.fills.filter(fill=>fill.index>=lowIndex&&(latest||fill.index<=lastIndex)):[];
-  const contacts=$('contacts').checked?state.contacts.filter(entry=>inWindow(entry.item.value.bar_index)):[];
-  const pending=$('pivots').checked?(state.provisional?.item.value.active??[]).filter(pivot=>inWindow(pivot.bar_index)):[];
-  const highIndex=Math.max(bars.at(-1).index,...fills.map(fill=>fill.index))+.8;
   const levels=$('protection').checked&&latest&&state.held?
     [{name:'Stop',price:state.held.stop,color:'#f1999e'},{name:'Target',price:state.held.target,color:'#75e2d4'}].filter(l=>l.price!==null):[];
   const prices=[...bars.flatMap(b=>[Number(b.low),Number(b.high)]),...levels.map(l=>Number(l.price)),
                 ...fills.map(f=>Number(f.event.price))];
-  const padding=Math.max((Math.max(...prices)-Math.min(...prices))*.11,.00001);
-  const lo=Math.min(...prices)-padding, hi=Math.max(...prices)+padding;
+  const min=Math.min(...prices), max=Math.max(...prices), padding=Math.max((max-min)*.11,.00001);
+  return {bars,lowIndex,lastIndex,highIndex:Math.max(lastIndex,...fills.map(fill=>fill.index))+.8,
+          lo:min-padding,hi:max+padding,fills,levels};
+}
+
+function drawChartPane(surface,chart){
+  const state=current, manual=surface===manualCanvas, bounds=surface.getBoundingClientRect();
+  const width=bounds.width,height=bounds.height,dpr=window.devicePixelRatio||1;
+  if(width<10||height<10)return;
+  surface.width=Math.round(width*dpr);surface.height=Math.round(height*dpr);
+  const ctx=surface.getContext('2d');ctx.scale(dpr,dpr);
+  const left=width<490?62:76, right=width-18, top=18, bottom=height-36;
+  const {bars,lowIndex,lastIndex,highIndex,lo,hi,fills,levels}=chart;
+  if(!bars.length){
+    ctx.fillStyle='#a0b2c6';ctx.font='14px system-ui';ctx.textAlign='center';
+    ctx.fillText('No H4 candles have arrived',width/2,height/2);
+    surface.setAttribute('aria-label','No H4 candles have arrived');
+    return;
+  }
   const x=index=>left+(right-left)*(index-lowIndex)/(highIndex-lowIndex);
   const y=value=>bottom-(bottom-top)*(Number(value)-lo)/(hi-lo);
   const stroke=(x1,y1,x2,y2,color,width=1)=>{
@@ -402,6 +484,29 @@ function drawChart(){
     ctx.fillStyle=color;
     ctx.fillRect(center-candleWidth/2,Math.min(y(bar.open),y(bar.close)),candleWidth,Math.max(1,Math.abs(y(bar.close)-y(bar.open))));
   }
+  if(manual){
+    const segments=annotationSegments(manualLines,state.group.at,retrospective,bars[0].index,lastIndex)
+      .filter(line=>Math.max(line.start,line.end)>=lo&&Math.min(line.start,line.end)<=hi);
+    const colors=['#cdb8ff','#f6cf83','#81dfd2','#ffaabb'];
+    ctx.textAlign='left';
+    for(const [index,line] of segments.entries()){
+      const color=colors[index%colors.length], x1=x(line.from), y1=y(line.start);
+      stroke(x1,y1,x(line.to),y(line.end),color,2);
+      ctx.fillStyle=color;
+      if(y1>=top&&y1<=bottom)ctx.fillText(line.label,x1+5,Math.max(top+12,y1-6),Math.max(1,right-x1-8));
+    }
+    if(!segments.length){
+      ctx.textAlign='center';ctx.fillStyle='#a0b2c6';
+      ctx.fillText('No manual lines in this window',(left+right)/2,top+16);
+    }
+    ctx.restore();
+    const names=segments.slice(0,6).map(line=>line.label).join(', ');
+    surface.setAttribute('aria-label',`Manual H4 chart with ${bars.length} received candles and ${segments.length} visible lines${names?' · '+names:''}`);
+    return;
+  }
+  const inWindow=index=>index>=lowIndex&&index<=lastIndex;
+  const contacts=$('contacts').checked?state.contacts.filter(entry=>inWindow(entry.item.value.bar_index)):[];
+  const pending=$('pivots').checked?(state.provisional?.item.value.active??[]).filter(pivot=>inWindow(pivot.bar_index)):[];
   if($('rays').checked){
     const selected=state.held?state.setups[state.held.h4_frame_id]:state.setup;
     for(const line of shownLines(state)){
@@ -452,7 +557,7 @@ function drawChart(){
     markers.push({x:xx,y:yy,fill});
   }
   ctx.restore();
-  canvas.setAttribute('aria-label',`${retrospective?'Retrospective H4 chart':'H4 chart'} with ${bars.length} received candles and ${fills.length} visible fills, ${pending.length} provisional pivots, ${contacts.length} bounce contacts`);
+  surface.setAttribute('aria-label',`${retrospective?'Retrospective H4 chart':'H4 chart'} with ${bars.length} received candles and ${fills.length} visible fills, ${pending.length} provisional pivots, ${contacts.length} bounce contacts`);
 }
 
 function matches(item){
@@ -560,6 +665,39 @@ function renderAt(index,selectedItem=null){
   if(!retrospective){$('previous').disabled=index===0;$('next').disabled=index===view.groups.length-1;}
   drawChart();
 }
+
+function showAnnotations(lines){
+  manualLines=lines;
+  const comparing=lines!==null;
+  $('workspace').classList.toggle('compare',comparing);
+  $('manual-pane').hidden=!comparing;
+  $('engine-chart-title').hidden=!comparing;
+  $('clear-annotations').hidden=!comparing;
+  $('annotation-status').textContent=comparing?'Annotations loaded locally.':'';
+  drawChart();
+}
+
+$('annotation-file').addEventListener('change',async event=>{
+  const input=event.currentTarget, file=input.files[0];
+  if(!file)return;
+  const read=++annotationRead;
+  try{
+    if(file.size>256*1024)throw new Error('The annotation file exceeds 256 KiB.');
+    const document=JSON.parse(await file.text());
+    if(read!==annotationRead)return;
+    const candles=view.groups.flatMap(group=>group.items.filter(item=>item.kind==='CANDLE').map(item=>item.value));
+    showAnnotations(parseAnnotations(document,view.chart,candles));
+  }catch(error){
+    if(read===annotationRead)$('annotation-status').textContent=error instanceof SyntaxError?'Use a valid annotation JSON file.':error.message;
+  }finally{
+    if(read===annotationRead)input.value='';
+  }
+});
+$('clear-annotations').addEventListener('click',()=>{
+  annotationRead++;
+  $('annotation-file').value='';
+  showAnnotations(null);
+});
 cursor.addEventListener('input',()=>move(Number(cursor.value)));
 evidence.addEventListener('change',inspect);
 canvas.addEventListener('click',event=>{
