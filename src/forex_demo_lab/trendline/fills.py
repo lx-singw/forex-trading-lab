@@ -238,7 +238,7 @@ class PriceModel:
             raise ValueError("declared H4 trigger close required")
         return next((w for w in self._hours.values() if w.start >= trigger_end), None)
 
-    def entry(self, request, opening):
+    def entry(self, request, opening, *, target_levels=None):
         data.fields(request, ("kind", "direction", "trigger_end", "decision_at", "stop", "target", "atr", "tick", "exit_model"))
         if request["kind"] != "invented_b_price_request" or request["direction"] not in ("LONG","SHORT"):
             raise ValueError("invented entry request required")
@@ -253,6 +253,11 @@ class PriceModel:
         target = None if request["target"] is None else decimal(request["target"],True)
         if request["exit_model"] == "E1" and target is not None:
             raise ValueError("E1 has no target")
+        if target_levels is not None and (
+                request["exit_model"] != "E2" or target is not None
+                or not isinstance(target_levels, (tuple, list))
+                or any(not isinstance(level, F) or level <= 0 for level in target_levels)):
+            raise ValueError("exact level candidates require E2 without a specified target")
         window = self.entry_window(request["trigger_end"])
         if not self._can_execute():
             return self._result("UNAVAILABLE","EXECUTION_SIDE_DATA_UNAVAILABLE")
@@ -283,11 +288,18 @@ class PriceModel:
             return self._result("SKIPPED","STOP_OUT_OF_WINDOW")
         if spread > F("0.10")*distance:
             return self._result("SKIPPED","SPREAD_TOO_WIDE")
+        target_evidence = {}
         if request["exit_model"] == "E2":
-            if target is None:
-                return self._result("SKIPPED","NO_VALID_TARGET")
-            target = rounded(target,tick,upward=side == -1)
-            if target <= 0 or side*(target-fill) < 2*distance:
+            candidates = (() if target is None else (target,)) if target_levels is None else target_levels
+            for level in sorted(candidates, key=lambda price: side * price):
+                target = rounded(level, tick, upward=side == -1)
+                if target > 0 and side * (target - fill) >= 2 * distance:
+                    if target_levels is not None:
+                        target_evidence["target_level"] = {
+                            "numerator": level.numerator, "denominator": level.denominator,
+                        }
+                    break
+            else:
                 return self._result("SKIPPED","NO_VALID_TARGET")
         position = {"kind":"invented_b_price_position","schema":VERSION,
                     "direction":request["direction"],"entry_at":opening.event.record(),
@@ -299,7 +311,7 @@ class PriceModel:
         Position.from_record(position)
         return self._result("FILLED","H1_OPEN_PRICE", price=text(fill), stop_distance=text(distance),
                             effective_spread_pips=text(spread/PIP), position=position,
-                            opening=opening.record())
+                            opening=opening.record(), **target_evidence)
 
     def exit_open(self, position, opening, scheduled_exit=False):
         if type(scheduled_exit) is not bool:

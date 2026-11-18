@@ -34,7 +34,7 @@ def _visible_hours(source, hours, as_of, calendar):
     return result
 
 
-def _resolve(model, request, window, expires_at, hours, as_of, bid_only):
+def _resolve(model, request, window, expires_at, hours, as_of, bid_only, target_levels):
     if not bid_only:
         price = model.entry(request, None)
         return price["status"], price["reason"], price
@@ -49,9 +49,7 @@ def _resolve(model, request, window, expires_at, hours, as_of, bid_only):
     hour = hours.get(window.start)
     if hour is not None and hour.available_at <= expires_at:
         opening = fills.Opening.from_hour(hour, H1_OPEN_ORDINAL)
-        price = model.entry(request, opening)
-        if price["reason"] == "NO_VALID_TARGET" and request["target"] is None:
-            return "UNAVAILABLE", "E2_TARGET_SELECTION_UNAVAILABLE", None
+        price = model.entry(request, opening, target_levels=target_levels)
         return price["status"], price["reason"], price
     if as_of >= expires_at:
         return "EXPIRED", "MISSING_ENTRY_BAR", None
@@ -100,7 +98,13 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
         }
         window = model.entry_window(publication["end"])
         expires_at = expiry.get(publication["end"])
-        status, reason, price = _resolve(model, request, window, expires_at, hourly, as_of, bid_only)
+        target_levels = None
+        if fxr:
+            kind = "high" if decision["direction"] == "LONG" else "low"
+            target_levels = tuple(selection.fraction(level["price"])
+                                  for level in decision["target_levels"]["clusters"]
+                                  if level["eligible"] and level["kind"] == kind)
+        status, reason, price = _resolve(model, request, window, expires_at, hourly, as_of, bid_only, target_levels)
         attempt = {
             "id": data.digest([decision["h4_frame_id"], decision["selected_line_id"], cost_profile]),
             "h4_frame_id": decision["h4_frame_id"],

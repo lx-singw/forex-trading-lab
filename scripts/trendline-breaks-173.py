@@ -30,7 +30,7 @@ def main():
         stream.observe(hour)
         visible_hours.append(hour)
     stream.advance(as_of)
-    frames = ("H4", "D1") if args.profile == context.PROFILE else ("H4",)
+    frames = ("H4", "D1") if args.profile in (context.PROFILE, breaks.FXR_PROFILE) else ("H4",)
     bars = tuple(bar for bar in stream.bars() if bar.timeframe in frames)
 
     replay = breaks.BreakReplay(source, args.tick_size, args.profile, enable_dly=args.enable_dly)

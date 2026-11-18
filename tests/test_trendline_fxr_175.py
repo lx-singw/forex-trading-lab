@@ -97,7 +97,7 @@ class TrendlineFXRTests(unittest.TestCase):
             window = fills.PriceModel(replay.source).entry_window(trigger.end)
             pending = entries.evaluate(replay, [], as_of=trigger.available)["attempts"][0]
             self.assertEqual(("PENDING", "E2"), (pending["status"], pending["request"]["exit_model"]))
-            for bid, reason in (("102.2" if side == "LONG" else "97.8", "E2_TARGET_SELECTION_UNAVAILABLE"),
+            for bid, reason in (("102.2" if side == "LONG" else "97.8", "NO_VALID_TARGET"),
                                 ("100.15" if side == "LONG" else "99.85", "STOP_ALREADY_CROSSED")):
                 hour = opening_hour(window, bid)
                 report = entries.evaluate(replay, [hour], as_of=hour.available_at)

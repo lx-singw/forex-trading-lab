@@ -248,6 +248,9 @@ class Inspector:
     def indexed(self):return tuple(self._indexed)
 
     @property
+    def pivot_journal(self):return self._observer.journal
+
+    @property
     def clock(self):return self._observer._pivots.clock
 
     @property

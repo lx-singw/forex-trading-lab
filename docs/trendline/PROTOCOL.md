@@ -468,3 +468,20 @@ Enter through the existing Level B checks on the first scheduled opening
 after that decision. The report can show an elapsed deadline without a
 synthetic bar. Checkpoints reconstruct from the supplied bar prefix and
 require explicit DLY opt-in on restore. The initial study grid excludes DLY.
+
+## Implementation note for sprint 180
+
+18 November 2026. Freeze FXR's level candidates at the completed trigger
+using the inclusive last 500 scheduled H4 indices and one quarter of its
+current ATR. Use confirmed H4 and published D1 pivots visible at that
+frontier. Resolve each D1 extreme to a unique H4 child with the same exact
+price using the observed daily children. Report and omit unresolved daily
+extremes. Deduplicate matching kind, H4 occurrence and price. Preserve equal
+prices at distinct occurrences.
+
+At the first eligible opening, run the usual spread, slippage and stop
+checks. Select the nearest profitable-side cluster median whose target,
+rounded toward entry, is at least twice the exact slippage-adjusted initial
+stop distance away. Continue to a farther eligible level when rounding
+leaves one too close. If none qualifies, skip with NO_VALID_TARGET.
+The accepted E2 price position fixes its stop and target at entry.

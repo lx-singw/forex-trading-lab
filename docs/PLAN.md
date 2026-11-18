@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 180 delivers causal levels and fixed E2 entry
+targets. Next integrate chronological E1 and E2 exit handling on invented
+Level B events, including prospective protection and gap checks. Continue
+with reservation, sizing, costs, and the independent account comparison.
+[E2 target increment](trendline/RESULTS-180.md)
+
 18 November 2026. Sprint 179 completes Phase 6 setup acceptance. Start
 Phase 7 with causal support and resistance levels and the fixed E2 target
 for eligible FXR openings. Then integrate exits, accounting, reservation

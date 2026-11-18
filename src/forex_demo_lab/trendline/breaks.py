@@ -5,7 +5,7 @@ import hashlib
 import json
 
 from ..elliott_full.contracts import Bar
-from . import context, data, delayed, engine, geometry, lines, selection
+from . import context, data, delayed, engine, geometry, levels, lines, selection
 
 VERSION = "TRL_BREAKS_173_V1"
 FXR_PROFILE = "TRL_FXR_M"
@@ -27,7 +27,8 @@ PROFILES = tuple(SETUP_FAMILIES)
 def bindings():
     result = context.bindings()
     for path in ("src/forex_demo_lab/trendline/breaks.py",
-                 "src/forex_demo_lab/trendline/delayed.py", "scripts/trendline-breaks-173.py"):
+                 "src/forex_demo_lab/trendline/delayed.py",
+                 "src/forex_demo_lab/trendline/levels.py", "scripts/trendline-breaks-173.py"):
         result[path] = hashlib.sha256((data.ROOT / path).read_bytes()).hexdigest()
     return result
 
@@ -105,6 +106,7 @@ class BreakReplay:
         self._h4 = engine.Engine(source, profile)
         self._safety = None if profile == BNC_PROFILE else engine.Engine(source, lines.SAFETY_PROFILE)
         self._daily = context.DailyContext(source) if profile == context.PROFILE else None
+        self._levels = levels.LevelFinder(source) if profile == FXR_PROFILE else None
         self._bindings = bindings()
         self._events = []
         self._decisions = []
@@ -138,9 +140,12 @@ class BreakReplay:
             raise ValueError("bounded setup publication count")
 
         if bar.timeframe == "D1":
-            if self._daily is None:
-                raise ValueError("D1 context is enabled only for the D1 variant")
-            self._daily.observe(bar)
+            if self._daily is not None:
+                self._daily.observe(bar)
+            elif self._levels is not None:
+                self._levels.observe_daily(bar)
+            else:
+                raise ValueError("D1 publications require the D1 context or FXR level profile")
             result = None
         else:
             result = self._observe_h4(bar)
@@ -177,6 +182,8 @@ class BreakReplay:
         waiting = self._waiting
         if self._dly_ends:
             waiting = self._resolve_delays(decision, triggered, bar, index, atr, safety_frame, previous)
+        if self._levels is not None and decision["state"] == "READY":
+            decision["target_levels"] = self._levels.capture(inspector, atr)
         encoded = data.canonical(decision)
         if self._bytes + len(encoded) > engine.MAX_TRACE_BYTES:
             raise ValueError("bounded setup decision trace")

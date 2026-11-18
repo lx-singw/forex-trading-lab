@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 180 adds FXR support and resistance levels and the fixed E2 target
+to invented Level B replay. [Sprint 180 results](docs/trendline/RESULTS-180.md)
+
 Sprint 179 completes Phase 6 setup acceptance on invented inputs. Phase 7
 starts with the level finder and qualifying E2 target.
 [Sprint 179 results](docs/trendline/RESULTS-179.md)
