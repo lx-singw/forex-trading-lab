@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 198 verifies timestamp coverage and warmup checks
+on invented three-year input. Confirm archive-specific timestamp mapping,
+session exceptions and private retention terms before the historical coverage
+audit. [Coverage checks](trendline/RESULTS-198.md)
+
 18 November 2026. Sprint 197 corroborates the 2022 platform clock and
 ordinary forex hours. Obtain archive-specific timestamp and feed mapping,
 dated schedule exceptions and applicable use terms before beginning the

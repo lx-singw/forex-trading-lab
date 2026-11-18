@@ -532,7 +532,8 @@ prioritizes the Exness public archive for qualification. Sprint 196 confirms
 ZIP headers for the exact 2020–2022 EURUSD annual archive links. Historical
 counts remain `UNAVAILABLE` pending admission. Sprint 197 documents the 2022
 platform clock and ordinary forex hours for the source review.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Historical clock and sessions](../trendline/RESULTS-197.md)
+Sprint 198 checks opening and warmup timestamp coverage on invented input.
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Historical clock and sessions](../trendline/RESULTS-197.md) · [Coverage checks](../trendline/RESULTS-198.md)
 
 **Decision tree:**
 
