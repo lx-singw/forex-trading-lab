@@ -122,3 +122,9 @@ market counts. The public selector and header responses establish links
 for 2015–2019. Candidate roles are 2015 warmup, 2016–2017 development and
 2018–2019 validation. Price and exposure qualification are open.
 [Earlier archive inventory](RESULTS-200.md)
+
+18 November 2026, sprint 201. Treat the 2016 GMT+0 server-log definition as
+platform evidence. The archived terms identify different quote handling by
+account and allow recovery from another source. Require the exact archive’s
+feed and timestamp mapping before using it. The earlier validation candidate
+still needs complete exposure review. [Historical source review](RESULTS-201.md)

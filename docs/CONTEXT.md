@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 201 finds a 2016 Exness GMT+0 platform-log
+definition and account-specific quote provisions. The tracked records
+reviewed contain no 2018–2019 lab price exposure. Archive-specific evidence
+and complete prior-trial history are open. [Sprint 201 results](trendline/RESULTS-201.md)
+
 18 November 2026. Sprint 200 verifies five exact annual Exness EURUSD
 archive links. The dates fit a candidate 2015 warmup, 2016–2017
 development and 2018–2019 validation. Source and exposure qualification

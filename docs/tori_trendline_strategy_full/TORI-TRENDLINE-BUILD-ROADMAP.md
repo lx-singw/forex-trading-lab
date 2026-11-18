@@ -560,6 +560,10 @@ candidate with 2016–2017 development and 2018–2019 validation. Source,
 coverage and prior exposure require review before assigning dates.
 [Earlier archive inventory](../trendline/RESULTS-200.md)
 
+Sprint 201 found dated platform-clock and quote-handling evidence for the
+earlier candidate. Archive qualification and prior-trial completeness remain
+open. [Historical source and exposure review](../trendline/RESULTS-201.md)
+
 **Registration (before returns)**
 - [ ] One source and run manifest freezing source hashes, permitted dates, **complete prior-trial history including every variant tried during development**, timezone and DST evidence, calendar and bar boundaries, coverage policy, data level and geometry basis, latency assumptions, cost, contract, margin and financing evidence, code and rule hashes, and exit endpoints.
 - [ ] The strategy list, cost profiles, partitions and experiment types below, fixed.

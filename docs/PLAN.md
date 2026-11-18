@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 201 reviews the earlier candidate’s dated clock,
+feed and exposure evidence. Qualify the exact archive’s source, revisions,
+clock, session exceptions and terms. Review prior-trial completeness before
+assigning validation. [Earlier historical review](trendline/RESULTS-201.md)
+
 18 November 2026. Sprint 200 checks delivery metadata and dates for an
 earlier chronological pair. Confirm the exact years’ source terms, clock,
 session rules and prior exposure before assigning a study window.
