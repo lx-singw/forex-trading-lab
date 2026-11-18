@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 202 records the user’s no-known-exposure statement
+for 2018–2019 and links the lab’s dated and undated evidence. The earlier
+validation span remains a candidate. Source admission and undated exposure
+review are open. [Sprint 202 results](trendline/RESULTS-202.md)
+
 18 November 2026. Sprint 201 finds a 2016 Exness GMT+0 platform-log
 definition and account-specific quote provisions. The tracked records
 reviewed contain no 2018–2019 lab price exposure. Archive-specific evidence

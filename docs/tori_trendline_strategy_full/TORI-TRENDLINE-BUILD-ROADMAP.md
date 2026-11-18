@@ -564,6 +564,10 @@ Sprint 201 found dated platform-clock and quote-handling evidence for the
 earlier candidate. Archive qualification and prior-trial completeness remain
 open. [Historical source and exposure review](../trendline/RESULTS-201.md)
 
+Sprint 202 records the user’s no-known-exposure statement for 2018–2019.
+The earlier validation candidate still needs review of undated price displays
+and the full prior-trial history. [Exposure and trial history](../trendline/RESULTS-202.md)
+
 **Registration (before returns)**
 - [ ] One source and run manifest freezing source hashes, permitted dates, **complete prior-trial history including every variant tried during development**, timezone and DST evidence, calendar and bar boundaries, coverage policy, data level and geometry basis, latency assumptions, cost, contract, margin and financing evidence, code and rule hashes, and exit endpoints.
 - [ ] The strategy list, cost profiles, partitions and experiment types below, fixed.

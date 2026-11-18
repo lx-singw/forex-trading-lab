@@ -128,3 +128,8 @@ platform evidence. The archived terms identify different quote handling by
 account and allow recovery from another source. Require the exact archive’s
 feed and timestamp mapping before using it. The earlier validation candidate
 still needs complete exposure review. [Historical source review](RESULTS-201.md)
+
+18 November 2026, sprint 202. Record the user’s no-known-exposure statement
+for 2018–2019 alongside the lab’s prior-trial records. Retain the proposed
+validation dates as a candidate while undated price displays and complete
+trial history require review. [Exposure and trial history](RESULTS-202.md)

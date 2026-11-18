@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 202 adds the user’s 2018–2019 exposure statement to
+the prior-trial review. Carry the undated price observations into the future
+validation review. Qualify archive use, feed, clock, sessions and coverage
+before Phase 10 counts. [Exposure and trial history](trendline/RESULTS-202.md)
+
 18 November 2026. Sprint 201 reviews the earlier candidate’s dated clock,
 feed and exposure evidence. Qualify the exact archive’s source, revisions,
 clock, session exceptions and terms. Review prior-trial completeness before
