@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 197 corroborates the 2022 platform clock and
+ordinary forex hours. Obtain archive-specific timestamp and feed mapping,
+dated schedule exceptions and applicable use terms before beginning the
+coverage audit. [Historical clock and session review](trendline/RESULTS-197.md)
+
 18 November 2026. Sprint 196 confirms the three public Exness EURUSD annual
 archive links for a candidate 2020 warmup and 2021–2022 development inventory.
 Confirm source-use and retention terms and dated archive clock and session

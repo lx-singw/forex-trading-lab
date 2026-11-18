@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 197 finds dated Exness GMT+0 platform-clock
+evidence and winter/summer 2022 weekly forex hours. The exact archive
+timestamp mapping, historical exceptions and local-use scope still need
+confirmation. [Sprint 197 results](trendline/RESULTS-197.md)
+
 18 November 2026. Sprint 196 confirms header access to three exact public
 Exness EURUSD annual archives, a possible 2020 warmup and 2021–2022
 development inventory. Historical clock, session, scope and use evidence

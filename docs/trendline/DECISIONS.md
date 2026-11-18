@@ -102,3 +102,10 @@ unsuffixed `EURUSD` annual links for 2020–2022 returned ZIP headers. Consider
 2020 for warmup and 2021–2022 for development pending source and scope review.
 No price response or TRL outcome informed that choice.
 [Archive inventory and access](RESULTS-196.md)
+
+18 November 2026, sprint 197. Use the January and July 2022 Exness forex
+pages as evidence of ordinary published hours. The dated platform clock
+and those hours can inform review of the archive-specific mapping and
+exceptions when available. Public documents included a published price example
+for an already excluded variant and period. No TRL market count or outcome
+was observed. [Historical clock and sessions](RESULTS-197.md)

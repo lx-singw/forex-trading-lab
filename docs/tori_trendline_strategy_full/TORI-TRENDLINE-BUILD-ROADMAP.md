@@ -530,8 +530,9 @@ This is the single most useful early step for a swing strategy. Setups on H4 may
 Sprint 194 verifies the counter. Sprint 195 reviews historical sources and
 prioritizes the Exness public archive for qualification. Sprint 196 confirms
 ZIP headers for the exact 2020–2022 EURUSD annual archive links. Historical
-counts remain `UNAVAILABLE` pending admission.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md)
+counts remain `UNAVAILABLE` pending admission. Sprint 197 documents the 2022
+platform clock and ordinary forex hours for the source review.
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Historical clock and sessions](../trendline/RESULTS-197.md)
 
 **Decision tree:**
 
