@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 189 delivers provisional pivot and bounce
+contact layers with a filter for recorded no-trade reasons. Continue
+Phase 8 with a labelled retrospective view, readable and machine-readable
+ledger exports, and manual annotation comparison.
+[Viewer layers and no-trade inspection](trendline/RESULTS-189.md)
+
 18 November 2026. Sprint 188 adds Level Q quote inspection and trade
 links to the action and safety revisions at setup. Continue Phase 8
 with provisional pivots, bounce contacts and fuller no-trade inspection.

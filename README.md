@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 189 adds provisional pivots, bounce contacts and no-trade inspection.
+[Sprint 189 results](docs/trendline/RESULTS-189.md)
+
 Sprint 188 adds Level Q quote evidence and links fills to their setup lines.
 [Sprint 188 results](docs/trendline/RESULTS-188.md)
 

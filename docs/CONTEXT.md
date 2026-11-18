@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 189 shows provisional H4 pivots, accepted and
+blocked bounce contacts, and recorded no-trade reasons at receipt in
+the invented Level B and Level Q viewer.
+[Sprint 189 results](trendline/RESULTS-189.md)
+
 18 November 2026. Sprint 188 extends the offline viewer to saved
 invented Level Q ledgers. It shows quote source time, receipt and
 sequence, and links fills and entry gates to their setup lines.

@@ -1,6 +1,6 @@
 """Read-only receipt projection of saved, invented Level B and Q accounting."""
 from bisect import bisect_right
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 from fractions import Fraction
 import hashlib
 import json
@@ -9,7 +9,7 @@ from pathlib import Path
 from ..elliott_full.contracts import Bar
 from . import breaks, context, data, engine, entries, exits, fills, ledger, pivots, quote_replay, quotes, selection
 
-VERSION = "TRL_VIEWER_188_V1"
+VERSION = "TRL_VIEWER_189_V1"
 TEMPLATE = Path(__file__).with_suffix(".html")
 REPORT_LIMIT = 96 * 1024 * 1024
 
@@ -47,6 +47,57 @@ def _headers(source, setups, priced, paths, account):
     return profile
 
 
+def _strict_extreme(kind, center, neighbors):
+    if kind == "high":
+        return all(center.high > bar.high for bar in neighbors)
+    return all(center.low < bar.low for bar in neighbors)
+
+
+def _provisional_pivots(window):
+    """Show only still-possible extrema from the contiguous H4 prefix."""
+    radius = pivots.RADIUS
+    result = {}
+    for offset in range(radius, len(window)):
+        index, center = window[offset]
+        neighbors = [bar for _, bar in window[offset - radius:offset] + window[offset + 1:]]
+        remaining = radius - (len(window) - offset - 1)
+        for kind in ("high", "low"):
+            if _strict_extreme(kind, center, neighbors):
+                identity = data.digest([center.lineage, kind, radius])
+                result[identity] = {"id": identity, "kind": kind, "bar_index": index,
+                                    "price": str(getattr(center, kind)), "occurred_at": center.end,
+                                    "first_available_at": center.available, "right_bars_needed": remaining}
+    return result
+
+
+def _pivot_frontier(window, prior, index, bar, confirmed, add):
+    gap = bool(window and window[-1][0] + 1 != index)
+    if gap:
+        window.clear()
+    window.append((index, bar))
+    active = _provisional_pivots(list(window))
+    if active == prior:
+        return active
+    confirmed_ids = {point.id for point in confirmed}
+    resolved = []
+    for identity in prior.keys() - active.keys():
+        candidate = prior[identity]
+        kind = candidate["kind"]
+        if identity in confirmed_ids:
+            reason = "CONFIRMED"
+        elif gap:
+            reason = "DATA_GAP"
+        else:
+            disqualified = (bar.high >= Fraction(candidate["price"]) if kind == "high"
+                            else bar.low <= Fraction(candidate["price"]))
+            reason = "RIGHT_EXTREME_OR_TIE" if disqualified else "DUAL_EXTREME"
+        resolved.append({**candidate, "reason": reason})
+    resolved.sort(key=lambda item: (item["bar_index"], item["kind"]))
+    add(bar.available, "PIVOT_CANDIDATES", {"bar_index": index, "active": list(active.values()),
+                                            "resolved": resolved})
+    return active
+
+
 def _frame_rows(replay, role, source, schedule, add):
     if (replay["schema"], replay["declaration_sha256"], replay["timeframe"]) != (engine.VERSION, source.sha256, "H4"):
         raise ValueError("matching H4 lifecycle replay required")
@@ -54,6 +105,7 @@ def _frame_rows(replay, role, source, schedule, add):
     events = _one_by(replay["journal"]["events"], "id")
     pivot_stream = pivots.PivotStream(source)
     confirmed, revisions = set(), {}
+    pivot_window, provisional = deque(maxlen=2 * pivots.RADIUS), {}
     for frame in replay["frames"]:
         bar = Bar(**frame["bar"])
         at, index = frame["as_of"], frame["bar_index"]
@@ -63,10 +115,13 @@ def _frame_rows(replay, role, source, schedule, add):
             raise ValueError("viewer frame chronology mismatch")
         if role == "action":
             add(at, "CANDLE", {"index": index, **bar.record()})
-        for point in pivot_stream.observe(bar):
+        points = pivot_stream.observe(bar)
+        for point in points:
             confirmed.add(point.id)
             if role == "action":
                 add(at, "PIVOT", point.record())
+        if role == "action":
+            provisional = _pivot_frontier(pivot_window, provisional, index, bar, points, add)
         for event_id in frame["lifecycle_event_ids"]:
             command = events[event_id]["command"]
             operation, cursor, payload = (command[k] for k in ("op", "cursor", "payload"))
@@ -101,6 +156,7 @@ def _admissions(priced, account, decisions, add):
     gates = _one_by(account["decisions"], "attempt_id")
     if attempts.keys() != gates.keys():
         raise ValueError("viewer account does not cover the saved entry attempts")
+    linked = {}
     for identity, gate in gates.items():
         attempt = attempts[identity]
         setup = decisions[attempt["h4_frame_id"]]
@@ -109,11 +165,13 @@ def _admissions(priced, account, decisions, add):
                 or attempt["request"]["decision_at"]["time"] != known
                 or gate["opening_at"] != attempt["first_scheduled_open"]):
             raise ValueError("viewer entry attempt does not match its setup")
+        plan = {key: attempt[key] for key in ("h4_frame_id", "request", "expires_at")}
+        linked[identity] = {**gate, **plan}
         start = gate.get("reserved_at")
         if start is not None:
             if start < known or start != gate["opening_at"]:
                 raise ValueError("viewer reservation predates its setup")
-            add(start, "ADMISSION", {"attempt_id": identity, "h4_frame_id": setup["h4_frame_id"],
+            add(start, "ADMISSION", {**plan, "attempt_id": identity, "opening_at": start,
                                      "status": "RESERVED", "reason": "AWAITING_ENTRY_BAR"})
         if gate["status"] in ("PENDING", "RESERVED"):
             continue
@@ -124,9 +182,8 @@ def _admissions(priced, account, decisions, add):
                                                    "EXECUTION_SIDE_DATA_UNAVAILABLE") else gate["opening_at"]
         if receipt is None or receipt < known or (start is not None and receipt < start):
             raise ValueError("viewer admission receipt missing or out of order")
-        add(receipt, "ADMISSION", {**gate, "h4_frame_id": setup["h4_frame_id"]})
-    return {identity: {**gate, "h4_frame_id": attempts[identity]["h4_frame_id"]}
-            for identity, gate in gates.items()}
+        add(receipt, "ADMISSION", linked[identity])
+    return linked
 
 
 def _account_rows(schedule, paths, account, gates, add):
@@ -201,6 +258,13 @@ def _timeline(calendar, cutoff):
     return groups, add
 
 
+def _line_search_evidence(frame):
+    return {"coverage_state": frame["coverage_state"], "snapshot_reasons": frame["snapshot_reasons"],
+            "action_lines": len(frame["action_line_ids"]), "eligible_lines": len(frame["eligible_line_ids"]),
+            "anchor_rejections": dict(Counter(reason for row in frame["pair_rejections"] for reason in row["reasons"])),
+            "candidate_rejections": dict(Counter(reason for row in frame["candidates"] for reason in row["reasons"]))}
+
+
 def _setup_rows(source, setups, schedule, add):
     action = _frame_rows(setups["action_replay"], "action", source, schedule, add)
     safety = action if setups["safety_replay"] is None else _frame_rows(
@@ -208,12 +272,23 @@ def _setup_rows(source, setups, schedule, add):
     decisions = _one_by(setups["decisions"], "h4_frame_id")
     if decisions.keys() != action.keys() or len(safety) != len(action):
         raise ValueError("viewer setup publications do not cover the replay")
-    for key, decision in decisions.items():
+    known_action_lines = set()
+    for key, frame in action.items():
+        decision = decisions[key]
         at = decision["available_at"]
-        if (action[key]["as_of"] != at or action[key]["bar_index"] != decision["bar_index"]
-                or safety[decision["safety_frame_id"]]["bar"] != action[key]["bar"]):
+        safety_frame = safety[decision["safety_frame_id"]]
+        if (frame["as_of"] != at or frame["bar_index"] != decision["bar_index"]
+                or safety_frame["bar"] != frame["bar"]):
             raise ValueError("viewer setup timing does not match its publications")
-        add(at, "SETUP", decision)
+        search = {"action": _line_search_evidence(frame)}
+        if safety is not action:
+            search["safety"] = _line_search_evidence(safety_frame)
+        add(at, "SETUP", {**decision, "line_search": search})
+        known_action_lines.update(row["line_id"] for row in frame["revisions"])
+        for contact in decision.get("contacts", []):
+            if contact["line_id"] not in known_action_lines:
+                raise ValueError("viewer bounce contact precedes its action line")
+            add(at, "CONTACT", {**contact, "h4_frame_id": key, "bar_index": frame["bar_index"]})
     return decisions
 
 

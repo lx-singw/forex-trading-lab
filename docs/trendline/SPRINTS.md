@@ -18,7 +18,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 5 | D1 context gate | Software accepted on invented publications | 172, [eight outcomes and baseline parity](RESULTS-172.md) |
 | 6 | All setup machines, disabled DLY, reason codes | Software accepted on invented inputs. E2 target selection and account simulation belong to Phase 7. | 173–179, [setup acceptance](RESULTS-179.md) |
 | 7 | Costs, execution, risk, exits, independent accounting | Software accepted on invented Level B and Level Q inputs. Actual source admission is open. | 180–186, [Level B accounting](RESULTS-184.md), [Level Q adapter](RESULTS-185.md), [phase acceptance](RESULTS-186.md) |
-| 8 | Causal replay viewer and reports | In progress. The local viewer shows Level B and Level Q receipts and setup lines linked to fills. | 187–188, [Level B viewer](RESULTS-187.md), [Level Q quotes and setup links](RESULTS-188.md) |
+| 8 | Causal replay viewer and reports | In progress. The local viewer shows Level B and Level Q receipts, trade links, provisional pivots, and no-trade evidence. | 187–189, [Level B viewer](RESULTS-187.md), [Level Q viewer](RESULTS-188.md), [Pivots and no-trade inspection](RESULTS-189.md) |
 | 9 | Complete verification matrix | Pending | Earlier incremental tests remain necessary |
 | 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |
 | 11 | Chronological study, paired exits, all declared cells | Pending | Q/B labels; no invented market results |
