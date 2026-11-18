@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 184 checks invented Level B accounting against retained 120 and
+125 cases and an independent exact-arithmetic calculation. [Sprint 184 results](docs/trendline/RESULTS-184.md)
+
 Sprint 183 adds a USD cash, equity and financing ledger for invented
 Level B replay. [Sprint 183 results](docs/trendline/RESULTS-183.md)
 

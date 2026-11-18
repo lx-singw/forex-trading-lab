@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 184 compares the Level B ledger with retained
+120 and 125 accounting cases using invented H1 projections. The audit
+reconstructs costs, cash, margin, equity and capacity release from
+the projected observations. Phase 7 continues with the Level Q adapter.
+[Sprint 184 results](trendline/RESULTS-184.md)
+
 18 November 2026. Sprint 183 derives USD cash, executable equity and
 daily entry pauses from modeled fills, bid and ask marks, commission and
 UTC financing. Missing closing evidence preserves the open liability.

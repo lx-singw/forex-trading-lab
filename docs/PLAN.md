@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 184 verifies the Level B ledger on compatible
+retained 120 and 125 cases and records differences in timing, sizing
+and daily references. Next build the invented Level Q quote adapter
+with explicit source and receipt order, freshness, capacity and boundary
+handling. Run its accounting and restart checks before Phase 7 acceptance.
+[Independent accounting comparison](trendline/RESULTS-184.md)
+
 18 November 2026. Sprint 183 delivers the invented Level B cash, equity
 and cost ledger. Next compare its fills, exact cash, financing, daily
 pause and position state with an independent reconstruction and the
