@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 174 wires BRK3 to the invented Level B entry model.
+It resolves the first scheduled opening with exact frozen ATR and stop
+geometry, hypothetical spread and slippage, and the stop distance and
+crossed-stop checks. Pending attempts expire at the next H4 close if
+the first H1 evidence is missing. [Sprint 174 results](trendline/RESULTS-174.md)
+
 17 November 2026. Sprint 173 delivers the BRK3 setup-detection increment.
 Both BRK3 profiles consume qualifying triggers before ranking or safety filters.
 The optional D1 gate reads completed daily context. Safety uses two or more

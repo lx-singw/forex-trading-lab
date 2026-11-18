@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 174 delivers BRK3 Level B entry timing and price
+checks. Next extend the Phase 6 break machine to FXR with the frozen 90-bar
+formation span, angle test and four-bar stop projection. Then implement
+the remaining BRK2, bounce and disabled DLY setup coverage.
+[BRK3 Level B entries](trendline/RESULTS-174.md)
+
 17 November 2026. Sprint 173 implements BRK3 trigger and safety decisions.
 Next connect the entry-observation checks to the existing invented Level B
 price model, including expiry, stop window, spread and crossed protection.

@@ -91,6 +91,10 @@ class BreakReplay:
     def publications(self):
         return tuple(Bar(**json.loads(event)) for event in self._events)
 
+    @property
+    def source(self):
+        return self._h4.source
+
     def _check(self):
         if self._bindings != bindings():
             raise ValueError("setup source/protocol bindings changed")

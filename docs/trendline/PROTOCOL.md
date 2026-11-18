@@ -394,3 +394,20 @@ first. Resolve opposing directions and economic rank ties before evaluating
 the selected setup's safety and optional D1 gate, without falling back to a
 lower-ranked setup. The core stop uses the current (unprojected) value and
 outward tick rounding. Entry-observation checks remain a separate increment.
+
+## Dated clarification for sprint 174, protocol revision 8
+
+18 November 2026. Resolve each READY BRK3 setup against the first scheduled
+H1 open at or after the trigger close. In the invented Level B sequence, a
+completed H4 decision received at the same timestamp precedes the assumed
+H1 open. A later receipt misses that open. Use the next scheduled H4 close
+as the exclusive opening deadline, including across declared closures.
+
+The completed H1 row supplies evidence for its assumed bid open and spread.
+Use only rows received by the replay cutoff and by the next scheduled H4
+close. Process receipts at that close before recording an expiry. An absent
+first row stays pending before this deadline. At expiry a missing or delayed
+first row ends the attempt with MISSING_ENTRY_BAR. No later opening replaces
+it. Freeze the trigger's exact ATR and stop. Apply the inherited hypothetical
+spread floor and slippage and check the exit-side price against protection
+before the distance and spread gates. These are price-only invented outcomes.

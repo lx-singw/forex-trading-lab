@@ -26,6 +26,16 @@ def decimal(value, positive=False):
     return result
 
 
+def _entry_atr(value):
+    if type(value) is str:
+        return decimal(value, positive=True)
+    data.fields(value, ("numerator", "denominator"))
+    numerator, denominator = value["numerator"], value["denominator"]
+    if any(type(part) is not int or not 0 < part <= 10**40 for part in (numerator, denominator)):
+        raise ValueError("bounded positive rational ATR required")
+    return F(numerator, denominator)
+
+
 def text(value):
     """Exact finite decimal spelling, independent of global Decimal precision."""
     value = F(value)
@@ -238,7 +248,8 @@ class PriceModel:
         decision = Event.from_record(request["decision_at"])
         if decision.time < request["trigger_end"]:
             raise ValueError("decision cannot precede trigger close")
-        stop, atr, tick = (decimal(request[k],True) for k in ("stop","atr","tick"))
+        stop, tick = (decimal(request[k],True) for k in ("stop","tick"))
+        atr = _entry_atr(request["atr"])
         target = None if request["target"] is None else decimal(request["target"],True)
         if request["exit_model"] == "E1" and target is not None:
             raise ValueError("E1 has no target")

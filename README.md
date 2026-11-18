@@ -1,5 +1,9 @@
 # Forex Demo Lab
 
+Sprint 174 resolves invented BRK3 entry attempts at the first scheduled H1
+opening and records expiry and price checks. Phase 6 continues with FXR.
+[Sprint 174 results](docs/trendline/RESULTS-174.md)
+
 Sprint 173 adds invented-candle BRK3 setup replay, including trigger consumption,
 opposing safety selection and an outward-rounded stop. Phase 6 continues with
 entry-observation checks and the other setup families.

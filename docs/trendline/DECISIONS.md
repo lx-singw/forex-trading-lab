@@ -81,3 +81,9 @@ separate two-confirmed-touch profile. The G35 safety anchors mature before
 the trigger even though the first touch is 28 bars old. Resolve action and
 safety ties by abstaining after trigger consumption.
 [Protocol revision 7](PROTOCOL.md)
+
+18 November 2026, sprint 174. Use a declared decision-before-open sequence
+for equal timestamps in invented Level B. The first H1 row may confirm the
+assumed opening through the next scheduled H4 close. If it arrives later,
+the attempt stays expired. Transfer the exact trigger ATR to the price
+model without decimal approximation. [Protocol revision 8](PROTOCOL.md)
