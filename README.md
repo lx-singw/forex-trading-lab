@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 193 verifies the disabled Tori native contract and completes Phase 9 software acceptance on invented faults.
+[Sprint 193 results](docs/trendline/RESULTS-193.md)
+
 Sprint 192 starts Phase 9 with a verification matrix and tests for account isolation, stop restart and loss-pause restart.
 [Sprint 192 results](docs/trendline/RESULTS-192.md)
 

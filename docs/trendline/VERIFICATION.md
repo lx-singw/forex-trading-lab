@@ -2,8 +2,8 @@
 
 18 November 2026. This matrix maps each roadmap row to its invented
 success and failure evidence. The retained suites provide evidence from
-earlier sprints. Sprint 192 reruns the accounting and exit suites connected
-to its new isolation and restart cases.
+earlier sprints. Sprint 192 adds isolation and restart cases. Sprint 193
+compiles the disabled native contract and exercises it with invented faults.
 [Roadmap acceptance criteria](../tori_trendline_strategy_full/TORI-TRENDLINE-BUILD-ROADMAP.md#phase-9-verification-size-m)
 
 | Roadmap area | Success and failure evidence | Suite |
@@ -25,11 +25,11 @@ to its new isolation and restart cases.
 | Costs | The models check spread floor, commissions, once-only slippage and Wednesday triple financing. The independent reconstruction reconciles costs under the base and adverse profiles. | [164](../../tests/test_trendline_fills_164.py) · [183](../../tests/test_trendline_ledger_183.py) · [184](../../tests/test_trendline_account_parity_184.py) · [186](../../tests/test_trendline_quote_acceptance_186.py) |
 | Concurrency | A reservation and unresolved hold block a second entry. Release uses the exit receipt. Interleaved base and adverse runs keep distinct attempts and account state. Opposing signals abstain and same-side ranking uses economics. | [173](../../tests/test_trendline_breaks_173.py) · [179](../../tests/test_trendline_setup_acceptance_179.py) · [182](../../tests/test_trendline_risk_182.py) · [192](../../tests/test_trendline_verification_192.py) |
 | Duplicates and restart | Retained checkpoints cover confirmation, consumed groups, reservation and fill. Sprint 192 resumes after protection tightens and after a loss pause, and rejects a reconstructed checkpoint with a changed pause flag. Conflicting observations and checkpoint edits fail. | [166](../../tests/test_trendline_pivots_166.py) · [170](../../tests/test_trendline_engine_170.py) · [179](../../tests/test_trendline_setup_acceptance_179.py) · [182](../../tests/test_trendline_risk_182.py) · [183](../../tests/test_trendline_ledger_183.py) · [186](../../tests/test_trendline_quote_acceptance_186.py) · [192](../../tests/test_trendline_verification_192.py) |
-| Data levels | The invented bid-only Level B path prices the next scheduled H1 open and carries its source label. A late decision and midpoint-only input are refused for pricing. Study qualification rejects Level B execution claims. Native admission remains tied to the adapter row below. | [163](../../tests/test_trendline_data_163.py) · [165](../../tests/test_trendline_study_165.py) · [174](../../tests/test_trendline_entries_174.py) |
+| Data levels | The invented bid-only Level B path prices the next scheduled H1 open and carries its source label. A late decision and midpoint-only input are refused for pricing. Study qualification and the disabled native entry contract reject Level B. | [163](../../tests/test_trendline_data_163.py) · [165](../../tests/test_trendline_study_165.py) · [174](../../tests/test_trendline_entries_174.py) · [193](../../tests/test_trendline_native_193.py) |
 | Boundaries | Scheduled liquidation and the first eligible quote can close a hold. Missing boundary evidence carries the last executable mark and unpaid exit commission, with an empty closed-trade list. Later partition observations cannot settle it. | [181](../../tests/test_trendline_exits_181.py) · [183](../../tests/test_trendline_ledger_183.py) · [185](../../tests/test_trendline_quotes_185.py) · [186](../../tests/test_trendline_quote_acceptance_186.py) |
 | Accounting | Independent rational arithmetic reconciles margins, financing, cash, fills and pauses. The retained 120 and 125 cases check direction, both cost profiles and mismatched accounting inputs. | [184](../../tests/test_trendline_account_parity_184.py) · [186](../../tests/test_trendline_quote_acceptance_186.py) |
-| Native adapter (disabled) | Open. The Tori boundary still needs direct evidence for the actual DEMO enum at order actions, rejection of REAL, CONTEST and unknown types, ambiguous acknowledgements, partial-fill protection and restart reconciliation. The retained native recorder guard is a reuse reference. | [Retained recorder guard](../../tests/native_port_156.cpp) · [Phase 12 adapter scope](../tori_trendline_strategy_full/TORI-TRENDLINE-BUILD-ROADMAP.md#phase-12-forward-shadow-and-demo-readiness-size-l-gated) |
+| Native adapter (disabled) | The compiled contract uses the MT5 DEMO enum. Invented checks reject REAL, CONTEST, unknown types and continuity changes before each action. An ambiguous send retains its exact intent across restart. Owned partial fills require stop coverage, and a protection failure exercises guarded cancellation, emergency closure and a latched halt. | [193](../../tests/test_trendline_native_193.py) · [Phase 12 adapter scope](../tori_trendline_strategy_full/TORI-TRENDLINE-BUILD-ROADMAP.md#phase-12-forward-shadow-and-demo-readiness-size-l-gated) |
 
-Sprint 192 covers research replay and leaves Phase 9 in progress.
-The disabled native boundary and its fault tests remain the next matrix work.
-[Sprint 192 results](RESULTS-192.md)
+Sprints 192–193 complete Phase 9 software acceptance on invented inputs.
+MT5 transport, terminal reconciliation and deployment belong to Phase 12.
+[Research checks](RESULTS-192.md) · [Native contract checks](RESULTS-193.md)

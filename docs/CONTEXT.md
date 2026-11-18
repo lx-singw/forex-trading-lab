@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 193 completes Phase 9 software acceptance
+with a compiled, disabled Tori native contract. Its invented faults
+exercise account rechecks, persisted intents, ambiguous acknowledgements,
+partial-fill protection and restart reconciliation.
+[Sprint 193 results](trendline/RESULTS-193.md)
+
 18 November 2026. Sprint 192 maps the Phase 9 verification matrix and
 checks independent Level B ledgers and Level Q checkpoint continuation
 after stop tightening and a daily loss pause. Native boundary evidence

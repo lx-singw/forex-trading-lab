@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 193 completes Phase 9 offline verification.
+Next build the Phase 10 development-only signal counter and its evidence
+checks. Actual signal counts require an admitted historical source.
+[Native contract results](trendline/RESULTS-193.md)
+
 18 November 2026. Sprint 192 maps the Phase 9 matrix and verifies
 in-process Level B ledger isolation and Level Q resumes after tightened
 protection and a loss pause. Continue with the disabled native boundary's

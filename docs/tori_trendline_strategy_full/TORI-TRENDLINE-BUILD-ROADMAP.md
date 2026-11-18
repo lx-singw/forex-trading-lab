@@ -504,8 +504,9 @@ Use deliberately constructed paths and bounded generated sequences. These establ
 
 **Acceptance:** every row has passing success and failure tests.
 
-Sprint 192 maps retained research tests to these rows and adds account
-isolation and restart evidence. [Working verification matrix](../trendline/VERIFICATION.md)
+Sprints 192–193 complete software acceptance on invented inputs, including
+fault tests for the compiled, disabled native contract.
+[Verification matrix](../trendline/VERIFICATION.md) · [Native contract evidence](../trendline/RESULTS-193.md)
 
 ---
 
