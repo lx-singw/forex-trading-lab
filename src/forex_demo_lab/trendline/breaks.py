@@ -9,8 +9,15 @@ from . import context, data, engine, geometry, lines, selection
 
 VERSION = "TRL_BREAKS_173_V1"
 FXR_PROFILE = "TRL_FXR_M"
+BRK2_PROFILE = "TRL_BRK2_E1"
 FXR_STOP_PROJECTION = 4
-PROFILES = ("TRL_BRK3_E1", FXR_PROFILE, context.PROFILE)
+SETUP_FAMILIES = {
+    "TRL_BRK3_E1": "brk3",
+    FXR_PROFILE: "fxr_m",
+    BRK2_PROFILE: "brk2",
+    context.PROFILE: "brk3",
+}
+PROFILES = tuple(SETUP_FAMILIES)
 
 
 def bindings():
@@ -219,8 +226,7 @@ class BreakReplay:
         self._check()
         return {
             "schema": VERSION,
-            "kind": ("invented_fxr_m_setup_replay" if self._h4.profile == FXR_PROFILE
-                     else "invented_brk3_setup_replay"),
+            "kind": f"invented_{SETUP_FAMILIES[self._h4.profile]}_setup_replay",
             "data_level": "B",
             "tick": geometry.rational_record(self._tick),
             "source_bindings": dict(self._bindings),

@@ -1,5 +1,9 @@
 # Forex Demo Lab
 
+Sprint 176 adds BRK2 setup and Level B entry replay. Its action line must
+have exactly two confirmed touches. Phase 6 continues with bounce.
+[Sprint 176 results](docs/trendline/RESULTS-176.md)
+
 Sprint 175 adds FXR break setup replay with a 90-bar formation span, the
 390-bar angle gate, and a four-bar safety projection. Phase 6 continues with
 BRK2. [Sprint 175 results](docs/trendline/RESULTS-175.md)

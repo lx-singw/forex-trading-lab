@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 176 adds BRK2 to the invented setup and entry
+replay. The action profile requires exactly two confirmed touches at both
+formation and trigger. Level B pricing uses the current buffered E1 stop.
+[Sprint 176 results](trendline/RESULTS-176.md)
+
 18 November 2026. Sprint 175 wires FXR action and projected protection to
 the invented break replay. It rechecks the angle at the trigger and applies
 the shared Level B opening checks. E2 needs a qualifying fixed target from

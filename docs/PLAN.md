@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 176 delivers BRK2 setup and Level B entry replay.
+Next implement BNC close-confirmed contacts, including the correct-side
+tolerance and six-bar spacing checks, then verify disabled DLY and the
+remaining Phase 6 cases. [BRK2 increment](trendline/RESULTS-176.md)
+
 18 November 2026. Sprint 175 delivers FXR break setup detection, four-bar
 projected protection and opening checks. Phase 7 owns the E2 level finder
 and qualifying target. Next implement BRK2 with exactly two touches, then

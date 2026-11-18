@@ -118,7 +118,7 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
         raise ValueError("entry replay source bindings changed")
     return {
         "schema": VERSION,
-        "kind": "invented_fxr_m_b_entry_replay" if fxr else "invented_brk3_b_entry_replay",
+        "kind": f"invented_{breaks.SETUP_FAMILIES[profile]}_b_entry_replay",
         "data_level": "B",
         "source_sha256": source.sha256,
         "source_bindings": bound,
