@@ -103,7 +103,7 @@ class RiskTimelineTests(unittest.TestCase):
         rows = ([snapshot(window.start) for window in self.frontier]
                 if snapshots is None else snapshots)
         capital = risk._snapshots(document(self.source, rows), self.source, price)
-        return risk._timeline(price, result, self.hours, capital, risk._terms("base"))
+        return risk._timeline(price, result, self.hours, capital.get, risk._terms("base"))
 
     def test_gap_on_same_open_blocks_reentry_then_releases(self):
         _, second, third = self.frontier

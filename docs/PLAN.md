@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 183 delivers the invented Level B cash, equity
+and cost ledger. Next compare its fills, exact cash, financing, daily
+pause and position state with an independent reconstruction and the
+retained 120 and 125 accounting cases. Qualify the constructible Level Q
+adapter separately before Phase 7 acceptance.
+[USD ledger increment](trendline/RESULTS-183.md)
+
 18 November 2026. Sprint 182 delivers chronological reservation,
 position limits and exact sizing on declared invented USD snapshots.
 Next derive executable equity, available margin and the UTC-day loss

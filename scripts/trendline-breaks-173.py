@@ -1,7 +1,7 @@
 """Replay break and bounce setup decisions on invented hourly data."""
 import argparse
 
-from forex_demo_lab.trendline import breaks, context, data, engine, entries, exits, lines, risk
+from forex_demo_lab.trendline import breaks, context, data, engine, entries, exits, ledger, lines, risk
 
 
 def main():
@@ -15,7 +15,9 @@ def main():
     parser.add_argument("--cost-profile", choices=("base", "adverse"), default="base")
     parser.add_argument("--as-of", type=int)
     parser.add_argument("--liquidation-at", type=int, help="declared H1 opening in receipt-clock milliseconds")
-    parser.add_argument("--risk-snapshots", help="invented opening equity and margin declarations")
+    account = parser.add_mutually_exclusive_group()
+    account.add_argument("--risk-snapshots", help="invented opening equity and margin declarations")
+    account.add_argument("--ledger", action="store_true", help="derive a hypothetical USD account from the replay")
     parser.add_argument("--unlock-receipt")
     parser.add_argument("--restore-checkpoint")
     args = parser.parse_args()
@@ -54,6 +56,9 @@ def main():
     if args.risk_snapshots:
         snapshots, _ = data.read_json(args.risk_snapshots)
         admission = risk._evaluate(source, visible_hours, entry_report, exit_report, snapshots)
+    accounting = None
+    if args.ledger:
+        accounting = ledger._evaluate(source, visible_hours, entry_report, exit_report)
     output = data.no_links(args.new_output_directory)
     output.mkdir(exist_ok=False)
     data.write_new(output / "setups.json", report)
@@ -62,6 +67,8 @@ def main():
     data.write_new(output / "exits.json", exit_report)
     if admission is not None:
         data.write_new(output / "risk.json", admission)
+    if accounting is not None:
+        data.write_new(output / "ledger.json", accounting)
 
 
 if __name__ == "__main__":

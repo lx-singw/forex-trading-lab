@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 183 derives USD cash, executable equity and
+daily entry pauses from modeled fills, bid and ask marks, commission and
+UTC financing. Missing closing evidence preserves the open liability.
+Phase 7 continues with the independent ledger comparison.
+[Sprint 183 results](trendline/RESULTS-183.md)
+
 18 November 2026. Sprint 182 adds one reservation or held position per
 independent invented replay. A declared USD snapshot supplies executable
 equity, margin and UTC-day reference for exact lot sizing at each opening.

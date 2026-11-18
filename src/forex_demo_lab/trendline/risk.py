@@ -18,11 +18,15 @@ def bindings():
     return result
 
 
-def _terms(profile):
+def _costs():
     declaration, sha = data.read_json(data.ROOT / "config/research-candidates-117.json")
     if sha != fills.PROFILE_SHA:
         raise ValueError("frozen cost declaration changed")
-    costs = declaration["cost_profiles"]
+    return declaration["cost_profiles"]
+
+
+def _terms(profile):
+    costs = _costs()
     common = costs["common"]
     return {**{key: Fraction(str(common[key])) for key in ("contract_size", "lot_min", "lot_step", "lot_max")},
             "leverage": Fraction(str(common["hypothetical_leverage"])),
@@ -109,7 +113,7 @@ def _release(path, hours):
     return exit_fill["event_window"]["available_at"]
 
 
-def _timeline(priced, exit_report, hours, snapshots, terms):
+def _timeline(priced, exit_report, hours, snapshot_at, terms, *, admit=None, settle_unfilled=None):
     paths = {path["attempt_id"]: path for path in exit_report["paths"]}
     as_of, liquidation = priced["as_of"], exit_report["liquidation_at"]
     decisions, positions = [], []
@@ -130,7 +134,7 @@ def _timeline(priced, exit_report, hours, snapshots, terms):
         if occupant is not None and (release is None or start < release):
             record.update(status="SKIPPED", reason="POSITION_LIMIT", occupied_by=occupant["attempt_id"])
             continue
-        snapshot = snapshots.get(start)
+        snapshot = snapshot_at(start)
         if snapshot is None:
             record.update(status="UNAVAILABLE", reason="RISK_SNAPSHOT_UNAVAILABLE")
             continue
@@ -144,15 +148,22 @@ def _timeline(priced, exit_report, hours, snapshots, terms):
         record.update(reserved_at=start, resolved_at=release if release <= as_of else None)
         if attempt["status"] == "PENDING":
             record.update(status="RESERVED")
+            continue
         if attempt["status"] != "FILLED":
+            if settle_unfilled is not None:
+                settle_unfilled(release)
             continue
         sizing = _size(terms, snapshot, price)
         record["sizing"] = sizing
         if sizing["lots"] == "0":
             record.update(status="SKIPPED", reason="BELOW_MIN_LOT")
+            if settle_unfilled is not None:
+                settle_unfilled(release)
             continue
         record.update(status="ADMITTED", reason="SIZED_OPEN")
         path = paths[attempt["id"]]
+        if admit is not None:
+            path = admit(path, sizing)
         release = _release(path, hours)
         occupant = {"kind": "POSITION", "attempt_id": attempt["id"]}
         positions.append({"attempt_id": attempt["id"], "lots": sizing["lots"], "state": path["state"],
@@ -167,7 +178,7 @@ def _evaluate(source, hours, priced, exit_report, document):
     snapshots = _snapshots(document, source, priced)
     terms = _terms(priced["cost_profile"]["name"])
     decisions, positions, active = _timeline(priced, exit_report, {hour.start: hour for hour in hours},
-                                             snapshots, terms)
+                                             snapshots.get, terms)
     if bound != bindings():
         raise ValueError("risk replay source bindings changed")
     return {"schema": VERSION, "kind": "invented_b_risk_admission", "source_sha256": source.sha256,

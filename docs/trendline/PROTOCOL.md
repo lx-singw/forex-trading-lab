@@ -533,3 +533,29 @@ minimum of those limits to the volume step. Estimated stop loss includes
 the modeled entry price, exit slippage and round-turn commission. The
 snapshot mechanism supplies test inputs before the independent cash,
 cost, equity and rollover ledger is built.
+
+## Implementation note for sprint 183
+
+18 November 2026. The optional invented Level B ledger starts each
+strategy, cost profile and partition at the frozen hypothetical USD
+10,000. It sizes from reconciled cash when flat. A modeled fill posts
+half the round-turn commission. Closed trades post gross price P&L,
+the remaining half and the total financing already charged to cash.
+Their net loss is compared with the original sized stop estimate.
+
+Held equity uses bid or ask as appropriate. At the end of a completed
+H1 that the position survives, the adverse range observation can latch
+the same-day entry pause. It cannot establish an exact intrahour time.
+The pause and equity also follow opening and closing marks and debits.
+The next UTC day uses the reconciled previous executable equity before
+its first financing debit, including known exposure over a declared
+closure. Wednesday rolls three units and weekend days zero.
+
+When a held H1 straddles UTC midnight without a boundary mark, financing
+can be charged for proven continuing exposure, but entries require a
+later valid day reference. An intrahour exit straddling the boundary
+leaves the position unresolved because rollover order is unknown.
+Unresolved paths retain the last exit-side mark and open commission
+liability. Financing is posted only through reconciled exposure.
+Same-opening entry remains blocked and cash becomes reusable only
+when the closing observation has arrived.

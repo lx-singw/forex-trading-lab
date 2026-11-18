@@ -17,7 +17,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Software accepted on invented candles, component fixtures and generated paths | 167–171, [phase acceptance](RESULTS-171.md) |
 | 5 | D1 context gate | Software accepted on invented publications | 172, [eight outcomes and baseline parity](RESULTS-172.md) |
 | 6 | All setup machines, disabled DLY, reason codes | Software accepted on invented inputs. E2 target selection and account simulation belong to Phase 7. | 173–179, [setup acceptance](RESULTS-179.md) |
-| 7 | Costs, execution, risk, exits, independent accounting | In progress. Invented Level B replay has E1/E2 exits, reservation and sizing on declared snapshots. | 180–182, [E2 targets](RESULTS-180.md), [exit replay](RESULTS-181.md), [risk admission](RESULTS-182.md) |
+| 7 | Costs, execution, risk, exits, independent accounting | In progress. Invented Level B replay derives admission, cash, equity and daily pauses. The independent ledger comparison and Level Q adapter remain open. | 180–183, [E2 targets](RESULTS-180.md), [exits](RESULTS-181.md), [risk admission](RESULTS-182.md), [USD ledger](RESULTS-183.md) |
 | 8 | Causal replay viewer and reports | Pending | Line layers plus visual review |
 | 9 | Complete verification matrix | Pending | Earlier incremental tests remain necessary |
 | 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |
