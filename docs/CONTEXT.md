@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 181 applies E1 stop changes prospectively and
+prices E1 and E2 exits over scheduled H1 candles. The replay records gaps,
+missing hours and liquidation outcomes for each modeled fill. Phase 7
+continues with account gates and accounting. [Sprint 181 results](trendline/RESULTS-181.md)
+
 18 November 2026. Sprint 180 freezes confirmed H4 and D1 level clusters
 at the FXR trigger. The first eligible Level B opening can select a fixed
 E2 target after its price checks, using the rounded level at least 2R away.

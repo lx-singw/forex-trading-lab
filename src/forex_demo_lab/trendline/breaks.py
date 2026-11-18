@@ -253,6 +253,7 @@ class BreakReplay:
             "safety_frame_id": safety_frame["id"],
             "bar_index": index,
             "available_at": bar.available,
+            "atr_sma14": geometry.rational_record(atr),
             "triggered": [{"line_id": state.line_id, "group_id": state.group_id,
                            "direction": trade_direction(state.line)} for state in triggered],
             "missed_break_ids": missed,

@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 181 adds chronological E1 and E2 exit paths to invented Level B
+replay. [Sprint 181 results](docs/trendline/RESULTS-181.md)
+
 Sprint 180 adds FXR support and resistance levels and the fixed E2 target
 to invented Level B replay. [Sprint 180 results](docs/trendline/RESULTS-180.md)
 

@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 181 delivers chronological E1 and E2 price exits
+on invented Level B inputs. Next integrate chronological reservation,
+position limits and sizing. Then add account costs and loss controls
+and verify the ledger with an independent calculation.
+[Exit replay increment](trendline/RESULTS-181.md)
+
 18 November 2026. Sprint 180 delivers causal levels and fixed E2 entry
 targets. Next integrate chronological E1 and E2 exit handling on invented
 Level B events, including prospective protection and gap checks. Continue

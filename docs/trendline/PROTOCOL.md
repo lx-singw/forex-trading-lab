@@ -485,3 +485,30 @@ rounded toward entry, is at least twice the exact slippage-adjusted initial
 stop distance away. Continue to a farther eligible level when rounding
 leaves one too close. If none qualifies, skip with NO_VALID_TARGET.
 The accepted E2 price position fixes its stop and target at entry.
+
+## Implementation note for sprint 181
+
+18 November 2026. Price-only exit paths are evaluated separately for
+the modeled entry attempts. Each path uses the declared H1 schedule and
+the completed rows visible at its receipt cutoff. Start with the opening
+fill, then evaluate the entry hour's range under its original protection.
+Each further range uses the protection effective at that hour's open.
+An H4 receipt can affect the first scheduled open at or after its actual
+availability. Declared closures preserve scheduled adjacency. An absent
+completed hour blocks later claims about the path.
+
+For E1, a completed post-entry close beyond the held ray latches the
+market exit before considering a change of protection. An observed poke
+that closes inside freezes the hard stop while the held ray continues to
+govern close-beyond. An unpoked held line can tighten its stop. Eligible
+same-side replacements must have formed after entry and provide a
+strictly more protective rounded stop. An unresolved replacement tie
+preserves the held line. E2 retains its opening stop and target.
+
+The invented exit path defaults liquidation to the final declared H1
+open or uses an explicitly selected scheduled opening. It excludes
+price candidates at or after that cutoff. A missing liquidation row
+at the partition end leaves the path OPEN_AT_BOUNDARY with its last
+known exit-side mark. Opening stop and target hits keep precedence over
+scheduled market exits. The exit path is reconstructed from the source
+prefix and setup checkpoint before account integration.

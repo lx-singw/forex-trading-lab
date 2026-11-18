@@ -17,7 +17,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Software accepted on invented candles, component fixtures and generated paths | 167–171, [phase acceptance](RESULTS-171.md) |
 | 5 | D1 context gate | Software accepted on invented publications | 172, [eight outcomes and baseline parity](RESULTS-172.md) |
 | 6 | All setup machines, disabled DLY, reason codes | Software accepted on invented inputs. E2 target selection and account simulation belong to Phase 7. | 173–179, [setup acceptance](RESULTS-179.md) |
-| 7 | Costs, execution, risk, exits, independent accounting | In progress. Causal levels and fixed E2 entry targets verified on invented inputs. | 180, [E2 target increment](RESULTS-180.md) |
+| 7 | Costs, execution, risk, exits, independent accounting | In progress. Causal levels, fixed E2 targets and chronological price exits implemented on invented inputs. | 180–181, [E2 targets](RESULTS-180.md), [exit replay](RESULTS-181.md) |
 | 8 | Causal replay viewer and reports | Pending | Line layers plus visual review |
 | 9 | Complete verification matrix | Pending | Earlier incremental tests remain necessary |
 | 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |
