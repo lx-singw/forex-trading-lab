@@ -512,3 +512,24 @@ at the partition end leaves the path OPEN_AT_BOUNDARY with its last
 known exit-side mark. Opening stop and target hits keep precedence over
 scheduled market exits. The exit path is reconstructed from the source
 prefix and setup checkpoint before account integration.
+
+## Implementation note for sprint 182
+
+18 November 2026. An optional invented Level B risk report uses one
+reservation or held position for a single strategy, cost profile and
+partition. Reserve at the first scheduled opening after setup eligibility,
+then settle the attempt when the opening row is observed or the window
+expires. An occupied opening is terminal for that attempt. A held path
+releases capacity only at receipt of its closing evidence. This preserves
+occupancy on an opening that closes the held position. Missing exit
+evidence leaves capacity occupied.
+
+The risk increment takes explicit USD equity, free margin, UTC-day
+reference and pause snapshots at the scheduled openings. A missing
+snapshot abstains. A pause observed in the snapshots persists through
+the UTC day. Size against the frozen 0.25 percent risk budget, available
+margin, 99 percent reference floor and inherited lot bounds. Floor the
+minimum of those limits to the volume step. Estimated stop loss includes
+the modeled entry price, exit slippage and round-turn commission. The
+snapshot mechanism supplies test inputs before the independent cash,
+cost, equity and rollover ledger is built.

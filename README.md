@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 182 adds one-position reservation and exact lot sizing for invented
+Level B replay with declared USD risk snapshots. [Sprint 182 results](docs/trendline/RESULTS-182.md)
+
 Sprint 181 adds chronological E1 and E2 exit paths to invented Level B
 replay. [Sprint 181 results](docs/trendline/RESULTS-181.md)
 

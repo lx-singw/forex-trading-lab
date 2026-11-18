@@ -160,8 +160,13 @@ def _path(model, windows, hourly, as_of, boundary, liquidation, attempt, h4, reg
 
 def evaluate(replay, hours, *, as_of, cost_profile="base", liquidation_at=None):
     """Replay exits for independently priced fills, in the declared partition."""
-    bound = bindings()
     priced = entries.evaluate(replay, hours, as_of=as_of, cost_profile=cost_profile)
+    return _evaluate(replay, hours, priced, liquidation_at)
+
+
+def _evaluate(replay, hours, priced, liquidation_at):
+    bound = bindings()
+    as_of, cost_profile = priced["as_of"], priced["cost_profile"]["name"]
     source = replay.source
     calendar = source.calendar
     windows = calendar.frame("H1")

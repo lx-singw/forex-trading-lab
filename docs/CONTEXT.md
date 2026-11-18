@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 182 adds one reservation or held position per
+independent invented replay. A declared USD snapshot supplies executable
+equity, margin and UTC-day reference for exact lot sizing at each opening.
+Phase 7 continues with the cash, cost and equity ledger.
+[Sprint 182 results](trendline/RESULTS-182.md)
+
 18 November 2026. Sprint 181 applies E1 stop changes prospectively and
 prices E1 and E2 exits over scheduled H1 candles. The replay records gaps,
 missing hours and liquidation outcomes for each modeled fill. Phase 7

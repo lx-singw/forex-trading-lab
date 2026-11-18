@@ -1,7 +1,7 @@
 """Replay break and bounce setup decisions on invented hourly data."""
 import argparse
 
-from forex_demo_lab.trendline import breaks, context, data, engine, entries, exits, lines
+from forex_demo_lab.trendline import breaks, context, data, engine, entries, exits, lines, risk
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
     parser.add_argument("--cost-profile", choices=("base", "adverse"), default="base")
     parser.add_argument("--as-of", type=int)
     parser.add_argument("--liquidation-at", type=int, help="declared H1 opening in receipt-clock milliseconds")
+    parser.add_argument("--risk-snapshots", help="invented opening equity and margin declarations")
     parser.add_argument("--unlock-receipt")
     parser.add_argument("--restore-checkpoint")
     args = parser.parse_args()
@@ -48,14 +49,19 @@ def main():
         replay.observe(bar)
     report, checkpoint = replay.report(as_of=as_of), replay.checkpoint()
     entry_report = entries.evaluate(replay, visible_hours, as_of=as_of, cost_profile=args.cost_profile)
-    exit_report = exits.evaluate(replay, visible_hours, as_of=as_of, cost_profile=args.cost_profile,
-                                 liquidation_at=args.liquidation_at)
+    exit_report = exits._evaluate(replay, visible_hours, entry_report, args.liquidation_at)
+    admission = None
+    if args.risk_snapshots:
+        snapshots, _ = data.read_json(args.risk_snapshots)
+        admission = risk._evaluate(source, visible_hours, entry_report, exit_report, snapshots)
     output = data.no_links(args.new_output_directory)
     output.mkdir(exist_ok=False)
     data.write_new(output / "setups.json", report)
     data.write_new(output / "checkpoint.json", checkpoint)
     data.write_new(output / "entries.json", entry_report)
     data.write_new(output / "exits.json", exit_report)
+    if admission is not None:
+        data.write_new(output / "risk.json", admission)
 
 
 if __name__ == "__main__":

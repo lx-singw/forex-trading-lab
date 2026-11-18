@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 182 delivers chronological reservation,
+position limits and exact sizing on declared invented USD snapshots.
+Next derive executable equity, available margin and the UTC-day loss
+latch from a cost-aware ledger. Include commissions, financing and
+boundary liabilities, then verify against an independent calculation.
+[Risk admission increment](trendline/RESULTS-182.md)
+
 18 November 2026. Sprint 181 delivers chronological E1 and E2 price exits
 on invented Level B inputs. Next integrate chronological reservation,
 position limits and sizing. Then add account costs and loss controls
