@@ -1,4 +1,4 @@
-"""Resolve invented BRK3 setups against their first scheduled H1 opening."""
+"""Resolve invented break setups against their first scheduled H1 opening."""
 import hashlib
 
 from . import breaks, data, fills, selection
@@ -50,6 +50,8 @@ def _resolve(model, request, window, expires_at, hours, as_of, bid_only):
     if hour is not None and hour.available_at <= expires_at:
         opening = fills.Opening.from_hour(hour, H1_OPEN_ORDINAL)
         price = model.entry(request, opening)
+        if price["reason"] == "NO_VALID_TARGET" and request["target"] is None:
+            return "UNAVAILABLE", "E2_TARGET_SELECTION_UNAVAILABLE", None
         return price["status"], price["reason"], price
     if as_of >= expires_at:
         return "EXPIRED", "MISSING_ENTRY_BAR", None
@@ -59,7 +61,7 @@ def _resolve(model, request, window, expires_at, hours, as_of, bid_only):
 def evaluate(replay, hours, *, as_of, cost_profile="base"):
     """Evaluate a setup replay and completed-hour receipt prefix from its source."""
     if not isinstance(replay, breaks.BreakReplay):
-        raise ValueError("BRK3 replay required")
+        raise ValueError("break replay required")
     data.integer(as_of)
     source = replay.source
     calendar = source.calendar
@@ -69,6 +71,8 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
     bound = bindings()
     hourly = _visible_hours(source, hours, as_of, calendar)
     report = replay.report()
+    profile = report["action_replay"]["profile"]
+    fxr = profile == breaks.FXR_PROFILE
     model = fills.PriceModel(source, cost_profile)
     h4 = calendar.frame("H4")
     expiry = {left.end: right.end for left, right in zip(h4, h4[1:])}
@@ -92,7 +96,7 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
             "target": None,
             "atr": decision["safety"]["atr_sma14"],
             "tick": tick,
-            "exit_model": "E1",
+            "exit_model": "E2" if fxr else "E1",
         }
         window = model.entry_window(trigger["end"])
         expires_at = expiry.get(trigger["end"])
@@ -114,11 +118,11 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
         raise ValueError("entry replay source bindings changed")
     return {
         "schema": VERSION,
-        "kind": "invented_brk3_b_entry_replay",
+        "kind": "invented_fxr_m_b_entry_replay" if fxr else "invented_brk3_b_entry_replay",
         "data_level": "B",
         "source_sha256": source.sha256,
         "source_bindings": bound,
-        "profile": report["action_replay"]["profile"],
+        "profile": profile,
         "cost_profile": dict(model.costs),
         "as_of": as_of,
         "attempts": attempts,

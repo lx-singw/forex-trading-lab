@@ -1,4 +1,4 @@
-"""Replay BRK3 setup decisions on invented hourly data."""
+"""Replay BRK3 and FXR setup decisions on invented hourly data."""
 import argparse
 
 from forex_demo_lab.trendline import breaks, context, data, engine, entries

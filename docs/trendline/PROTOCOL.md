@@ -411,3 +411,18 @@ first row ends the attempt with MISSING_ENTRY_BAR. No later opening replaces
 it. Freeze the trigger's exact ATR and stop. Apply the inherited hypothetical
 spread floor and slippage and check the exit-side price against protection
 before the distance and spread gates. These are price-only invented outcomes.
+
+## Implementation note for sprint 175
+
+18 November 2026. FXR_M uses the existing FXR action profile for the
+90-bar formation span and both slope gates. It selects opposing safety
+using the current candle and the same full-wick protection profile as BRK3.
+Freeze both the current safety value and its value four scheduled H4
+indices ahead. Buffer and round the projected value outward using the
+trigger ATR and declared price tick.
+
+The invented Level B adapter applies the existing opening schedule, expiry,
+and price checks with exit model E2. If those checks pass, report
+E2_TARGET_SELECTION_UNAVAILABLE until the Phase 7 support and resistance
+finder can supply a qualifying fixed target. The setup has consumed its
+opportunity. No fill is recorded without the required target.

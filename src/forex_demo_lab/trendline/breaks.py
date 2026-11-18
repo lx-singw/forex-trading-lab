@@ -1,4 +1,4 @@
-"""Causal BRK3 setup decisions from completed invented publications."""
+"""Causal break setup decisions from completed invented publications."""
 from copy import copy
 from dataclasses import replace
 import hashlib
@@ -8,7 +8,9 @@ from ..elliott_full.contracts import Bar
 from . import context, data, engine, geometry, lines, selection
 
 VERSION = "TRL_BREAKS_173_V1"
-PROFILES = ("TRL_BRK3_E1", context.PROFILE)
+FXR_PROFILE = "TRL_FXR_M"
+FXR_STOP_PROJECTION = 4
+PROFILES = ("TRL_BRK3_E1", FXR_PROFILE, context.PROFILE)
 
 
 def bindings():
@@ -70,11 +72,11 @@ def _stop(safety_value, atr, tick, direction):
 
 
 class BreakReplay:
-    """Replay BRK3 setups, with optional completed D1 context."""
+    """Replay completed-bar break setups on the selected profile."""
 
     def __init__(self, source, tick, profile="TRL_BRK3_E1"):
         if profile not in PROFILES:
-            raise ValueError("implemented BRK3 profile required")
+            raise ValueError("implemented break profile required")
         self._tick = geometry.exact(tick)
         if self._tick <= 0:
             raise ValueError("positive declared price tick required")
@@ -186,10 +188,10 @@ class BreakReplay:
             decision.update(state="ABSTAINED", reason=reason)
             return decision
 
-        # Use geometry at the completed trigger index and freeze the stop for
-        # the later entry-observation checks.
         value = safety.ray.value(index)
-        buffer, stop = _stop(value, atr, self._tick, direction)
+        projection = FXR_STOP_PROJECTION if self._h4.profile == FXR_PROFILE else 0
+        stop_reference = safety.ray.project(index, projection)
+        buffer, stop = _stop(stop_reference, atr, self._tick, direction)
         decision["safety"] = {
             "line_id": engine.instance_id(safety),
             "line_value": geometry.rational_record(value),
@@ -197,6 +199,9 @@ class BreakReplay:
             "buffer": geometry.rational_record(buffer),
             "stop": geometry.rational_record(stop),
         }
+        if projection:
+            decision["safety"].update(projected_index=index + projection,
+                                      projected_line_value=geometry.rational_record(stop_reference))
         if stop <= 0:
             decision.update(state="SKIPPED", reason="INVALID_STOP_PRICE")
             return decision
@@ -214,7 +219,8 @@ class BreakReplay:
         self._check()
         return {
             "schema": VERSION,
-            "kind": "invented_brk3_setup_replay",
+            "kind": ("invented_fxr_m_setup_replay" if self._h4.profile == FXR_PROFILE
+                     else "invented_brk3_setup_replay"),
             "data_level": "B",
             "tick": geometry.rational_record(self._tick),
             "source_bindings": dict(self._bindings),

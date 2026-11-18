@@ -1,5 +1,9 @@
 # Forex Demo Lab
 
+Sprint 175 adds FXR break setup replay with a 90-bar formation span, the
+390-bar angle gate, and a four-bar safety projection. Phase 6 continues with
+BRK2. [Sprint 175 results](docs/trendline/RESULTS-175.md)
+
 Sprint 174 resolves invented BRK3 entry attempts at the first scheduled H1
 opening and records expiry and price checks. Phase 6 continues with FXR.
 [Sprint 174 results](docs/trendline/RESULTS-174.md)

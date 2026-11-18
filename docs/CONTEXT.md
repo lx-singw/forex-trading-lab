@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 175 wires FXR action and projected protection to
+the invented break replay. It rechecks the angle at the trigger and applies
+the shared Level B opening checks. E2 needs a qualifying fixed target from
+the Phase 7 level finder before a fill can be modeled.
+[Sprint 175 results](trendline/RESULTS-175.md)
+
 18 November 2026. Sprint 174 wires BRK3 to the invented Level B entry model.
 It resolves the first scheduled opening with exact frozen ATR and stop
 geometry, hypothetical spread and slippage, and the stop distance and

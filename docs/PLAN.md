@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 175 delivers FXR break setup detection, four-bar
+projected protection and opening checks. Phase 7 owns the E2 level finder
+and qualifying target. Next implement BRK2 with exactly two touches, then
+bounce and disabled DLY in Phase 6. [FXR increment](trendline/RESULTS-175.md)
+
 18 November 2026. Sprint 174 delivers BRK3 Level B entry timing and price
 checks. Next extend the Phase 6 break machine to FXR with the frozen 90-bar
 formation span, angle test and four-bar stop projection. Then implement
