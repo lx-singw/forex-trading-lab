@@ -95,3 +95,10 @@ warmup and development span. Documentation review encountered illustrative
 pricing with uncertain observation dates. Include it in future exposure
 review. No TRL market count or outcome preceded this decision.
 [Source feasibility](RESULTS-195.md)
+
+18 November 2026, sprint 196. Use the first three consecutive catalog years
+from the retained selector review to test archive delivery as metadata. Exact
+unsuffixed `EURUSD` annual links for 2020–2022 returned ZIP headers. Consider
+2020 for warmup and 2021–2022 for development pending source and scope review.
+No price response or TRL outcome informed that choice.
+[Archive inventory and access](RESULTS-196.md)

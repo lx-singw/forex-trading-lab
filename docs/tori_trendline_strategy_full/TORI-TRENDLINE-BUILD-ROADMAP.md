@@ -528,9 +528,10 @@ This is the single most useful early step for a swing strategy. Setups on H4 may
 **Acceptance:** a written feasibility result with counts. If the gate fails, stop and decide, do not loosen rules to create signals.
 
 Sprint 194 verifies the counter. Sprint 195 reviews historical sources and
-prioritizes the Exness public archive for qualification. Historical counts
-remain `UNAVAILABLE` pending the source-use, clock, calendar and coverage review.
-[Counter](../trendline/RESULTS-194.md) · [Source feasibility](../trendline/RESULTS-195.md)
+prioritizes the Exness public archive for qualification. Sprint 196 confirms
+ZIP headers for the exact 2020–2022 EURUSD annual archive links. Historical
+counts remain `UNAVAILABLE` pending admission.
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md)
 
 **Decision tree:**
 

@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 196 confirms the three public Exness EURUSD annual
+archive links for a candidate 2020 warmup and 2021–2022 development inventory.
+Confirm source-use and retention terms and dated archive clock and session
+evidence before authorizing any price access under the protocol.
+[Archive inventory](trendline/RESULTS-196.md)
+
 18 November 2026. Sprint 195 prioritizes the Exness public archive for
 Phase 10 Level B development evidence. Confirm local research and retention
 terms, the historical EURUSD variant, its clock and session calendar, and
