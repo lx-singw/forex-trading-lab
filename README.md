@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 194 adds the Phase 10 development-only opportunity counter for invented bars and quotes.
+[Sprint 194 results](docs/trendline/RESULTS-194.md)
+
 Sprint 193 verifies the disabled Tori native contract and completes Phase 9 software acceptance on invented faults.
 [Sprint 193 results](docs/trendline/RESULTS-193.md)
 

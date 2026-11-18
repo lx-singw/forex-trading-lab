@@ -1,5 +1,11 @@
 # Proposed milestones
 
+18 November 2026. Sprint 194 delivers the Phase 10 counter and its
+metadata status report. Continue with permitted historical EURUSD
+source evidence and development-scope admission, then run the 60-opportunity
+gate and review development examples before deciding DLY.
+[Signal counter and admission status](trendline/RESULTS-194.md)
+
 18 November 2026. Sprint 193 completes Phase 9 offline verification.
 Next build the Phase 10 development-only signal counter and its evidence
 checks. Actual signal counts require an admitted historical source.

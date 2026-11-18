@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 194 adds development-only Level B and Level Q
+opportunity counts using the frozen setup and opening-price checks.
+The canonical source plan has no admitted historical input, so the
+actual feasibility status is `UNAVAILABLE`.
+[Sprint 194 results](trendline/RESULTS-194.md)
+
 18 November 2026. Sprint 193 completes Phase 9 software acceptance
 with a compiled, disabled Tori native contract. Its invented faults
 exercise account rechecks, persisted intents, ambiguous acknowledgements,

@@ -517,15 +517,18 @@ fault tests for the compiled, disabled native contract.
 This is the single most useful early step for a swing strategy. Setups on H4 may be rare, and your own screen needs at least 50 closed validation trades.
 
 **Tasks**
-- [ ] Write `tools/signal_count.py`: runs the line engine and setup machines over the **development** partition only and outputs counts, no P&L, no stops hit, no returns.
-- [ ] Output per strategy and per month: valid lines found, breaks, setups reaching `READY`, setups entered, setups skipped by reason code, abstentions, and how many groups were consumed.
-- [ ] Output diagnostics: lines per bar, how many candidate lines were killed by strict penetration, average line age, **share of breaks that end in `NO_SAFETY_LINE`**, stop-distance distribution in ATR, spread to stop ratio, count of exactly-2-touch versus 3-or-more-touch breaks.
-- [ ] Declare the gate (D15): at least 60 signals per strategy over the development partition. Fewer means `INSUFFICIENT` for that strategy, and the options are: add instruments (declared in advance), lengthen the sample, or accept that the strategy cannot be tested at this scale.
+- [x] Implement `tools/signal_count.py` for development-only replay. Software verification uses labelled invented Level B and Level Q inputs.
+- [x] Count valid lines, breaks, `READY` setups, pre-account entry-eligible opportunities, skips by reason, abstentions and consumed groups by strategy, cost profile and month. Protocol C6 defines entry eligibility.
+- [x] Report lines per bar, strict penetration, average line age, the `NO_SAFETY_LINE` share, stop distance in ATR, spread-to-stop ratio and the trigger touch counts.
+- [x] Declare the D15 minimum of 60 entry-eligible opportunities per strategy across development. Apply the decision tree once the historical source is admitted.
 - [ ] **Decide the `DLY` variant (D16)** from the `NO_SAFETY_LINE` share, before any outcome is computed.
 - [ ] Look at 10 to 20 real engine-found examples in the viewer and compare to your own judgement. Anything you would change is a **proposal for a new version**, not an in-place edit.
 - [ ] Publish the feasibility status: what data is eligible, what is unknown, the smallest evidence needed to proceed.
 
 **Acceptance:** a written feasibility result with counts. If the gate fails, stop and decide, do not loosen rules to create signals.
+
+Sprint 194 verifies the software and reports the source admission dependency.
+[Counter and current feasibility status](../trendline/RESULTS-194.md)
 
 **Decision tree:**
 

@@ -20,7 +20,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 7 | Costs, execution, risk, exits, independent accounting | Software accepted on invented Level B and Level Q inputs. Actual source admission is open. | 180–186, [Level B accounting](RESULTS-184.md), [Level Q adapter](RESULTS-185.md), [phase acceptance](RESULTS-186.md) |
 | 8 | Causal replay viewer and reports | Software accepted on invented Level B and Level Q runs. Manual lines share the saved chart scale with the engine. | 187–191, [Retrospective and exports](RESULTS-190.md), [Visual acceptance](RESULTS-191.md) |
 | 9 | Complete verification matrix | Software accepted on invented research and native fault cases. MT5 deployment and operational evidence are Phase 12. | 192–193, [Matrix](VERIFICATION.md), [Native contract](RESULTS-193.md) |
-| 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |
+| 10 | Development-only counts and feasibility gate | In progress. The count-only path is verified on invented inputs. Actual feasibility is `UNAVAILABLE` pending historical source admission. | 194, [Counter and admission status](RESULTS-194.md) |
 | 11 | Chronological study, paired exits, all declared cells | Pending | Q/B labels; no invented market results |
 | 12 | Shadow and disabled native demo readiness | Pending/gated | Actual enablement separately bounded |
 | 13 | Optional tracks | Deferred | Separate declared trials, none silently enabled |
