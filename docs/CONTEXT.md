@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 199 records the Exness source questions and the
+prepared provider inquiry. The proposed 2021–2022 Phase 10 development
+window has no later 24-month validation block under current date rules.
+[Sprint 199 results](trendline/RESULTS-199.md)
+
 18 November 2026. Sprint 198 audits invented source timestamps against
 declared warmup and development windows. The audit measures H1 opening
 evidence, parent coverage and counts due at the development start.

@@ -551,6 +551,10 @@ Adding instruments increases sample size, but correlated pairs (for example EURU
 
 **Goal:** a pre-registered, chronological evaluation with every cell accounted for.
 
+Sprint 199 found that the 2021–2022 Phase 10 development candidate has no
+later 24-month validation block in historical dates through 18 November 2026
+under the frozen restrictions. [Validation date check](../trendline/RESULTS-199.md)
+
 **Registration (before returns)**
 - [ ] One source and run manifest freezing source hashes, permitted dates, **complete prior-trial history including every variant tried during development**, timezone and DST evidence, calendar and bar boundaries, coverage policy, data level and geometry basis, latency assumptions, cost, contract, margin and financing evidence, code and rule hashes, and exit endpoints.
 - [ ] The strategy list, cost profiles, partitions and experiment types below, fixed.

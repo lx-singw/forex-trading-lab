@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 199 verifies that a 2021–2022 development count
+can be considered separately from the Phase 11 date problem. Qualify the
+Exness archive before Phase 10 and review an earlier or later chronological
+pair before the historical study. [Source and chronology decision](trendline/RESULTS-199.md)
+
 18 November 2026. Sprint 198 verifies timestamp coverage and warmup checks
 on invented three-year input. Confirm archive-specific timestamp mapping,
 session exceptions and private retention terms before the historical coverage

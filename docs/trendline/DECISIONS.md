@@ -109,3 +109,9 @@ and those hours can inform review of the archive-specific mapping and
 exceptions when available. Public documents included a published price example
 for an already excluded variant and period. No TRL market count or outcome
 was observed. [Historical clock and sessions](RESULTS-197.md)
+
+18 November 2026, sprint 199. Retain the 2021–2022 dates as an unassigned
+Phase 10 development candidate. Date arithmetic shows a later 24-month
+validation block is unavailable in the historical dates currently eligible
+for review. The original validation length and date exclusions govern the
+study. [Source and chronology decision](RESULTS-199.md)
