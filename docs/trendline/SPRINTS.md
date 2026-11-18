@@ -17,7 +17,7 @@ studies, collection and demo work still require their source/run/date gates.
 | 4 | Geometry, enumeration, strict validity, ranking, lifecycle | Software accepted on invented candles, component fixtures and generated paths | 167–171, [phase acceptance](RESULTS-171.md) |
 | 5 | D1 context gate | Software accepted on invented publications | 172, [eight outcomes and baseline parity](RESULTS-172.md) |
 | 6 | All setup machines, disabled DLY, reason codes | Software accepted on invented inputs. E2 target selection and account simulation belong to Phase 7. | 173–179, [setup acceptance](RESULTS-179.md) |
-| 7 | Costs, execution, risk, exits, independent accounting | In progress. Level B has a retained accounting comparison. Invented Level Q execution awaits independent reconciliation and acceptance. | 180–185, [E2 targets](RESULTS-180.md), [exits](RESULTS-181.md), [risk admission](RESULTS-182.md), [USD ledger](RESULTS-183.md), [accounting comparison](RESULTS-184.md), [Level Q](RESULTS-185.md) |
+| 7 | Costs, execution, risk, exits, independent accounting | Software accepted on invented Level B and Level Q inputs. Actual source admission is open. | 180–186, [Level B accounting](RESULTS-184.md), [Level Q adapter](RESULTS-185.md), [phase acceptance](RESULTS-186.md) |
 | 8 | Causal replay viewer and reports | Pending | Line layers plus visual review |
 | 9 | Complete verification matrix | Pending | Earlier incremental tests remain necessary |
 | 10 | Development-only counts and feasibility gate | Pending | No outcome-dependent entry count |

@@ -1,5 +1,8 @@
 # Forex Demo Lab
 
+Sprint 186 completes Phase 7 software acceptance on invented Level B and
+Level Q inputs. [Sprint 186 results](docs/trendline/RESULTS-186.md)
+
 Sprint 185 adds an invented Level Q quote replay with synchronized midpoint
 geometry and bid/ask accounting. [Sprint 185 results](docs/trendline/RESULTS-185.md)
 

@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 186 independently reconciles Level Q quote
+selection and accounting and verifies that day references appear in
+receipt order. Phase 7 software acceptance is complete on invented
+inputs. Phase 8 starts with the causal replay viewer.
+[Sprint 186 results](trendline/RESULTS-186.md)
+
 18 November 2026. Sprint 185 derives trendline geometry from synchronized
 quote midpoints and models admission, protection, costs and liquidation
 from ordered bid and ask observations. The adapter admits invented tapes.

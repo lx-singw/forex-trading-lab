@@ -1,5 +1,12 @@
 # Proposed milestones
 
+18 November 2026. Sprint 186 completes Phase 7 software acceptance on
+invented Level B and Level Q inputs. Next build the Phase 8 read-only
+causal replay viewer. Start with a receipt-time cursor, line and pivot
+layers, and visible account events and skip reasons. Verify that future
+publications and marks stay outside earlier views.
+[Phase 7 acceptance](trendline/RESULTS-186.md)
+
 18 November 2026. Sprint 185 delivers the invented Level Q quote adapter.
 Next reconcile its quote selection, account events and held-state
 outcomes against an independent calculation, extend the restart and

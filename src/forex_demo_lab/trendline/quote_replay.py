@@ -133,6 +133,10 @@ class _Execution:
         occupied = self.position is not None
         if occupied:
             self._manage(quote, prices)
+        else:
+            # Publish idle-day references with the quote receipt that
+            # advances the account clock, even when no setup is ready.
+            self.book._roll(quote.source, quote.time)
         if attempt is None:
             return
         event, targets = attempt
@@ -195,19 +199,8 @@ class _Execution:
         return status, liability
 
 
-def evaluate(tape, *, as_of, tick, profile="TRL_BRK3_E1", cost="base", enable_dly=False):
-    if not isinstance(tape, quotes.Tape):
-        raise ValueError("invented quote tape required")
-    fills.decimal(tick, positive=True)
-    bound = bindings()
-    prefix = tuple(tape.prefix(as_of))
-    publications = tape.publications(prefix, as_of)
-    engine = breaks.BreakReplay(tape.geometry_source, tick, profile, enable_dly=enable_dly)
-    frames = ("D1", "H4") if profile in (context.PROFILE, breaks.FXR_PROFILE) else ("H4",)
-    for bar in publications:
-        if bar.timeframe in frames:
-            engine.observe(bar)
-    report = engine.report(as_of=as_of)
+def _account_replay(tape, prefix, report, as_of, cost):
+    """Apply completed setup decisions to the visible quote observations."""
     runner = _Execution(tape, report, as_of, cost)
     quality, executable, candidate_quotes = Counter(), [], []
     previous = None
@@ -225,16 +218,33 @@ def evaluate(tape, *, as_of, tick, profile="TRL_BRK3_E1", cost="base", enable_dl
     for quote in executable:
         runner.on_quote(quote, at_quote.get(quote.sequence))
     status, liability = runner.finish()
+    return {"quote_quality": dict(quality), "decisions": decisions, "positions": runner.positions,
+            "status": status, "account": runner.book._account(), "events": runner.book.events,
+            "trades": runner.book.trades, "open_liability": liability}
+
+
+def evaluate(tape, *, as_of, tick, profile="TRL_BRK3_E1", cost="base", enable_dly=False):
+    if not isinstance(tape, quotes.Tape):
+        raise ValueError("invented quote tape required")
+    fills.decimal(tick, positive=True)
+    bound = bindings()
+    prefix = tuple(tape.prefix(as_of))
+    publications = tape.publications(prefix, as_of)
+    engine = breaks.BreakReplay(tape.geometry_source, tick, profile, enable_dly=enable_dly)
+    frames = ("D1", "H4") if profile in (context.PROFILE, breaks.FXR_PROFILE) else ("H4",)
+    for bar in publications:
+        if bar.timeframe in frames:
+            engine.observe(bar)
+    report = engine.report(as_of=as_of)
+    account = _account_replay(tape, prefix, report, as_of, cost)
     if bindings() != bound:
         raise ValueError("quote replay source bindings changed")
     return {"schema": VERSION, "kind": "invented_q_usd_ledger", "data_level": "Q", "geometry_basis": "mid_sync",
             "tape_sha256": tape.sha256, "source_bindings": bound, "as_of": as_of, "tick_size": tick,
             "profile": profile, "cost_profile": cost, "enable_dly": enable_dly,
             "liquidation_at": tape.liquidation, "partition_end": tape.calendar.end,
-            "quote_quality": dict(quality), "publications": [bar.record() for bar in publications],
-            "setup_decisions": report["decisions"], "decisions": decisions, "positions": runner.positions,
-            "status": status, "account": runner.book._account(), "events": runner.book.events,
-            "trades": runner.book.trades, "open_liability": liability, "actual_source_admitted": False,
+            "publications": [bar.record() for bar in publications], "setup_decisions": report["decisions"],
+            **account, "actual_source_admitted": False,
             "market_cells_run": 0, "orders_available": False}
 
 
