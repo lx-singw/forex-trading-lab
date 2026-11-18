@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 179 completes Phase 6 software acceptance.
+Opposing candle breaks, integrated daily-context decisions and restart
+boundaries pass. Repeated unpoked contacts on a consumed group report
+`ALREADY_CONSUMED`. Phase 7 owns the E2 target and account simulation.
+[Sprint 179 results](trendline/RESULTS-179.md)
+
 18 November 2026. Sprint 178 adds the disabled DLY state machine. With
 explicit opt-in to invented replay, the original break consumes its group
 and can wait for safety until the tenth scheduled H4 close. Coverage,

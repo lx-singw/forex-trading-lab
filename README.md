@@ -1,5 +1,9 @@
 # Forex Demo Lab
 
+Sprint 179 completes Phase 6 setup acceptance on invented inputs. Phase 7
+starts with the level finder and qualifying E2 target.
+[Sprint 179 results](docs/trendline/RESULTS-179.md)
+
 Sprint 178 adds the disabled DLY state machine for explicitly opted-in
 invented replays. [Sprint 178 results](docs/trendline/RESULTS-178.md)
 

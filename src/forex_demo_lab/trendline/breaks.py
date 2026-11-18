@@ -197,6 +197,8 @@ class BreakReplay:
         for row in self._decisions[-(BOUNCE_SPACING - 1):]:
             previous = json.loads(row)
             for contact in previous["contacts"]:
+                if contact["reason"] == "ALREADY_CONSUMED":
+                    continue
                 root, _ = journal.group_state(contact["group_id"])
                 by_group[root] = previous["bar_index"]
                 by_geometry[contact["geometry_id"]] = previous["bar_index"]
@@ -205,17 +207,19 @@ class BreakReplay:
         for line in selected:
             line_id = engine.instance_id(line)
             state = states.get(line_id)
-            if state is not None and line_id not in eligible:
+            root, consumed = (None, False) if state is None else journal.group_state(state.group_id)
+            if state is not None and line_id not in eligible and not consumed:
                 continue
             extreme = bar.low if line.ray.kind == "support" else bar.high
             distance = line.ray.correct_side_distance(index, extreme)
             if not 0 <= distance <= tolerance or line.ray.correct_side_distance(index, bar.close) <= 0:
                 continue
             last_approach = by_geometry.get(line.geometry_id, -BOUNCE_SPACING)
-            if state is None:
+            if consumed:
+                reason = "ALREADY_CONSUMED"
+            elif state is None:
                 reason = "FORMATION_BAR_CONTACT"
             else:
-                root, _ = journal.group_state(state.group_id)
                 last_approach = max(last_approach, by_group.get(root, -BOUNCE_SPACING))
                 if index - line.touch_indices[-1] < BOUNCE_SPACING:
                     reason = "TOUCH_TOO_CLOSE"

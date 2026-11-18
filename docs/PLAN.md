@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 179 completes Phase 6 setup acceptance. Start
+Phase 7 with causal support and resistance levels and the fixed E2 target
+for eligible FXR openings. Then integrate exits, accounting, reservation
+and risk gates. [Phase 6 acceptance](trendline/RESULTS-179.md)
+
 18 November 2026. Sprint 178 delivers disabled DLY and its opt-in
 invented replay. Next audit Phase 6 setup fixtures and replay each
 remaining state boundary before starting the account and exit work.
