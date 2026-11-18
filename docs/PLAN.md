@@ -1,5 +1,10 @@
 # Proposed milestones
 
+18 November 2026. Sprint 200 checks delivery metadata and dates for an
+earlier chronological pair. Confirm the exact years’ source terms, clock,
+session rules and prior exposure before assigning a study window.
+[Earlier archive inventory](trendline/RESULTS-200.md)
+
 18 November 2026. Sprint 199 verifies that a 2021–2022 development count
 can be considered separately from the Phase 11 date problem. Qualify the
 Exness archive before Phase 10 and review an earlier or later chronological

@@ -115,3 +115,10 @@ Phase 10 development candidate. Date arithmetic shows a later 24-month
 validation block is unavailable in the historical dates currently eligible
 for review. The original validation length and date exclusions govern the
 study. [Source and chronology decision](RESULTS-199.md)
+
+18 November 2026, sprint 200. Consider the earliest five consecutive
+advertised EURUSD years as a separate chronological candidate before any
+market counts. The public selector and header responses establish links
+for 2015–2019. Candidate roles are 2015 warmup, 2016–2017 development and
+2018–2019 validation. Price and exposure qualification are open.
+[Earlier archive inventory](RESULTS-200.md)

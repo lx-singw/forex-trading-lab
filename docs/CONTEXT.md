@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+18 November 2026. Sprint 200 verifies five exact annual Exness EURUSD
+archive links. The dates fit a candidate 2015 warmup, 2016–2017
+development and 2018–2019 validation. Source and exposure qualification
+are open. [Sprint 200 results](trendline/RESULTS-200.md)
+
 18 November 2026. Sprint 199 records the Exness source questions and the
 prepared provider inquiry. The proposed 2021–2022 Phase 10 development
 window has no later 24-month validation block under current date rules.
