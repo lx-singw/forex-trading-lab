@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 206 identifies a published bid/ask-derived H1
+alternative. Verify its upstream use terms, opening field construction and
+session coverage before considering a development-only sample. Exness
+remains the primary tick candidate. [Candle source review](trendline/RESULTS-206.md)
+
 19 November 2026. Sprint 205 verifies a conservative opening evidence
 prototype. Qualify an archive-specific price, spread and event ordering
 declaration alongside the session calendar and broader coverage before

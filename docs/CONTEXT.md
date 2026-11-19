@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 206 screens existing and public EURUSD candle
+sources for the Level B opening model. The saved MT5 export lacks verified
+historical opening spreads and clock mapping. EV Trading Labs documents
+downloadable bid/ask-derived H1 files. Source-use lineage and open-price
+construction need qualification. [Sprint 206 results](trendline/RESULTS-206.md)
+
 19 November 2026. Sprint 205 tests H1 opening evidence on invented tapes.
 An exact-boundary bid and spread can support an explicit Level B assumption
 when receipt and decision order are accounted for. Historical Phase 10

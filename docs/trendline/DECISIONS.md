@@ -144,3 +144,9 @@ development exposure. The seasonal weekly timing corroborates dated public
 documentation. Review the opening-price and availability assumptions using
 the combined sample evidence before an actual count.
 [Summer archive timing diagnostic](RESULTS-204.md)
+
+19 November 2026, sprint 206. Keep EV Trading Labs as a candidate for the
+native Level B bar-open approximation pending source-use and same-observation
+opening evidence. Retain Exness as the lead tick source. The Candl Replay
+format review displayed example prices dated November 2025, an excluded year.
+[Candle source review](RESULTS-206.md)
