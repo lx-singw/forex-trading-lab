@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 207 measures how the published H4 decision can
+miss the first scheduled H1 opening. Apply this check to a documented
+source calendar and availability model before any historical counts. EV’s
+paired opening construction stays unverified. [Timing audit](trendline/RESULTS-207.md)
+
 19 November 2026. Sprint 206 identifies a published bid/ask-derived H1
 alternative. Verify its upstream use terms, opening field construction and
 session coverage before considering a development-only sample. Exness

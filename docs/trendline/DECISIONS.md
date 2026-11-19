@@ -150,3 +150,9 @@ native Level B bar-open approximation pending source-use and same-observation
 opening evidence. Retain Exness as the lead tick source. The Candl Replay
 format review displayed example prices dated November 2025, an excluded year.
 [Candle source review](RESULTS-206.md)
+
+19 November 2026, sprint 207. Use the calendar and earliest possible H4
+publication to screen whether the first H1 opening can be reached. Preserve
+same-time decision order as an explicit qualification. The public EV methodology
+supports M1 lineage and a catalogue license, with paired opens and historical
+H1 coverage still open. [Timing audit](RESULTS-207.md)
