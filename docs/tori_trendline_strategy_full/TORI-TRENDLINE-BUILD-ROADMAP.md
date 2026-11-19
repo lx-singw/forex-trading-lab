@@ -534,8 +534,9 @@ counts remain `UNAVAILABLE` pending admission. Sprint 197 documents the 2022
 platform clock and ordinary forex hours for the source review.
 Sprint 198 checks opening and warmup timestamp coverage on invented input.
 Sprint 203 checks the format and timing of one January 2022 public archive
-sample. Its hourly opening evidence and broader source admission remain open.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Independent archive diagnostic](../trendline/RESULTS-203.md)
+sample. Sprint 204 corroborates the summer schedule with a July sample.
+The opening model and broader source admission remain open.
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md)
 
 **Decision tree:**
 

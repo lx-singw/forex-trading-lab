@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 204 audits July 2022 Exness EURUSD. The
+weekend labels corroborate the one-hour summer shift. Across January
+and July, 3 of 1,010 observed hours have a first quote exactly on the
+hour. Archive admission and opening-model review remain open.
+[Sprint 204 results](trendline/RESULTS-204.md)
+
 19 November 2026. Sprint 203 validates 748,560 rows in an Exness EURUSD
 January 2022 diagnostic using public guidance and an in-memory download.
 All 506 observed hours lack a first quote exactly on the hour. The opening

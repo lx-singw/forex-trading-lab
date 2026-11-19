@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 204 corroborates seasonal archive timing.
+Qualify broader development and warmup coverage and review the
+opening-price, spread and availability model before actual Level B counts.
+[Summer archive timing diagnostic](trendline/RESULTS-204.md)
+
 19 November 2026. Sprint 203 verifies real EURUSD schema and timing in a
 bounded January 2022 diagnostic. Use documented public evidence and
 development-only diagnostics to investigate the remaining source and clock

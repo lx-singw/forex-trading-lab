@@ -138,3 +138,9 @@ trial history require review. [Exposure and trial history](RESULTS-202.md)
 instructions for a private, temporary January 2022 diagnostic. Record source
 format and timing evidence before admission. Add the exact January 2022
 Exness sample to known development exposure. [Independent archive diagnostic](RESULTS-203.md)
+
+19 November 2026, sprint 204. Record the July Exness EURUSD sample as known
+development exposure. The seasonal weekly timing corroborates dated public
+documentation. Review the opening-price and availability assumptions using
+the combined sample evidence before an actual count.
+[Summer archive timing diagnostic](RESULTS-204.md)
