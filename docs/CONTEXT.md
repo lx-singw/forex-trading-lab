@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 217 binds an explicit UTC calendar to the
+historical Level B reader and checks H1, H4 and D1 coverage at the
+development boundaries. The Phase 10 counter and source qualification
+remain open. [Sprint 217 results](trendline/RESULTS-217.md)
+
 19 November 2026. Sprint 216 adds a historical Level B input reader that
 checks a reviewed manifest and the exact development plan before opening
 prices. The approved manifest list is empty. The historical calendar and

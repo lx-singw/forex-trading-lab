@@ -205,3 +205,9 @@ at the historical Level B input boundary. Use the manifest to bind the exact
 development plan and the plan to bind the input bytes. Retain distinct
 warmup and development roles in the typed H1 rows.
 [Reviewed historical input](RESULTS-216.md)
+
+19 November 2026, sprint 217. Require the exact UTC calendar bytes in the
+reviewed bundle. A window is complete only after its finalization delay
+and the receipt of all scheduled H1 children. Report gaps and pending
+windows and enforce H1, H4 and D1 warmup coverage at development start.
+[Historical session coverage](RESULTS-217.md)

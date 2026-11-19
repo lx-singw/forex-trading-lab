@@ -1,5 +1,8 @@
 # Sprint 216 · Reviewed historical input
 
+Sprint 217 adds the calendar file and documents the current manifest format.
+[Historical session coverage](RESULTS-217.md)
+
 19 November 2026. Phase 10 now has a reader for independently reviewed
 EURUSD Level B H1 bid bars. The repository starts with zero approved
 manifest hashes. The acceptance path was verified with fabricated prices

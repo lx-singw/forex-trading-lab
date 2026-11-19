@@ -30,7 +30,7 @@ def main():
         result = signal_count.admission_status(data.read_json(args.plan)[0])
     elif args.command == "historical-input":
         try:
-            _, _, result = historical_input.load_level_b(args.manifest)
+            result = historical_input.load_level_b(args.manifest).receipt
         except (OSError, ValueError) as error:
             parser.error(str(error))
     else:

@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 217 verifies the historical Level B calendar and
+receipt coverage on fabricated data. Connect the verified calendar and
+rows to the development counter, carrying warmup state into the replay
+while counting only development opportunities.
+[Historical session coverage](trendline/RESULTS-217.md)
+
 19 November 2026. Sprint 216 verifies the historical Level B input reader
 on invented H1 bars. Connect the reviewed input to a historical session
 calendar and the development counter. Source qualification remains open.
