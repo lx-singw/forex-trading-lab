@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 214 bounds the age of the last archived quote at
+the nine sampled Sunday openings. Each is more than 48 hours old. The
+first Sunday quote is later than the scheduled open in every sample.
+[Sprint 214 results](trendline/RESULTS-214.md)
+
 19 November 2026. Sprint 213 maps July's three exact-hour Exness quotes to
 H4 entry windows. Two coincide with the first scheduled H1 open. A modeled
 two-second decision delay rules out both. [Sprint 213 results](trendline/RESULTS-213.md)

@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 214 finds that a carried Friday quote cannot
+establish a fresh Sunday entry price in the sampled weekends. Historical
+Level B counts still depend on independent opening-side evidence and a
+qualified availability model. [Weekend quote bounds](trendline/RESULTS-214.md)
+
 19 November 2026. Sprint 213 identifies two exact-source candidate openings
 in July. Both depend on same-time event order in the zero-delay model and
 miss with a two-second publication delay. Historical qualification still

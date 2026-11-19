@@ -189,3 +189,8 @@ boundary check. All four paired Sunday quotes follow the modeled open.
 quotes to the first scheduled H1 opening of their H4 trigger. The two
 matching July edges remain conditional at zero delay and fail the two-second model.
 [H4 opening alignment](RESULTS-213.md)
+
+19 November 2026, sprint 214. The last archived quote is at least 48 hours
+and 6 minutes old at each sampled reopening. A closing mark carried for
+held-position accounting supplies no fresh Sunday entry price.
+[Weekend quote bounds](RESULTS-214.md)
