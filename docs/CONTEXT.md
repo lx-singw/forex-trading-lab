@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 215 updates Phase 10 preflight to surface the
+requirements for a development count. The source, opening evidence and
+historical counting path remain open. Declared holdout dates are protected
+from development and warmup overlap. [Sprint 215 results](trendline/RESULTS-215.md)
+
 19 November 2026. Sprint 214 bounds the age of the last archived quote at
 the nine sampled Sunday openings. Each is more than 48 hours old. The
 first Sunday quote is later than the scheduled open in every sample.

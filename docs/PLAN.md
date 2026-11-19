@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 215 identifies the Phase 10 gaps in source
+qualification, development coverage and the historical counting path.
+Phase 11 retains validation, broker accounting and study acceptance checks.
+Review a development evidence manifest and enforce it at the counter input
+boundary. [Development preflight](trendline/RESULTS-215.md)
+
 19 November 2026. Sprint 214 finds that a carried Friday quote cannot
 establish a fresh Sunday entry price in the sampled weekends. Historical
 Level B counts still depend on independent opening-side evidence and a

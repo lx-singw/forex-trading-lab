@@ -5,10 +5,12 @@ from datetime import datetime, timedelta, timezone
 from fractions import Fraction
 import hashlib
 
+from ..elliott_study_145 import overlap, span
 from . import breaks, context, data, entries, fills, geometry, quote_replay, quotes, selection, study
 
 
 VERSION = "TRL_SIGNAL_COUNT_194_V1"
+STATUS_VERSION = "TRL_PHASE10_STATUS_215_V1"
 MINIMUM_OPPORTUNITIES = 60
 PROFILES = tuple(profile for profile in breaks.PROFILES if profile in data.CANDIDATES)
 COSTS = ("base", "adverse")
@@ -312,9 +314,49 @@ def count_q(tape, *, tick, as_of=None, profiles=PROFILES, costs=COSTS):
                   liquidation=tape.liquidation, tape=tape)
 
 
+_LATER_STUDY_CODES = {
+    "prior_trial_history_incomplete", "undated_price_exposure_count_missing", "tried_alternatives_count_missing",
+    "historical_costs_unknown", "hypothetical_costs_cannot_pass_qualified_track",
+    "initial_28_cell_track_budget_exhausted", "paired_exit_analysis_not_declared",
+    "initial_paired_analysis_budget_exhausted", "partitions_not_chronological_disjoint",
+    "sensitivity_cannot_satisfy_broker_or_demo_gate", "level_B_cannot_satisfy_qualified_broker_or_demo_gate",
+    "level_B_not_qualified_execution_data", "unchanged_control_input_compatibility_not_qualified",
+    "qualified_market_runner_unavailable", "full_strategy_acceptance_incomplete", "uncertainty_sha256_unassigned",
+}
+_LATER_STUDY_EVIDENCE_CODES = {
+    f"evidence_{check}_{gate}"
+    for check in ("missing", "frames_incomplete", "scope_gap", "not_independently_qualified")
+    for gate in ("prior_trials", "commission_swap", "contract_margin_conversion")
+}
+
+
+def _later_study_issue(issue, level):
+    code = issue["code"]
+    return (issue["scope"] == "validation" or code in _LATER_STUDY_CODES
+            or code in _LATER_STUDY_EVIDENCE_CODES or (level == "B" and code == "liquidation_timestamp_unassigned"))
+
+
+def _reserved_validation_overlap(plan):
+    validation = span(plan["partitions"]["validation"]["interval"], nullable=True)
+    if validation is None:
+        return False
+    development = plan["partitions"]["development"]
+    return any(bounds is not None and overlap(bounds, validation) for bounds in (
+        span(development["interval"], nullable=True), span(development["warmup"]["interval"], nullable=True),
+    ))
+
+
 def admission_status(plan):
     preflight = study.assess(plan)
-    return {"schema": VERSION, "kind": "development_feasibility_admission_status", "partition": "development",
+    count_issues, study_issues = [], []
+    for issue in preflight["issues"]:
+        target = study_issues if _later_study_issue(issue, plan["data_level"]) else count_issues
+        target.append(issue)
+    if _reserved_validation_overlap(plan):
+        count_issues.append({"code": "development_scope_overlaps_reserved_validation", "scope": "development",
+                             "state": "BLOCKED"})
+    count_issues.append({"code": "historical_signal_counter_unavailable", "scope": "development", "state": "UNAVAILABLE"})
+    return {"schema": STATUS_VERSION, "kind": "development_feasibility_admission_status", "partition": "development",
             "plan_sha256": preflight["plan_sha256"], "actual_source_admitted": False, "market_data_read": False,
             "outcomes_computed": False, "orders_available": False, "feasibility": _unavailable(),
-            "development_preflight_issues": [issue for issue in preflight["issues"] if issue["scope"] in ("all", "development")]}
+            "development_preflight_issues": count_issues, "later_study_preflight_issues": study_issues}
