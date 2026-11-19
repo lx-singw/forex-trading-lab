@@ -29,7 +29,7 @@ class ExnessOpeningDiagnosticTests(unittest.TestCase):
         self.assertIsNone(result["sunday_openings"]["spread_pips_p95"])
 
     def test_only_the_declared_archive_bytes_can_be_opened(self):
-        with self.assertRaisesRegex(ValueError, "audited January bytes"):
+        with self.assertRaisesRegex(ValueError, "audited bytes"):
             next(archive_rows(b"different file"))
 
     def test_schedule_contains_only_four_complete_friday_to_sunday_pairs(self):

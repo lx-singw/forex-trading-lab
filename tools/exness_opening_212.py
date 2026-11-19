@@ -23,20 +23,20 @@ LENGTH = 5_412_286
 SHA256 = "d98fc8a0d7b7fb144b8b4be78810e18498e7d43cf1da889c7eb09db5fed07873"
 
 
-def download():
+def download(*, path=PATH, length=LENGTH):
     connection = http.client.HTTPSConnection(HOST, timeout=10)
     started = time.monotonic()
     try:
-        connection.request("GET", PATH)
+        connection.request("GET", path)
         response = connection.getresponse()
         if (response.status != 200 or response.getheader("Content-Type") != "application/zip"
-                or response.getheader("Content-Length") != str(LENGTH) or response.getheader("Location") is not None):
+                or response.getheader("Content-Length") != str(length) or response.getheader("Location") is not None):
             raise ValueError("unexpected archive response")
         body = bytearray()
-        while len(body) < LENGTH:
+        while len(body) < length:
             if time.monotonic() - started > 45:
                 raise TimeoutError("archive response deadline")
-            block = response.read(min(65_536, LENGTH - len(body)))
+            block = response.read(min(65_536, length - len(body)))
             if not block:
                 break
             body.extend(block)
@@ -47,12 +47,12 @@ def download():
         connection.close()
 
 
-def archive_rows(body):
-    if len(body) != LENGTH or hashlib.sha256(body).hexdigest() != SHA256:
-        raise ValueError("archive differs from the audited January bytes")
+def archive_rows(body, *, length=LENGTH, sha256=SHA256, member="Exness_EURUSD_2022_01.csv"):
+    if len(body) != length or hashlib.sha256(body).hexdigest() != sha256:
+        raise ValueError("archive differs from the audited bytes")
     with zipfile.ZipFile(io.BytesIO(body)) as archive:
         members, _ = inspect_archive(archive, max_members=1)
-        if [entry.filename for entry in members] != ["Exness_EURUSD_2022_01.csv"]:
+        if [entry.filename for entry in members] != [member]:
             raise ValueError("unexpected archive member")
         with archive.open(members[0]) as binary:
             reader = csv.reader(io.TextIOWrapper(binary, encoding="utf-8", newline=""), strict=True)
@@ -65,7 +65,11 @@ def archive_rows(body):
 
 
 def january_schedule():
-    start, end = (int(stamp.timestamp()) * 1000 for stamp in month_bounds("2022-01"))
+    return month_schedule("2022-01")
+
+
+def month_schedule(month):
+    start, end = (int(stamp.timestamp()) * 1000 for stamp in month_bounds(month))
     weeks = ordinary_weeks()
     h1 = [(a, b) for a, b in clipped_buckets(weeks, HOUR) if start <= a < b <= end]
     weekends = []
@@ -91,7 +95,7 @@ def summarize(openings):
             "spread_pips_p95": fills.text(spreads[(95 * len(spreads) - 1) // 100]) if spreads else None}
 
 
-def diagnose(rows, windows, weekends):
+def first_pairs(rows, windows):
     starts = tuple(start for start, _ in windows)
     first = {}
     total = outside = 0
@@ -106,6 +110,10 @@ def diagnose(rows, windows, weekends):
             outside += 1
         elif starts[index] not in first:
             first[starts[index]] = (stamp - starts[index], (Fraction(ask) - Fraction(bid)) / fills.PIP)
+    return first, total, outside
+
+
+def summarize_month(first, total, outside, windows, weekends):
     sunday = [first[opening] for opening, _ in weekends if opening in first]
     return {
         "rows": total, "outside_modeled_h1": outside, "scheduled_h1": len(windows),
@@ -116,6 +124,11 @@ def diagnose(rows, windows, weekends):
         "observed_receipt_times_available": False, "market_source_admitted": False,
         "actual_strategy_counts": None,
     }
+
+
+def diagnose(rows, windows, weekends):
+    first, total, outside = first_pairs(rows, windows)
+    return summarize_month(first, total, outside, windows, weekends)
 
 
 def main():

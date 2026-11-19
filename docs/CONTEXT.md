@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 213 maps July's three exact-hour Exness quotes to
+H4 entry windows. Two coincide with the first scheduled H1 open. A modeled
+two-second decision delay rules out both. [Sprint 213 results](trendline/RESULTS-213.md)
+
 19 November 2026. Sprint 212 checks the pinned January 2022 Exness ZIP.
 All 506 scheduled H1 windows have a first bid/ask pair, and no first pair
 has an exact opening timestamp. The four Sunday spreads have a 3.7-pip

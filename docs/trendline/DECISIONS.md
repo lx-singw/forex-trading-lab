@@ -184,3 +184,8 @@ publication. [Clock publication model](RESULTS-211.md)
 observed source-time price and spread proxy. Its timestamp governs the
 boundary check. All four paired Sunday quotes follow the modeled open.
 [Opening approximation diagnostic](RESULTS-212.md)
+
+19 November 2026, sprint 213. The exact-quote diagnostic matches source
+quotes to the first scheduled H1 opening of their H4 trigger. The two
+matching July edges remain conditional at zero delay and fail the two-second model.
+[H4 opening alignment](RESULTS-213.md)

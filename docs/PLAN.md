@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 213 identifies two exact-source candidate openings
+in July. Both depend on same-time event order in the zero-delay model and
+miss with a two-second publication delay. Historical qualification still
+needs an opening model and source admission. [H4 opening alignment](trendline/RESULTS-213.md)
+
 19 November 2026. Sprint 212 verifies archive quote presence in all four
 shortened Friday H4 candidates and measures the paired Sunday spreads.
 Historical counts still need source admission and justified boundary price
