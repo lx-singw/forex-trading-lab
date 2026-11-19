@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 222 narrows the strict 2022 Exness scenario to
+at most 42 first-opening candidates before strategy and price filters.
+The archived source clock leaves historical receipt evidence open.
+[Sprint 222 results](trendline/RESULTS-222.md)
+
 19 November 2026. Sprint 221 carries historical opening evidence
 separately from completed bid bars. The counter retains geometry and
 skips the entry when the first H1 opening lacks eligible evidence.

@@ -574,6 +574,9 @@ calendar and reproduces the 2022 timing scenario.
 Sprint 221 keeps completed bid geometry available when the first H1
 opening lacks eligible evidence.
 [Separate opening evidence](../trendline/RESULTS-221.md)
+Sprint 222 narrows the strict 2022 Exness opening ceiling to 42 before
+strategy and price filters on the ordinary-hours scenario.
+[Strict-opening ceiling](../trendline/RESULTS-222.md)
 [Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md) · [Opening approximation](../trendline/RESULTS-212.md) · [H4 opening alignment](../trendline/RESULTS-213.md) · [Weekend quote bounds](../trendline/RESULTS-214.md) · [Development preflight](../trendline/RESULTS-215.md)
 
 **Decision tree:**

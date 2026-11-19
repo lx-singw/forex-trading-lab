@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 222 removes nine late sampled openings from
+the 2022 strict Exness scenario. Evaluate a source-specific bar-open
+approximation with opening bid, paired spread and documented timing.
+Carry the independent calendar and source-use review forward.
+[Strict-opening ceiling](trendline/RESULTS-222.md)
+
 19 November 2026. Sprint 221 verifies separate historical H1 geometry
 and opening eligibility. The lead source still needs a reviewed
 development calendar and independently supported opening records before

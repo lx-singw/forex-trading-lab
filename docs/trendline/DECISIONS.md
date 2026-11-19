@@ -234,3 +234,9 @@ evidence under the same reviewed input digest. Keep the scheduled first
 H1 slot in the entry rule. Retain completed geometry when the opening
 record is absent or arrives too late.
 [Separate opening evidence](RESULTS-221.md)
+
+19 November 2026, sprint 222. Exclude the nine known late source quotes
+from the strict 2022 opening ceiling. Treat the 42 remaining slots as a
+conditional maximum before strategy filters. Use historical receipt
+evidence or a separately reviewed opening model for actual eligibility.
+[Strict-opening ceiling](RESULTS-222.md)
