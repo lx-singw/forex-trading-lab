@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 210 reviews retained evidence and tests a weekend
+publication audit on invented receipt traces. The retained records do not
+place a completed Friday H4 observation and the Sunday H1 opening on the
+same clock. Historical Phase 10 counts remain unavailable.
+[Sprint 210 results](trendline/RESULTS-210.md)
+
 19 November 2026. Sprint 209 checks quote-dependent H4 publication on the
 2022 Exness timing scenario. Waiting until the first scheduled H1 open
 for a quote leaves zero timely decisions with two seconds of processing.

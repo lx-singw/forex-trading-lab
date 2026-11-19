@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 210 specifies how to check a Friday H4 completion
+against the Sunday H1 opening. Retained quote and clock probes lack this
+paired record. Source admission still requires independent historical
+availability evidence. [Weekend receipt review](trendline/RESULTS-210.md)
+
 19 November 2026. Sprint 209 finds that a quote-dependent publication model
 makes the 51 remaining weekend decisions late in the 2022 timing scenario.
 Resolve shortened Friday H4 availability with ordered feed and bar receipts

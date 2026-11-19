@@ -168,3 +168,9 @@ and clock-based closure as separate timing scenarios. A first quote at the
 scheduled H1 opening cannot establish decision-before-open order when both
 events depend on that quote. Require ordered availability evidence before
 crediting weekend decisions. [Weekend publication timing](RESULTS-209.md)
+
+19 November 2026, sprint 210. Use the first completed H4 observation and
+the last successful observation of unavailability to preserve the poll
+gap. A same-time ordering claim requires a recorded opening marker on the
+same clock. Retained source and clock records leave the historical pair
+unobserved. [Weekend receipt review](RESULTS-210.md)
