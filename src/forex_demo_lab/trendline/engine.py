@@ -34,7 +34,7 @@ def bindings():
 
 class Engine:
     def __init__(self,source,profile="TRL_BRK3_E1",timeframe="H4"):
-        self.source = data.Declaration.from_record(source.record())
+        self.source = data.research_declaration(source)
         lines.validate_profile(profile,timeframe,"full")
         self.profile,self.timeframe = profile,timeframe
         self._scope = (profile,timeframe)

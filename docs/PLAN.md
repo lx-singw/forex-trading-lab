@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 218 implements the historical Level B counter.
+Verify the replay at full development scale on fabricated data and
+qualify a development source with reviewed opening price, spread and
+availability evidence before an actual Phase 10 count.
+[Historical development counter](trendline/RESULTS-218.md)
+
 19 November 2026. Sprint 217 verifies the historical Level B calendar and
 receipt coverage on fabricated data. Connect the verified calendar and
 rows to the development counter, carrying warmup state into the replay

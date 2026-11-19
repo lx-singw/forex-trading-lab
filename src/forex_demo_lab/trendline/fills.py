@@ -182,7 +182,7 @@ class Position:
 class PriceModel:
     """Pure calculations; repeated calls cannot place orders or mutate an account."""
     def __init__(self, source, cost_profile="base"):
-        self.source = data.Declaration.from_record(source.record())
+        self.source = data.research_declaration(source)
         declaration = self.source.record()
         self._geometry_identity = data.digest({k:v for k,v in declaration.items() if k != "input_sha256"})
         self._source_sha = self.source.sha256

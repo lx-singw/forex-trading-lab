@@ -12,17 +12,16 @@ def codes(report, field="development_preflight_issues"):
 
 
 class Phase10StatusTests(unittest.TestCase):
-    def test_status_keeps_every_study_issue_and_identifies_the_count_runner(self):
+    def test_status_keeps_every_study_issue_and_requires_source_review(self):
         plan = study.draft()
         original = study.assess(plan)
         with patch.object(data, "read_json", side_effect=AssertionError("metadata must not open data")):
             status = signal_count.admission_status(plan)
         self.assertEqual(signal_count.STATUS_VERSION, status["schema"])
-        inherited = [row for row in status["development_preflight_issues"]
-                     if row["code"] != "historical_signal_counter_unavailable"]
-        self.assertCountEqual(original["issues"], inherited + status["later_study_preflight_issues"])
+        self.assertCountEqual(original["issues"], status["development_preflight_issues"]
+                              + status["later_study_preflight_issues"])
         for required in ("source_unassigned", "evidence_missing_availability_model",
-                         "evidence_missing_entry_spread_semantics", "historical_signal_counter_unavailable"):
+                         "evidence_missing_entry_spread_semantics", "independent_qualification_required"):
             self.assertIn(required, codes(status))
         for later in ("historical_costs_unknown", "evidence_missing_contract_margin_conversion",
                       "uncertainty_sha256_unassigned", "undated_price_exposure_count_missing"):
@@ -68,6 +67,7 @@ class Phase10StatusTests(unittest.TestCase):
         plan["endpoints"]["development"]["liquidation_at"] = None
         status = signal_count.admission_status(plan)
         self.assertIn("level_Q_requires_observed_receipt_order", codes(status))
+        self.assertIn("historical_signal_counter_unavailable", codes(status))
         self.assertIn("liquidation_timestamp_unassigned", codes(status))
         plan = declared()
         plan["endpoints"]["development"]["liquidation_at"] = "2016-01-01T00:00:00Z"

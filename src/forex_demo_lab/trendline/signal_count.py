@@ -10,7 +10,7 @@ from . import breaks, context, data, entries, fills, geometry, quote_replay, quo
 
 
 VERSION = "TRL_SIGNAL_COUNT_194_V1"
-STATUS_VERSION = "TRL_PHASE10_STATUS_215_V1"
+STATUS_VERSION = "TRL_PHASE10_STATUS_218_V1"
 MINIMUM_OPPORTUNITIES = 60
 PROFILES = tuple(profile for profile in breaks.PROFILES if profile in data.CANDIDATES)
 COSTS = ("base", "adverse")
@@ -69,21 +69,23 @@ def _setups(source, bars, tick, profile):
     return replay.report()
 
 
-def _setup_months(report, calendar, cutoff, profile):
+def _setup_months(report, calendar, cutoff, profile, development_start):
     monthly = defaultdict(_tally)
     for slot in calendar.frame("H4"):
         due = slot.end + calendar.delay
-        if due <= cutoff:
+        if development_start <= slot.start and due <= cutoff:
             monthly[_month(due)]["counts"]["scheduled_h4_due"] += 1
 
     action = report["action_replay"]
     operations = {event["id"]: event["command"]["op"] for event in action["journal"]["events"]}
     views, pokes, trigger_exemptions = {}, set(), set()
+    warmup = _tally()
     for frame, decision in zip(action["frames"], report["decisions"], strict=True):
         if (frame["id"], frame["as_of"], frame["bar_index"]) != (
                 decision["h4_frame_id"], decision["available_at"], decision["bar_index"]):
             raise ValueError("setup and lifecycle frame identities differ")
-        row = monthly[_month(frame["as_of"])]
+        # Retain revisions, first pokes and trigger exemptions across the seam.
+        row = warmup if frame["bar"]["start"] < development_start else monthly[_month(frame["as_of"])]
         counts = row["counts"]
         counts["observed_h4"] += 1
         lifecycle = Counter(operations[event_id] for event_id in frame["lifecycle_event_ids"])
@@ -129,17 +131,21 @@ def _setup_months(report, calendar, cutoff, profile):
     return monthly
 
 
-def _bar_attempts(source, hourly, report, model, cutoff, liquidation):
+def _bar_attempts(source, hourly, report, model, cutoff, liquidation, development_start, allow_equal_open):
     bid_only = source.record()["geometry_basis"] == "bid_only"
-    for attempt, targets in entries._requests(report, source.calendar, model.costs["name"]):
+    for attempt, targets in entries._requests(report, source.calendar, model.costs["name"],
+                                               development_start=development_start):
         request = attempt["request"]
         window = model.entry_window(request["trigger_end"])
         expires = attempt["expires_at"]
-        if (bid_only and window is not None and expires is not None and liquidation <= window.start < expires
-                and request["decision_at"]["time"] <= window.start):
-            yield request, "SKIPPED", "ENTRY_AT_LIQUIDATION", None
-        else:
-            yield (request, *entries._resolve(model, request, window, expires, hourly, cutoff, bid_only, targets))
+        if bid_only and window is not None and expires is not None and request["decision_at"]["time"] <= window.start < expires:
+            if liquidation <= window.start:
+                yield request, "SKIPPED", "ENTRY_AT_LIQUIDATION", None
+                continue
+            if not allow_equal_open and request["decision_at"]["time"] == window.start:
+                yield request, "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
+                continue
+        yield (request, *entries._resolve(model, request, window, expires, hourly, cutoff, bid_only, targets))
 
 
 def _quote_candidates(tape, prefix, model):
@@ -231,8 +237,11 @@ def _summary(row):
                             "spread_to_stop_distance": _distribution(row["spread_stop"])}}
 
 
-def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquidation, tape=None):
+def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquidation,
+           tape=None, development_start=None, allow_equal_open=True):
     level = "B" if tape is None else "Q"
+    calendar = source.calendar
+    development_start = calendar.start if development_start is None else development_start
     bound = _bindings(level)
     models = {cost: fills.PriceModel(source, cost) for cost in costs}
     quote_inputs = {} if tape is None else {
@@ -240,11 +249,12 @@ def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquida
     cells = []
     for profile in profiles:
         report = _setups(source, bars, tick, profile)
-        setup_months = _setup_months(report, source.calendar, cutoff, profile)
+        setup_months = _setup_months(report, calendar, cutoff, profile, development_start)
         for cost, model in models.items():
             monthly = deepcopy(setup_months)
             if tape is None:
-                attempts = _bar_attempts(source, observations, report, model, cutoff, liquidation)
+                attempts = _bar_attempts(source, observations, report, model, cutoff, liquidation,
+                                         development_start, allow_equal_open)
             else:
                 floor, candidates, _ = quote_inputs[cost]
                 attempts = _quote_attempts(tape, report, model, cutoff, candidates, floor)
@@ -259,10 +269,10 @@ def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquida
         raise ValueError("signal count source bindings changed")
     return {"schema": VERSION, "kind": "invented_development_opportunity_counts", "data_level": level,
             "geometry_basis": source.record()["geometry_basis"] if tape is None else "mid_sync",
-            "symbol": "EURUSD", "partition": "development", "scope_start": source.calendar.start,
-            "scope_end": source.calendar.end, "as_of": cutoff, "liquidation_at": liquidation, "tick_size": tick,
+            "symbol": "EURUSD", "partition": "development", "scope_start": development_start,
+            "scope_end": calendar.end, "as_of": cutoff, "liquidation_at": liquidation, "tick_size": tick,
             "input_sha256": source.record()["input_sha256"] if tape is None else tape.sha256,
-            "source_sha256": source.sha256, "calendar_sha256": source.calendar.sha256,
+            "source_sha256": source.sha256, "calendar_sha256": calendar.sha256,
             "source_bindings": bound, "month_clock": "h4_setup_receipt_utc", "cells": cells,
             "quote_observation_filters_by_cost": {cost: value[2] for cost, value in quote_inputs.items()},
             "actual_source_admitted": False, "outcomes_computed": False, "orders_available": False,
@@ -275,17 +285,22 @@ def _unavailable():
             "dly_status": "DISABLED_PENDING_DEVELOPMENT_EVIDENCE"}
 
 
-def count_b(source, hours, *, tick, as_of=None, profiles=PROFILES, costs=COSTS, liquidation_at=None):
-    """Count per declared B opening, using the price checks only."""
-    cutoff = _scope(source, as_of, tick, profiles, costs)
-    calendar = source.calendar
-    starts = tuple(window.start for window in calendar.frame("H1"))
+def _liquidation(calendar, liquidation_at, *, start):
+    starts = tuple(window.start for window in calendar.frame("H1") if window.start >= start)
     if not starts:
         raise ValueError("Level B counting requires a scheduled H1 partition")
     liquidation = starts[-1] if liquidation_at is None else liquidation_at
     data.integer(liquidation)
     if liquidation not in starts:
         raise ValueError("Level B count liquidation requires a scheduled H1 opening")
+    return liquidation
+
+
+def count_b(source, hours, *, tick, as_of=None, profiles=PROFILES, costs=COSTS, liquidation_at=None):
+    """Count per declared B opening, using the price checks only."""
+    cutoff = _scope(source, as_of, tick, profiles, costs)
+    calendar = source.calendar
+    liquidation = _liquidation(calendar, liquidation_at, start=calendar.start)
     if not isinstance(hours, (tuple, list)) or len(hours) > data.ROW_LIMIT:
         raise ValueError("bounded typed hourly observations required")
     stream = data.BarStream(source)
@@ -355,7 +370,8 @@ def admission_status(plan):
     if _reserved_validation_overlap(plan):
         count_issues.append({"code": "development_scope_overlaps_reserved_validation", "scope": "development",
                              "state": "BLOCKED"})
-    count_issues.append({"code": "historical_signal_counter_unavailable", "scope": "development", "state": "UNAVAILABLE"})
+    if plan["data_level"] == "Q":
+        count_issues.append({"code": "historical_signal_counter_unavailable", "scope": "development", "state": "UNAVAILABLE"})
     return {"schema": STATUS_VERSION, "kind": "development_feasibility_admission_status", "partition": "development",
             "plan_sha256": preflight["plan_sha256"], "actual_source_admitted": False, "market_data_read": False,
             "outcomes_computed": False, "orders_available": False, "feasibility": _unavailable(),

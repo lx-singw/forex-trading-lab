@@ -7,9 +7,9 @@ from pathlib import PurePosixPath
 
 from ..elliott_study_145 import span
 from ..paired_replay_133 import strict_json
-from . import data, historical_calendar, signal_count
+from . import data, historical_calendar, signal_count, study
 
-VERSION = "TRL_PHASE10_INPUT_217_V1"
+VERSION = "TRL_PHASE10_INPUT_218_V1"
 MANIFEST_KIND = "trendline_development_level_b_manifest"
 METADATA_LIMIT = 256 * 1024
 
@@ -19,10 +19,17 @@ REVIEWED_MANIFESTS = frozenset()
 
 @dataclass(frozen=True)
 class HistoricalInput:
-    calendar: historical_calendar.Calendar
+    source: data.HistoricalDeclaration
     warmup: tuple[data.Hour, ...]
     development: tuple[data.Hour, ...]
+    tick_size: str
+    same_time_open_order: str
+    liquidation_at: int
     receipt: dict
+
+    @property
+    def calendar(self):
+        return self.source.calendar
 
 
 def _qualified_plan(plan):
@@ -105,11 +112,15 @@ def load_level_b(manifest_path):
         raise ValueError("manifest has no recorded qualification before price read")
     manifest = strict_json(raw, METADATA_LIMIT)
     data.fields(manifest, ("schema", "kind", "symbol", "partition", "plan_file", "plan_file_sha256",
-                           "calendar_file", "price_file"))
+                           "calendar_file", "price_file", "tick_size", "same_time_open_order"))
     if (manifest["schema"], manifest["kind"], manifest["symbol"], manifest["partition"]) != (
         VERSION, MANIFEST_KIND, "EURUSD", "development",
     ):
         raise ValueError("reviewed development-only EURUSD manifest required")
+    if data.number(manifest["tick_size"]) <= 0:
+        raise ValueError("positive reviewed price tick required")
+    if manifest["same_time_open_order"] not in ("decision_before_open", "unresolved"):
+        raise ValueError("reviewed same-time opening order policy required")
     data.sha(manifest["plan_file_sha256"])
     bundle = manifest_path.parent
     plan_file = _relative_file(manifest["plan_file"])
@@ -123,6 +134,9 @@ def load_level_b(manifest_path):
     plan = strict_json(plan_bytes, METADATA_LIMIT)
     plan_sha = _qualified_plan(plan)
     calendar = _read_calendar(bundle / calendar_file, plan)
+    endpoint = plan["endpoints"]["development"]["liquidation_at"]
+    liquidation = None if endpoint is None else int(study.instant(endpoint).timestamp()) * 1000
+    liquidation = signal_count._liquidation(calendar, liquidation, start=calendar.development_start)
     warmup, development = _read_hours(bundle / price_file, plan, calendar)
     warmup_coverage = calendar.coverage(warmup, start=calendar.start, cutoff=calendar.development_start)
     claimed = plan["partitions"]["development"]["warmup"]["declared_complete_bars"]
@@ -138,6 +152,13 @@ def load_level_b(manifest_path):
         "input_sha256": plan["input_sha256"],
         "calendar_sha256": plan["calendar_sha256"], "warmup_rows": len(warmup), "development_rows": len(development),
         "warmup_at_development_start": warmup_coverage, "development_at_scope_end": development_coverage,
+        "tick_size": manifest["tick_size"], "same_time_open_order": manifest["same_time_open_order"],
+        "liquidation_at": liquidation,
         "market_data_read": True, "actual_counts": None,
     }
-    return HistoricalInput(calendar, warmup, development, receipt)
+    source_record = {key: plan[key] for key in ("data_level", "geometry_basis", "spread_semantics",
+                                               "input_sha256", "calendar_sha256")}
+    source_record.update(kind="reviewed_historical_trendline_source", symbol="EURUSD", partition="development")
+    source = data.HistoricalDeclaration(data.canonical(source_record).decode(), calendar)
+    return HistoricalInput(source, warmup, development, manifest["tick_size"], manifest["same_time_open_order"],
+                           liquidation, receipt)

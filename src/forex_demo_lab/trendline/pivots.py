@@ -51,7 +51,7 @@ class PivotStream:
             raise ValueError("H4 or D1 pivot timeframe required")
         if type(radius) is not int or radius != RADIUS:
             raise ValueError("TRL_V1 pivot radius is frozen at3")
-        self.source = data.Declaration.from_record(source.record())
+        self.source = data.research_declaration(source)
         self._source_json = self.source._json
         self._source_sha = self.source.sha256
         self._timeframe = timeframe

@@ -211,3 +211,9 @@ reviewed bundle. A window is complete only after its finalization delay
 and the receipt of all scheduled H1 children. Report gaps and pending
 windows and enforce H1, H4 and D1 warmup coverage at development start.
 [Historical session coverage](RESULTS-217.md)
+
+19 November 2026, sprint 218. Use warmup for replay state and attribute
+each count to the triggering H4 window's partition. Pin the tick size and
+equal-time opening order in the reviewed manifest. Skip a same-time
+opening when its order is unresolved.
+[Historical development counter](RESULTS-218.md)

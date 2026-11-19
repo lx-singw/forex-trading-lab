@@ -1,5 +1,8 @@
 # Sprint 217 · Historical session coverage
 
+Sprint 218 documents the current manifest and the development count command.
+[Historical development counter](RESULTS-218.md)
+
 19 November 2026. The reviewed EURUSD Level B input path now binds an
 explicit session calendar to the development plan before opening prices.
 The calendar covers the warmup and development dates and checks that each

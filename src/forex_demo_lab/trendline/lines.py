@@ -220,7 +220,7 @@ def inspect(source,bars,*,timeframe="H4",profile="TRL_BRK3_E1",role="full",as_of
 class Inspector:
     """Same168 calculations over an incremental, forkable geometry frontier."""
     def __init__(self,source,timeframe="H4"):
-        self.source = data.Declaration.from_record(source.record())
+        self.source = data.research_declaration(source)
         self.timeframe = timeframe
         self._source_sha = self.source.sha256
         self._source_json = self.source._json

@@ -1,8 +1,10 @@
 """Build a historical development grid from a reviewed, explicit UTC schedule."""
 
 from dataclasses import dataclass
+from functools import cached_property
 
 from ..elliott_sessions_146 import FRAMES, HOUR, Window, edges
+from ..elliott_full.contracts import Bar
 from . import data
 
 KIND = "trendline_historical_session_calendar_217"
@@ -71,10 +73,38 @@ class Calendar:
             raise ValueError("historical calendar must cover the entire reviewed scope")
         return cls(sha256, start, development_start, end, delay, tuple(windows))
 
+    @cached_property
+    def _frames(self):
+        return tuple(tuple(window for window in self.windows if window.timeframe == frame) for frame in FRAMES)
+
     def frame(self, timeframe):
         if timeframe not in FRAMES:
             raise ValueError("timeframe")
-        return tuple(window for window in self.windows if window.timeframe == timeframe)
+        return self._frames[FRAMES.index(timeframe)]
+
+    def _available_at(self, window, receipts):
+        if any(child not in receipts for child in window.children):
+            return None
+        return max(window.end + self.delay, *(receipts[child] for child in window.children))
+
+    def publications(self, hours, cutoff):
+        """Aggregate only windows fully observable through the receipt cutoff."""
+        visible = {hour.start: hour for hour in hours if hour.available_at <= cutoff}
+        receipts = {start: hour.available_at for start, hour in visible.items()}
+        bars = []
+        for window in self.windows:
+            if window.timeframe == "H1":
+                continue
+            available = self._available_at(window, receipts)
+            if available is None or available > cutoff:
+                continue
+            children = [visible[start] for start in window.children]
+            lineage = data.digest({"calendar": self.sha256, "timeframe": window.timeframe,
+                                   "children": [hour.record() for hour in children]})
+            bars.append(Bar(window.timeframe, window.start, window.end, available, children[0].open,
+                            max(hour.high for hour in children), min(hour.low for hour in children),
+                            children[-1].close, lineage))
+        return tuple(sorted(bars, key=lambda bar: (bar.available, FRAMES.index(bar.timeframe), bar.start)))
 
     def coverage(self, hours, *, start, cutoff):
         receipts = {hour.start: hour.available_at for hour in hours}
@@ -82,10 +112,11 @@ class Calendar:
         for frame in FRAMES:
             windows = [window for window in self.frame(frame) if start <= window.start < cutoff]
             due = [window for window in windows if window.end + self.delay <= cutoff]
-            missing = [
-                window.start for window in due
-                if any(child not in receipts or receipts[child] > cutoff for child in window.children)
-            ]
+            missing = []
+            for window in due:
+                available = self._available_at(window, receipts)
+                if available is None or available > cutoff:
+                    missing.append(window.start)
             report[frame] = {
                 "scheduled": len(windows),
                 "complete_by_cutoff": len(due) - len(missing),

@@ -101,7 +101,7 @@ def evaluate(replay, hours, *, as_of, cost_profile="base"):
     }
 
 
-def _requests(report, calendar, cost_profile):
+def _requests(report, calendar, cost_profile, *, development_start=None):
     fxr = report["action_replay"]["profile"] == breaks.FXR_PROFILE
     h4 = calendar.frame("H4")
     expiry = {left.end: right.end for left, right in zip(h4, h4[1:])}
@@ -112,6 +112,8 @@ def _requests(report, calendar, cost_profile):
         if decision["state"] != "READY":
             continue
         publication = trigger_bars[decision["h4_frame_id"]]
+        if development_start is not None and publication["start"] < development_start:
+            continue
         stop = fills.text(selection.fraction(decision["safety"]["stop"]))
         request = {
             "kind": "invented_b_price_request",

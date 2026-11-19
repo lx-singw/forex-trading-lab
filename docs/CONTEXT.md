@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 218 connects the reviewed historical Level B
+bundle to the frozen development counter. Warmup builds replay state
+and the counts use the development H4 windows. Independent source
+qualification remains open. [Sprint 218 results](trendline/RESULTS-218.md)
+
 19 November 2026. Sprint 217 binds an explicit UTC calendar to the
 historical Level B reader and checks H1, H4 and D1 coverage at the
 development boundaries. The Phase 10 counter and source qualification

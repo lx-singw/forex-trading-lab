@@ -562,6 +562,9 @@ manifest and plan scope before opening prices. The historical calendar and
 counter integrations remain open. [Reviewed historical input](../trendline/RESULTS-216.md)
 Sprint 217 verifies an explicit historical calendar and causal H1, H4 and D1
 coverage on fabricated inputs. [Historical session coverage](../trendline/RESULTS-217.md)
+Sprint 218 runs the Level B counter through the reviewed input path and
+excludes warmup triggers from the development totals.
+[Historical development counter](../trendline/RESULTS-218.md)
 [Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md) · [Opening approximation](../trendline/RESULTS-212.md) · [H4 opening alignment](../trendline/RESULTS-213.md) · [Weekend quote bounds](../trendline/RESULTS-214.md) · [Development preflight](../trendline/RESULTS-215.md)
 
 **Decision tree:**

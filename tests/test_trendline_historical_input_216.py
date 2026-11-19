@@ -1,5 +1,6 @@
 """Exercise the historical reader with a fabricated calendar, H1 bytes and a test-only pin."""
 
+from dataclasses import replace
 from datetime import datetime, timezone
 import hashlib
 from pathlib import Path
@@ -11,7 +12,10 @@ import unittest
 from unittest.mock import patch
 
 from forex_demo_lab.elliott_sessions_146 import HOUR
-from forex_demo_lab.trendline import data, historical_calendar, historical_input, study
+from forex_demo_lab.trendline import (
+    data, entries, exits, fills, historical_calendar, historical_count, historical_input, ledger, risk, signal_count, study,
+)
+from test_trendline_signal_count_194 import PROFILE, bar_fixture
 from test_trendline_study_165 import declared, span
 
 
@@ -77,7 +81,8 @@ class HistoricalInputTests(unittest.TestCase):
         manifest = {"schema": historical_input.VERSION, "kind": historical_input.MANIFEST_KIND,
                     "symbol": "EURUSD", "partition": "development", "plan_file": "plan.json",
                     "plan_file_sha256": hashlib.sha256(plan).hexdigest(), "calendar_file": "calendar.json",
-                    "price_file": "bars.json", **override}
+                    "price_file": "bars.json", "tick_size": "0.0001",
+                    "same_time_open_order": "decision_before_open", **override}
         content = data.canonical(manifest)
         self.manifest.write_bytes(content)
         return patch.object(historical_input, "REVIEWED_MANIFESTS", frozenset({hashlib.sha256(content).hexdigest()}))
@@ -232,3 +237,126 @@ class HistoricalInputTests(unittest.TestCase):
         receipt, _ = data.read_json(report)
         self.assertEqual(253, receipt["warmup_at_development_start"]["D1"]["complete_by_cutoff"])
         self.assertIsNone(receipt["actual_counts"])
+
+    def test_reviewed_count_carries_warmup_lines_into_development(self):
+        value, pattern, opening = bar_fixture()
+        day = 24 * HOUR
+        pattern_start = self.seam - 8 * day
+        delta = pattern_start - value["calendar"]["scope"]["start"]
+        # 245 flat daily sessions followed by the first eight patterned days
+        # give 253 daily and 390 H4 warmup windows.
+        start = pattern_start - (97 * 5 + 148) * HOUR
+        segments = [closure(midnight(2020), start)]
+        self.rows = []
+        for length in [5] * 97 + [1] * 148:
+            end = start + length * HOUR
+            segments.append(session(start, end))
+            self.rows.extend(row(hour) for hour in range(start, end, HOUR))
+            start = end
+        end = pattern_start + 9 * day
+        segments.extend(session(start, start + day) for start in range(pattern_start, end, day))
+        segments.append(closure(end, midnight(2023)))
+        self.calendar["segments"] = segments
+        for item in pattern:
+            self.rows.append(item | {field: item[field] + delta for field in ("start", "end", "available_at")})
+        self.plan["partitions"]["development"]["warmup"]["declared_complete_bars"] = {"H1": 825, "H4": 390, "D1": 253}
+
+        reports = {}
+        original_setups = signal_count._setups
+
+        def capture(source, bars, tick, profile):
+            result = original_setups(source, bars, tick, profile)
+            reports[profile] = result
+            return result
+
+        output = self.root / "count.json"
+        runner = data.ROOT / "tools/signal_count.py"
+        args = [str(runner), "historical-count", str(self.manifest), str(output)]
+        with self.bundle(), patch.object(sys, "argv", args), patch.object(signal_count, "_setups", side_effect=capture):
+            for module, function in ((exits, "_evaluate"), (ledger, "_evaluate"), (risk, "_timeline"),
+                                     (fills.PriceModel, "exit_open")):
+                blocked = patch.object(module, function, side_effect=AssertionError("account or outcome path called"))
+                blocked.start()
+                self.addCleanup(blocked.stop)
+            runpy.run_path(str(runner), run_name="__main__")
+            dataset = historical_input.load_level_b(self.manifest)
+
+        report, _ = data.read_json(output)
+        self.assertEqual("historical_development_opportunity_counts", report["kind"])
+        self.assertEqual((self.seam, midnight(2023)), (report["scope_start"], report["scope_end"]))
+        self.assertFalse(report["outcomes_computed"])
+        self.assertFalse(report["orders_available"])
+        self.assertEqual(len(signal_count.PROFILES) * len(signal_count.COSTS), len(report["cells"]))
+        brk3 = [cell for cell in report["cells"] if cell["profile"] == PROFILE]
+        for cell in brk3:
+            self.assertEqual({"2021-01"}, set(cell["months"]))
+            counts = cell["total"]["counts"]
+            self.assertEqual((6, 2, 0, 1, 1), tuple(counts[name] for name in (
+                "scheduled_h4_due", "observed_h4", "valid_action_lines_found", "break_setups",
+                "entry_eligible_opportunities",
+            )))
+        self.assertTrue(all(cell["status"] == "INSUFFICIENT" for cell in report["feasibility"]["actual_counts"]))
+
+        # Reuse the observed lifecycle to test a later seam and an unresolved
+        # same-time open without replaying several hundred warmup H4 bars.
+        source = dataset.source
+        cutoff = source.calendar.end
+        hourly = entries._visible_hours(source, dataset.warmup + dataset.development, cutoff, source.calendar)
+        model = fills.PriceModel(source, "base")
+        setup_report = reports[PROFILE]
+        unresolved = list(signal_count._bar_attempts(
+            source, hourly, setup_report, model, cutoff, dataset.liquidation_at, self.seam, False,
+        ))
+        self.assertEqual([("SKIPPED", "UNRESOLVED_OPEN_ORDER")], [attempt[1:3] for attempt in unresolved])
+        later_seam = opening["start"] + delta
+        self.assertEqual([], list(signal_count._bar_attempts(
+            source, hourly, setup_report, model, cutoff, dataset.liquidation_at, later_seam, True,
+        )))
+        months = signal_count._setup_months(setup_report, source.calendar, cutoff, PROFILE, later_seam)
+        self.assertEqual(0, months["2021-01"]["counts"]["break_setups"])
+
+    def test_historical_count_rejects_unreviewed_manifest_without_a_report(self):
+        self.bundle()
+        output = self.root / "count.json"
+        runner = data.ROOT / "tools/signal_count.py"
+        run = subprocess.run([sys.executable, str(runner), "historical-count", str(self.manifest), str(output)],
+                             capture_output=True, text=True)
+        self.assertNotEqual(0, run.returncode)
+        self.assertIn("no recorded qualification before price read", run.stderr)
+        self.assertFalse(output.exists())
+
+    def test_parent_publication_waits_for_late_child_and_orders_daily_first(self):
+        late = self.rows[-1]["end"] + 2
+        self.rows[-1].update(available_at=late, high="1.1009", close="1.1006")
+        with self.bundle():
+            dataset = historical_input.load_level_b(self.manifest)
+        calendar = dataset.calendar
+        before = calendar.publications(dataset.development, late - 1)
+        self.assertEqual(("H4",), tuple(bar.timeframe for bar in before))
+        after = calendar.publications(dataset.development, late)
+        self.assertEqual(before, after[:1])
+        self.assertEqual(("D1", "H4"), tuple(bar.timeframe for bar in after[1:]))
+        for bar in after[1:]:
+            self.assertEqual(late, bar.available)
+            self.assertEqual(("1.1009", "1.1006"), (str(bar.high), str(bar.close)))
+
+    def test_reviewed_tick_order_and_liquidation_are_checked_before_prices(self):
+        with patch.object(historical_input, "_read_hours", side_effect=AssertionError("no prices expected")):
+            with self.bundle(tick_size="0"), self.assertRaisesRegex(ValueError, "positive reviewed price tick"):
+                historical_input.load_level_b(self.manifest)
+            with self.bundle(same_time_open_order="unknown"), self.assertRaisesRegex(ValueError, "opening order policy"):
+                historical_input.load_level_b(self.manifest)
+            self.plan["endpoints"]["development"]["liquidation_at"] = "2021-01-01T00:30:00Z"
+            with self.bundle(), self.assertRaisesRegex(ValueError, "scheduled H1 opening"):
+                historical_input.load_level_b(self.manifest)
+
+    def test_completed_h1_receipt_applies_delay_and_scope_end(self):
+        with self.bundle():
+            dataset = historical_input.load_level_b(self.manifest)
+        last = dataset.development[-1]
+        calendar = replace(dataset.calendar, delay=2, end=last.end)
+        dataset = replace(dataset, source=replace(dataset.source, calendar=calendar))
+        completed = tuple(historical_count._completed_hours(dataset))
+        self.assertEqual(len(dataset.warmup) + len(dataset.development) - 1, len(completed))
+        self.assertEqual(dataset.development[-2].end + 2, completed[-1].available_at)
+        self.assertNotEqual(last.start, completed[-1].start)

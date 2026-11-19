@@ -1,7 +1,7 @@
-"""Count invented development opportunities and check historical input eligibility."""
+"""Count development opportunities and check historical input eligibility."""
 import argparse
 
-from forex_demo_lab.trendline import data, historical_input, quotes, signal_count
+from forex_demo_lab.trendline import data, historical_count, historical_input, quotes, signal_count
 
 
 def main():
@@ -23,14 +23,19 @@ def main():
     status.add_argument("plan")
     status.add_argument("output")
     historical = commands.add_parser("historical-input", help="verify reviewed Level B development input")
-    historical.add_argument("manifest")
-    historical.add_argument("output")
+    reviewed_count = commands.add_parser("historical-count", help="count opportunities on reviewed Level B development")
+    for command in (historical, reviewed_count):
+        command.add_argument("manifest")
+        command.add_argument("output")
     args = parser.parse_args()
     if args.command == "status":
         result = signal_count.admission_status(data.read_json(args.plan)[0])
-    elif args.command == "historical-input":
+    elif args.command in ("historical-input", "historical-count"):
         try:
-            result = historical_input.load_level_b(args.manifest).receipt
+            if args.command == "historical-input":
+                result = historical_input.load_level_b(args.manifest).receipt
+            else:
+                result = historical_count.count(args.manifest)
         except (OSError, ValueError) as error:
             parser.error(str(error))
     else:

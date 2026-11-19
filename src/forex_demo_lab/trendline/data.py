@@ -10,9 +10,13 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from typing import TYPE_CHECKING
 
 from .. import elliott_sessions_146 as sessions
 from ..elliott_full.contracts import Bar
+
+if TYPE_CHECKING:
+    from .historical_calendar import Calendar
 
 VERSION = "TRL_DATA_163_V1"
 ROOT = Path(__file__).resolve().parents[3]
@@ -129,6 +133,28 @@ class Declaration:
     @property
     def calendar(self):
         return sessions.Calendar.from_record(self.record()["calendar"])
+
+
+@dataclass(frozen=True)
+class HistoricalDeclaration:
+    """Internal descriptor for the reviewed historical count path."""
+
+    _json: str
+    calendar: "Calendar"
+
+    def record(self):
+        return json.loads(self._json)
+
+    @property
+    def sha256(self):
+        return hashlib.sha256(self._json.encode()).hexdigest()
+
+
+def research_declaration(source):
+    """Share the typed historical descriptor inside the calculation kernels."""
+    if type(source) is HistoricalDeclaration:
+        return source
+    return Declaration.from_record(source.record())
 
 
 def unlock_record(declaration):
