@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 205 verifies a conservative opening evidence
+prototype. Qualify an archive-specific price, spread and event ordering
+declaration alongside the session calendar and broader coverage before
+historical Level B counts. [Opening evidence](trendline/RESULTS-205.md)
+
 19 November 2026. Sprint 204 corroborates seasonal archive timing.
 Qualify broader development and warmup coverage and review the
 opening-price, spread and availability model before actual Level B counts.

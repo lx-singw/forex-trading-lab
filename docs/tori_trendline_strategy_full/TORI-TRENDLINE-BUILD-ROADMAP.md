@@ -535,8 +535,10 @@ platform clock and ordinary forex hours for the source review.
 Sprint 198 checks opening and warmup timestamp coverage on invented input.
 Sprint 203 checks the format and timing of one January 2022 public archive
 sample. Sprint 204 corroborates the summer schedule with a July sample.
-The opening model and broader source admission remain open.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md)
+Sprint 205 verifies a conservative Level B opening model on invented tapes.
+Historical use still requires an admitted source and a reviewed price,
+spread and timing declaration.
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md)
 
 **Decision tree:**
 

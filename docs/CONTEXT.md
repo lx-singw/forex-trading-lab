@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 205 tests H1 opening evidence on invented tapes.
+An exact-boundary bid and spread can support an explicit Level B assumption
+when receipt and decision order are accounted for. Historical Phase 10
+counts await source admission and a reviewed availability model.
+[Sprint 205 results](trendline/RESULTS-205.md)
+
 19 November 2026. Sprint 204 audits July 2022 Exness EURUSD. The
 weekend labels corroborate the one-hour summer shift. Across January
 and July, 3 of 1,010 observed hours have a first quote exactly on the
