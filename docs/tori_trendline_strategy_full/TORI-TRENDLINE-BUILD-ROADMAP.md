@@ -547,9 +547,11 @@ Sprint 210 reviews retained receipts and tests a weekend publication audit on
 invented traces. Ordered historical receipt evidence remains missing.
 Sprint 211 verifies a clock-based publication model on invented source-time
 quotes. The retained Sunday labels still miss the modeled exact opening.
+Sprint 212 checks paired opening proxies and Friday H4 child quote presence
+on the pinned January archive.
 Historical use still requires an admitted source and a reviewed price,
 spread and timing declaration.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md)
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md) · [Opening approximation](../trendline/RESULTS-212.md)
 
 **Decision tree:**
 

@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 212 verifies archive quote presence in all four
+shortened Friday H4 candidates and measures the paired Sunday spreads.
+Historical counts still need source admission and justified boundary price
+and timing evidence. [Opening approximation diagnostic](trendline/RESULTS-212.md)
+
 19 November 2026. Sprint 211 verifies clock-based H4 publication without
 waiting for a Sunday quote. Historical use needs qualified Friday child
 coverage and a defensible Sunday opening price and spread under the frozen

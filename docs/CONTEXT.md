@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 212 checks the pinned January 2022 Exness ZIP.
+All 506 scheduled H1 windows have a first bid/ask pair, and no first pair
+has an exact opening timestamp. The four Sunday spreads have a 3.7-pip
+median. [Sprint 212 results](trendline/RESULTS-212.md)
+
 19 November 2026. Sprint 211 tests a clock-based Friday H4 publication
 model using invented source timestamps. The model can seal observed child
 bars during the closure. The nine retained Exness Sunday labels still fall

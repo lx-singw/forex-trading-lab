@@ -179,3 +179,8 @@ unobserved. [Weekend receipt review](RESULTS-210.md)
 modeled input. Seal at the later of the declared finalization delay and
 delivery bound. Keep the exact-boundary opening check independent of H4
 publication. [Clock publication model](RESULTS-211.md)
+
+19 November 2026, sprint 212. Retain the first in-window quote as an
+observed source-time price and spread proxy. Its timestamp governs the
+boundary check. All four paired Sunday quotes follow the modeled open.
+[Opening approximation diagnostic](RESULTS-212.md)
