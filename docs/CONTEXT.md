@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 209 checks quote-dependent H4 publication on the
+2022 Exness timing scenario. Waiting until the first scheduled H1 open
+for a quote leaves zero timely decisions with two seconds of processing.
+Historical Friday H4 availability remains unverified.
+[Sprint 209 results](trendline/RESULTS-209.md)
+
 19 November 2026. Sprint 208 maps Exness’s published 2022 ordinary forex
 hours to a candidate UTC bar grid. At a two-second delay, 51 scheduled
 H4 closes can precede the next opening if shortened bars are eligible.

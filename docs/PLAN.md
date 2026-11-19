@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 209 finds that a quote-dependent publication model
+makes the 51 remaining weekend decisions late in the 2022 timing scenario.
+Resolve shortened Friday H4 availability with ordered feed and bar receipts
+before relying on the clock-based case for historical counts.
+[Weekend publication timing](trendline/RESULTS-209.md)
+
 19 November 2026. Sprint 208 finds that the 2022 ordinary-hours scenario
 depends on shortened Friday H4 bars for any timely decision with a positive
 delay. Resolve historical closures, partial-bar treatment and actual

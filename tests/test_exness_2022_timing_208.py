@@ -52,3 +52,20 @@ class ExnessOrdinaryHoursTimingTests(unittest.TestCase):
         for starts, closes in (((10, 5), (1, 2)), ((5, 10), (2, 2))):
             with self.assertRaisesRegex(ValueError, "strictly increasing"):
                 compare_schedule(starts, closes, delay=0)
+
+    def test_first_possible_quote_replaces_the_closed_session_publication_floor(self):
+        starts, closes = (1000, 5000), (2000, 6000)
+        before, terminal = compare_schedule(starts, closes, delay=0, wait_for_first_open=True)
+        self.assertEqual((5000, 6000), (before["earliest_decision_at"], before["expires_at"]))
+        self.assertEqual("TIED_AT_EARLIEST_PUBLICATION", before["status"])
+        self.assertEqual("NO_SCHEDULED_ENTRY", terminal["status"])
+        self.assertIsNone(terminal["earliest_decision_at"])
+
+    def test_quote_driven_ordinary_hours_scenario_has_no_strictly_early_closes(self):
+        result = report(wait_for_first_open=True)
+        self.assertEqual("exness_2022_next_quote_timing_scenario", result["kind"])
+        zero, positive = [case["all_h4"] for case in result["timing_cases"]]
+        self.assertEqual(0, zero["ceiling_without_same_time_order"])
+        self.assertEqual(1611, zero["status_counts"]["TIED_AT_EARLIEST_PUBLICATION"])
+        self.assertEqual(0, positive["ceiling_if_decision_precedes_tied_open"])
+        self.assertEqual(1611, positive["status_counts"]["LATE_AT_EARLIEST_PUBLICATION"])

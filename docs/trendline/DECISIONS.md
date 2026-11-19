@@ -162,3 +162,9 @@ a timing scenario. Its positive-delay cases depend on shortened Friday H4
 bars, and all nine retained Sunday first labels follow the assumed open.
 Keep the partial-bar and publication assumptions open for admission review.
 [Exness calendar timing](RESULTS-208.md)
+
+19 November 2026, sprint 209. Treat publication at the first possible quote
+and clock-based closure as separate timing scenarios. A first quote at the
+scheduled H1 opening cannot establish decision-before-open order when both
+events depend on that quote. Require ordered availability evidence before
+crediting weekend decisions. [Weekend publication timing](RESULTS-209.md)

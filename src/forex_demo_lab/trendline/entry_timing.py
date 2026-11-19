@@ -20,8 +20,12 @@ def audit(calendar_record):
     }
 
 
-def compare_schedule(h1_starts, h4_closes, *, delay):
-    """Compare sorted schedule edges and a delay in milliseconds without reading prices."""
+def compare_schedule(h1_starts, h4_closes, *, delay, wait_for_first_open=False):
+    """Compare schedule edges and a delay in milliseconds without reading prices.
+
+    If publication needs the next quote and none can arrive during the gap,
+    the first scheduled H1 open is an optimistic lower bound for that quote.
+    """
     data.integer(delay)
     for edges in (h1_starts, h4_closes):
         for edge in edges:
@@ -30,9 +34,10 @@ def compare_schedule(h1_starts, h4_closes, *, delay):
             raise ValueError("strictly increasing schedule edges required")
     rows = []
     for close, expiry in zip(h4_closes, (*h4_closes[1:], None), strict=True):
-        earliest = close + delay
         index = bisect_left(h1_starts, close)
         first_open = h1_starts[index] if index < len(h1_starts) else None
+        publication_floor = first_open if wait_for_first_open else close
+        earliest = publication_floor + delay if publication_floor is not None else None
         if first_open is None or expiry is None or first_open >= expiry:
             status = "NO_SCHEDULED_ENTRY"
         elif earliest > first_open:
