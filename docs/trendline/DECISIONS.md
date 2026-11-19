@@ -240,3 +240,9 @@ from the strict 2022 opening ceiling. Treat the 42 remaining slots as a
 conditional maximum before strategy filters. Use historical receipt
 evidence or a separately reviewed opening model for actual eligibility.
 [Strict-opening ceiling](RESULTS-222.md)
+
+19 November 2026, sprint 223. Use the EV 2024 H1 and M5 comparison as
+evidence of consistency across the published products. Require
+independent opening-pair provenance and historical availability
+evidence before admitting an opening model for actual counts.
+[Historical bar-open source review](RESULTS-223.md)

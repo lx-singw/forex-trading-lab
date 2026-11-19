@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 223 verifies the EV opening-price relationship
+across its 2024 H1 and M5 products. Keep source qualification open
+pending original quote timing, a reviewed availability model, and
+source-use and calendar evidence for the exact development input.
+[Historical bar-open source review](trendline/RESULTS-223.md)
+
 19 November 2026. Sprint 222 removes nine late sampled openings from
 the 2022 strict Exness scenario. Evaluate a source-specific bar-open
 approximation with opening bid, paired spread and documented timing.

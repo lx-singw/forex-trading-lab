@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 223 verifies that all 6,247 EV EURUSD H1
+opening pairs match the earliest M5 row in the same hour in the
+already-seen 2024 data. Original tick pairing and historical
+availability remain unverified. [Sprint 223 results](trendline/RESULTS-223.md)
+
 19 November 2026. Sprint 222 narrows the strict 2022 Exness scenario to
 at most 42 first-opening candidates before strategy and price filters.
 The archived source clock leaves historical receipt evidence open.
