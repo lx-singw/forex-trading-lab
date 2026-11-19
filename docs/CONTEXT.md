@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 220 represents the Exness 2022 opening-edge
+scenario in the historical calendar and reproduces its earlier timing
+bounds. Source qualification remains open.
+[Sprint 220 results](trendline/RESULTS-220.md)
+
 19 November 2026. Sprint 219 benchmarks the full historical Level B
 window on fabricated bars and reduces repeated binding and geometry
 report work. Source qualification remains open.

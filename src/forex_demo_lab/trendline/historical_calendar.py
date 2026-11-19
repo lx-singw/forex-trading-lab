@@ -11,6 +11,17 @@ KIND = "trendline_historical_session_calendar_217"
 BYTE_LIMIT = 1024 * 1024
 
 
+def _session_edges(values, start, end, period, partial, leading_partial):
+    if leading_partial and type(values) is list and 3 <= len(values) <= 26:
+        first, next_edge = values[:2]
+        data.integer(first)
+        data.integer(next_edge)
+        if first == start and 0 < next_edge - start < period:
+            edges(values[1:], next_edge, end, period, partial)
+            return
+    edges(values, start, end, period, partial)
+
+
 @dataclass(frozen=True)
 class Calendar:
     sha256: str
@@ -33,8 +44,10 @@ class Calendar:
             if type(segment) is not dict or segment.get("kind") not in ("session", "closure"):
                 raise ValueError("historical session or explicit closure required")
             closed = segment["kind"] == "closure"
-            data.fields(segment, ("kind", "start", "end", "reason") if closed else
-                        ("kind", "start", "end", "h1", "h4", "partial"))
+            fields = ("kind", "start", "end", "reason") if closed else ("kind", "start", "end", "h1", "h4", "partial")
+            if not closed and "leading_partial" in segment:
+                fields += ("leading_partial",)
+            data.fields(segment, fields)
             left, right = segment["start"], segment["end"]
             data.integer(left)
             data.integer(right)
@@ -46,16 +59,19 @@ class Calendar:
                     raise ValueError("declared historical closure reason required")
                 continue
             partial = segment["partial"]
+            leading = segment.get("leading_partial", False)
             duration = right - left
             if type(partial) is not bool or duration > 25 * HOUR:
                 raise ValueError("invalid session duration or partial policy")
+            if type(leading) is not bool or (leading and not partial):
+                raise ValueError("leading partial windows require explicit partial session policy")
             if not partial and duration not in (23 * HOUR, 24 * HOUR, 25 * HOUR):
                 raise ValueError("short session needs explicit partial policy")
             if left < development_start < right:
                 raise ValueError("session crosses the warmup and development boundary")
             hours, groups = segment["h1"], segment["h4"]
-            edges(hours, left, right, HOUR, partial)
-            edges(groups, left, right, 4 * HOUR, True)
+            _session_edges(hours, left, right, HOUR, partial, leading)
+            _session_edges(groups, left, right, 4 * HOUR, True, leading)
             if not set(groups) <= set(hours):
                 raise ValueError("parent edges must coincide with child edges")
             h1_count += len(hours) - 1

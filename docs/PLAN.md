@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 220 verifies the shortened Sunday opening edge
+under the existing Exness scenario. Carry opening evidence separately
+from completed H1 geometry and continue the exact archive’s source and
+calendar review before actual Phase 10 counts.
+[Source review and calendar compatibility](trendline/RESULTS-220.md)
+
 19 November 2026. Sprint 219 completes both full-window fabricated
 fixtures using a smaller trace while preserving the setup and entry tallies.
 Qualify a development source with reviewed opening price, spread and

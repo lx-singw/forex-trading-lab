@@ -222,3 +222,9 @@ opening when its order is unresolved.
 one count run and verify their file contents again before releasing the
 report. Read the existing pivot and geometry state directly during replay.
 [Full-window counter benchmark](RESULTS-219.md)
+
+19 November 2026, sprint 220. Allow an explicitly shortened opening
+interval on a historical partial session. Preserve later wall-clock
+edges and H4 child alignment. Record the Exness ordinary-hours grid
+as a scenario for compatibility and timing review.
+[Source review and calendar compatibility](RESULTS-220.md)

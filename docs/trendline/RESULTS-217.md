@@ -2,6 +2,8 @@
 
 Sprint 218 documents the current manifest and the development count command.
 [Historical development counter](RESULTS-218.md)
+Sprint 220 adds an explicit shortened opening interval for partial sessions.
+[Calendar compatibility](RESULTS-220.md)
 
 19 November 2026. The reviewed EURUSD Level B input path now binds an
 explicit session calendar to the development plan before opening prices.
