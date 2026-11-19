@@ -174,3 +174,8 @@ the last successful observation of unavailability to preserve the poll
 gap. A same-time ordering claim requires a recorded opening marker on the
 same clock. Retained source and clock records leave the historical pair
 unobserved. [Weekend receipt review](RESULTS-210.md)
+
+19 November 2026, sprint 211. Treat constant source-to-receipt delay as a
+modeled input. Seal at the later of the declared finalization delay and
+delivery bound. Keep the exact-boundary opening check independent of H4
+publication. [Clock publication model](RESULTS-211.md)

@@ -9,7 +9,8 @@ TRACE_KIND = "invented_weekend_publication_trace"
 EVENT_KINDS = ("h4_unavailable", "h4_completed", "eurusd_update", "scheduled_h1_open")
 
 
-def _weekend_window(calendar, h4_end):
+def weekend_opening(calendar, h4_end):
+    """Return the first scheduled H1 window across a declared weekend."""
     data.integer(h4_end)
     if all(window.end != h4_end for window in calendar.frame("H4")):
         raise ValueError("declared H4 close required")
@@ -39,7 +40,7 @@ def audit(trace):
         raise ValueError("invented weekend publication trace required")
     calendar = Calendar.from_record(trace["calendar"])
     h4_end = trace["h4_end"]
-    window = _weekend_window(calendar, h4_end)
+    window = weekend_opening(calendar, h4_end)
     if type(trace["events"]) is not list or len(trace["events"]) > data.ROW_LIMIT:
         raise ValueError("bounded receipt events required")
 

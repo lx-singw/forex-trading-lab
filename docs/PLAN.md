@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 211 verifies clock-based H4 publication without
+waiting for a Sunday quote. Historical use needs qualified Friday child
+coverage and a defensible Sunday opening price and spread under the frozen
+rule. [Clock publication model](trendline/RESULTS-211.md)
+
 19 November 2026. Sprint 210 specifies how to check a Friday H4 completion
 against the Sunday H1 opening. Retained quote and clock probes lack this
 paired record. Source admission still requires independent historical

@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 211 tests a clock-based Friday H4 publication
+model using invented source timestamps. The model can seal observed child
+bars during the closure. The nine retained Exness Sunday labels still fall
+after their modeled H1 opens. [Sprint 211 results](trendline/RESULTS-211.md)
+
 19 November 2026. Sprint 210 reviews retained evidence and tests a weekend
 publication audit on invented receipt traces. The retained records do not
 place a completed Friday H4 observation and the Sunday H1 opening on the
