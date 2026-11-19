@@ -222,21 +222,31 @@ class Hour:
     @classmethod
     def from_record(cls, value, basis):
         fields(value, ("start", "end", "available_at", "open", "high", "low", "close", "spread_pips"))
-        for key in ("start", "end", "available_at"):
-            integer(value[key])
-        prices = {key: number(value[key]) for key in ("open", "high", "low", "close")}
-        if not 0 < prices["low"] <= min(prices["open"], prices["close"]) <= max(prices["open"], prices["close"]) <= prices["high"]:
-            raise ValueError("positive OHLC geometry required")
-        if not value["start"] < value["end"] <= value["available_at"]:
-            raise ValueError("completed observation chronology required")
+        geometry = cls._geometry(value)
         if basis == "bid_only":
             spread = number(value["spread_pips"])
         elif basis == "mid_candles_source" and value["spread_pips"] is None:
             spread = None
         else:
             raise ValueError("basis/spread mismatch")
-        return cls(**{key:value[key] for key in ("start", "end", "available_at")},
-                   **prices, spread_pips=spread)
+        return cls(**geometry, spread_pips=spread)
+
+    @classmethod
+    def from_geometry_record(cls, value):
+        fields(value, ("start", "end", "available_at", "open", "high", "low", "close"))
+        return cls(**cls._geometry(value), spread_pips=None)
+
+    @staticmethod
+    def _geometry(value):
+        times = {key: value[key] for key in ("start", "end", "available_at")}
+        for at in times.values():
+            integer(at)
+        prices = {key: number(value[key]) for key in ("open", "high", "low", "close")}
+        if not 0 < prices["low"] <= min(prices["open"], prices["close"]) <= max(prices["open"], prices["close"]) <= prices["high"]:
+            raise ValueError("positive OHLC geometry required")
+        if not value["start"] < value["end"] <= value["available_at"]:
+            raise ValueError("completed observation chronology required")
+        return times | prices
 
     def record(self):
         return {key: str(value) if isinstance(value, Decimal) else value

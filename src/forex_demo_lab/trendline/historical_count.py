@@ -3,9 +3,9 @@
 from dataclasses import replace
 import hashlib
 
-from . import data, entries, historical_input, signal_count
+from . import data, historical_input, signal_count
 
-VERSION = "TRL_PHASE10_COUNT_218_V1"
+VERSION = "TRL_PHASE10_COUNT_221_V1"
 
 
 def _bindings():
@@ -33,9 +33,9 @@ def count(manifest_path):
     calendar = dataset.calendar
     hours = tuple(_completed_hours(dataset))
     bars = calendar.publications(hours, calendar.end)
-    hourly = entries._visible_hours(dataset.source, hours, calendar.end, calendar)
+    openings = {evidence.price.start: evidence for evidence in dataset.openings}
     report = signal_count._cells(
-        dataset.source, bars, hourly, cutoff=calendar.end, tick=dataset.tick_size,
+        dataset.source, bars, openings, cutoff=calendar.end, tick=dataset.tick_size,
         profiles=signal_count.PROFILES, costs=signal_count.COSTS, liquidation=dataset.liquidation_at,
         development_start=calendar.development_start,
         allow_equal_open=dataset.same_time_open_order == "decision_before_open",

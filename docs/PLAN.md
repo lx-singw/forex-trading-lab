@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 221 verifies separate historical H1 geometry
+and opening eligibility. The lead source still needs a reviewed
+development calendar and independently supported opening records before
+the first actual Phase 10 count.
+[Separate opening evidence](trendline/RESULTS-221.md)
+
 19 November 2026. Sprint 220 verifies the shortened Sunday opening edge
 under the existing Exness scenario. Carry opening evidence separately
 from completed H1 geometry and continue the exact archive’s source and

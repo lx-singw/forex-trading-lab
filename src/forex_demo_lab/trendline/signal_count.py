@@ -131,8 +131,9 @@ def _setup_months(report, calendar, cutoff, profile, development_start):
     return monthly
 
 
-def _bar_attempts(source, hourly, report, model, cutoff, liquidation, development_start, allow_equal_open):
+def _bar_attempts(source, observations, report, model, cutoff, liquidation, development_start, allow_equal_open):
     bid_only = source.record()["geometry_basis"] == "bid_only"
+    historical = type(source) is data.HistoricalDeclaration
     for attempt, targets in entries._requests(report, source.calendar, model.costs["name"],
                                                development_start=development_start):
         request = attempt["request"]
@@ -145,7 +146,8 @@ def _bar_attempts(source, hourly, report, model, cutoff, liquidation, developmen
             if not allow_equal_open and request["decision_at"]["time"] == window.start:
                 yield request, "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
                 continue
-        yield (request, *entries._resolve(model, request, window, expires, hourly, cutoff, bid_only, targets))
+        yield (request, *entries._resolve(model, request, window, expires, observations, cutoff, bid_only, targets,
+                                         historical=historical))
 
 
 def _quote_candidates(tape, prefix, model):

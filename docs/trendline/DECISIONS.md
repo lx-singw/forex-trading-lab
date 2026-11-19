@@ -228,3 +228,9 @@ interval on a historical partial session. Preserve later wall-clock
 edges and H4 child alignment. Record the Exness ordinary-hours grid
 as a scenario for compatibility and timing review.
 [Source review and calendar compatibility](RESULTS-220.md)
+
+19 November 2026, sprint 221. Bind the completed bid bars and opening
+evidence under the same reviewed input digest. Keep the scheduled first
+H1 slot in the entry rule. Retain completed geometry when the opening
+record is absent or arrives too late.
+[Separate opening evidence](RESULTS-221.md)

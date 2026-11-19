@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 221 carries historical opening evidence
+separately from completed bid bars. The counter retains geometry and
+skips the entry when the first H1 opening lacks eligible evidence.
+[Sprint 221 results](trendline/RESULTS-221.md)
+
 19 November 2026. Sprint 220 represents the Exness 2022 opening-edge
 scenario in the historical calendar and reproduces its earlier timing
 bounds. Source qualification remains open.

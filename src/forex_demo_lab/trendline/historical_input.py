@@ -1,5 +1,6 @@
 """Read reviewed historical Level B development input without running the counter."""
 
+from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, time, timezone
 import hashlib
@@ -7,9 +8,9 @@ from pathlib import PurePosixPath
 
 from ..elliott_study_145 import span
 from ..paired_replay_133 import strict_json
-from . import data, historical_calendar, signal_count, study
+from . import data, entries, historical_calendar, signal_count, study
 
-VERSION = "TRL_PHASE10_INPUT_218_V1"
+VERSION = "TRL_PHASE10_INPUT_221_V1"
 MANIFEST_KIND = "trendline_development_level_b_manifest"
 METADATA_LIMIT = 256 * 1024
 
@@ -22,6 +23,7 @@ class HistoricalInput:
     source: data.HistoricalDeclaration
     warmup: tuple[data.Hour, ...]
     development: tuple[data.Hour, ...]
+    openings: tuple[entries.HistoricalOpening, ...]
     tick_size: str
     same_time_open_order: str
     liquidation_at: int
@@ -85,7 +87,9 @@ def _read_hours(path, plan, calendar):
     raw = _bounded_bytes(path, data.BYTE_LIMIT)
     if hashlib.sha256(raw).hexdigest() != plan["input_sha256"]:
         raise ValueError("price file differs from the reviewed input before parsing")
-    rows = strict_json(raw, data.BYTE_LIMIT)
+    payload = strict_json(raw, data.BYTE_LIMIT)
+    data.fields(payload, ("hours", "openings"))
+    rows = payload["hours"]
     if type(rows) is not list or not 1 <= len(rows) <= data.ROW_LIMIT:
         raise ValueError("bounded nonempty H1 observations required")
 
@@ -93,14 +97,37 @@ def _read_hours(path, plan, calendar):
     warmup, development_hours = [], []
     previous = None
     for row in rows:
-        hour = data.Hour.from_record(row, "bid_only")
+        hour = data.Hour.from_geometry_record(row)
         if scheduled.get(hour.start) != hour.end:
             raise ValueError("H1 row outside reviewed calendar window")
         if previous is not None and (hour.start < previous.end or hour.available_at < previous.available_at):
             raise ValueError("overlapping H1 bars or reordered receipts")
         (warmup if hour.start < calendar.development_start else development_hours).append(hour)
         previous = hour
-    return tuple(warmup), tuple(development_hours)
+    openings = _opening_rows(payload["openings"], scheduled, calendar.delay)
+    return tuple(warmup), tuple(development_hours), openings
+
+
+def _opening_rows(rows, scheduled, delay):
+    if type(rows) is not list or len(rows) > data.ROW_LIMIT:
+        raise ValueError("bounded opening evidence array required")
+    openings = []
+    for row in rows:
+        evidence = entries.HistoricalOpening.from_record(row, delay=delay)
+        if scheduled.get(evidence.price.start) != evidence.price.end:
+            raise ValueError("opening evidence outside reviewed H1 window")
+        if openings and evidence.price.start <= openings[-1].price.start:
+            raise ValueError("unique opening evidence in scheduled order required")
+        openings.append(evidence)
+    return tuple(openings)
+
+
+def _opening_coverage(calendar, openings):
+    scheduled = sum(window.start >= calendar.development_start for window in calendar.frame("H1"))
+    statuses = Counter(evidence.coverage_status(calendar.end) for evidence in openings
+                       if evidence.price.start >= calendar.development_start)
+    statuses["MISSING_OPENING_EVIDENCE"] = scheduled - sum(statuses.values())
+    return {"scheduled": scheduled, "status_counts": dict(sorted(statuses.items()))}
 
 
 def load_level_b(manifest_path):
@@ -137,7 +164,7 @@ def load_level_b(manifest_path):
     endpoint = plan["endpoints"]["development"]["liquidation_at"]
     liquidation = None if endpoint is None else int(study.instant(endpoint).timestamp()) * 1000
     liquidation = signal_count._liquidation(calendar, liquidation, start=calendar.development_start)
-    warmup, development = _read_hours(bundle / price_file, plan, calendar)
+    warmup, development, openings = _read_hours(bundle / price_file, plan, calendar)
     warmup_coverage = calendar.coverage(warmup, start=calendar.start, cutoff=calendar.development_start)
     claimed = plan["partitions"]["development"]["warmup"]["declared_complete_bars"]
     for frame, minimum in claimed.items():
@@ -152,6 +179,7 @@ def load_level_b(manifest_path):
         "input_sha256": plan["input_sha256"],
         "calendar_sha256": plan["calendar_sha256"], "warmup_rows": len(warmup), "development_rows": len(development),
         "warmup_at_development_start": warmup_coverage, "development_at_scope_end": development_coverage,
+        "development_openings_at_scope_end": _opening_coverage(calendar, openings),
         "tick_size": manifest["tick_size"], "same_time_open_order": manifest["same_time_open_order"],
         "liquidation_at": liquidation,
         "market_data_read": True, "actual_counts": None,
@@ -160,5 +188,5 @@ def load_level_b(manifest_path):
                                                "input_sha256", "calendar_sha256")}
     source_record.update(kind="reviewed_historical_trendline_source", symbol="EURUSD", partition="development")
     source = data.HistoricalDeclaration(data.canonical(source_record).decode(), calendar)
-    return HistoricalInput(source, warmup, development, manifest["tick_size"], manifest["same_time_open_order"],
+    return HistoricalInput(source, warmup, development, openings, manifest["tick_size"], manifest["same_time_open_order"],
                            liquidation, receipt)

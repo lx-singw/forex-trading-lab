@@ -1,4 +1,5 @@
-"""Resolve invented break and bounce setups at the first scheduled H1 opening."""
+"""Resolve break and bounce setups at the first scheduled H1 opening."""
+from dataclasses import dataclass
 import hashlib
 
 from . import breaks, data, fills, selection
@@ -6,6 +7,62 @@ from . import breaks, data, fills, selection
 VERSION = "TRL_BRK3_B_ENTRIES_174_V1"
 H4_DECISION_ORDINAL = 0
 H1_OPEN_ORDINAL = 1
+
+
+@dataclass(frozen=True)
+class HistoricalOpening:
+    """Reviewed price evidence and its clock for one scheduled window."""
+
+    price: fills.Opening
+    source_at: int | None
+    available_at: int
+
+    @classmethod
+    def from_record(cls, record, *, delay):
+        common = ("kind", "start", "end", "bid", "source_at", "available_at")
+        kind = record.get("kind") if type(record) is dict else None
+        if kind == "paired_quote":
+            data.fields(record, (*common, "ask"))
+            bid, ask = (fills.decimal(record[field], positive=True) for field in ("bid", "ask"))
+            if ask < bid:
+                raise ValueError("opening ask must be at or above bid")
+            spread = fills.text((ask - bid) / fills.PIP)
+        elif kind == "bar_open_assumption":
+            data.fields(record, (*common, "spread_pips"))
+            spread = record["spread_pips"]
+        else:
+            raise ValueError("reviewed opening evidence kind required")
+        price = fills.Opening.from_record({
+            "kind": "invented_b_opening_assumption", "start": record["start"], "end": record["end"],
+            "ordinal": H1_OPEN_ORDINAL, "bid": record["bid"], "spread_pips": spread,
+        })
+        source_at = record["source_at"]
+        available_at = record["available_at"]
+        data.integer(available_at)
+        if kind == "paired_quote":
+            data.integer(source_at)
+            if not price.start <= source_at < price.end or available_at < source_at:
+                raise ValueError("opening quote source and receipt must match the scheduled window chronology")
+        else:
+            if source_at is not None or available_at < price.end:
+                raise ValueError("bar-open evidence requires a completed-bar receipt and null source time")
+            available_at = max(available_at, price.end + delay)
+        return cls(price, source_at, available_at)
+
+    @property
+    def timing_issue(self):
+        if self.source_at is None:
+            return None
+        if self.source_at > self.price.start:
+            return "OPENING_SOURCE_AFTER_START"
+        if self.available_at > self.price.start:
+            return "OPENING_RECEIVED_AFTER_START"
+        return None
+
+    def coverage_status(self, cutoff):
+        if self.available_at > cutoff:
+            return "PENDING_OPENING_EVIDENCE"
+        return self.timing_issue or ("BAR_OPEN_ASSUMPTION" if self.source_at is None else "PAIRED_AT_BOUNDARY")
 
 
 @data.cached_bindings
@@ -35,7 +92,7 @@ def _visible_hours(source, hours, as_of, calendar):
     return result
 
 
-def _resolve(model, request, window, expires_at, hours, as_of, bid_only, target_levels):
+def _resolve(model, request, window, expires_at, observations, as_of, bid_only, target_levels, *, historical=False):
     if not bid_only:
         price = model.entry(request, None)
         return price["status"], price["reason"], price
@@ -47,14 +104,25 @@ def _resolve(model, request, window, expires_at, hours, as_of, bid_only, target_
     if decision_time > window.start:
         return "SKIPPED", "LATE_DECISION", None
 
-    hour = hours.get(window.start)
-    if hour is not None and hour.available_at <= expires_at:
-        opening = fills.Opening.from_hour(hour, H1_OPEN_ORDINAL)
-        price = model.entry(request, opening, target_levels=target_levels)
-        return price["status"], price["reason"], price
-    if as_of >= expires_at:
-        return "EXPIRED", "MISSING_ENTRY_BAR", None
-    return "PENDING", "AWAITING_ENTRY_BAR", None
+    observation = observations.get(window.start)
+    if historical:
+        if observation is None or observation.available_at > as_of:
+            if as_of >= expires_at:
+                return "EXPIRED", "MISSING_OPENING_EVIDENCE", None
+            return "PENDING", "AWAITING_OPENING_EVIDENCE", None
+        if observation.available_at > expires_at:
+            return "EXPIRED", "OPENING_EVIDENCE_AFTER_EXPIRY", None
+        if observation.timing_issue is not None:
+            return "UNAVAILABLE", observation.timing_issue, None
+        opening = observation.price
+    else:
+        if observation is None or observation.available_at > expires_at:
+            if as_of >= expires_at:
+                return "EXPIRED", "MISSING_ENTRY_BAR", None
+            return "PENDING", "AWAITING_ENTRY_BAR", None
+        opening = fills.Opening.from_hour(observation, H1_OPEN_ORDINAL)
+    price = model.entry(request, opening, target_levels=target_levels)
+    return price["status"], price["reason"], price
 
 
 def evaluate(replay, hours, *, as_of, cost_profile="base"):

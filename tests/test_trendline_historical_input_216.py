@@ -8,8 +8,9 @@ import runpy
 import subprocess
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from forex_demo_lab.elliott_sessions_146 import HOUR
 from forex_demo_lab.trendline import (
@@ -37,6 +38,18 @@ def session(start, end):
 
 def closure(start, end):
     return {"kind": "closure", "start": start, "end": end, "reason": "holiday"}
+
+
+def assumed_opening(hour):
+    return {"kind": "bar_open_assumption", "start": hour["start"], "end": hour["end"],
+            "bid": hour["open"], "spread_pips": hour["spread_pips"],
+            "source_at": None, "available_at": hour["available_at"]}
+
+
+def paired_opening(hour, *, source_delay=0, receipt_delay=0):
+    source_at = hour["start"] + source_delay
+    return {"kind": "paired_quote", "start": hour["start"], "end": hour["end"],
+            "bid": "1.1000", "ask": "1.1002", "source_at": source_at, "available_at": source_at + receipt_delay}
 
 
 class HistoricalInputTests(unittest.TestCase):
@@ -69,8 +82,13 @@ class HistoricalInputTests(unittest.TestCase):
         ]}
         self.rows = [row(left, right) for item in sessions for left, right in zip(item["h1"], item["h1"][1:])]
 
-    def bundle(self, **override):
-        prices = data.canonical(self.rows)
+    def bundle(self, *, opening_rows=None, **override):
+        if opening_rows is None:
+            opening_rows = [assumed_opening(hour) for hour in self.rows]
+        prices = data.canonical({
+            "hours": [{key: value for key, value in hour.items() if key != "spread_pips"} for hour in self.rows],
+            "openings": opening_rows,
+        })
         self.prices.write_bytes(prices)
         self.plan["input_sha256"] = hashlib.sha256(prices).hexdigest()
         calendar = data.canonical(self.calendar)
@@ -100,12 +118,14 @@ class HistoricalInputTests(unittest.TestCase):
         receipt = result.receipt
         self.assertEqual(6072, len(result.warmup))
         self.assertEqual(6, len(result.development))
-        self.assertEqual(data.Hour.from_record(self.rows[-1], "bid_only"), result.development[-1])
+        self.assertEqual(replace(data.Hour.from_record(self.rows[-1], "bid_only"), spread_pips=None),
+                         result.development[-1])
         self.assertIsNone(receipt["actual_counts"])
         self.assertEqual(self.plan["input_sha256"], receipt["input_sha256"])
         self.assertEqual(self.plan["calendar_sha256"], result.calendar.sha256)
         self.assertEqual(253, receipt["warmup_at_development_start"]["D1"]["complete_by_cutoff"])
         self.assertEqual(2, receipt["development_at_scope_end"]["H4"]["complete_by_cutoff"])
+        self.assertEqual(6, receipt["development_openings_at_scope_end"]["status_counts"]["BAR_OPEN_ASSUMPTION"])
 
     def test_changed_plan_and_overlapping_holdout_stop_before_price_read(self):
         with self.bundle(), patch.object(historical_input, "_read_hours", side_effect=AssertionError("no prices expected")):
@@ -301,19 +321,36 @@ class HistoricalInputTests(unittest.TestCase):
         # same-time open without replaying several hundred warmup H4 bars.
         source = dataset.source
         cutoff = source.calendar.end
-        hourly = entries._visible_hours(source, dataset.warmup + dataset.development, cutoff, source.calendar)
+        openings = {item.price.start: item for item in dataset.openings}
         model = fills.PriceModel(source, "base")
         setup_report = reports[PROFILE]
         unresolved = list(signal_count._bar_attempts(
-            source, hourly, setup_report, model, cutoff, dataset.liquidation_at, self.seam, False,
+            source, openings, setup_report, model, cutoff, dataset.liquidation_at, self.seam, False,
         ))
         self.assertEqual([("SKIPPED", "UNRESOLVED_OPEN_ORDER")], [attempt[1:3] for attempt in unresolved])
         later_seam = opening["start"] + delta
         self.assertEqual([], list(signal_count._bar_attempts(
-            source, hourly, setup_report, model, cutoff, dataset.liquidation_at, later_seam, True,
+            source, openings, setup_report, model, cutoff, dataset.liquidation_at, later_seam, True,
         )))
         months = signal_count._setup_months(setup_report, source.calendar, cutoff, PROFILE, later_seam)
         self.assertEqual(0, months["2021-01"]["counts"]["break_setups"])
+
+        # The next hour remains supported. It must not replace the first.
+        with self.bundle(opening_rows=[assumed_opening(item) for item in self.rows if item["start"] != later_seam]):
+            without_opening = historical_input.load_level_b(self.manifest)
+            self.assertEqual(dataset.development, without_opening.development)
+            self.assertEqual(source.calendar.publications(dataset.development, cutoff),
+                             source.calendar.publications(without_opening.development, cutoff))
+            recounted = historical_count.count(self.manifest)
+        suppressed = [cell for cell in recounted["cells"] if cell["profile"] == PROFILE]
+        for original, cell in zip(brk3, suppressed, strict=True):
+            counts = cell["total"]["counts"]
+            self.assertEqual((2, 1, 1, 0), tuple(counts[name] for name in (
+                "observed_h4", "break_setups", "entry_attempts", "entry_eligible_opportunities",
+            )))
+            self.assertEqual({"MISSING_OPENING_EVIDENCE": 1}, cell["total"]["entry_skip_reasons"])
+            self.assertEqual(original["months"].keys(), cell["months"].keys())
+            self.assertEqual({"evaluated": 0, "passed": 0}, cell["total"]["entry_price_filters"]["spread_to_stop_cap"])
 
     def test_historical_count_rejects_unreviewed_manifest_without_a_report(self):
         self.bundle()
@@ -360,3 +397,68 @@ class HistoricalInputTests(unittest.TestCase):
         self.assertEqual(len(dataset.warmup) + len(dataset.development) - 1, len(completed))
         self.assertEqual(dataset.development[-2].end + 2, completed[-1].available_at)
         self.assertNotEqual(last.start, completed[-1].start)
+
+    def test_opening_coverage_reconciles_independently_of_completed_bars(self):
+        hours = self.rows[-6:]
+        openings = [
+            paired_opening(hours[0]),
+            paired_opening(hours[1], source_delay=1),
+            paired_opening(hours[2], receipt_delay=1),
+            assumed_opening(hours[3]) | {"available_at": midnight(2023) + 1},
+            paired_opening(hours[5]),
+        ]
+        self.rows.pop()
+        with self.bundle(opening_rows=openings):
+            dataset = historical_input.load_level_b(self.manifest)
+        self.assertEqual(5, dataset.receipt["development_at_scope_end"]["H1"]["complete_by_cutoff"])
+        self.assertEqual({
+            "scheduled": 6,
+            "status_counts": {"PAIRED_AT_BOUNDARY": 2, "OPENING_SOURCE_AFTER_START": 1,
+                              "OPENING_RECEIVED_AFTER_START": 1, "PENDING_OPENING_EVIDENCE": 1,
+                              "MISSING_OPENING_EVIDENCE": 1},
+        }, dataset.receipt["development_openings_at_scope_end"])
+        self.assertEqual(2, dataset.openings[-1].price.spread_pips)
+        self.assertNotIn(dataset.openings[-1].price.start, {hour.start for hour in dataset.development})
+
+    def test_opening_evidence_rejects_invalid_price_pairs_or_schedule(self):
+        hour = self.rows[-1]
+        opening = paired_opening(hour)
+        checks = (
+            ([opening, opening], "unique opening evidence"),
+            ([opening | {"end": opening["end"] + 1}], "outside reviewed H1"),
+            ([opening | {"ask": "1.0999"}], "ask must be at or above bid"),
+            ([opening | {"available_at": opening["start"] - 1}], "source and receipt"),
+            ([assumed_opening(hour) | {"source_at": hour["start"] + 1}], "null source time"),
+        )
+        for rows, reason in checks:
+            with self.subTest(reason=reason), self.bundle(opening_rows=rows), self.assertRaisesRegex(ValueError, reason):
+                historical_input.load_level_b(self.manifest)
+
+    def test_entry_evidence_is_only_considered_through_cutoff_and_expiry(self):
+        hour = self.rows[-6]
+        window = SimpleNamespace(start=hour["start"], end=hour["end"])
+        expiry = window.end
+        request = {"decision_at": {"time": window.start - 1}}
+        model = Mock()
+        model.entry.return_value = {"status": "FILLED", "reason": None}
+
+        def resolve(record, as_of, *, delay=0):
+            evidence = entries.HistoricalOpening.from_record(record, delay=delay)
+            observations = {window.start: evidence}
+            return entries._resolve(model, request, window, expiry, observations, as_of, True, None,
+                                    historical=True)[:2]
+
+        self.assertEqual(("PENDING", "AWAITING_OPENING_EVIDENCE"),
+                         resolve(paired_opening(hour, receipt_delay=1), window.start))
+        self.assertEqual(("UNAVAILABLE", "OPENING_RECEIVED_AFTER_START"),
+                         resolve(paired_opening(hour, receipt_delay=1), window.start + 1))
+        self.assertEqual(("UNAVAILABLE", "OPENING_SOURCE_AFTER_START"),
+                         resolve(paired_opening(hour, source_delay=1), window.start + 1))
+        modeled = assumed_opening(hour)
+        self.assertEqual(("EXPIRED", "MISSING_OPENING_EVIDENCE"),
+                         resolve(modeled, expiry, delay=1))
+        self.assertEqual(("EXPIRED", "OPENING_EVIDENCE_AFTER_EXPIRY"),
+                         resolve(modeled, expiry + 1, delay=1))
+        model.entry.assert_not_called()
+        self.assertEqual(("FILLED", None), resolve(paired_opening(hour), window.start))
+        self.assertEqual(2, model.entry.call_args.args[1].spread_pips)

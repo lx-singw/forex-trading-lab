@@ -1,5 +1,8 @@
 # Sprint 218 · Historical development counter
 
+Sprint 221 documents the current manifest and split price file.
+[Separate opening evidence](RESULTS-221.md)
+
 19 November 2026. The Phase 10 counter now accepts a reviewed EURUSD
 Level B bundle. The manifest, plan, calendar and price file pass through
 the existing hash and date-scope checks. The repository has zero approved
