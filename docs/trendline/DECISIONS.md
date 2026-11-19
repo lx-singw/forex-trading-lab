@@ -246,3 +246,8 @@ evidence of consistency across the published products. Require
 independent opening-pair provenance and historical availability
 evidence before admitting an opening model for actual counts.
 [Historical bar-open source review](RESULTS-223.md)
+
+20 November 2026, sprint 224. Use the ordinary-hours comparison as
+coverage evidence for the EV 2024 sample. Keep the missing hours
+and five-minute slots visible until each closure or gap has supporting
+evidence for the source. [EV calendar diagnostic](RESULTS-224.md)

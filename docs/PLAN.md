@@ -1,5 +1,11 @@
 # Proposed milestones
 
+20 November 2026. Sprint 224 isolates the EV 2024 missing H1 slots
+to Christmas and New Year notice windows and identifies the separate
+M5 gaps. Verify actual session exceptions, their treatment in the
+UTC H4 and D1 resamples, and opening availability for any candidate
+development input. [EV calendar diagnostic](trendline/RESULTS-224.md)
+
 19 November 2026. Sprint 223 verifies the EV opening-price relationship
 across its 2024 H1 and M5 products. Keep source qualification open
 pending original quote timing, a reviewed availability model, and

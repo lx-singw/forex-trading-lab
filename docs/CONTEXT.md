@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+20 November 2026. Sprint 224 reconciles the published EV 2024 H1
+timestamps against Dukascopy's ordinary hours. All 41 missing hours
+fall in the Christmas and New Year notice windows. The exact closures
+and intrahour gaps remain unverified. [Sprint 224 results](trendline/RESULTS-224.md)
+
 19 November 2026. Sprint 223 verifies that all 6,247 EV EURUSD H1
 opening pairs match the earliest M5 row in the same hour in the
 already-seen 2024 data. Original tick pairing and historical
