@@ -1,5 +1,10 @@
 # Proposed milestones
 
+19 November 2026. Sprint 216 verifies the historical Level B input reader
+on invented H1 bars. Connect the reviewed input to a historical session
+calendar and the development counter. Source qualification remains open.
+[Reviewed historical input](trendline/RESULTS-216.md)
+
 19 November 2026. Sprint 215 identifies the Phase 10 gaps in source
 qualification, development coverage and the historical counting path.
 Phase 11 retains validation, broker accounting and study acceptance checks.

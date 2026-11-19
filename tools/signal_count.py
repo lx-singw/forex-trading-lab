@@ -1,7 +1,7 @@
-"""Count development opportunities from invented inputs or report source admission status."""
+"""Count invented development opportunities and check historical input eligibility."""
 import argparse
 
-from forex_demo_lab.trendline import data, quotes, signal_count
+from forex_demo_lab.trendline import data, historical_input, quotes, signal_count
 
 
 def main():
@@ -22,9 +22,17 @@ def main():
     status = commands.add_parser("status", help="current metadata-only source admission status")
     status.add_argument("plan")
     status.add_argument("output")
+    historical = commands.add_parser("historical-input", help="verify reviewed Level B development input")
+    historical.add_argument("manifest")
+    historical.add_argument("output")
     args = parser.parse_args()
     if args.command == "status":
         result = signal_count.admission_status(data.read_json(args.plan)[0])
+    elif args.command == "historical-input":
+        try:
+            _, _, result = historical_input.load_level_b(args.manifest)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
     else:
         options = {"tick": args.tick_size, "as_of": args.as_of, "profiles": args.profile or signal_count.PROFILES,
                    "costs": args.cost_profile or signal_count.COSTS}

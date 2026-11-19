@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 216 adds a historical Level B input reader that
+checks a reviewed manifest and the exact development plan before opening
+prices. The approved manifest list is empty. The historical calendar and
+counter still need integration. [Sprint 216 results](trendline/RESULTS-216.md)
+
 19 November 2026. Sprint 215 updates Phase 10 preflight to surface the
 requirements for a development count. The source, opening evidence and
 historical counting path remain open. Declared holdout dates are protected

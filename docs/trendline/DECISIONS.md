@@ -199,3 +199,9 @@ held-position accounting supplies no fresh Sunday entry price.
 of the pre-account count. Preserve the holdout from overlap with proposed
 development or warmup dates. Keep later study issues visible in the status
 report. [Development preflight](RESULTS-215.md)
+
+19 November 2026, sprint 216. Require a separately reviewed manifest hash
+at the historical Level B input boundary. Use the manifest to bind the exact
+development plan and the plan to bind the input bytes. Retain distinct
+warmup and development roles in the typed H1 rows.
+[Reviewed historical input](RESULTS-216.md)
