@@ -133,3 +133,8 @@ still needs complete exposure review. [Historical source review](RESULTS-201.md)
 for 2018–2019 alongside the lab’s prior-trial records. Retain the proposed
 validation dates as a candidate while undated price displays and complete
 trial history require review. [Exposure and trial history](RESULTS-202.md)
+
+19 November 2026, sprint 203. Use the provider’s public download and analysis
+instructions for a private, temporary January 2022 diagnostic. Record source
+format and timing evidence before admission. Add the exact January 2022
+Exness sample to known development exposure. [Independent archive diagnostic](RESULTS-203.md)
