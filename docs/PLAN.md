@@ -1,5 +1,10 @@
 # Proposed milestones
 
+20 November 2026. Sprint 225 verifies EV's UTC H4 and D1 resamples
+and records the short and incomplete buckets. Qualify the actual
+session edges and opening availability independently of the parent
+labels before the Phase 10 count. [Parent resampling audit](trendline/RESULTS-225.md)
+
 20 November 2026. Sprint 224 isolates the EV 2024 missing H1 slots
 to Christmas and New Year notice windows and identifies the separate
 M5 gaps. Verify actual session exceptions, their treatment in the

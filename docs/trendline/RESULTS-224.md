@@ -43,7 +43,7 @@ notice windows. The intervals below record absences in EV's file.
 | 25 December 08:00 | 25 December 22:00 | 14 |
 | 31 December 22:00 | 1 January 2025 00:00 | 2 |
 
-EV still published seven H1 bars on 25 December. Within the 6,247
+EV still published nine H1 bars on 25 December. Within the 6,247
 published H1 hours, the 74,949 M5 bars leave 15 absent five-minute
 slots. Nine fell on 25 December. The other six fell on 28 April,
 12 May, 19 June, 24 June and 4 July. The full UTC discrepancy intervals

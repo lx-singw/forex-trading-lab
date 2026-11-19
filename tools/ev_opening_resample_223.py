@@ -55,7 +55,7 @@ def _price(value):
     return value
 
 
-def parse(body, period):
+def price_rows(body, period, price_columns):
     with gzip.GzipFile(fileobj=io.BytesIO(body)) as source:
         raw = source.read(data.BYTE_LIMIT + 1)
     if len(raw) > data.BYTE_LIMIT:
@@ -69,18 +69,20 @@ def parse(body, period):
         rows = iter(document)
     else:
         raise ValueError("expected published candle rows or columns")
-    opens = {}
     previous = START - 1
     for row in rows:
         data.fields(row, COLUMNS)
         stamp = row["ts"]
         if type(stamp) is not int or not previous < stamp < END or stamp % period:
             raise ValueError("expected unique, aligned 2024 candle timestamps in ascending order")
-        opens[stamp] = (_price(row["o"]), _price(row["ao"]))
+        yield stamp, tuple(_price(row[column]) for column in price_columns)
         previous = stamp
-    if not opens:
+    if previous < START:
         raise ValueError("empty candle file")
-    return opens
+
+
+def parse(body, period):
+    return dict(price_rows(body, period, ("o", "ao")))
 
 
 def compare(hourly, five_minute):

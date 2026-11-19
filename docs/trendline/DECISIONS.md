@@ -251,3 +251,8 @@ evidence before admitting an opening model for actual counts.
 coverage evidence for the EV 2024 sample. Keep the missing hours
 and five-minute slots visible until each closure or gap has supporting
 evidence for the source. [EV calendar diagnostic](RESULTS-224.md)
+
+20 November 2026, sprint 225. Use the exact H4 and D1 OHLC matches
+as a reconciliation check for H1-derived geometry. Keep publication
+and closure evidence tied to the reviewed schedule and observation
+clock. [Parent resampling audit](RESULTS-225.md)

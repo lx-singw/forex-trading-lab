@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+20 November 2026. Sprint 225 reproduces every published EV 2024 H4
+and D1 bid and ask OHLC from the published H1 children. Parent labels
+and session edges can differ by hours. [Sprint 225 results](trendline/RESULTS-225.md)
+
 20 November 2026. Sprint 224 reconciles the published EV 2024 H1
 timestamps against Dukascopy's ordinary hours. All 41 missing hours
 fall in the Christmas and New Year notice windows. The exact closures
