@@ -1,5 +1,11 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 208 maps Exness’s published 2022 ordinary forex
+hours to a candidate UTC bar grid. At a two-second delay, 51 scheduled
+H4 closes can precede the next opening if shortened bars are eligible.
+Full-length H4 bars leave zero. This is a timing scenario for source review.
+[Sprint 208 results](trendline/RESULTS-208.md)
+
 19 November 2026. Sprint 207 checks EV Trading Labs documentation and
 adds a calendar-only Level B timing audit. In an invented 104-week calendar,
 2 seconds of finalization leaves 103 of 3,120 H4 closes with time to reach

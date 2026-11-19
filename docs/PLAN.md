@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 208 finds that the 2022 ordinary-hours scenario
+depends on shortened Friday H4 bars for any timely decision with a positive
+delay. Resolve historical closures, partial-bar treatment and actual
+publication at the weekend edge before a historical count.
+[Exness calendar timing](trendline/RESULTS-208.md)
+
 19 November 2026. Sprint 207 measures how the published H4 decision can
 miss the first scheduled H1 opening. Apply this check to a documented
 source calendar and availability model before any historical counts. EV’s

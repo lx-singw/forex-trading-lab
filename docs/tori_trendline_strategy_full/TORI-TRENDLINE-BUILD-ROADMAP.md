@@ -539,9 +539,11 @@ Sprint 205 verifies a conservative Level B opening model on invented tapes.
 Sprint 206 reviews the saved MT5 export and an alternative H1 bid/ask catalogue.
 Sprint 207 checks the latest public methodology and bounds possible first-open
 timing using invented calendars.
+Sprint 208 applies the timing check to a candidate 2022 Exness ordinary-hours
+grid. The positive-delay result depends on shortened Friday H4 bars.
 Historical use still requires an admitted source and a reviewed price,
 spread and timing declaration.
-[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md)
+[Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md)
 
 **Decision tree:**
 

@@ -156,3 +156,9 @@ publication to screen whether the first H1 opening can be reached. Preserve
 same-time decision order as an explicit qualification. The public EV methodology
 supports M1 lineage and a catalogue license, with paired opens and historical
 H1 coverage still open. [Timing audit](RESULTS-207.md)
+
+19 November 2026, sprint 208. Treat the Exness 2022 ordinary-hours grid as
+a timing scenario. Its positive-delay cases depend on shortened Friday H4
+bars, and all nine retained Sunday first labels follow the assumed open.
+Keep the partial-bar and publication assumptions open for admission review.
+[Exness calendar timing](RESULTS-208.md)

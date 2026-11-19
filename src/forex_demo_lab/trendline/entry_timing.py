@@ -11,14 +11,28 @@ from . import data
 def audit(calendar_record):
     """Compare each H4 publication lower bound with its first scheduled H1 open."""
     calendar = Calendar.from_record(calendar_record)
-    starts = [window.start for window in calendar.frame("H1")]
-    h4 = calendar.frame("H4")
+    starts = tuple(window.start for window in calendar.frame("H1"))
+    closes = tuple(window.end for window in calendar.frame("H4"))
+    rows = compare_schedule(starts, closes, delay=calendar.delay)
+    return {
+        "kind": "invented_level_b_entry_timing_audit", "calendar_sha256": calendar.sha256,
+        "finalization_delay_ms": calendar.delay, **summarize(rows), "h4": rows,
+    }
+
+
+def compare_schedule(h1_starts, h4_closes, *, delay):
+    """Compare sorted schedule edges and a delay in milliseconds without reading prices."""
+    data.integer(delay)
+    for edges in (h1_starts, h4_closes):
+        for edge in edges:
+            data.integer(edge)
+        if any(left >= right for left, right in zip(edges, edges[1:])):
+            raise ValueError("strictly increasing schedule edges required")
     rows = []
-    for trigger, following in zip(h4, (*h4[1:], None), strict=True):
-        earliest = trigger.end + calendar.delay
-        index = bisect_left(starts, trigger.end)
-        first_open = starts[index] if index < len(starts) else None
-        expiry = following.end if following is not None else None
+    for close, expiry in zip(h4_closes, (*h4_closes[1:], None), strict=True):
+        earliest = close + delay
+        index = bisect_left(h1_starts, close)
+        first_open = h1_starts[index] if index < len(h1_starts) else None
         if first_open is None or expiry is None or first_open >= expiry:
             status = "NO_SCHEDULED_ENTRY"
         elif earliest > first_open:
@@ -27,17 +41,18 @@ def audit(calendar_record):
             status = "TIED_AT_EARLIEST_PUBLICATION"
         else:
             status = "EARLIEST_PUBLICATION_BEFORE_OPEN"
-        rows.append({"h4_end": trigger.end, "first_scheduled_open": first_open, "expires_at": expiry,
+        rows.append({"h4_end": close, "first_scheduled_open": first_open, "expires_at": expiry,
                      "earliest_decision_at": earliest, "status": status})
+    return rows
 
+
+def summarize(rows):
     counts = Counter(row["status"] for row in rows)
     before = counts["EARLIEST_PUBLICATION_BEFORE_OPEN"]
     return {
-        "kind": "invented_level_b_entry_timing_audit", "calendar_sha256": calendar.sha256,
-        "finalization_delay_ms": calendar.delay, "scheduled_h4_closes": len(rows),
+        "scheduled_h4_closes": len(rows),
         "status_counts": dict(counts), "ceiling_without_same_time_order": before,
         "ceiling_if_decision_precedes_tied_open": before + counts["TIED_AT_EARLIEST_PUBLICATION"],
-        "h4": rows,
     }
 
 
