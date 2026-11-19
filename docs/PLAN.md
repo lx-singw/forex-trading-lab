@@ -1,5 +1,11 @@
 # Proposed milestones
 
+19 November 2026. Sprint 219 completes both full-window fabricated
+fixtures using a smaller trace while preserving the setup and entry tallies.
+Qualify a development source with reviewed opening price, spread and
+availability evidence before the first historical count.
+[Full-window counter benchmark](trendline/RESULTS-219.md)
+
 19 November 2026. Sprint 218 implements the historical Level B counter.
 Verify the replay at full development scale on fabricated data and
 qualify a development source with reviewed opening price, spread and

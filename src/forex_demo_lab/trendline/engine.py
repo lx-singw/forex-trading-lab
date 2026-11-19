@@ -25,6 +25,7 @@ def alias_groups(line,prior_states):
     return tuple(sorted({state.group_id for state in prior})) if union == set(line.touch_ids) else ()
 
 
+@data.cached_bindings
 def bindings():
     result = life.bindings()
     for relative in ("src/forex_demo_lab/trendline/engine.py","scripts/trendline-replay-170.py"):
@@ -32,24 +33,37 @@ def bindings():
     return result
 
 
+def _count_frame(frame):
+    keys = ("id", "as_of", "bar_index", "bar", "action_line_ids", "lifecycle_event_ids", "revisions")
+    result = {key: frame[key] for key in keys}
+    result["candidates"] = [
+        {"id": candidate["id"], "first_penetration": candidate["first_penetration"]}
+        for candidate in frame["candidates"] if candidate["first_penetration"] is not None
+    ]
+    return result
+
+
 class Engine:
-    def __init__(self,source,profile="TRL_BRK3_E1",timeframe="H4"):
+    def __init__(self,source,profile="TRL_BRK3_E1",timeframe="H4",*,count_only=False):
         self.source = data.research_declaration(source)
         lines.validate_profile(profile,timeframe,"full")
         self.profile,self.timeframe = profile,timeframe
-        self._scope = (profile,timeframe)
+        self._scope = (profile,timeframe,count_only)
         self._source_sha = self.source.sha256
         self._source_json = self.source._json
         self._bindings = bindings()
         self._inspector = lines.Inspector(self.source,timeframe)
         self._journal = life.Journal(self.source,profile,timeframe)
         self._latest = None
+        self._count_only = count_only
+        self._previous_frame_id = "0"*64
+        self._last_frame = self._last_bar = None
         self._frames,self._commands = (),()
         self._views = {}
         self._trace_bytes = 0
 
     def _check(self):
-        if (self.source._json != self._source_json or self._scope != (self.profile,self.timeframe)
+        if (self.source._json != self._source_json or self._scope != (self.profile,self.timeframe,self._count_only)
                 or self._bindings != bindings()):raise ValueError("engine source/profile/code bindings changed")
 
     @property
@@ -99,10 +113,13 @@ class Engine:
     def _prepare_bar(self, bar):
         self._bound()
         inspector = self._inspector.fork();inspector.observe(bar)
-        full = s.from_inspector(inspector,self.profile,"full")
-        action = s.from_inspector(inspector,self.profile,"action_break") if self.profile in lines.BREAK_PROFILES else full
+        full = self._selection(inspector,"full")
+        action = self._selection(inspector,"action_break") if self.profile in lines.BREAK_PROFILES else full
         action_ids = self._action_ids(inspector,action,self._journal.states)
         return inspector, full, action, action_ids
+
+    def _selection(self,inspector,role):
+        return s.from_inspector(inspector,self.profile,role,include_pair_rejections=not self._count_only)
 
     def _finish_bar(self, bar, staged, triggers):
         inspector, full, action, action_ids = staged
@@ -142,10 +159,10 @@ class Engine:
 
     def advance(self,now):
         self._check();data.integer(now)
-        if now == self.clock:return None if not self._frames else json.loads(self._frames[-1])
+        if now == self.clock:return None if self._last_frame is None else json.loads(self._last_frame)
         self._bound()
         inspector = self._inspector.fork();inspector.advance(now)
-        full = s.from_inspector(inspector,self.profile,"full")
+        full = self._selection(inspector,"full")
         return self._commit(inspector,self._journal,full,{"op":"ADVANCE","now":now},(),self._journal.event_count)
 
     def _commit(self,inspector,journal,full,command,action_ids,start_events):
@@ -195,20 +212,24 @@ class Engine:
                  "action_line_ids":list(action_ids),"declared_trigger_ids":command.get("declared_triggers",[]),
                  "lifecycle_event_ids":[event["id"] for event in journal.events_since(start_events)],
                  "entry_ready":False,"orders_available":False,
-                 "previous":"0"*64 if not self._frames else json.loads(self._frames[-1])["id"]}
+                 "previous":self._previous_frame_id}
         frame["id"] = data.digest(frame)
         encoded = data.canonical(frame).decode()
-        if self._trace_bytes+len(encoded.encode()) > MAX_TRACE_BYTES:raise ValueError("bounded replay trace; no silent truncation")
+        retained = data.canonical(_count_frame(frame)).decode() if self._count_only else encoded
+        if self._trace_bytes+len(retained.encode()) > MAX_TRACE_BYTES:raise ValueError("bounded replay trace; no silent truncation")
         self._check()
         self._inspector,self._journal,self._latest = inspector,journal,full
         self._views = views
-        self._frames = (*self._frames,encoded)
+        self._frames = (*self._frames,retained)
+        self._previous_frame_id = frame["id"]
+        self._last_frame = encoded
+        if command["op"] == "BAR":self._last_bar = encoded
         self._commands = (*self._commands,json.loads(data.canonical(command)))
-        self._trace_bytes += len(encoded.encode())
+        self._trace_bytes += len(retained.encode())
         return json.loads(encoded)
 
     def _last_bar_frame(self):
-        return next(json.loads(frame) for frame in reversed(self._frames) if json.loads(frame)["event_type"] == "BAR")
+        return json.loads(self._last_bar)
 
     def report(self):
         self._check()
@@ -228,6 +249,8 @@ class Engine:
 
     def checkpoint(self):
         self._check()
+        if self._count_only:
+            raise ValueError("count replay retains a summary; use a full replay for checkpoints")
         record = {"schema":VERSION,"kind":"invented_lifecycle_replay_checkpoint","declaration_sha256":self._source_sha,
                   "profile":self.profile,"timeframe":self.timeframe,"source_bindings":dict(self._bindings),
                   "commands":json.loads(data.canonical(self._commands)),"state_sha256":data.digest(self.report())}

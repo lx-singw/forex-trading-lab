@@ -3,9 +3,12 @@
 Market manifests remain metadata-only. No network, credentials, native accounts
 or submission APIs are used. Existing session146 algorithms stay unchanged.
 """
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from functools import wraps
 import hashlib
 import json
 from pathlib import Path
@@ -26,6 +29,7 @@ EVIDENCE = ("source_use", "clock_timezone_dst", "session_calendar", "coverage_li
             "price_semantics", "entry_spread", "commission_swap_contract", "prior_exposure")
 CANDIDATES = ("TRL_BRK3_E1", "TRL_FXR_M", "TRL_BRK2_E1", "TRL_BNC_E1",
               "TRL_BRK3_E1_D1", "T12_D", "CASH")
+_binding_snapshots = ContextVar("trendline_binding_snapshots", default=None)
 
 
 def fields(value, expected):
@@ -93,6 +97,36 @@ def write_new(path, value):
         handle.write(json.dumps(value, indent=2, allow_nan=False) + "\n")
 
 
+def cached_bindings(read):
+    """Reuse a defensive copy of a binding map inside one count run."""
+    @wraps(read)
+    def bindings():
+        snapshots = _binding_snapshots.get()
+        if snapshots is None:
+            return read()
+        if read not in snapshots:
+            snapshots[read] = read()
+        return snapshots[read].copy()
+    return bindings
+
+
+@contextmanager
+def replay_bindings():
+    """Verify every captured binding against fresh bytes before releasing a result."""
+    if _binding_snapshots.get() is not None:
+        yield
+        return
+    snapshots = {}
+    token = _binding_snapshots.set(snapshots)
+    try:
+        yield
+    finally:
+        _binding_snapshots.reset(token)
+    if any(read() != snapshot for read, snapshot in snapshots.items()):
+        raise ValueError("replay source bindings changed during count")
+
+
+@cached_bindings
 def source_bindings():
     paths = [Path(__file__), Path(__file__).with_name("__main__.py"),
              ROOT / "docs/trendline/PROTOCOL.md",

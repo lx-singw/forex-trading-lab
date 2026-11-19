@@ -74,6 +74,7 @@ def profile(name):
             "commission_and_financing_applied":False}
 
 
+@data.cached_bindings
 def bindings():
     result = data.source_bindings()
     for path in (data.ROOT/"src/forex_demo_lab/trendline/fills.py",

@@ -142,6 +142,7 @@ def reduce_lines(values):
                      tuple(sorted(discarded)),tuple(sorted(aliases)))
 
 
+@data.cached_bindings
 def bindings():
     result = lines.bindings()
     for relative in ("src/forex_demo_lab/trendline/selection.py","scripts/trendline-lines-169.py"):
@@ -168,10 +169,11 @@ def select(source,bars,*,timeframe="H4",profile="TRL_BRK3_E1",role="full",as_of=
     return _selected(report,publications,profile,timeframe,bound)
 
 
-def from_inspector(inspector,profile="TRL_BRK3_E1",role="full"):
+def from_inspector(inspector,profile="TRL_BRK3_E1",role="full",*,include_pair_rejections=True):
     if not isinstance(inspector,lines.Inspector):raise ValueError("typed incremental inspector required")
     bound = bindings()
-    return _selected(inspector.snapshot(profile,role),inspector.publications,profile,inspector.timeframe,bound)
+    return _selected(inspector.snapshot(profile,role,include_pair_rejections=include_pair_rejections),
+                     inspector.publications,profile,inspector.timeframe,bound)
 
 
 def _selected(report,publications,profile,timeframe,bound):

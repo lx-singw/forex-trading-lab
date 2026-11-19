@@ -217,3 +217,8 @@ each count to the triggering H4 window's partition. Pin the tick size and
 equal-time opening order in the reviewed manifest. Skip a same-time
 opening when its order is unresolved.
 [Historical development counter](RESULTS-218.md)
+
+19 November 2026, sprint 219. Reuse input-independent source bindings in
+one count run and verify their file contents again before releasing the
+report. Read the existing pivot and geometry state directly during replay.
+[Full-window counter benchmark](RESULTS-219.md)

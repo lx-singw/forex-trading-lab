@@ -3,6 +3,7 @@
 Geometry is not an eligible trading line. Touches, pokes, enumeration, ranking
 and lifecycle acceptance remain the next Phase4 increments.
 """
+from bisect import bisect_right
 from collections import deque
 from copy import copy
 from dataclasses import dataclass
@@ -183,6 +184,7 @@ class Metrics:
                 for key,value in self.__dict__.items()}
 
 
+@data.cached_bindings
 def bindings():
     result = pivots.bindings()
     for relative in ("src/forex_demo_lab/trendline/geometry.py","scripts/trendline-geometry-167.py"):
@@ -196,8 +198,10 @@ class GeometryStream:
         self._pivots = pivots.PivotStream(source,timeframe)
         self._bindings = bindings()
         calendar = self._pivots.source.calendar
-        self._schedule = {w.start:(i,w) for i,w in enumerate(calendar.frame(timeframe))}
+        windows = calendar.frame(timeframe)
+        self._schedule = {w.start:(i,w) for i,w in enumerate(windows)}
         self._delay = calendar.delay
+        self._due_times = tuple(window.end + self._delay for window in windows)
         self._bars = deque(maxlen=ANGLE_WINDOW)
         self._ranges = deque(maxlen=ATR_PERIOD)
         self._seen_lineage = set()
@@ -234,6 +238,14 @@ class GeometryStream:
         return tuple(self._snapshots)
 
     @property
+    def latest(self):
+        return self._snapshots[-1] if self._snapshots else None
+
+    @property
+    def clock(self):
+        return self._pivots.clock
+
+    @property
     def journal(self):
         return self._pivots.journal
 
@@ -261,14 +273,12 @@ class GeometryStream:
         if tr is not None:ranges.append(tr)
         bars.append(bar)
         atr = atr_sma14(ranges)
-        price_range = (max(exact(b.high) for b in bars)-min(exact(b.low) for b in bars)
+        price_range = (exact(max(b.high for b in bars))-exact(min(b.low for b in bars))
                        if len(bars) == ANGLE_WINDOW else None)
         # Fork stages pivot mutation as well as metrics, making rejection atomic.
         observer = self._pivots.fork()
         new_pivots = observer.observe(bar)
-        state = observer.report()
-        point = Metrics(self.timeframe,index,bar.available,state["publication_ordinal"],
-                        new_pivots[0].segment if new_pivots else len(state["gaps"]),
+        point = Metrics(self.timeframe,index,bar.available,observer.publication_ordinal,observer.segment,
                         tr,atr,len(ranges),price_range,len(bars))
         for pivot in new_pivots:
             if pivot.id in self._pivot_by_id:raise ValueError("conflicting pivot identity")
@@ -297,9 +307,9 @@ class GeometryStream:
         return Ray.from_pivots(self._pivot_by_id[a_id],self._pivot_by_id[b_id],cursor)
 
     def coverage_state(self):
-        due = [i for i,w in self._schedule.values() if w.end+self._delay <= self._pivots.clock]
-        if not due:return "NO_COMPLETED_BAR_DUE"
-        return "MISSING_COMPLETED_BAR" if self._last_index is None or due[-1] > self._last_index else "CURRENT"
+        due = bisect_right(self._due_times, self.clock) - 1
+        if due < 0:return "NO_COMPLETED_BAR_DUE"
+        return "MISSING_COMPLETED_BAR" if self._last_index is None or due > self._last_index else "CURRENT"
 
     def test_ray(self,ray,*,require_angle=False):
         self._check()

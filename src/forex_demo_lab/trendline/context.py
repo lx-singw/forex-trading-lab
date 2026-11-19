@@ -51,8 +51,8 @@ def _nearest(levels, close, limit, *, below):
 class DailyContext:
     """Advance with D1 publications, then read at the H4 receipt clock."""
 
-    def __init__(self, source):
-        self._engine = engine.Engine(source, DAILY_PROFILE, "D1")
+    def __init__(self, source, *, count_only=False):
+        self._engine = engine.Engine(source, DAILY_PROFILE, "D1", count_only=count_only)
         calendar = self._engine.source.calendar
         self._end = calendar.end + 60000
         self._due = tuple(window.end + calendar.delay for window in calendar.frame("D1"))
@@ -115,6 +115,7 @@ class DailyContext:
         result["reason"] = None if support or resistance else "NO_NEARBY_D1_LINE"
 
 
+@data.cached_bindings
 def bindings():
     result = engine.bindings()
     for path in ("src/forex_demo_lab/trendline/context.py", "scripts/trendline-context-172.py"):

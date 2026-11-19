@@ -8,6 +8,7 @@ H4_DECISION_ORDINAL = 0
 H1_OPEN_ORDINAL = 1
 
 
+@data.cached_bindings
 def bindings():
     result = breaks.bindings() | fills.bindings()
     path = "src/forex_demo_lab/trendline/entries.py"

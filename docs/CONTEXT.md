@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+19 November 2026. Sprint 219 benchmarks the full historical Level B
+window on fabricated bars and reduces repeated binding and geometry
+report work. Source qualification remains open.
+[Sprint 219 results](trendline/RESULTS-219.md)
+
 19 November 2026. Sprint 218 connects the reviewed historical Level B
 bundle to the frozen development counter. Warmup builds replay state
 and the counts use the development H4 windows. Independent source

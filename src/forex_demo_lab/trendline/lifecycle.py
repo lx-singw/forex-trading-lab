@@ -17,6 +17,7 @@ MAX_CHECKPOINT_BYTES = 16000000
 TERMINAL = ("POKED","TRIGGERED","RETIRED")
 
 
+@data.cached_bindings
 def bindings():
     result = s.bindings()
     relative = "src/forex_demo_lab/trendline/lifecycle.py"

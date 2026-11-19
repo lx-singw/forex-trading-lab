@@ -3,6 +3,7 @@
 Profile validity precedes deduplication/ranking/lifecycle. No trading decision,
 formation event or execution permission is produced here.
 """
+from bisect import bisect_left
 from dataclasses import dataclass
 from copy import copy
 from decimal import Decimal
@@ -80,7 +81,7 @@ class PairSearch:
     search_incomplete: bool
 
 
-def enumerate_pairs(values,cursor,now_index,segment):
+def enumerate_pairs(values,cursor,now_index,segment,*,include_rejections=True):
     data.integer(segment)
     values = available_pivots(values,cursor,now_index)
     # Appendix A's inclusive index-distance convention, before the cap.
@@ -92,11 +93,15 @@ def enumerate_pairs(values,cursor,now_index,segment):
     if incomplete:return PairSearch(active,(),(),high,low,True)
     pairs,rejected = [],[]
     for kind in ("low","high"):
-        for a,b in combinations((p for p in active if p.kind == kind),2):
+        same_kind = tuple(p for p in active if p.kind == kind)
+        if not include_rejections and len({p.price for p in same_kind}) <= 1:
+            continue
+        for a,b in combinations(same_kind,2):
             reason = None
             if b.bar_index-a.bar_index < 6:reason = "ANCHOR_TOO_CLOSE"
             elif (b.price <= a.price if kind == "low" else b.price >= a.price):reason = "WRONG_SLOPE"
-            if reason:rejected.append((a.id,b.id,reason))
+            if reason:
+                if include_rejections:rejected.append((a.id,b.id,reason))
             else:pairs.append((a,b,g.Ray.from_pivots(a,b,cursor)))
     return PairSearch(active,tuple(pairs),tuple(rejected),high,low,False)
 
@@ -191,6 +196,7 @@ def profile_tests(touches,now_index,timeframe,profile,atr,angle_range=None,*,slo
             "touch_count":count,"slope_tests":slopes}
 
 
+@data.cached_bindings
 def bindings():
     result = g.bindings()
     for relative in ("src/forex_demo_lab/trendline/lines.py","scripts/trendline-lines-168.py"):
@@ -251,10 +257,10 @@ class Inspector:
     def pivot_journal(self):return self._observer.journal
 
     @property
-    def clock(self):return self._observer._pivots.clock
+    def clock(self):return self._observer.clock
 
     @property
-    def metrics(self):return None if not self._observer.snapshots else self._observer.snapshots[-1]
+    def metrics(self):return self._observer.latest
 
     def observe(self,bar):
         self._check()
@@ -265,15 +271,15 @@ class Inspector:
     def advance(self,now):
         self._check();self._observer.advance(now)
 
-    def snapshot(self,profile="TRL_BRK3_E1",role="full"):
+    def snapshot(self,profile="TRL_BRK3_E1",role="full",*,include_pair_rejections=True):
         self._check()
         validate_profile(profile,self.timeframe,role)
-        return _snapshot(self.source,self._observer,self._indexed,self.timeframe,profile,role,self._bindings)
+        return _snapshot(self.source,self._observer,self._indexed,self.timeframe,profile,role,self._bindings,
+                         include_pair_rejections)
 
 
-def _snapshot(source,observer,indexed,timeframe,profile,role,bound):
-    report = observer.report()
-    latest = observer.snapshots[-1] if observer.snapshots else None
+def _snapshot(source,observer,indexed,timeframe,profile,role,bound,include_pair_rejections):
+    latest = observer.latest
     now_index = None if latest is None else latest.bar_index
     counts = {"high":0,"low":0}
     candidates,rejected = [],[]
@@ -281,8 +287,13 @@ def _snapshot(source,observer,indexed,timeframe,profile,role,bound):
     incomplete = False
     coverage = observer.coverage_state()
     if latest is not None:
-        cursor = g.Cursor(timeframe,report["as_of"],latest.publication_ordinal)
-        search = enumerate_pairs(observer.journal,cursor,now_index,latest.segment)
+        cursor = g.Cursor(timeframe,observer.clock,latest.publication_ordinal)
+        journal = observer.journal
+        if not include_pair_rejections:
+            first = bisect_left(journal, now_index - LOOKBACK_BARS, key=lambda pivot: pivot.bar_index)
+            journal = journal[first:]
+        search = enumerate_pairs(journal,cursor,now_index,latest.segment,
+                                 include_rejections=include_pair_rejections)
         counts = {"high":search.high_count,"low":search.low_count}
         incomplete = search.search_incomplete
         rejected = [{"a_id":a,"b_id":b,"reasons":[reason]} for a,b,reason in search.rejected]
@@ -307,7 +318,7 @@ def _snapshot(source,observer,indexed,timeframe,profile,role,bound):
     if bindings() != bound:raise ValueError("line source/protocol bindings changed during inspection")
     return {"schema":VERSION,"kind":"invented_trendline_line_inspection","data_level":"B",
             "geometry_basis":source.record()["geometry_basis"],"timeframe":timeframe,"profile":profile,
-            "penetration_role":role,"as_of":report["as_of"],"bar_index":now_index,
+            "penetration_role":role,"as_of":observer.clock,"bar_index":now_index,
             "declaration_sha256":source.sha256,"input_sha256":source.record()["input_sha256"],
             "source_bindings":dict(bound),"coverage_state":coverage,"lookback_index_distance":LOOKBACK_BARS,
             "window_pivot_counts":counts,"search_incomplete":incomplete,"pair_rejections":rejected,

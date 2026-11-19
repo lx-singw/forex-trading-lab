@@ -24,6 +24,7 @@ SETUP_FAMILIES = {
 PROFILES = tuple(SETUP_FAMILIES)
 
 
+@data.cached_bindings
 def bindings():
     result = context.bindings()
     for path in ("src/forex_demo_lab/trendline/breaks.py",
@@ -95,7 +96,7 @@ def _stop(safety_value, atr, tick, direction):
 class BreakReplay:
     """Replay completed-bar setups on the selected profile."""
 
-    def __init__(self, source, tick, profile="TRL_BRK3_E1", *, enable_dly=False):
+    def __init__(self, source, tick, profile="TRL_BRK3_E1", *, enable_dly=False, count_only=False):
         if profile not in PROFILES:
             raise ValueError("implemented setup profile required")
         if type(enable_dly) is not bool or enable_dly != (profile == lines.DLY_PROFILE):
@@ -103,9 +104,10 @@ class BreakReplay:
         self._tick = geometry.exact(tick)
         if self._tick <= 0:
             raise ValueError("positive declared price tick required")
-        self._h4 = engine.Engine(source, profile)
-        self._safety = None if profile == BNC_PROFILE else engine.Engine(source, lines.SAFETY_PROFILE)
-        self._daily = context.DailyContext(source) if profile == context.PROFILE else None
+        self._count_only = count_only
+        self._h4 = engine.Engine(source, profile, count_only=count_only)
+        self._safety = None if profile == BNC_PROFILE else engine.Engine(source, lines.SAFETY_PROFILE, count_only=count_only)
+        self._daily = context.DailyContext(source, count_only=count_only) if profile == context.PROFILE else None
         self._levels = levels.LevelFinder(source) if profile == FXR_PROFILE else None
         self._bindings = bindings()
         self._events = []
@@ -401,6 +403,8 @@ class BreakReplay:
         return result
 
     def checkpoint(self):
+        if self._count_only:
+            raise ValueError("count replay retains a summary; use a full replay for checkpoints")
         report = self.report()
         bars = [json.loads(row) for row in self._events]
         record = {

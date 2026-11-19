@@ -18,6 +18,7 @@ RADIUS = 3
 MAX_BARS = 20000
 
 
+@data.cached_bindings
 def bindings():
     result = data.source_bindings()
     for relative in ("src/forex_demo_lab/trendline/pivots.py",
@@ -87,6 +88,14 @@ class PivotStream:
     @property
     def clock(self):
         return self._clock
+
+    @property
+    def publication_ordinal(self):
+        return self._count
+
+    @property
+    def segment(self):
+        return self._segment
 
     @property
     def timeframe(self):

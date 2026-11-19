@@ -61,7 +61,7 @@ def _tally():
 
 
 def _setups(source, bars, tick, profile):
-    replay = breaks.BreakReplay(source, tick, profile)
+    replay = breaks.BreakReplay(source, tick, profile, count_only=type(source) is data.HistoricalDeclaration)
     frames = ("D1", "H4") if profile in (context.PROFILE, breaks.FXR_PROFILE) else ("H4",)
     for bar in bars:
         if bar.timeframe in frames:
@@ -237,6 +237,7 @@ def _summary(row):
                             "spread_to_stop_distance": _distribution(row["spread_stop"])}}
 
 
+@data.replay_bindings()
 def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquidation,
            tape=None, development_start=None, allow_equal_open=True):
     level = "B" if tape is None else "Q"
