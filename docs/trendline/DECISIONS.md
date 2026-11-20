@@ -256,3 +256,8 @@ evidence for the source. [EV calendar diagnostic](RESULTS-224.md)
 as a reconciliation check for H1-derived geometry. Keep publication
 and closure evidence tied to the reviewed schedule and observation
 clock. [Parent resampling audit](RESULTS-225.md)
+
+20 November 2026, sprint 226. Keep the ordinary-hours gaps visible
+when comparing H4 close models. If the opening quote releases the
+decision, use the frozen decision-before-opening rule to exclude that
+same quote. [Publication timing scenarios](RESULTS-226.md)

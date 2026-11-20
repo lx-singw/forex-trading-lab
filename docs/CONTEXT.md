@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+20 November 2026. Sprint 226 compares UTC and session-clipped H4
+closes for the EV 2024 calendar scenario. Both give 52 strictly early
+slots at two seconds under clock publication and zero when the
+model waits for a quote. [Sprint 226 results](trendline/RESULTS-226.md)
+
 20 November 2026. Sprint 225 reproduces every published EV 2024 H4
 and D1 bid and ask OHLC from the published H1 children. Parent labels
 and session edges can differ by hours. [Sprint 225 results](trendline/RESULTS-225.md)

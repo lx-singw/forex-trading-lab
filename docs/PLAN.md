@@ -1,5 +1,10 @@
 # Proposed milestones
 
+20 November 2026. Sprint 226 shows that the EV 2024 close definitions
+select the same first H1 slots. Establish a source-specific publication
+clock and ordered opening evidence for the actual development input.
+[Publication timing scenarios](trendline/RESULTS-226.md)
+
 20 November 2026. Sprint 225 verifies EV's UTC H4 and D1 resamples
 and records the short and incomplete buckets. Qualify the actual
 session edges and opening availability independently of the parent
