@@ -593,6 +593,9 @@ Sprint 226 compares nominal UTC and session-clipped H4 closes. Both
 leave 52 strictly early slots at two seconds under clock publication
 and zero when publication waits for a quote.
 [Publication timing scenarios](../trendline/RESULTS-226.md)
+Sprint 227 requires a common-clock order for tied historical paired
+quotes and binds that order to the H4 trigger and H1 opening.
+[Per-opening receipt order](../trendline/RESULTS-227.md)
 [Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md) · [Opening approximation](../trendline/RESULTS-212.md) · [H4 opening alignment](../trendline/RESULTS-213.md) · [Weekend quote bounds](../trendline/RESULTS-214.md) · [Development preflight](../trendline/RESULTS-215.md)
 
 **Decision tree:**

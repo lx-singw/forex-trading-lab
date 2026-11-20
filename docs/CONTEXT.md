@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+20 November 2026. Sprint 227 requires per-opening receipt order
+when a historical paired quote ties the Level B decision timestamp.
+[Sprint 227 results](trendline/RESULTS-227.md)
+
 20 November 2026. Sprint 226 compares UTC and session-clipped H4
 closes for the EV 2024 calendar scenario. Both give 52 strictly early
 slots at two seconds under clock publication and zero when the

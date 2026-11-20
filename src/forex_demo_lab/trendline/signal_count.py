@@ -144,8 +144,11 @@ def _bar_attempts(source, observations, report, model, cutoff, liquidation, deve
                 yield request, "SKIPPED", "ENTRY_AT_LIQUIDATION", None
                 continue
             if not allow_equal_open and request["decision_at"]["time"] == window.start:
-                yield request, "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
-                continue
+                # A historical paired quote is checked against its own order evidence in _resolve.
+                evidence = observations.get(window.start) if historical else None
+                if evidence is None or evidence.source_at is None:
+                    yield request, "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
+                    continue
         yield (request, *entries._resolve(model, request, window, expires, observations, cutoff, bid_only, targets,
                                          historical=historical))
 

@@ -261,3 +261,8 @@ clock. [Parent resampling audit](RESULTS-225.md)
 when comparing H4 close models. If the opening quote releases the
 decision, use the frozen decision-before-opening rule to exclude that
 same quote. [Publication timing scenarios](RESULTS-226.md)
+
+20 November 2026, sprint 227. Use a paired quote's own reviewed order
+for a timestamp tie. Bind the decision and quote ordinals to the
+triggering H4 close and opening record.
+[Per-opening receipt order](RESULTS-227.md)

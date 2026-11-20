@@ -16,13 +16,26 @@ class HistoricalOpening:
     price: fills.Opening
     source_at: int | None
     available_at: int
+    # The H4 trigger close and decision event from the opening's receipt clock.
+    same_time_order: tuple[int, fills.Event] | None = None
 
     @classmethod
     def from_record(cls, record, *, delay):
         common = ("kind", "start", "end", "bid", "source_at", "available_at")
         kind = record.get("kind") if type(record) is dict else None
+        order = None
+        opening_ordinal = H1_OPEN_ORDINAL
         if kind == "paired_quote":
-            data.fields(record, (*common, "ask"))
+            has_order = "same_time_order" in record
+            fields = (*common, "ask", "same_time_order") if has_order else (*common, "ask")
+            data.fields(record, fields)
+            if has_order:
+                evidence = record["same_time_order"]
+                data.fields(evidence, ("trigger_end", "decision_ordinal", "opening_ordinal"))
+                trigger_end = evidence["trigger_end"]
+                data.integer(trigger_end)
+                order = (trigger_end, fills.Event(record["start"], evidence["decision_ordinal"]))
+                opening_ordinal = evidence["opening_ordinal"]
             bid, ask = (fills.decimal(record[field], positive=True) for field in ("bid", "ask"))
             if ask < bid:
                 raise ValueError("opening ask must be at or above bid")
@@ -34,7 +47,7 @@ class HistoricalOpening:
             raise ValueError("reviewed opening evidence kind required")
         price = fills.Opening.from_record({
             "kind": "invented_b_opening_assumption", "start": record["start"], "end": record["end"],
-            "ordinal": H1_OPEN_ORDINAL, "bid": record["bid"], "spread_pips": spread,
+            "ordinal": opening_ordinal, "bid": record["bid"], "spread_pips": spread,
         })
         source_at = record["source_at"]
         available_at = record["available_at"]
@@ -43,11 +56,13 @@ class HistoricalOpening:
             data.integer(source_at)
             if not price.start <= source_at < price.end or available_at < source_at:
                 raise ValueError("opening quote source and receipt must match the scheduled window chronology")
+            if order is not None and (order[0] > price.start or source_at != price.start or available_at != price.start):
+                raise ValueError("same-time order requires a boundary quote and a trigger at or before it")
         else:
             if source_at is not None or available_at < price.end:
                 raise ValueError("bar-open evidence requires a completed-bar receipt and null source time")
             available_at = max(available_at, price.end + delay)
-        return cls(price, source_at, available_at)
+        return cls(price, source_at, available_at, order)
 
     @property
     def timing_issue(self):
@@ -115,6 +130,11 @@ def _resolve(model, request, window, expires_at, observations, as_of, bid_only, 
         if observation.timing_issue is not None:
             return "UNAVAILABLE", observation.timing_issue, None
         opening = observation.price
+        if observation.source_at is not None and decision_time == window.start:
+            order = observation.same_time_order
+            if order is None or order[0] != request["trigger_end"]:
+                return "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
+            request = {**request, "decision_at": order[1].record()}
     else:
         if observation is None or observation.available_at > expires_at:
             if as_of >= expires_at:

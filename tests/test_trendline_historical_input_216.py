@@ -329,6 +329,34 @@ class HistoricalInputTests(unittest.TestCase):
         ))
         self.assertEqual([("SKIPPED", "UNRESOLVED_OPEN_ORDER")], [attempt[1:3] for attempt in unresolved])
         later_seam = opening["start"] + delta
+        quote_hour = next(hour for hour in self.rows if hour["start"] == later_seam)
+        bid = fills.decimal(quote_hour["open"])
+        ask = bid + fills.PIP * fills.decimal(quote_hour["spread_pips"])
+        tied_quote = paired_opening(quote_hour) | {"bid": fills.text(bid), "ask": fills.text(ask)}
+        order = {"trigger_end": later_seam, "decision_ordinal": 6, "opening_ordinal": 7}
+        for evidence in (None, order | {"decision_ordinal": 7}, order | {"decision_ordinal": 8},
+                         order | {"trigger_end": later_seam - HOUR}):
+            with self.subTest(same_time_order=evidence):
+                record = tied_quote if evidence is None else tied_quote | {"same_time_order": evidence}
+                observation = entries.HistoricalOpening.from_record(record, delay=0)
+                attempts = list(signal_count._bar_attempts(
+                    source, {later_seam: observation}, setup_report, model, cutoff,
+                    dataset.liquidation_at, self.seam, True,
+                ))
+                self.assertEqual([("SKIPPED", "UNRESOLVED_OPEN_ORDER")], [attempt[1:3] for attempt in attempts])
+
+        with self.bundle(opening_rows=[tied_quote | {"same_time_order": order}], same_time_open_order="unresolved"):
+            ordered = historical_input.load_level_b(self.manifest)
+            ordered_report = historical_count.count(self.manifest)
+        self.assertEqual([1, 1], [cell["total"]["counts"]["entry_eligible_opportunities"]
+                                  for cell in ordered_report["cells"] if cell["profile"] == PROFILE])
+        attempts = list(signal_count._bar_attempts(
+            ordered.source, {later_seam: ordered.openings[0]}, setup_report,
+            fills.PriceModel(ordered.source, "base"), cutoff, ordered.liquidation_at, self.seam, False,
+        ))
+        self.assertEqual([("FILLED", "H1_OPEN_PRICE")], [attempt[1:3] for attempt in attempts])
+        self.assertEqual(7, attempts[0][3]["opening"]["ordinal"])
+
         self.assertEqual([], list(signal_count._bar_attempts(
             source, openings, setup_report, model, cutoff, dataset.liquidation_at, later_seam, True,
         )))
@@ -423,12 +451,16 @@ class HistoricalInputTests(unittest.TestCase):
     def test_opening_evidence_rejects_invalid_price_pairs_or_schedule(self):
         hour = self.rows[-1]
         opening = paired_opening(hour)
+        order = {"trigger_end": hour["start"], "decision_ordinal": 0, "opening_ordinal": 1}
         checks = (
             ([opening, opening], "unique opening evidence"),
             ([opening | {"end": opening["end"] + 1}], "outside reviewed H1"),
             ([opening | {"ask": "1.0999"}], "ask must be at or above bid"),
             ([opening | {"available_at": opening["start"] - 1}], "source and receipt"),
             ([assumed_opening(hour) | {"source_at": hour["start"] + 1}], "null source time"),
+            ([paired_opening(hour, receipt_delay=1) | {"same_time_order": order}], "boundary quote"),
+            ([opening | {"same_time_order": order | {"trigger_end": hour["start"] + 1}}], "at or before"),
+            ([opening | {"same_time_order": order | {"opening_ordinal": True}}], "nonnegative integer"),
         )
         for rows, reason in checks:
             with self.subTest(reason=reason), self.bundle(opening_rows=rows), self.assertRaisesRegex(ValueError, reason):
