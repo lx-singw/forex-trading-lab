@@ -266,3 +266,8 @@ same quote. [Publication timing scenarios](RESULTS-226.md)
 for a timestamp tie. Bind the decision and quote ordinals to the
 triggering H4 close and opening record.
 [Per-opening receipt order](RESULTS-227.md)
+
+20 November 2026, sprint 228. Treat the FX Matching capture clock as
+a lead for venue replay. Require verified access, exact dates and a
+reviewed mapping to decision and opening availability before admission.
+[Historical receipt sources](RESULTS-228.md)

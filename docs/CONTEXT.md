@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+20 November 2026. Sprint 228 identifies LSEG FX Matching packet captures
+as a receipt-timing lead. Access and exact EURUSD study coverage remain
+unverified. [Sprint 228 results](trendline/RESULTS-228.md)
+
 20 November 2026. Sprint 227 requires per-opening receipt order
 when a historical paired quote ties the Level B decision timestamp.
 [Sprint 227 results](trendline/RESULTS-227.md)

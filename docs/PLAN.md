@@ -1,5 +1,10 @@
 # Proposed milestones
 
+20 November 2026. Sprint 228 separates venue send times from packet
+capture clocks. An accessible EURUSD source still needs dated coverage,
+permitted use and evidence for ordered opening availability.
+[Historical receipt sources](trendline/RESULTS-228.md)
+
 20 November 2026. Sprint 227 verifies the historical counter's
 per-opening receipt order for tied paired quotes. Qualify the source
 and obtain ordered opening evidence for the development input.
