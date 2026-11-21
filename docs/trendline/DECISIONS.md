@@ -271,3 +271,8 @@ triggering H4 close and opening record.
 a lead for venue replay. Require verified access, exact dates and a
 reviewed mapping to decision and opening availability before admission.
 [Historical receipt sources](RESULTS-228.md)
+
+22 November 2026, sprint 229. Keep EV unqualified for the original
+entry because opening construction and availability remain unsupported.
+Record a later-opening variant as a proposed rule change.
+[EV qualification decision](RESULTS-229.md)

@@ -1,5 +1,10 @@
 # Proposed milestones
 
+22 November 2026. Sprint 229 completes the EV qualification pass.
+The original entry remains blocked. A separate variant that waits for
+the first scheduled H1 open strictly after decision availability is
+proposed for approval. [EV qualification decision](trendline/RESULTS-229.md)
+
 20 November 2026. Sprint 228 separates venue send times from packet
 capture clocks. An accessible EURUSD source still needs dated coverage,
 permitted use and evidence for ordered opening availability.

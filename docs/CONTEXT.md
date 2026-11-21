@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+22 November 2026. Sprint 229 verifies EV's 2020–2022 EURUSD file
+inventory. The calendar, opening construction and release timing are
+still unqualified for Phase 10. [Sprint 229 results](trendline/RESULTS-229.md)
+
 20 November 2026. Sprint 228 identifies LSEG FX Matching packet captures
 as a receipt-timing lead. Access and exact EURUSD study coverage remain
 unverified. [Sprint 228 results](trendline/RESULTS-228.md)
