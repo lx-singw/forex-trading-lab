@@ -282,3 +282,8 @@ trial under `TRL_H1_AFTER_DECISION_230_V1`. Select one scheduled H1
 opening strictly after decision availability and before next-H4 expiry.
 Use a separate reviewed manifest for its historical count.
 [Level B delayed-entry trial](RESULTS-230.md)
+
+22 November 2026, sprint 231. Treat the seven late first M5 labels as
+unresolved opening evidence. Keep earlier H1 labels from supplying
+their later opening prices at the schedule boundary.
+[Development archive coverage](RESULTS-231.md)

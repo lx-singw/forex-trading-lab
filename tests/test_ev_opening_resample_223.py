@@ -4,7 +4,7 @@ import gzip
 import json
 import unittest
 
-from tools.ev_opening_resample_223 import COLUMNS, END, START, compare, parse
+from tools.ev_opening_resample_223 import COLUMNS, END, START, compare, download, parse, year_bounds
 
 
 def row(stamp):
@@ -41,3 +41,11 @@ class EvOpeningResampleTests(unittest.TestCase):
     def test_matching_but_crossed_quotes_stay_out_of_the_match_total(self):
         result = compare({START: (2, 1)}, {START: (2, 1)})
         self.assertEqual({"crossed_opening_pair": 1}, result["comparison_counts"])
+
+    def test_development_parse_checks_exact_year_and_download_excludes_reserved_year(self):
+        start, end = year_bounds(2022)
+        self.assertEqual([start], list(parse(zipped([row(start)]), 3600, year=2022)))
+        with self.assertRaisesRegex(ValueError, "aligned 2022"):
+            parse(zipped([row(end)]), 3600, year=2022)
+        with self.assertRaisesRegex(ValueError, "outside the reviewed scope"):
+            download("H1", 1, year=2025)

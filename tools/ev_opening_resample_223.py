@@ -14,15 +14,23 @@ from forex_demo_lab.trendline import data
 
 HOST = "evtradelabs.com"
 FILES = {"H1": (3600, 195_309), "M5": (300, 1_896_108)}
-START = int(datetime(2024, 1, 1, tzinfo=UTC).timestamp())
-END = int(datetime(2025, 1, 1, tzinfo=UTC).timestamp())
 COLUMNS = ("ts", "o", "h", "l", "c", "ao", "ah", "al", "ac", "v")
 
 
-def download(frame, size):
+def year_bounds(year):
+    if type(year) is not int or year not in (2020, 2021, 2022, 2024):
+        raise ValueError("EV diagnostic year is outside the reviewed scope")
+    return tuple(int(datetime(y, 1, 1, tzinfo=UTC).timestamp()) for y in (year, year + 1))
+
+
+START, END = year_bounds(2024)
+
+
+def download(frame, size, *, year=2024):
+    year_bounds(year)
     connection = http.client.HTTPSConnection(HOST, timeout=15)
     try:
-        connection.request("GET", f"/api/simulator/data/EURUSD/{frame}/2024.json.gz")
+        connection.request("GET", f"/api/simulator/data/EURUSD/{frame}/{year}.json.gz")
         response = connection.getresponse()
         if response.status != 200 or response.getheader("Location") is not None:
             raise ValueError(f"{frame} public download did not return HTTP 200")
@@ -55,7 +63,8 @@ def _price(value):
     return value
 
 
-def price_rows(body, period, price_columns):
+def price_rows(body, period, price_columns, *, year=2024):
+    start, end = year_bounds(year)
     with gzip.GzipFile(fileobj=io.BytesIO(body)) as source:
         raw = source.read(data.BYTE_LIMIT + 1)
     if len(raw) > data.BYTE_LIMIT:
@@ -69,20 +78,20 @@ def price_rows(body, period, price_columns):
         rows = iter(document)
     else:
         raise ValueError("expected published candle rows or columns")
-    previous = START - 1
+    previous = start - 1
     for row in rows:
         data.fields(row, COLUMNS)
         stamp = row["ts"]
-        if type(stamp) is not int or not previous < stamp < END or stamp % period:
-            raise ValueError("expected unique, aligned 2024 candle timestamps in ascending order")
+        if type(stamp) is not int or not previous < stamp < end or stamp % period:
+            raise ValueError(f"expected unique, aligned {year} candle timestamps in ascending order")
         yield stamp, tuple(_price(row[column]) for column in price_columns)
         previous = stamp
-    if previous < START:
+    if previous < start:
         raise ValueError("empty candle file")
 
 
-def parse(body, period):
-    return dict(price_rows(body, period, ("o", "ao")))
+def parse(body, period, *, year=2024):
+    return dict(price_rows(body, period, ("o", "ao"), year=year))
 
 
 def compare(hourly, five_minute):

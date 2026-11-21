@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+22 November 2026. Sprint 231 verifies EV's actual 2020–2022 H1 and
+M5 file coverage. The 2022 H1 grid is complete under ordinary hours.
+Seven hourly opens match M5 labels after the hour.
+[Sprint 231 results](trendline/RESULTS-231.md)
+
 22 November 2026. Sprint 230 freezes and verifies the approved
 Level B delayed-entry rule on fabricated inputs. Its historical
 count still requires a qualified source. [Sprint 230 results](trendline/RESULTS-230.md)

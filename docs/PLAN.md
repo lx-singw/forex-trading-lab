@@ -1,5 +1,10 @@
 # Proposed milestones
 
+22 November 2026. Sprint 231 verifies EV's development file coverage
+and identifies later opening labels. Resolve source use, historical
+session exceptions and availability before admitting the delayed-entry input.
+[Development archive coverage](trendline/RESULTS-231.md)
+
 22 November 2026. Sprint 230 adds a separate development count for the
 first scheduled H1 open strictly after H4 decision availability. Qualify
 an input for that rule before running the market feasibility count.
