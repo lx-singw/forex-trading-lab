@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+22 November 2026. Sprint 232 reconciles all 60 absent ordinary EV
+hours under a holiday scenario. The archived widget's dated table
+remains unverified. [Sprint 232 results](trendline/RESULTS-232.md)
+
 22 November 2026. Sprint 231 verifies EV's actual 2020–2022 H1 and
 M5 file coverage. The 2022 H1 grid is complete under ordinary hours.
 Seven hourly opens match M5 labels after the hour.

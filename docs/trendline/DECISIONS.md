@@ -287,3 +287,7 @@ Use a separate reviewed manifest for its historical count.
 unresolved opening evidence. Keep earlier H1 labels from supplying
 their later opening prices at the schedule boundary.
 [Development archive coverage](RESULTS-231.md)
+
+22 November 2026, sprint 232. Keep the holiday classification
+as an unqualified scenario pending date-effective evidence for
+the exact source. [Holiday calendar scenario](RESULTS-232.md)

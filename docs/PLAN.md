@@ -1,5 +1,10 @@
 # Proposed milestones
 
+22 November 2026. Sprint 232 verifies the proposed holiday intervals
+through the historical calendar parser. Establish date-effective
+evidence for those intervals and qualify opening availability.
+[Holiday calendar scenario](trendline/RESULTS-232.md)
+
 22 November 2026. Sprint 231 verifies EV's development file coverage
 and identifies later opening labels. Resolve source use, historical
 session exceptions and availability before admitting the delayed-entry input.
