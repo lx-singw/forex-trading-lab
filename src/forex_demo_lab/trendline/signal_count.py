@@ -10,6 +10,7 @@ from . import breaks, context, data, entries, fills, geometry, quote_replay, quo
 
 
 VERSION = "TRL_SIGNAL_COUNT_194_V1"
+DELAYED_ENTRY_VERSION = "TRL_PHASE10_DELAYED_ENTRY_COUNT_230_V1"
 STATUS_VERSION = "TRL_PHASE10_STATUS_218_V1"
 MINIMUM_OPPORTUNITIES = 60
 PROFILES = tuple(profile for profile in breaks.PROFILES if profile in data.CANDIDATES)
@@ -131,13 +132,15 @@ def _setup_months(report, calendar, cutoff, profile, development_start):
     return monthly
 
 
-def _bar_attempts(source, observations, report, model, cutoff, liquidation, development_start, allow_equal_open):
+def _bar_attempts(source, observations, report, model, cutoff, liquidation, development_start, allow_equal_open, *,
+                  delayed_entry=False):
     bid_only = source.record()["geometry_basis"] == "bid_only"
     historical = type(source) is data.HistoricalDeclaration
     for attempt, targets in entries._requests(report, source.calendar, model.costs["name"],
                                                development_start=development_start):
         request = attempt["request"]
-        window = model.entry_window(request["trigger_end"])
+        strictly_after = request["decision_at"]["time"] if delayed_entry else None
+        window = model.entry_window(request["trigger_end"], strictly_after=strictly_after)
         expires = attempt["expires_at"]
         if bid_only and window is not None and expires is not None and request["decision_at"]["time"] <= window.start < expires:
             if liquidation <= window.start:
@@ -150,7 +153,7 @@ def _bar_attempts(source, observations, report, model, cutoff, liquidation, deve
                     yield request, "SKIPPED", "UNRESOLVED_OPEN_ORDER", None
                     continue
         yield (request, *entries._resolve(model, request, window, expires, observations, cutoff, bid_only, targets,
-                                         historical=historical))
+                                         historical=historical, delayed_entry=delayed_entry))
 
 
 def _quote_candidates(tape, prefix, model):
@@ -244,7 +247,9 @@ def _summary(row):
 
 @data.replay_bindings()
 def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquidation,
-           tape=None, development_start=None, allow_equal_open=True):
+           tape=None, development_start=None, allow_equal_open=True, delayed_entry=False):
+    if delayed_entry and tape is not None:
+        raise ValueError("delayed-entry variant requires Level B")
     level = "B" if tape is None else "Q"
     calendar = source.calendar
     development_start = calendar.start if development_start is None else development_start
@@ -260,7 +265,7 @@ def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquida
             monthly = deepcopy(setup_months)
             if tape is None:
                 attempts = _bar_attempts(source, observations, report, model, cutoff, liquidation,
-                                         development_start, allow_equal_open)
+                                         development_start, allow_equal_open, delayed_entry=delayed_entry)
             else:
                 floor, candidates, _ = quote_inputs[cost]
                 attempts = _quote_attempts(tape, report, model, cutoff, candidates, floor)
@@ -273,7 +278,9 @@ def _cells(source, bars, observations, *, cutoff, tick, profiles, costs, liquida
                           "months": {month: _summary(row) for month, row in sorted(monthly.items())}})
     if _bindings(level) != bound:
         raise ValueError("signal count source bindings changed")
-    return {"schema": VERSION, "kind": "invented_development_opportunity_counts", "data_level": level,
+    rule = {"entry_rule": entries.DELAYED_ENTRY_RULE} if delayed_entry else {}
+    return {"schema": DELAYED_ENTRY_VERSION if delayed_entry else VERSION,
+            **rule, "kind": "invented_development_opportunity_counts", "data_level": level,
             "geometry_basis": source.record()["geometry_basis"] if tape is None else "mid_sync",
             "symbol": "EURUSD", "partition": "development", "scope_start": development_start,
             "scope_end": calendar.end, "as_of": cutoff, "liquidation_at": liquidation, "tick_size": tick,
@@ -302,7 +309,8 @@ def _liquidation(calendar, liquidation_at, *, start):
     return liquidation
 
 
-def count_b(source, hours, *, tick, as_of=None, profiles=PROFILES, costs=COSTS, liquidation_at=None):
+def count_b(source, hours, *, tick, as_of=None, profiles=PROFILES, costs=COSTS, liquidation_at=None,
+            delayed_entry=False):
     """Count per declared B opening, using the price checks only."""
     cutoff = _scope(source, as_of, tick, profiles, costs)
     calendar = source.calendar
@@ -321,7 +329,7 @@ def count_b(source, hours, *, tick, as_of=None, profiles=PROFILES, costs=COSTS, 
     stream.advance(cutoff)
     hourly = entries._visible_hours(source, visible, cutoff, calendar)
     return _cells(source, stream.bars(), hourly, cutoff=cutoff, tick=tick, profiles=profiles, costs=costs,
-                  liquidation=liquidation)
+                  liquidation=liquidation, delayed_entry=delayed_entry)
 
 
 def count_q(tape, *, tick, as_of=None, profiles=PROFILES, costs=COSTS):

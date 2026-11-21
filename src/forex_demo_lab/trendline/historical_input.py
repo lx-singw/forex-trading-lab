@@ -130,7 +130,7 @@ def _opening_coverage(calendar, openings):
     return {"scheduled": scheduled, "status_counts": dict(sorted(statuses.items()))}
 
 
-def load_level_b(manifest_path):
+def load_level_b(manifest_path, *, delayed_entry=False):
     """Return the reviewed calendar and typed H1 rows with a coverage receipt."""
     manifest_path = data.no_links(manifest_path)
     raw = _bounded_bytes(manifest_path, METADATA_LIMIT)
@@ -138,8 +138,11 @@ def load_level_b(manifest_path):
     if digest not in REVIEWED_MANIFESTS:
         raise ValueError("manifest has no recorded qualification before price read")
     manifest = strict_json(raw, METADATA_LIMIT)
-    data.fields(manifest, ("schema", "kind", "symbol", "partition", "plan_file", "plan_file_sha256",
-                           "calendar_file", "price_file", "tick_size", "same_time_open_order"))
+    fields = ("schema", "kind", "symbol", "partition", "plan_file", "plan_file_sha256",
+              "calendar_file", "price_file", "tick_size", "same_time_open_order")
+    data.fields(manifest, (*fields, "entry_rule") if delayed_entry else fields)
+    if delayed_entry and manifest["entry_rule"] != entries.DELAYED_ENTRY_RULE:
+        raise ValueError("reviewed delayed-entry rule required before price read")
     if (manifest["schema"], manifest["kind"], manifest["symbol"], manifest["partition"]) != (
         VERSION, MANIFEST_KIND, "EURUSD", "development",
     ):
@@ -184,6 +187,8 @@ def load_level_b(manifest_path):
         "liquidation_at": liquidation,
         "market_data_read": True, "actual_counts": None,
     }
+    if delayed_entry:
+        receipt["entry_rule"] = entries.DELAYED_ENTRY_RULE
     source_record = {key: plan[key] for key in ("data_level", "geometry_basis", "spread_semantics",
                                                "input_sha256", "calendar_sha256")}
     source_record.update(kind="reviewed_historical_trendline_source", symbol="EURUSD", partition="development")

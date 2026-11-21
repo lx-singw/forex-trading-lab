@@ -357,6 +357,16 @@ class HistoricalInputTests(unittest.TestCase):
         self.assertEqual([("FILLED", "H1_OPEN_PRICE")], [attempt[1:3] for attempt in attempts])
         self.assertEqual(7, attempts[0][3]["opening"]["ordinal"])
 
+        next_hour = next(hour for hour in self.rows if hour["start"] == quote_hour["end"])
+        later_quote = paired_opening(next_hour) | {"bid": fills.text(bid), "ask": fills.text(ask)}
+        with self.bundle(opening_rows=[later_quote], entry_rule=entries.DELAYED_ENTRY_RULE,
+                         same_time_open_order="unresolved"):
+            delayed = historical_count.count(self.manifest, delayed_entry=True)
+        self.assertEqual(signal_count.DELAYED_ENTRY_VERSION, delayed["schema"])
+        self.assertEqual(entries.DELAYED_ENTRY_RULE, delayed["input_receipt"]["entry_rule"])
+        self.assertEqual([1, 1], [cell["total"]["counts"]["entry_eligible_opportunities"]
+                                  for cell in delayed["cells"] if cell["profile"] == PROFILE])
+
         self.assertEqual([], list(signal_count._bar_attempts(
             source, openings, setup_report, model, cutoff, dataset.liquidation_at, later_seam, True,
         )))
@@ -414,6 +424,15 @@ class HistoricalInputTests(unittest.TestCase):
             self.plan["endpoints"]["development"]["liquidation_at"] = "2021-01-01T00:30:00Z"
             with self.bundle(), self.assertRaisesRegex(ValueError, "scheduled H1 opening"):
                 historical_input.load_level_b(self.manifest)
+
+    def test_delayed_entry_requires_a_rule_specific_manifest_before_prices(self):
+        with patch.object(historical_input, "_read_hours", side_effect=AssertionError("no prices expected")):
+            with self.bundle(), self.assertRaisesRegex(ValueError, "exact declared fields"):
+                historical_count.count(self.manifest, delayed_entry=True)
+            with self.bundle(entry_rule=entries.DELAYED_ENTRY_RULE), self.assertRaisesRegex(ValueError, "exact declared fields"):
+                historical_count.count(self.manifest)
+            with self.bundle(entry_rule="unknown"), self.assertRaisesRegex(ValueError, "reviewed delayed-entry rule"):
+                historical_count.count(self.manifest, delayed_entry=True)
 
     def test_completed_h1_receipt_applies_delay_and_scope_end(self):
         with self.bundle():

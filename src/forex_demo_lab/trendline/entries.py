@@ -5,6 +5,7 @@ import hashlib
 from . import breaks, data, fills, selection
 
 VERSION = "TRL_BRK3_B_ENTRIES_174_V1"
+DELAYED_ENTRY_RULE = "TRL_H1_AFTER_DECISION_230_V1"
 H4_DECISION_ORDINAL = 0
 H1_OPEN_ORDINAL = 1
 
@@ -107,7 +108,8 @@ def _visible_hours(source, hours, as_of, calendar):
     return result
 
 
-def _resolve(model, request, window, expires_at, observations, as_of, bid_only, target_levels, *, historical=False):
+def _resolve(model, request, window, expires_at, observations, as_of, bid_only, target_levels, *,
+             historical=False, delayed_entry=False):
     if not bid_only:
         price = model.entry(request, None)
         return price["status"], price["reason"], price
@@ -141,7 +143,7 @@ def _resolve(model, request, window, expires_at, observations, as_of, bid_only, 
                 return "EXPIRED", "MISSING_ENTRY_BAR", None
             return "PENDING", "AWAITING_ENTRY_BAR", None
         opening = fills.Opening.from_hour(observation, H1_OPEN_ORDINAL)
-    price = model.entry(request, opening, target_levels=target_levels)
+    price = model.entry(request, opening, target_levels=target_levels, delayed_entry=delayed_entry)
     return price["status"], price["reason"], price
 
 

@@ -233,13 +233,19 @@ class PriceModel:
         spread = max(opening.spread_pips, F(self.costs["spread_floor_pips"])) * PIP
         return opening.bid, opening.bid+spread, spread
 
-    def entry_window(self, trigger_end):
+    def entry_window(self, trigger_end, *, strictly_after=None):
         data.integer(trigger_end)
         if trigger_end not in {w.end for w in self._h4}:
             raise ValueError("declared H4 trigger close required")
-        return next((w for w in self._hours.values() if w.start >= trigger_end), None)
+        earliest = trigger_end
+        if strictly_after is not None:
+            data.integer(strictly_after)
+            if strictly_after < trigger_end:
+                raise ValueError("decision cannot precede trigger close")
+            earliest = strictly_after + 1
+        return next((w for w in self._hours.values() if w.start >= earliest), None)
 
-    def entry(self, request, opening, *, target_levels=None):
+    def entry(self, request, opening, *, target_levels=None, delayed_entry=False):
         data.fields(request, ("kind", "direction", "trigger_end", "decision_at", "stop", "target", "atr", "tick", "exit_model"))
         if request["kind"] != "invented_b_price_request" or request["direction"] not in ("LONG","SHORT"):
             raise ValueError("invented entry request required")
@@ -260,7 +266,7 @@ class PriceModel:
                 or not isinstance(target_levels, (tuple, list))
                 or any(not isinstance(level, F) or level <= 0 for level in target_levels)):
             raise ValueError("exact level candidates require E2 without a specified target")
-        window = self.entry_window(request["trigger_end"])
+        window = self.entry_window(request["trigger_end"], strictly_after=decision.time if delayed_entry else None)
         if not self._can_execute():
             return self._result("UNAVAILABLE","EXECUTION_SIDE_DATA_UNAVAILABLE")
         if window is None:

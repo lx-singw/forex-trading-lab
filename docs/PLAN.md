@@ -1,5 +1,10 @@
 # Proposed milestones
 
+22 November 2026. Sprint 230 adds a separate development count for the
+first scheduled H1 open strictly after H4 decision availability. Qualify
+an input for that rule before running the market feasibility count.
+[Level B delayed-entry trial](trendline/RESULTS-230.md)
+
 22 November 2026. Sprint 229 completes the EV qualification pass.
 The original entry remains blocked. A separate variant that waits for
 the first scheduled H1 open strictly after decision availability is

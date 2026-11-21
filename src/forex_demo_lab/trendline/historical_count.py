@@ -26,10 +26,10 @@ def _completed_hours(dataset):
         yield hour if available == hour.available_at else replace(hour, available_at=available)
 
 
-def count(manifest_path):
+def count(manifest_path, *, delayed_entry=False):
     """Check the reviewed scope and count each frozen strategy under both costs."""
     bound = _bindings()
-    dataset = historical_input.load_level_b(manifest_path)
+    dataset = historical_input.load_level_b(manifest_path, delayed_entry=delayed_entry)
     calendar = dataset.calendar
     hours = tuple(_completed_hours(dataset))
     bars = calendar.publications(hours, calendar.end)
@@ -39,6 +39,7 @@ def count(manifest_path):
         profiles=signal_count.PROFILES, costs=signal_count.COSTS, liquidation=dataset.liquidation_at,
         development_start=calendar.development_start,
         allow_equal_open=dataset.same_time_open_order == "decision_before_open",
+        delayed_entry=delayed_entry,
     )
     if bound != _bindings():
         raise ValueError("historical count input bindings changed")
@@ -50,7 +51,8 @@ def count(manifest_path):
             "profile": cell["profile"], "cost_profile": cell["cost_profile"],
             "entry_eligible_opportunities": count, "status": "PASS" if count >= threshold else "INSUFFICIENT",
         })
-    report.update(schema=VERSION, kind="historical_development_opportunity_counts",
+    report.update(schema=signal_count.DELAYED_ENTRY_VERSION if delayed_entry else VERSION,
+                  kind="historical_development_opportunity_counts",
                   actual_source_admitted=True, market_data_read=True,
                   source_bindings=report["source_bindings"] | bound,
                   input_receipt=dataset.receipt, warmup_start=calendar.start,

@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+22 November 2026. Sprint 230 freezes and verifies the approved
+Level B delayed-entry rule on fabricated inputs. Its historical
+count still requires a qualified source. [Sprint 230 results](trendline/RESULTS-230.md)
+
 22 November 2026. Sprint 229 verifies EV's 2020–2022 EURUSD file
 inventory. The calendar, opening construction and release timing are
 still unqualified for Phase 10. [Sprint 229 results](trendline/RESULTS-229.md)

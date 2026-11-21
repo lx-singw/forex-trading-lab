@@ -97,6 +97,42 @@ class SignalCounterTests(unittest.TestCase):
         self.assertEqual({"UNAVAILABLE": 1}, unavailable["entry_statuses"])
         self.assertEqual({"EXECUTION_SIDE_DATA_UNAVAILABLE": 1}, unavailable["entry_skip_reasons"])
 
+    def test_delayed_b_waits_for_the_next_open_after_a_late_decision(self):
+        value, rows, opening = bar_fixture()
+        start = opening["start"]
+        second, third = rows[-3:-1]
+        self.assertEqual(opening["end"], second["start"])
+        rows[-5]["available_at"] = second["start"]
+        second.update(open="1.1000", high="1.1000", low="1.1000", close="1.1000")
+        baseline = count_b(value, rows, cutoff=third["available_at"])
+        variant = count_b(value, rows, cutoff=third["available_at"], delayed_entry=True, costs=signal_count.COSTS)
+        self.assertEqual({"LATE_DECISION": 1}, baseline["cells"][0]["total"]["entry_skip_reasons"])
+        self.assertEqual(signal_count.DELAYED_ENTRY_VERSION, variant["schema"])
+        self.assertEqual("TRL_H1_AFTER_DECISION_230_V1", variant["entry_rule"])
+        self.assertEqual(start + 2 * (opening["end"] - start), third["start"])
+        for cell in variant["cells"]:
+            self.assertEqual({"ELIGIBLE": 1}, cell["total"]["entry_statuses"])
+        self.assertIsNone(variant["feasibility"]["actual_counts"])
+        self.assertFalse(variant["outcomes_computed"])
+
+    def test_delayed_b_respects_missing_slot_expiry_and_liquidation(self):
+        value, rows, opening = bar_fixture()
+        second = rows[-3]
+        skipped = count_b(value, [row for row in rows if row is not second],
+                          cutoff=rows[-1]["available_at"], delayed_entry=True)["cells"][0]["total"]
+        self.assertEqual({"MISSING_ENTRY_BAR": 1}, skipped["entry_skip_reasons"])
+        self.assertEqual(0, skipped["counts"]["entry_eligible_opportunities"])
+
+        liquidation = count_b(value, rows, cutoff=second["available_at"], liquidation_at=second["start"],
+                              delayed_entry=True)["cells"][0]["total"]
+        self.assertEqual({"ENTRY_AT_LIQUIDATION": 1}, liquidation["entry_skip_reasons"])
+
+        last_start = rows[-1]["start"]
+        for row in rows[-5:]:
+            row["available_at"] = max(row["available_at"], last_start)
+        expired = count_b(value, rows, cutoff=last_start, delayed_entry=True)["cells"][0]["total"]
+        self.assertEqual({"NO_SCHEDULED_ENTRY": 1}, expired["entry_skip_reasons"])
+
     def test_monthly_counts_use_the_setup_receipt_and_reconcile(self):
         value, rows, _ = bar_fixture(across_month=True)
         report = count_b(value, rows, cutoff=rows[-1]["available_at"], profiles=(PROFILE, breaks.BNC_PROFILE))
@@ -182,6 +218,13 @@ class SignalCounterCliTests(unittest.TestCase):
             self.assertEqual(0, run.returncode, run.stderr)
             result = json.loads(output.read_bytes())
             self.assertEqual(1, result["cells"][0]["total"]["counts"]["entry_eligible_opportunities"])
+            self.assertNotIn("entry_rule", result)
+            delayed = root / "delayed.json"
+            run = self.execute("bars", source, hours, delayed, *flags, "--profile", PROFILE, "--delayed-entry")
+            self.assertEqual(0, run.returncode, run.stderr)
+            variant = json.loads(delayed.read_bytes())
+            self.assertEqual(signal_count.DELAYED_ENTRY_VERSION, variant["schema"])
+            self.assertEqual({"PENDING": 1}, variant["cells"][0]["total"]["entry_statuses"])
             rejected = root / "forbidden.json"
             self.assertNotEqual(0, self.execute("bars", source, hours, rejected, *flags,
                                                "--profile", "TRL_BRK3_DLY").returncode)
