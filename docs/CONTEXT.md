@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+28 November 2026. Sprint 235 recovers the legacy Exness public tick
+portal. Its captured pages list EURUSD, and the ZIP links lack a symbol.
+The historical feed and timestamp mapping remain open.
+[Sprint 235 results](trendline/RESULTS-235.md)
+
 27 November 2026. Sprint 234 concludes the EV public-evidence review.
 Exness is the next candidate. The existing Exness timing scenario picks
 openings 55 minutes apart on nine sampled weekends.

@@ -1,5 +1,11 @@
 # Proposed milestones
 
+28 November 2026. Sprint 235 bounds what the legacy Exness portal can
+establish. Exact public file-to-feed and timestamp mapping, dated quote
+sessions and study retention remain open. Require evidence tied to the
+archive before treating it as a Phase 10 input.
+[Exness portal evidence](trendline/RESULTS-235.md)
+
 27 November 2026. Sprint 234 keeps EV unqualified and moves source
 qualification to the public Exness EURUSD archive. Resolve source-clock
 and session evidence, archive use, and opening availability for the

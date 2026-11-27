@@ -302,3 +302,8 @@ evidence check. Carry Exness forward because its paired archive rows
 preserve source timestamps. Require a separate review of its precise
 feed, session rules, archive use, and H4 and opening availability.
 [Source decision](RESULTS-234.md)
+
+28 November 2026, sprint 235. Record Pro and MT4 Real 1 as a feed
+hypothesis for the public unsuffixed EURUSD series. The legacy portal
+establishes product history and leaves file-to-feed, timestamp and
+retention qualification open. [Exness portal evidence](RESULTS-235.md)
