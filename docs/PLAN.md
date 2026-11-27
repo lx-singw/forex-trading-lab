@@ -1,5 +1,10 @@
 # Proposed milestones
 
+27 November 2026. Sprint 234 keeps EV unqualified and moves source
+qualification to the public Exness EURUSD archive. Resolve source-clock
+and session evidence, archive use, and opening availability for the
+same delayed-entry trial. [Source decision](trendline/RESULTS-234.md)
+
 27 November 2026. Sprint 233 identifies the H1 opening changes hidden
 by similar timing totals. Source qualification needs evidence for H4
 publication at the closure edges and for the selected H1 opening pairs.

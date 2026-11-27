@@ -296,3 +296,9 @@ the exact source. [Holiday calendar scenario](RESULTS-232.md)
 when assessing a publication model. Similar timing totals can hide
 changes to the entry timestamp and its eventual price and costs.
 [Publication sensitivity](RESULTS-233.md)
+
+27 November 2026, sprint 234. Keep EV unqualified after the public
+evidence check. Carry Exness forward because its paired archive rows
+preserve source timestamps. Require a separate review of its precise
+feed, session rules, archive use, and H4 and opening availability.
+[Source decision](RESULTS-234.md)

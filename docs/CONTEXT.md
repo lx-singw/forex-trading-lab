@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+27 November 2026. Sprint 234 concludes the EV public-evidence review.
+Exness is the next candidate. The existing Exness timing scenario picks
+openings 55 minutes apart on nine sampled weekends.
+[Sprint 234 results](trendline/RESULTS-234.md)
+
 27 November 2026. Sprint 233 compares two EV publication models across
 an exact zero-to-four-hour delay sweep. At two seconds, 101 H4 closes
 select different eligible H1 openings. [Sprint 233 results](trendline/RESULTS-233.md)
