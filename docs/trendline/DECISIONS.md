@@ -291,3 +291,8 @@ their later opening prices at the schedule boundary.
 22 November 2026, sprint 232. Keep the holiday classification
 as an unqualified scenario pending date-effective evidence for
 the exact source. [Holiday calendar scenario](RESULTS-232.md)
+
+27 November 2026, sprint 233. Compare selected opening timestamps
+when assessing a publication model. Similar timing totals can hide
+changes to the entry timestamp and its eventual price and costs.
+[Publication sensitivity](RESULTS-233.md)

@@ -1,5 +1,10 @@
 # Proposed milestones
 
+27 November 2026. Sprint 233 identifies the H1 opening changes hidden
+by similar timing totals. Source qualification needs evidence for H4
+publication at the closure edges and for the selected H1 opening pairs.
+[Publication sensitivity](trendline/RESULTS-233.md)
+
 22 November 2026. Sprint 232 verifies the proposed holiday intervals
 through the historical calendar parser. Establish date-effective
 evidence for those intervals and qualify opening availability.

@@ -1,5 +1,9 @@
 # Setup context - 2026-09-30
 
+27 November 2026. Sprint 233 compares two EV publication models across
+an exact zero-to-four-hour delay sweep. At two seconds, 101 H4 closes
+select different eligible H1 openings. [Sprint 233 results](trendline/RESULTS-233.md)
+
 22 November 2026. Sprint 232 reconciles all 60 absent ordinary EV
 hours under a holiday scenario. The archived widget's dated table
 remains unverified. [Sprint 232 results](trendline/RESULTS-232.md)
