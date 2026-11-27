@@ -1,5 +1,10 @@
 # Proposed milestones
 
+28 November 2026. Sprint 236 measures the completed H1 evidence
+deadline for each candidate calendar. A source review needs a
+supported receipt time for the selected opening evidence as well as
+the H4 decision. [Opening evidence deadline](trendline/RESULTS-236.md)
+
 28 November 2026. Sprint 235 bounds what the legacy Exness portal can
 establish. Exact public file-to-feed and timestamp mapping, dated quote
 sessions and study retention remain open. Require evidence tied to the

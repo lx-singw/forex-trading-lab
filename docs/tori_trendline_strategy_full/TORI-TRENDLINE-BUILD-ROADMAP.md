@@ -622,6 +622,9 @@ follow-up starts from nine retained paired-tick weekend samples.
 Sprint 235 recovers the Exness legacy public portal and identifies a
 Pro/MT4 Real 1 feed hypothesis. File-level mapping and dated quote hours
 remain open. [Exness portal evidence](../trendline/RESULTS-235.md)
+Sprint 236 checks whether completed H1 evidence can arrive by expiry.
+At two seconds, 17 or 34 Exness openings exceed the deadline depending
+on the H4 release model. [Opening evidence deadline](../trendline/RESULTS-236.md)
 [Counter](../trendline/RESULTS-194.md) · [Archive inventory](../trendline/RESULTS-196.md) · [Coverage checks](../trendline/RESULTS-198.md) · [Summer timing](../trendline/RESULTS-204.md) · [Opening evidence](../trendline/RESULTS-205.md) · [Candle sources](../trendline/RESULTS-206.md) · [Timing audit](../trendline/RESULTS-207.md) · [Exness calendar timing](../trendline/RESULTS-208.md) · [Weekend publication timing](../trendline/RESULTS-209.md) · [Weekend receipt review](../trendline/RESULTS-210.md) · [Clock publication model](../trendline/RESULTS-211.md) · [Opening approximation](../trendline/RESULTS-212.md) · [H4 opening alignment](../trendline/RESULTS-213.md) · [Weekend quote bounds](../trendline/RESULTS-214.md) · [Development preflight](../trendline/RESULTS-215.md)
 
 **Decision tree:**

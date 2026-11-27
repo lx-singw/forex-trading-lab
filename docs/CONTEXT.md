@@ -1,5 +1,10 @@
 # Setup context - 2026-09-30
 
+28 November 2026. Sprint 236 applies the completed H1 opening-bar
+receipt deadline to Exness and EV timing scenarios. Some selected
+openings are too late to verify with completed bars.
+[Sprint 236 results](trendline/RESULTS-236.md)
+
 28 November 2026. Sprint 235 recovers the legacy Exness public tick
 portal. Its captured pages list EURUSD, and the ZIP links lack a symbol.
 The historical feed and timestamp mapping remain open.

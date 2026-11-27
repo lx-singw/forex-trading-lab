@@ -307,3 +307,8 @@ feed, session rules, archive use, and H4 and opening availability.
 hypothesis for the public unsuffixed EURUSD series. The legacy portal
 establishes product history and leaves file-to-feed, timestamp and
 retention qualification open. [Exness portal evidence](RESULTS-235.md)
+
+28 November 2026, sprint 236. Include the completed H1 opening-bar
+receipt deadline in delayed-entry timing comparisons. The selected
+opening must precede expiry, and its completed-bar evidence must be
+available by expiry. [Opening evidence deadline](RESULTS-236.md)
